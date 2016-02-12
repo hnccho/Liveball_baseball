@@ -41,9 +41,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 644524003aba6437e9f9b3b06f2cadf0, type: 2}
   mSprites:
+  - name: box_r12_1
+    x: 65
+    y: 208
+    width: 48
+    height: 48
+    borderLeft: 10
+    borderRight: 10
+    borderTop: 10
+    borderBottom: 10
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: btn_bg_cicle_64
     x: 0
-    y: 64
+    y: 192
     width: 64
     height: 64
     borderLeft: 0
@@ -56,7 +69,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: btn_icon_minus
     x: 65
-    y: 73
+    y: 201
     width: 32
     height: 6
     borderLeft: 0
@@ -68,8 +81,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_plus
-    x: 65
-    y: 31
+    x: 0
+    y: 110
     width: 32
     height: 32
     borderLeft: 0
@@ -81,21 +94,21 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: default_white
-    x: 98
-    y: 47
+    x: 33
+    y: 126
     width: 16
     height: 16
-    borderLeft: 2
-    borderRight: 2
-    borderTop: 2
-    borderBottom: 2
+    borderLeft: 1
+    borderRight: 1
+    borderTop: 1
+    borderBottom: 1
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
   - name: top_btn_info_normal
-    x: 65
-    y: 80
+    x: 0
+    y: 143
     width: 48
     height: 48
     borderLeft: 0
@@ -107,8 +120,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: top_btn_prev_normal
-    x: 36
-    y: 15
+    x: 85
+    y: 143
     width: 28
     height: 48
     borderLeft: 0
@@ -120,8 +133,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: top_btn_search_normal
-    x: 0
-    y: 15
+    x: 49
+    y: 143
     width: 35
     height: 48
     borderLeft: 0
@@ -149,19 +162,35 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: mSprites.Array.data[0].borderLeft
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: mSprites.Array.data[0].borderRight
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: mSprites.Array.data[0].borderBottom
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: mSprites.Array.data[0].borderTop
-      value: 2
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[4].borderLeft
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[4].borderBottom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[4].borderRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[4].borderTop
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
