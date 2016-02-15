@@ -41,22 +41,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 92c9640c80c0d4d2c919bf4288041fe8, type: 2}
   mSprites:
-  - name: man_default_b
-    x: 0
-    y: 12
-    width: 254
-    height: 244
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 10
-    paddingBottom: 0
   - name: powerup_arrow
-    x: 324
-    y: 200
+    x: 0
+    y: 3
     width: 74
     height: 56
     borderLeft: 0
@@ -68,8 +55,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upgrade_plus
-    x: 255
-    y: 188
+    x: 0
+    y: 60
     width: 68
     height: 68
     borderLeft: 0
