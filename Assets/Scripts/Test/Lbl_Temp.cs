@@ -10,7 +10,8 @@ public class Lbl_Temp : MonoBehaviour {
 //		TextAsset ta = Resources.Load("Liveball - sheet1", typeof(TextAsset)) as TextAsset;
 //		Localization.LoadCSV(ta);
 //		Localization.language = "Korean";//"Korean";
-		FB.Init(onInitComplete, onHideUnity);
+//		FB.Init(onInitComplete, onHideUnity);
+		Debug.Log("Start");
 	}
 
 	void onInitComplete(){
@@ -35,7 +36,8 @@ public class Lbl_Temp : MonoBehaviour {
 	void Awake(){
 		TextAsset ta = Resources.Load("Liveball - sheet1", typeof(TextAsset)) as TextAsset;
 		Localization.LoadCSV(ta);
-		Localization.language = "Korean";//"Korean";
+//		Localization.language = "Korean";//"Korean";
+		Localization.language = "English";
 	}
 	
 	// Update is called once per frame

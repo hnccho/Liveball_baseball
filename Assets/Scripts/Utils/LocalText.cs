@@ -7,7 +7,17 @@ public class LocalText : MonoBehaviour {
 	void Start () {
 		UILabel lbl = transform.GetComponent<UILabel>();
 		if(lbl != null){
-			lbl.text = UtilMgr.GetLocalText(lbl.text);
+			string value = UtilMgr.GetLocalText(lbl.name);
+			if(value.Equals(lbl.name)){
+				GameObject obj = gameObject;
+				string path = "/" + obj.name;
+				while(obj.transform.parent != null){
+					obj = obj.transform.parent.gameObject;
+					path = "/" + obj.name + path;
+				}
+				Debug.Log("My path is "+path);
+			}
+			lbl.text = value;
 			return;
 		}
 //		StartCoroutine(ttt());
