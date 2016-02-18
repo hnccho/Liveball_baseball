@@ -42,8 +42,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 644524003aba6437e9f9b3b06f2cadf0, type: 2}
   mSprites:
   - name: box_r12_1
-    x: 255
-    y: 86
+    x: 393
+    y: 208
     width: 48
     height: 48
     borderLeft: 10
@@ -55,8 +55,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: box_r4_1
-    x: 461
-    y: 224
+    x: 375
+    y: 118
     width: 32
     height: 32
     borderLeft: 4
@@ -68,8 +68,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: box_r8_1
-    x: 255
-    y: 135
+    x: 336
+    y: 200
     width: 56
     height: 56
     borderLeft: 8
@@ -80,9 +80,35 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: box_rb_1
+    x: 255
+    y: 176
+    width: 80
+    height: 80
+    borderLeft: 20
+    borderRight: 20
+    borderTop: 20
+    borderBottom: 20
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: box_rb_lb
+    x: 255
+    y: 95
+    width: 80
+    height: 80
+    borderLeft: 20
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 20
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: btn_bg_cicle_64
     x: 255
-    y: 192
+    y: 30
     width: 64
     height: 64
     borderLeft: 0
@@ -107,8 +133,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_plus
-    x: 320
-    y: 175
+    x: 336
+    y: 32
     width: 32
     height: 32
     borderLeft: 0
@@ -120,8 +146,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: default_white
-    x: 302
-    y: 20
+    x: 255
+    y: 13
     width: 16
     height: 16
     borderLeft: 1
@@ -133,8 +159,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: icon_ball_1
-    x: 356
-    y: 218
+    x: 460
+    y: 161
     width: 36
     height: 38
     borderLeft: 0
@@ -146,8 +172,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: live_pin
-    x: 320
-    y: 138
+    x: 375
+    y: 81
     width: 24
     height: 36
     borderLeft: 0
@@ -172,8 +198,8 @@ MonoBehaviour:
     paddingTop: 10
     paddingBottom: 0
   - name: star_1
-    x: 393
-    y: 220
+    x: 336
+    y: 114
     width: 38
     height: 36
     borderLeft: 0
@@ -184,9 +210,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: top_btn_close_normal
+    x: 372
+    y: 159
+    width: 40
+    height: 40
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: top_btn_info_normal
-    x: 255
-    y: 37
+    x: 442
+    y: 208
     width: 48
     height: 48
     borderLeft: 0
@@ -198,8 +237,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: top_btn_menu_normal
-    x: 255
-    y: 4
+    x: 413
+    y: 167
     width: 46
     height: 32
     borderLeft: 0
@@ -211,8 +250,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: top_btn_prev_normal
-    x: 432
-    y: 208
+    x: 336
+    y: 65
     width: 28
     height: 48
     borderLeft: 0
@@ -224,8 +263,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: top_btn_search_normal
-    x: 320
-    y: 208
+    x: 336
+    y: 151
     width: 35
     height: 48
     borderLeft: 0
@@ -314,6 +353,34 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: mSprites.Array.data[2].borderTop
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[3].borderLeft
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[3].borderBottom
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[3].borderRight
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[3].borderTop
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[12].borderLeft
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[12].borderRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[12].paddingLeft
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

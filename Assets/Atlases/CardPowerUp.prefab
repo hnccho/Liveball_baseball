@@ -42,8 +42,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 92c9640c80c0d4d2c919bf4288041fe8, type: 2}
   mSprites:
   - name: box_r8_line
-    x: 255
-    y: 3
+    x: 393
+    y: 395
     width: 60
     height: 60
     borderLeft: 10
@@ -55,8 +55,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_cardopen
-    x: 255
-    y: 64
+    x: 328
+    y: 391
     width: 64
     height: 64
     borderLeft: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_cardpackopen
-    x: 397
-    y: 186
+    x: 255
+    y: 302
     width: 64
     height: 70
     borderLeft: 0
@@ -81,8 +81,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_move_1
-    x: 462
-    y: 232
+    x: 255
+    y: 277
     width: 24
     height: 24
     borderLeft: 0
@@ -93,9 +93,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: btn_icon_unlock
+    x: 403
+    y: 476
+    width: 26
+    height: 36
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: cardpack_default
     x: 255
-    y: 186
+    y: 442
     width: 72
     height: 70
     borderLeft: 0
@@ -108,7 +121,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: man_default_b
     x: 0
-    y: 12
+    y: 268
     width: 254
     height: 244
     borderLeft: 0
@@ -119,9 +132,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 10
     paddingBottom: 0
+  - name: playercard_bg_grd
+    x: 0
+    y: 81
+    width: 10
+    height: 186
+    borderLeft: 2
+    borderRight: 2
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: powerup_arrow
-    x: 255
-    y: 129
+    x: 328
+    y: 456
     width: 74
     height: 56
     borderLeft: 0
@@ -133,8 +159,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upgrade_plus
-    x: 328
-    y: 188
+    x: 255
+    y: 373
     width: 68
     height: 68
     borderLeft: 0
@@ -171,6 +197,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: mSprites.Array.data[0].borderTop
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[6].borderLeft
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[6].borderRight
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
