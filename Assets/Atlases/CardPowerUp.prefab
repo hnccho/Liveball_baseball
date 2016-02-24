@@ -42,8 +42,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 92c9640c80c0d4d2c919bf4288041fe8, type: 2}
   mSprites:
   - name: box_r8_line
-    x: 295
-    y: 771
+    x: 334
+    y: 561
     width: 60
     height: 60
     borderLeft: 10
@@ -54,9 +54,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: btn_icon_buy
+    x: 399
+    y: 622
+    width: 64
+    height: 64
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: btn_icon_cardopen
-    x: 295
-    y: 832
+    x: 334
+    y: 622
     width: 64
     height: 64
     borderLeft: 0
@@ -68,8 +81,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_cardpackopen
-    x: 437
-    y: 954
+    x: 443
+    y: 744
     width: 64
     height: 70
     borderLeft: 0
@@ -81,8 +94,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_move_1
-    x: 397
-    y: 920
+    x: 480
+    y: 1000
     width: 24
     height: 24
     borderLeft: 0
@@ -94,8 +107,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_unlock
-    x: 370
-    y: 917
+    x: 453
+    y: 988
     width: 26
     height: 36
     borderLeft: 0
@@ -108,7 +121,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: cardpack_default
     x: 295
-    y: 954
+    y: 744
     width: 72
     height: 70
     borderLeft: 0
@@ -133,8 +146,8 @@ MonoBehaviour:
     paddingTop: 10
     paddingBottom: 0
   - name: playercard_bg_grd
-    x: 255
-    y: 557
+    x: 0
+    y: 312
     width: 10
     height: 186
     borderLeft: 2
@@ -159,8 +172,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: playercard_line_graph
-    x: 397
-    y: 945
+    x: 409
+    y: 735
     width: 88
     height: 8
     borderLeft: 0
@@ -172,8 +185,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: powerup_arrow
-    x: 295
-    y: 897
+    x: 334
+    y: 687
     width: 74
     height: 56
     borderLeft: 0
@@ -184,9 +197,87 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: starcard_1
+    x: 255
+    y: 534
+    width: 78
+    height: 104
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: starcard_2
+    x: 255
+    y: 639
+    width: 78
+    height: 104
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: starcard_3
+    x: 374
+    y: 815
+    width: 78
+    height: 104
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: starcard_4
+    x: 295
+    y: 815
+    width: 78
+    height: 104
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: starcard_5
+    x: 374
+    y: 920
+    width: 78
+    height: 104
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: starcard_6
+    x: 295
+    y: 920
+    width: 78
+    height: 104
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: upgrade_plus
-    x: 368
-    y: 956
+    x: 374
+    y: 746
     width: 68
     height: 68
     borderLeft: 0
