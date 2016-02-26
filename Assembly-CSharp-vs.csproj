@@ -1193,6 +1193,7 @@
      <Compile Include="Assets\Scripts\Entries\BtnInitialize.cs" />
      <Compile Include="Assets\Scripts\Entries\BtnRandom.cs" />
      <Compile Include="Assets\Scripts\Landing\LandingTopMenuBtn.cs" />
+     <Compile Include="Assets\Scripts\LandingRoot.cs" />
      <Compile Include="Assets\Scripts\Network\Events\AccuseContentEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\BaseEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\BaseSocketEvent.cs" />
@@ -1482,6 +1483,8 @@
      <Compile Include="Assets\Scripts\Utils\ProgressCircle.cs" />
      <Compile Include="Assets\Scripts\Utils\QuizMgr.cs" />
      <Compile Include="Assets\Scripts\Utils\ScriptParticleResizer.cs" />
+     <Compile Include="Assets\Scripts\Utils\StateMgr.cs" />
+     <Compile Include="Assets\Scripts\Utils\SuperRoot.cs" />
      <Compile Include="Assets\Scripts\Utils\UIScrollView2.cs" />
      <Compile Include="Assets\Scripts\Utils\UtilMgr.cs" />
      <Compile Include="Assets\Scripts\Utils\WWWHelper.cs" />

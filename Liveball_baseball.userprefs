@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerCard/PlayerCardSelectionBtns.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Utils/SuperRoot.cs">
     <Files>
       <File FileName="Assets/Plugins/Android/AndroidManifest.xml" Line="75" Column="12" />
       <File FileName="Assets/Scripts/Utils/AdjustListSize.cs" Line="1" Column="1" />
@@ -9,8 +9,10 @@
       <File FileName="Assets/Extras/Graph_Maker/Scripts/GUIDependent/WMG_GUI_Functions.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/PlayerCard/PlayerCardSelectionBtns.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Entries/BtnFolding.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Entries/BtnRandom.cs" Line="35" Column="49" />
-      <File FileName="Assets/Scripts/Entries/BtnInitialize.cs" Line="35" Column="49" />
+      <File FileName="Assets/Scripts/Entries/BtnRandom.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Entries/BtnInitialize.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ContestDetail/ContestDetailBtns.cs" Line="23" Column="1" />
+      <File FileName="Assets/Scripts/Utils/SuperRoot.cs" Line="36" Column="29" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -18,13 +20,14 @@
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
               <Node name="CardPowerUp" expanded="True" />
+              <Node name="ContestDetail" expanded="True" />
               <Node name="Entries" expanded="True" />
               <Node name="Network" expanded="True" />
-              <Node name="PlayerCard" expanded="True">
-                <Node name="PlayerCardSelectionBtns.cs" selected="True" />
-              </Node>
+              <Node name="PlayerCard" expanded="True" />
               <Node name="Test" expanded="True" />
-              <Node name="Utils" expanded="True" />
+              <Node name="Utils" expanded="True">
+                <Node name="SuperRoot.cs" selected="True" />
+              </Node>
             </Node>
           </Node>
           <Node name="Assembly-CSharp-firstpass" expanded="True">
