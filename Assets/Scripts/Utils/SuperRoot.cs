@@ -5,7 +5,7 @@ public class SuperRoot : MonoBehaviour {
 		
 	void Start () {
 		
-		transform.FindChild ("Camera").transform.localPosition = new Vector3(0f, UtilMgr.GetScaledPositionY(), -3000f);
+		transform.FindChild ("Camera").transform.localPosition = new Vector3(0f, UtilMgr.GetScaledPositionY(), -2000f);
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}
 	

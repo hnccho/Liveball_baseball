@@ -70,18 +70,16 @@ public class DialogueMgr : MonoBehaviour {
 	public static void ShowExitDialogue(DialogClickHandler handler){
 //		Debug.Log("ShowExitDialogue");
 		if (Instance.mDialogueBox == null) {
-			//if(Application.loadedLevelName.Equals("SceneLobby")){
-				GameObject prefab = Resources.Load ("CommonDialogue2") as GameObject;
-				Instance.mDialogueBox = Instantiate (prefab, new Vector3 (0f, 0f, 0f), Quaternion.identity) as GameObject;
-//			}else{
-//				GameObject prefab = Resources.Load ("CommonDialogue") as GameObject;
-//				Instance.mDialogueBox = Instantiate (prefab, new Vector3 (0f, 0f, 0f), Quaternion.identity) as GameObject;
-//			}
+			GameObject prefab = Resources.Load ("CommonDialogue") as GameObject;
+			Instance.mDialogueBox = Instantiate (prefab, new Vector3 (0f, 0f, 0f), Quaternion.identity) as GameObject;
 		
 		}
 
-		string strTitle = Instance.mDialogueBox.GetComponent<PlayMakerFSM> ().FsmVariables.FindFsmString ("exitTitle").Value;
-		string strBody = Instance.mDialogueBox.GetComponent<PlayMakerFSM> ().FsmVariables.FindFsmString ("exitBody").Value;
+//		string strTitle = Instance.mDialogueBox.GetComponent<PlayMakerFSM> ().FsmVariables.FindFsmString ("exitTitle").Value;
+//		string strBody = Instance.mDialogueBox.GetComponent<PlayMakerFSM> ().FsmVariables.FindFsmString ("exitBody").Value;
+
+		string strTitle = UtilMgr.GetLocalText("ExitTitle");
+		string strBody = UtilMgr.GetLocalText("ExitBody");
 
 		ShowDialogue (strTitle, strBody, DIALOGUE_TYPE.YesNo, null, null, null, handler);
 
@@ -98,15 +96,9 @@ public class DialogueMgr : MonoBehaviour {
 	                                string strBtn1, string strBtn2, string strCancel, DialogClickHandler handler)
 	{
 		Instance.SetHandler(handler);
-//		Debug.Log("ShowDialogue2");
 		if (Instance.mDialogueBox == null) {
-			//if(Application.loadedLevelName.Equals("SceneLobby")){
-				GameObject prefab = Resources.Load ("CommonDialogue2") as GameObject;
+				GameObject prefab = Resources.Load ("CommonDialogue") as GameObject;
 				Instance.mDialogueBox = Instantiate (prefab, new Vector3 (0f, 0f, 0f), Quaternion.identity) as GameObject;
-//			}else{
-//				GameObject prefab = Resources.Load ("CommonDialogue") as GameObject;
-//				Instance.mDialogueBox = Instantiate (prefab, new Vector3 (0f, 0f, 0f), Quaternion.identity) as GameObject;
-//			}
 		}
 
 		if (IsShown) {
@@ -115,93 +107,94 @@ public class DialogueMgr : MonoBehaviour {
 
 		Instance.mDialogueBox.transform.parent = GameObject.Find ("Camera").transform;
 		Instance.mDialogueBox.transform.localScale = new Vector3(1f, 1f, 1f);
-		Instance.mDialogueBox.transform.localPosition = new Vector3(0, 0, 0);
+		Instance.mDialogueBox.transform.localPosition = new Vector3(0, 0, 1000f);
 		Instance.mDialogueBox.SetActive (true);
 
-		Instance.mDialogueBox.transform.FindChild("Panel").FindChild("LblTitle")
+		Instance.mDialogueBox.transform.FindChild("LblTitle")
 			.GetComponent<UILabel> ().text = strTitle;
-		Instance.mDialogueBox.transform.FindChild("Panel").FindChild("LblBody")
-			.GetComponent<UILabel> ().text = "[565656]"+strBody+"[-]";
+		Instance.mDialogueBox.transform.FindChild("LblBody")
+			.GetComponent<UILabel> ().text = "[333333]"+strBody+"[-]";
 
-		Instance.SetTypeDialogue (type, strBtn1, strBtn2, strCancel);
-//		Instance.mIsExit = false;
-//		UtilMgr.SetBackEvent(new EventDelegate(Instance.GetComponent<DialogueMgr>(), "DismissDialogue"));
+		int bodyHeight = Instance.mDialogueBox.transform.FindChild("LblBody")
+			.GetComponent<UILabel> ().height;
+
+		Instance.SetTypeDialogue (type, strBtn1, strBtn2, strCancel, bodyHeight);
      	IsShown = true;
 	}
 
 
-	void SetTypeDialogue(DIALOGUE_TYPE type, string strBtn1, string strBtn2, string strCancel)
+	void SetTypeDialogue(DIALOGUE_TYPE type, string strBtn1, string strBtn2, string strCancel, int bodyHeight)
 	{
-		GameObject btn1 = Instance.mDialogueBox.transform.FindChild("Panel").FindChild("Btn1").gameObject;
-		GameObject btn2 = Instance.mDialogueBox.transform.FindChild("Panel").FindChild("Btn2").gameObject;
-		GameObject btnCancel = Instance.mDialogueBox.transform.FindChild("Panel").FindChild("BtnCancel").gameObject;
-		GameObject SprBG = Instance.mDialogueBox.transform.FindChild("Panel").FindChild("SprBG").gameObject;
-		SprBG.SetActive (true);
-		HutongGames.PlayMaker.FsmVariables fsmVariables = Instance.mDialogueBox.GetComponent<PlayMakerFSM> ().FsmVariables;
+		Instance.mDialogueBox.transform.FindChild("SprBG").gameObject.SetActive(true);
+		Instance.mDialogueBox.transform.FindChild("SprBG").GetComponent<UISprite>().height
+			= 260 + bodyHeight;
 
-		if (strBtn1 == null
-						|| strBtn1.Length < 1)
-			strBtn1 = fsmVariables.FindFsmString ("strBtn1").Value;
+		Instance.mDialogueBox.transform.FindChild("Alert").gameObject.SetActive(false);
+		Instance.mDialogueBox.transform.FindChild("Alert").localPosition
+			= new Vector3(0f, -86f-(bodyHeight/2f), 0f);
+		Instance.mDialogueBox.transform.FindChild("YesNo").gameObject.SetActive(false);
+		Instance.mDialogueBox.transform.FindChild("YesNo").localPosition
+			= new Vector3(0f, -86f-(bodyHeight/2f), 0f);
 
-		if (strBtn2 == null
-						|| strBtn2.Length < 1)
-						strBtn2 = "";
+		Instance.mDialogueBox.transform.FindChild("LblTitle").localPosition
+			= new Vector3(0f, 60f+(bodyHeight/2f), 0f);
+		Instance.mDialogueBox.transform.FindChild("LblBody").localPosition
+//			= new Vector3(0f, 0f+(bodyHeight/2f), 0f);
+			= new Vector3(0f, 0f, 0f);
 
-		if (strCancel == null
-		    || strCancel.Length < 1)
-			strCancel = fsmVariables.FindFsmString ("strCancel").Value;
 
 		if (type == DIALOGUE_TYPE.Alert) {
-			btn1.SetActive (false);
-			btn2.SetActive (false);
-			btnCancel.SetActive (true);
+			Instance.mDialogueBox.transform.FindChild("Alert").gameObject.SetActive(true);
+			if (strCancel == null || strCancel.Length < 1)
+				strCancel = UtilMgr.GetLocalText("StrConfirm");
 
-			strCancel = fsmVariables.FindFsmString ("strAlert").Value;
-
-			btnCancel.transform.FindChild ("Label").GetComponent<UILabel> ().text = strCancel;
-			btnCancel.transform.localPosition = new Vector3 (0, -100f, 0);
+			Instance.mDialogueBox.transform.FindChild("Alert")
+				.FindChild ("BtnCancel").FindChild("Label").GetComponent<UILabel> ().text = strCancel;
+//			btnCancel.transform.localPosition = new Vector3 (0, -100f, 0);
 		} else if (type == DIALOGUE_TYPE.YesNo) {
-			btn1.SetActive (true);
-			btn2.SetActive (false);
-			btnCancel.SetActive (true);
+			Instance.mDialogueBox.transform.FindChild("YesNo").gameObject.SetActive(true);
+			if (strBtn1 == null || strBtn1.Length < 1)
+				strBtn1 = UtilMgr.GetLocalText("StrConfirm");
+			if (strCancel == null || strCancel.Length < 1)
+				strCancel = UtilMgr.GetLocalText("StrCancel");
 
-			btn1.transform.FindChild ("Label").GetComponent<UILabel> ().text = strBtn1;
-			btnCancel.transform.FindChild ("Label").GetComponent<UILabel> ().text = strCancel;
-
-			btn1.transform.localPosition = new Vector3 (-145f, -100f, 0);
-			btnCancel.transform.localPosition = new Vector3 (145f, -100f, 0);
-		} else if (type == DIALOGUE_TYPE.Choose) {
-			btn1.SetActive (true);
-			btn2.SetActive (true);
-			btnCancel.SetActive (true);
-
-			btn1.transform.FindChild ("Label").GetComponent<UILabel> ().text = strBtn1;
-			btn2.transform.FindChild ("Label").GetComponent<UILabel> ().text = strBtn2;
-			btnCancel.transform.FindChild ("Label").GetComponent<UILabel> ().text = strCancel;
-
-			btn2.transform.localPosition = new Vector3 (0, -100f, 0);
-			btn1.transform.localPosition = new Vector3 (-190f, -100f, 0);
-			btnCancel.transform.localPosition = new Vector3 (190f, -100f, 0);
-		} else if (type == DIALOGUE_TYPE.EventAlert_NonBg) {
-			SprBG.SetActive (false);
-			btn1.SetActive (false);
-			btn2.SetActive (false);
-			btnCancel.SetActive (true);
-			
-			strCancel = fsmVariables.FindFsmString ("strAlert").Value;
-			
-			btnCancel.transform.FindChild ("Label").GetComponent<UILabel> ().text = strCancel;
-			btnCancel.transform.localPosition = new Vector3 (0, -100f, 0);
-		} else if (type == DIALOGUE_TYPE.EventAlert) {
-			btn1.SetActive (false);
-			btn2.SetActive (false);
-			btnCancel.SetActive (true);
-			
-			strCancel = fsmVariables.FindFsmString ("strAlert").Value;
-			
-			btnCancel.transform.FindChild ("Label").GetComponent<UILabel> ().text = strCancel;
-			btnCancel.transform.localPosition = new Vector3 (0, -100f, 0);
-		}
+			Instance.mDialogueBox.transform.FindChild("YesNo")
+				.FindChild ("Btn1").FindChild ("Label").GetComponent<UILabel> ().text = strBtn1;
+			Instance.mDialogueBox.transform.FindChild("YesNo")
+				.FindChild ("BtnCancel").FindChild ("Label").GetComponent<UILabel> ().text = strCancel;
+		} 
+//		else if (type == DIALOGUE_TYPE.Choose) {
+//			btn1.SetActive (true);
+//			btn2.SetActive (true);
+//			btnCancel.SetActive (true);
+//
+//			btn1.transform.FindChild ("Label").GetComponent<UILabel> ().text = strBtn1;
+//			btn2.transform.FindChild ("Label").GetComponent<UILabel> ().text = strBtn2;
+//			btnCancel.transform.FindChild ("Label").GetComponent<UILabel> ().text = strCancel;
+//
+//			btn2.transform.localPosition = new Vector3 (0, -100f, 0);
+//			btn1.transform.localPosition = new Vector3 (-190f, -100f, 0);
+//			btnCancel.transform.localPosition = new Vector3 (190f, -100f, 0);
+//		} else if (type == DIALOGUE_TYPE.EventAlert_NonBg) {
+//			SprBG.SetActive (false);
+//			btn1.SetActive (false);
+//			btn2.SetActive (false);
+//			btnCancel.SetActive (true);
+//			
+//			strCancel = fsmVariables.FindFsmString ("strAlert").Value;
+//			
+//			btnCancel.transform.FindChild ("Label").GetComponent<UILabel> ().text = strCancel;
+//			btnCancel.transform.localPosition = new Vector3 (0, -100f, 0);
+//		} else if (type == DIALOGUE_TYPE.EventAlert) {
+//			btn1.SetActive (false);
+//			btn2.SetActive (false);
+//			btnCancel.SetActive (true);
+//			
+//			strCancel = fsmVariables.FindFsmString ("strAlert").Value;
+//			
+//			btnCancel.transform.FindChild ("Label").GetComponent<UILabel> ().text = strCancel;
+//			btnCancel.transform.localPosition = new Vector3 (0, -100f, 0);
+//		}
 	}
 
 	public static void DismissDialogue()
@@ -258,6 +251,7 @@ public class DialogueMgr : MonoBehaviour {
 
 	public static void ShowAccusationDialog(AccusationInfo accuInfo, AccuseContentEvent baseEvent)
 	{
+		UILabel d;
 		IsAccusing = true;
 		Instance.mAccuEvent = baseEvent;
 		Instance.mAccuInfo = accuInfo;

@@ -25,6 +25,11 @@ public class BtnRandom : MonoBehaviour {
 		sprite.flip = UIBasicSprite.Flip.Both;
 
 		StartCoroutine("BtnAnim");
+
+		DialogueMgr.ShowDialogue("title", "a\nd", DialogueMgr.DIALOGUE_TYPE.Alert, "", "", "Confirm", null);
+//		DialogueMgr.ShowDialogue("title", "a\ndkdkdjfkdjfkd\nkdkdkdkdkd\ndkdkdkdk\nd\nddd\nddd\nd", DialogueMgr.DIALOGUE_TYPE.Alert, "", "", "Confirm", null);
+
+//		DialogueMgr.ShowExitDialogue(null);
 	}
 
 	IEnumerator BtnAnim()
