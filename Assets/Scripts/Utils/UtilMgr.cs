@@ -432,6 +432,14 @@ public class UtilMgr : MonoBehaviour {
 		return isTest;
 	}
 
+	public static bool IsMLB(){
+		bool value = false;
+		if(Application.bundleIdentifier.Equals("com.streetlab.liveball.mlb"))
+		   value = true;
+
+		return value;
+	}
+
 	public static bool IsGuestAccount(){
 		bool value = false;
 //		string strTest = PlayerPrefs.GetString (Constants.PrefGuest);

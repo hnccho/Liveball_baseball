@@ -3,13 +3,13 @@ using System.Collections;
 
 public class SuperRoot : MonoBehaviour {
 		
-	void Start () {
+	protected void Start () {
 		
 		transform.FindChild ("Camera").transform.localPosition = new Vector3(0f, UtilMgr.GetScaledPositionY(), -2000f);
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}
 	
-	void Awake(){		
+	protected void Awake(){		
 		if(GetComponent<AudioSource>() == null){
 			gameObject.AddComponent<AudioSource>();
 		}
@@ -19,7 +19,7 @@ public class SuperRoot : MonoBehaviour {
 		Application.targetFrameRate = 20;
 	}
 	
-	void Update () {
+	protected void Update () {
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 //			if(Application.loadedLevelName.Equals("SceneMain")){
 //				if(!transform.FindChild("TF_Betting").gameObject.activeSelf){
