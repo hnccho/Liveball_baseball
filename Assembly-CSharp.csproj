@@ -1192,9 +1192,11 @@
      <Compile Include="Assets\Scripts\Entries\BtnFolding.cs" />
      <Compile Include="Assets\Scripts\Entries\BtnInitialize.cs" />
      <Compile Include="Assets\Scripts\Entries\BtnRandom.cs" />
+     <Compile Include="Assets\Scripts\Landing\LandingRoot.cs" />
      <Compile Include="Assets\Scripts\Landing\LandingTopMenuBtn.cs" />
      <Compile Include="Assets\Scripts\Login\BtnAgree.cs" />
      <Compile Include="Assets\Scripts\Login\BtnRegisterUsername.cs" />
+     <Compile Include="Assets\Scripts\Login\LoginRoot.cs" />
      <Compile Include="Assets\Scripts\Network\Events\AccuseContentEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\BaseEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\BaseSocketEvent.cs" />
@@ -1402,6 +1404,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\JoinGameSocketRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\JoinMemberRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\JoinQuizRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\LoginDeviceRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\LoginGuestRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\LoginRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\MergeMembershipRequest.cs" />
@@ -1471,9 +1474,6 @@
      <Compile Include="Assets\Scripts\Network\Responses\procStoreGachaResponse.cs" />
      <Compile Include="Assets\Scripts\Network\UserMgr.cs" />
      <Compile Include="Assets\Scripts\PlayerCard\PlayerCardSelectionBtns.cs" />
-     <Compile Include="Assets\Scripts\Roots\LandingRoot.cs" />
-     <Compile Include="Assets\Scripts\Roots\LoginRoot.cs" />
-     <Compile Include="Assets\Scripts\Roots\SuperRoot.cs" />
      <Compile Include="Assets\Scripts\Test\Lbl_Temp.cs" />
      <Compile Include="Assets\Scripts\Utils\AdjustBtnPosition.cs" />
      <Compile Include="Assets\Scripts\Utils\AdjustListSize.cs" />
@@ -1488,6 +1488,7 @@
      <Compile Include="Assets\Scripts\Utils\QuizMgr.cs" />
      <Compile Include="Assets\Scripts\Utils\ScriptParticleResizer.cs" />
      <Compile Include="Assets\Scripts\Utils\StateMgr.cs" />
+     <Compile Include="Assets\Scripts\Utils\SuperRoot.cs" />
      <Compile Include="Assets\Scripts\Utils\UIScrollView2.cs" />
      <Compile Include="Assets\Scripts\Utils\UtilMgr.cs" />
      <Compile Include="Assets\Scripts\Utils\WWWHelper.cs" />

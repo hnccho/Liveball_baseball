@@ -1,9 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Utils/DialogueMgr.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Login/BtnRegisterUsername.cs">
     <Files>
-      <File FileName="Assets/Scripts/Roots/LoginRoot.cs" Line="14" Column="51" />
-      <File FileName="Assets/Scripts/Utils/DialogueMgr.cs" Line="226" Column="41" />
+      <File FileName="Assets/Scripts/Roots/LoginRoot.cs" Line="146" Column="60" />
+      <File FileName="Assets/Scripts/Utils/DialogueMgr.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Login/BtnRegisterUsername.cs" Line="8" Column="2" />
+      <File FileName="Assets/Scripts/Utils/UtilMgr.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/Requests/JoinMemberRequest.cs" Line="1" Column="1" />
+      <File FileName="../Liveball/Assets/Scripts/Common/Login/ScriptTitle.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/Responses/CheckVersionResponse.cs" Line="8" Column="25" />
+      <File FileName="Assets/Scripts/Network/NetMgr.cs" Line="204" Column="20" />
+      <File FileName="Assets/Scripts/Utils/Constants.cs" Line="60" Column="61" />
+      <File FileName="Assets/Scripts/Network/Events/BaseEvent.cs" Line="48" Column="8" />
+      <File FileName="Assets/Scripts/Network/Requests/LoginDeviceRequest.cs" Line="8" Column="2" />
+      <File FileName="Assets/Scripts/Network/Requests/LoginGuestRequest.cs" Line="28" Column="3" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -20,14 +30,13 @@
               <Node name="CardPowerUp" expanded="True" />
               <Node name="ContestDetail" expanded="True" />
               <Node name="Entries" expanded="True" />
-              <Node name="Login" expanded="True" />
-              <Node name="Network" expanded="True" />
+              <Node name="Login" expanded="True">
+                <Node name="BtnRegisterUsername.cs" selected="True" />
+              </Node>
               <Node name="PlayerCard" expanded="True" />
               <Node name="Roots" expanded="True" />
               <Node name="Test" expanded="True" />
-              <Node name="Utils" expanded="True">
-                <Node name="DialogueMgr.cs" selected="True" />
-              </Node>
+              <Node name="Utils" expanded="True" />
             </Node>
           </Node>
           <Node name="Assembly-CSharp-Editor" expanded="True">

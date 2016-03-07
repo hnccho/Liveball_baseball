@@ -202,13 +202,13 @@ public class NetMgr : MonoBehaviour{
 		//        host = Constants.UPLOAD_TEST_SERVER_HOST;
 		WWW www = new WWW (host, form);
 		mReqParam = null;
-		mUrl = "";
-		mUrl = host;
 		mForm = form;
 		if(UtilMgr.OnPause){
 			Debug.Log("Request is Canceled cause OnPause");
 			//            return;
 		}
+		string param = "";
+		Debug.Log(host + "?" + form.headers.Values.ToString());
 		StartCoroutine (webAPIProcess(www, baseEvent, true, true));
 	}
 	
@@ -242,22 +242,22 @@ public class NetMgr : MonoBehaviour{
 		}
 		
 		string host = Constants.CHECK_SERVER_HOST;
-		if(isTest){
-			host = Constants.CHECK_TEST_SERVER_HOST;
-			Debug.Log("Send to Test Server");
-		} else{
-			Debug.Log("Send to Real Server");
-		}
+//		if(isTest){
+//			host = Constants.CHECK_TEST_SERVER_HOST;
+//			Debug.Log("Send to Test Server");
+//		} else{
+//			Debug.Log("Send to Real Server");
+//		}
 		//        host = Constants.CHECK_TEST_SERVER_HOST;
 		
 		WWW www = new WWW (host , System.Text.Encoding.UTF8.GetBytes(reqParam));
+
 		mReqParam = null;
-		mUrl = "";
 		mForm = null;
 		mReqParam = System.Text.Encoding.UTF8.GetBytes(reqParam);
-		mUrl = host;
+
 	
-		Debug.Log (reqParam);
+		Debug.Log (host + "?" + reqParam);
 		
 		StartCoroutine (webAPIProcess(www, baseEvent, showLoading, false));
 	}
@@ -282,11 +282,9 @@ public class NetMgr : MonoBehaviour{
 		
 		WWW www = new WWW (host , System.Text.Encoding.UTF8.GetBytes(reqParam));
 		mReqParam = null;
-		mUrl = "";
 		mForm = null;
 		mReqParam = System.Text.Encoding.UTF8.GetBytes(reqParam);
-		mUrl = host;
-		Debug.Log (reqParam);
+		Debug.Log (host + "?" + reqParam);
 		
 		StartCoroutine (webAPIProcess(www, baseEvent, showLoading, false));
 	}
@@ -304,12 +302,12 @@ public class NetMgr : MonoBehaviour{
 			//            httpUrl = Constants.QUERY_SERVER_HOST;
 		}
 		//AUTH_SERVER_HOST
-		WWW www = new WWW (Constants.QUERY_SERVER_HOST , System.Text.Encoding.UTF8.GetBytes(reqParam));
+		WWW www = new WWW (Constants.APPS_SERVER_HOST , System.Text.Encoding.UTF8.GetBytes(reqParam));
 		mReqParam = null;
 		mUrl = "";
 		mForm = null;
 		mReqParam = System.Text.Encoding.UTF8.GetBytes(reqParam);
-		mUrl = Constants.QUERY_SERVER_HOST;
+		mUrl = Constants.APPS_SERVER_HOST;
 		Debug.Log (reqParam);
 		if(UtilMgr.OnPause){
 			Debug.Log("Request is Canceled cause OnPause");
@@ -326,12 +324,12 @@ public class NetMgr : MonoBehaviour{
 		string reqParam = "";
 		string httpUrl = "";
 		reqParam = request.ToRequestString();
-		WWW www = new WWW (Constants.QUERY_SERVER_HOST , System.Text.Encoding.UTF8.GetBytes(reqParam));	
+		WWW www = new WWW (Constants.APPS_SERVER_HOST , System.Text.Encoding.UTF8.GetBytes(reqParam));	
 		mReqParam = null;
 		mUrl = "";
 		mForm = null;
 		mReqParam = System.Text.Encoding.UTF8.GetBytes(reqParam);
-		mUrl = Constants.QUERY_SERVER_HOST;
+		mUrl = Constants.APPS_SERVER_HOST;
 		Debug.Log (reqParam);
 		
 		StartCoroutine (webAPIProcessInBackground(www, baseEvent));
@@ -457,7 +455,7 @@ public class NetMgr : MonoBehaviour{
 		mSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 		
 		try{
-			mSocket.BeginConnect(Constants.GAME_SERVER_HOST, Constants.GAME_SERVER_PORT,
+			mSocket.BeginConnect(Constants.APPS_SERVER_HOST, Constants.EXTR_SERVER_PORT,
 			                     mConnectionCallback, null);
 		} catch(Exception e){
 			Debug.Log ("beginConnect : "+e.Message);
@@ -489,6 +487,10 @@ public class NetMgr : MonoBehaviour{
 	//        Instance.webAPIProcessEvent (new LoginRequest(loginInfo), baseEvent);
 	//        Instance.webAPIProcessEventToAuth (new LoginGuestRequest(loginInfo), baseEvent, isTest, showLoading);
 	//    }
+
+	public static void LoginDevice(string deviceID, BaseEvent baseEvent){
+		Instance.webAPIUploadProcessEvent (new LoginDeviceRequest(deviceID), baseEvent, false, true);
+	}
 	
 	public static void LoginGuest(LoginInfo loginInfo, BaseEvent baseEvent, bool isTest, bool showLoading)
 	{
@@ -573,8 +575,8 @@ public class NetMgr : MonoBehaviour{
 	}
 	public static void GetGift(EventDelegate E)
 	{
-		WWW www = new WWW(Constants.IMAGE_SERVER_HOST+"gift/gift.json");
-		Instance.webProcess2 (www,E);
+//		WWW www = new WWW(Constants.IMAGE_SERVER_HOST+"gift/gift.json");
+//		Instance.webProcess2 (www,E);
 	}
 	public static void GetScheduleAll(BaseEvent baseEvent)
 	{

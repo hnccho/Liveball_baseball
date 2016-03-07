@@ -15,6 +15,17 @@ public class VersionInfo {
 		}
 	}
 
+	int _serviceStatus;
+
+	public int serviceStatus {
+		get {
+			return _serviceStatus;
+		}
+		set {
+			_serviceStatus = value;
+		}
+	}
+
 	string _verDesc;
 
 	public string verDesc {
@@ -59,80 +70,91 @@ public class VersionInfo {
 		}
 	}
 
-	string _FILE_PATH;
+//	string _FILE;
+//
+//	public string FILE_PATH {
+//		get {
+//			return _FILE;
+//		}
+//		set {
+//			_FILE = value;
+//		}
+//	}
 
-	public string FILE_PATH {
+	string _FILE;
+
+	string _APPS;
+
+	public string APPS {
 		get {
-			return _FILE_PATH;
+			return _APPS;
 		}
 		set {
-			_FILE_PATH = value;
+			_APPS = value;
 		}
 	}
 
-	string _FILE_SVR;
-
-	string _APPS_SVR;
-
-	public string APPS_SVR {
+	public string FILE {
 		get {
-			return _APPS_SVR;
+			return _FILE;
 		}
 		set {
-			_APPS_SVR = value;
+			_FILE = value;
 		}
 	}
 
-	public string FILE_SVR {
+	string _PATH;
+
+	public string PATH {
 		get {
-			return _FILE_SVR;
+			return _PATH;
 		}
 		set {
-			_FILE_SVR = value;
+			_PATH = value;
 		}
 	}
 
-	string _GAME_SVR;
+	string _PORT;
 
-	public string GAME_SVR {
+	public string PORT {
 		get {
-			return _GAME_SVR;
+			return _PORT;
 		}
 		set {
-			_GAME_SVR = value;
+			_PORT = value;
 		}
 	}
 
-	string _GAME_PORT;
+	string _AUTH;
 
-	public string GAME_PORT {
+	public string AUTH {
 		get {
-			return _GAME_PORT;
+			return _AUTH;
 		}
 		set {
-			_GAME_PORT = value;
+			_AUTH = value;
 		}
 	}
 
-	string _AUTH_SVR;
+	string _EXTR;
 
-	public string AUTH_SVR {
+	public string EXTR {
 		get {
-			return _AUTH_SVR;
+			return _EXTR;
 		}
 		set {
-			_AUTH_SVR = value;
+			_EXTR = value;
 		}
 	}
 
-	string _EXT_SVR;
+	string _NOTE;
 
-	public string EXT_SVR {
+	public string NOTE {
 		get {
-			return _EXT_SVR;
+			return _NOTE;
 		}
 		set {
-			_EXT_SVR = value;
+			_NOTE = value;
 		}
 	}
 }

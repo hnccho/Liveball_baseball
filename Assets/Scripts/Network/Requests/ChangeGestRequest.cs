@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Text;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ public class ChangeGestRequest : BaseUploadRequest {
 	{		
 		Dictionary<string, object> dic = new Dictionary<string, object> ();
 		dic.Add ("memSeq", UserMgr.UserInfo.memSeq);
-		dic.Add ("memberEmail", loginInfo.memberEmail);
+		dic.Add ("memberEmail", loginInfo.email);
 		dic.Add ("memberPwd", loginInfo.memberPwd);
 		dic.Add ("memUID", loginInfo.memUID);
 		dic.Add ("deviceID", loginInfo.DeviceID);		

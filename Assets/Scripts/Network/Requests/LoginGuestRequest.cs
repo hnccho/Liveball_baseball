@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Text;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ public class LoginGuestRequest : BaseUploadRequest {
 	public LoginGuestRequest(LoginInfo loginInfo)
 	{
 		Dictionary<string, object> dic = new Dictionary<string, object> ();
-		dic.Add ("memberName", loginInfo.memberName == null ? "" : loginInfo.memberName);
+		dic.Add ("memberName", loginInfo.nick == null ? "" : loginInfo.nick);
 		dic.Add ("memUID", loginInfo.memUID == null ? "" : loginInfo.memUID);
 //		Debug.Log("deviceID is "+loginInfo.DeviceID);
 //		loginInfo.DeviceID = "test9";

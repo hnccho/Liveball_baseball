@@ -11,7 +11,7 @@ public class Constants {
 	public const string	MARKET_URI_TSTORE = "PRODUCT_VIEW/0000308300/0";
 	public const string GOOGLE_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjGkEP5nvlwmRj60ulqwkvUV+DzylEtfrPUkeWOBoffMXwWFJKXWK88zYeSpJJfu0sAxMJ7u7Cumv3KYlV6uuG3pvmwQ/65qaYWoWxLvdx5RUpyrxOo4DjuDW3DfAbi9fr6TxoXHveN4Pm6gSnNuOwhQxYB9GsuODUkMAWdBvamvHHa97/dOED9VorP9C4SVWFiY13nhAjqm8uxZcFnw3Pwm1qHgFRSwKbw1cPSsbiBF6Pq03Gem/kNitoBf/2EcvkLX/h7CO3LHNvVMCImO2WdPH+1DgMw2AjCnUtMeqZw9Z4YoTbOV/Q1jOLhVgdt2JWMWxaAeTQhNVV1tFhgA3vwIDAQAB";
 	
-	public const string HOST					= 	"appif.liveball.kr";
+	public const string HOST					= 	"m3.liveball.kr";
 	public const string TEST_HOST					= 	"192.168.0.5";
 	
 	public const string COMMUNITY_URL = "http://cafe.naver.com/tuby";
@@ -56,19 +56,23 @@ public class Constants {
 	public static string CS_SERVER_HOST			 		= 	"http://www.crossshock.com:9696/Client/";
 	public static string CS_ICON_HOST			 		= 	"http://www.crossshock.com/Icon/";
 
-	public static string CHECK_TEST_SERVER_HOST 		= 	"http://" + HOST + ":4002/webTuby/query.frz";
-	public static string CHECK_SERVER_HOST 				= 	"http://" + HOST + ":6002/webTuby/query.frz";
-	public static string CHECK_SERVER_HOST2				= 	"http://" + HOST + ":600/webTuby/query.frz";
+//	public static string CHECK_TEST_SERVER_HOST 		= 	"http://" + HOST + ":4002/webTuby/query.frz";
+	public static string CHECK_SERVER_HOST 				= 	"http://" + HOST + ":6080/rankBall/query.frz";
+//	public static string CHECK_SERVER_HOST2				= 	"http://" + HOST + ":600/webTuby/query.frz";
 
 	public const string EULA_URL = "https://game.nanoo.so/liveball/notice/1714";
-	public static int GAME_SERVER_PORT = 0;
-	public static string EXT_SERVER_HOST = "";
-	public static string AUTH_SERVER_HOST = "";
-	public static string GAME_SERVER_HOST = "";
-	public static string QUERY_SERVER_HOST 				= 	"http://" + HOST + ":6002/webTuby/query.frz";
+
+	public static string AUTH_SERVER_HOST = ""; //auth & purchase
+	public static string APPS_SERVER_HOST = "";
+	public static string FILE_SERVER_HOST = ""; //file upload
+	public static string FILE_PATH = ""; //file download
+	public static string NOTE_SERVER_HOST = "";
+	public static string EXTR_SERVER_HOST = "";
+	public static int	 EXTR_SERVER_PORT = 80;
+//	public static string QUERY_SERVER_HOST 				= 	"http://" + HOST + ":6002/webTuby/query.frz";
 //	public static string UPLOAD_TEST_SERVER_HOST 				= 	"http://" + HOST + ":4002/webTuby/query.frz";
-	public static string UPLOAD_SERVER_HOST 				= 	"http://" + HOST + ":6002/webTuby/query.frz";
-	public static string IMAGE_SERVER_HOST 				= 	"http://" + HOST + ":6002/tuby_file/";
+//	public static string UPLOAD_SERVER_HOST 			= 	"http://" + HOST + ":6002/webTuby/query.frz";
+//	public static string IMAGE_SERVER_HOST 				= 	"http://" + HOST + ":6002/tuby_file/";
 
 	public static string WITHDRAW_URL 					= 	"http://auth.liveball.kr/m/withdraw.php";
 	public static string TEST_EVENT_URL 				= 	"http://test.streetlab.co.kr/events";
@@ -140,33 +144,33 @@ public class Constants {
 	public const string PrefIs_first_installed = "is_first_installed";
 			
 	public static void setServerTest(){
-		string flag = PlayerPrefs.GetString (PrefServerTest);
-//		Debug.Log ("test flag : " + flag);
-		if(flag.Equals("D")){
-			QUERY_SERVER_HOST = "http://" + TEST_HOST + ":5002/gameServer/query.frz";
-			IMAGE_SERVER_HOST = IMAGE_SERVER_HOST_T;
-			
-			WITHDRAW_URL =  WITHDRAW_URL_T;
-			EVENT_URL = EVENT_URL_T;
-			EVENT_ATTENDANCE_URL = EVENT_ATTENDANCE_URL_T;
-			EVENT_ATTENDANCE_CONFIRM_URL = EVENT_ATTENDANCE_CONFIRM_URL_T;
-			EVENT_NOTI_URL = EVENT_NOTI_URL_T;
-			EVENT_NOTI_CONFIRM_URL = EVENT_NOTI_CONFIRM_URL_T;
-			MAIL_BOX_URL = MAIL_BOX_URL_T;
-			MAIL_BOX_RECEIVE_REWARD_URL = MAIL_BOX_RECEIVE_REWARD_URL_T;
-		} else{
-			QUERY_SERVER_HOST = QUERY_SERVER_HOST_T;
-			IMAGE_SERVER_HOST = IMAGE_SERVER_HOST_T;
-			
-			WITHDRAW_URL =  WITHDRAW_URL_T;
-			EVENT_URL = EVENT_URL_T;
-			EVENT_ATTENDANCE_URL = EVENT_ATTENDANCE_URL_T;
-			EVENT_ATTENDANCE_CONFIRM_URL = EVENT_ATTENDANCE_CONFIRM_URL_T;
-			EVENT_NOTI_URL = EVENT_NOTI_URL_T;
-			EVENT_NOTI_CONFIRM_URL = EVENT_NOTI_CONFIRM_URL_T;
-			MAIL_BOX_URL = MAIL_BOX_URL_T;
-			MAIL_BOX_RECEIVE_REWARD_URL = MAIL_BOX_RECEIVE_REWARD_URL_T;
-		}
+//		string flag = PlayerPrefs.GetString (PrefServerTest);
+////		Debug.Log ("test flag : " + flag);
+//		if(flag.Equals("D")){
+//			QUERY_SERVER_HOST = "http://" + TEST_HOST + ":5002/gameServer/query.frz";
+//			IMAGE_SERVER_HOST = IMAGE_SERVER_HOST_T;
+//			
+//			WITHDRAW_URL =  WITHDRAW_URL_T;
+//			EVENT_URL = EVENT_URL_T;
+//			EVENT_ATTENDANCE_URL = EVENT_ATTENDANCE_URL_T;
+//			EVENT_ATTENDANCE_CONFIRM_URL = EVENT_ATTENDANCE_CONFIRM_URL_T;
+//			EVENT_NOTI_URL = EVENT_NOTI_URL_T;
+//			EVENT_NOTI_CONFIRM_URL = EVENT_NOTI_CONFIRM_URL_T;
+//			MAIL_BOX_URL = MAIL_BOX_URL_T;
+//			MAIL_BOX_RECEIVE_REWARD_URL = MAIL_BOX_RECEIVE_REWARD_URL_T;
+//		} else{
+//			QUERY_SERVER_HOST = QUERY_SERVER_HOST_T;
+//			IMAGE_SERVER_HOST = IMAGE_SERVER_HOST_T;
+//			
+//			WITHDRAW_URL =  WITHDRAW_URL_T;
+//			EVENT_URL = EVENT_URL_T;
+//			EVENT_ATTENDANCE_URL = EVENT_ATTENDANCE_URL_T;
+//			EVENT_ATTENDANCE_CONFIRM_URL = EVENT_ATTENDANCE_CONFIRM_URL_T;
+//			EVENT_NOTI_URL = EVENT_NOTI_URL_T;
+//			EVENT_NOTI_CONFIRM_URL = EVENT_NOTI_CONFIRM_URL_T;
+//			MAIL_BOX_URL = MAIL_BOX_URL_T;
+//			MAIL_BOX_RECEIVE_REWARD_URL = MAIL_BOX_RECEIVE_REWARD_URL_T;
+//		}
 	}
 
 	public const string POST_SPOS_STATUS = "1000";//	경기상태통보

@@ -21,7 +21,7 @@ public class CheckVersionRequest : BaseRequest {
 
 	public override string GetType ()
 	{
-		return "apps";
+		return "apps.member";
 	}
 
 	public override string GetQueryId()

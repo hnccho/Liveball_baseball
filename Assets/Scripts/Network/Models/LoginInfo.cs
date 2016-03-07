@@ -4,8 +4,8 @@ using System.Collections;
 public class LoginInfo {
 
 	private int _memSeq;
-	private string _memberEmail;
-	private string _memberName;
+	private string _email;
+	private string _nick;
 	private string _memUID;
 	private int _osType;
 	private int _registType;
@@ -66,29 +66,29 @@ public class LoginInfo {
 		}
 	}
 
-	public string memberEmail
+	public string email
 	{
 		get
 		{
-			return _memberEmail;
+			return _email;
 		}
 		
 		set
 		{
-			_memberEmail = value;
+			_email = value;
 		}
 	}
 
-	public string memberName
+	public string nick
 	{
 		get
 		{
-			return _memberName;
+			return _nick;
 		}
 		
 		set
 		{
-			_memberName = value;
+			_nick = value;
 		}
 	}
 
@@ -239,6 +239,61 @@ public class LoginInfo {
 		}
 		set {
 			photoBytes = value;
+		}
+	}
+
+	int _status;
+
+	public int status {
+		get {
+			return _status;
+		}
+		set {
+			_status = value;
+		}
+	}
+
+	string _outMessage;
+
+	public string outMessage {
+		get {
+			return _outMessage;
+		}
+		set {
+			_outMessage = value;
+		}
+	}
+
+	int _outCode;
+
+	public int outCode {
+		get {
+			return _outCode;
+		}
+		set {
+			_outCode = value;
+		}
+	}
+
+	int _memType;
+
+	public int memType {
+		get {
+			return _memType;
+		}
+		set {
+			_memType = value;
+		}
+	}
+
+	int _points;
+
+	public int points {
+		get {
+			return _points;
+		}
+		set {
+			_points = value;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Text;
 using System.Collections.Generic;
@@ -8,8 +8,8 @@ public class LoginRequest : BaseRequest {
 	public LoginRequest(LoginInfo loginInfo)
 	{
 
-		Add ("memberEmail", loginInfo.memberEmail);
-		Add ("memberName", loginInfo.memberName);
+		Add ("memberEmail", loginInfo.email);
+		Add ("memberName", loginInfo.nick);
 		Add ("memUID", loginInfo.memUID);
 		Add ("osType", loginInfo.osType);
 		Add ("registType", loginInfo.registType);
