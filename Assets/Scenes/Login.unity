@@ -1271,6 +1271,52 @@ MonoBehaviour:
   mAtlas: {fileID: 11439884, guid: f63bbe541843b4d2ea82c968d45eb52e, type: 2}
   mSpriteName: btn_checkbox_terms_normal
   mFillCenter: 1
+--- !u!1001 &885699577
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1054801997}
+    m_Modifications:
+    - target: {fileID: 401866, guid: 04eb155c119e444eba2cd2832ccc36d6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401866, guid: 04eb155c119e444eba2cd2832ccc36d6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401866, guid: 04eb155c119e444eba2cd2832ccc36d6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401866, guid: 04eb155c119e444eba2cd2832ccc36d6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401866, guid: 04eb155c119e444eba2cd2832ccc36d6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401866, guid: 04eb155c119e444eba2cd2832ccc36d6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 401866, guid: 04eb155c119e444eba2cd2832ccc36d6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 401866, guid: 04eb155c119e444eba2cd2832ccc36d6, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 167926, guid: 04eb155c119e444eba2cd2832ccc36d6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 04eb155c119e444eba2cd2832ccc36d6, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &981071317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,6 +1634,7 @@ Transform:
   - {fileID: 1173646434}
   - {fileID: 1508376709}
   - {fileID: 335039293}
+  - {fileID: 1155921276}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!114 &1054801998
@@ -2048,6 +2095,10 @@ MonoBehaviour:
   mAtlas: {fileID: 11439884, guid: f63bbe541843b4d2ea82c968d45eb52e, type: 2}
   mSpriteName: btn_checkbox_terms_normal
   mFillCenter: 1
+--- !u!4 &1155921276 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 401866, guid: 04eb155c119e444eba2cd2832ccc36d6, type: 2}
+  m_PrefabInternal: {fileID: 885699577}
 --- !u!1 &1168612376
 GameObject:
   m_ObjectHideFlags: 0
@@ -2681,7 +2732,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: .600000024, g: .600000024, b: .600000024, a: 1}
+  mColor: {r: .588235319, g: .588235319, b: .588235319, a: 1}
   mPivot: 4
   mWidth: 520
   mHeight: 76
@@ -2916,7 +2967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1508376709
 Transform:
   m_ObjectHideFlags: 0
@@ -3617,17 +3668,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   label: {fileID: 1436067599}
   inputType: 0
-  onReturnKey: 0
+  onReturnKey: 1
   keyboardType: 0
   hideInput: 0
   validation: 0
-  characterLimit: 0
+  characterLimit: 12
   savedAs: 
   selectOnTab: {fileID: 0}
-  activeTextColor: {r: 1, g: 1, b: 1, a: 1}
+  activeTextColor: {r: .200000003, g: .200000003, b: .200000003, a: 1}
   caretColor: {r: 1, g: 1, b: 1, a: .800000012}
-  selectionColor: {r: 1, g: .874509811, b: .552941203, a: .5}
-  onSubmit: []
+  selectionColor: {r: 0, g: .627451003, b: .913725495, a: 1}
+  onSubmit:
+  - mTarget: {fileID: 519545357}
+    mMethodName: OnClick
+    mParameters: []
+    oneShot: 0
   onChange: []
   mValue: 
 --- !u!61 &1912914844

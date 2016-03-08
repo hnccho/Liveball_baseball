@@ -15,12 +15,12 @@ public class GetProfileRequest : BaseRequest {
 
 	public override string GetType ()
 	{
-		return "apps";
+		return "apps.member";
 	}
 
 	public override string GetQueryId()
 	{
-		return "tubyGetProfileInfo";
+		return "memberProfileGet";
 	}
 
 }

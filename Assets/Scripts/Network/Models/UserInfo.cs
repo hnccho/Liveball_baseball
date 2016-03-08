@@ -38,13 +38,13 @@ public class UserInfo {
 	}
 
 //: "gunloves@.",
-	string _memberName;
-	public string memberName {
+	string _nick;
+	public string nick {
 		get {
-			return _memberName;
+			return _nick;
 		}
 		set {
-			_memberName = value;
+			_nick = value;
 		}
 	}
 

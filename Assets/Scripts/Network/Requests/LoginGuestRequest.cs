@@ -9,7 +9,7 @@ public class LoginGuestRequest : BaseUploadRequest {
 	public LoginGuestRequest(LoginInfo loginInfo)
 	{
 		Dictionary<string, object> dic = new Dictionary<string, object> ();
-		dic.Add ("memberName", loginInfo.nick == null ? "" : loginInfo.nick);
+		dic.Add ("name", loginInfo.nick == null ? "" : loginInfo.nick);
 		dic.Add ("memUID", loginInfo.memUID == null ? "" : loginInfo.memUID);
 //		Debug.Log("deviceID is "+loginInfo.DeviceID);
 //		loginInfo.DeviceID = "test9";
@@ -50,25 +50,14 @@ public class LoginGuestRequest : BaseUploadRequest {
 		
 	}
 
-//	public LoginGuestRequest(LoginInfo loginInfo)
-//	{
-//		Add ("memberName", loginInfo.memberName == null ? "" : loginInfo.memberName);
-////		Add ("favoBB", loginInfo.teamCode);
-//		Add ("memUID", loginInfo.memUID == null ? "" : loginInfo.memUID);
-//		Add ("deviceID", loginInfo.DeviceID);
-//
-////		mParams = JsonFx.Json.JsonWriter.Serialize (this);
-//		mDic = this;
-//	}
-
 	public override string GetType ()
 	{
-		return "apps";
+		return "apps.member";
 	}
 
 	public override string GetQueryId()
 	{
-		return "tubyLoginDeviceID";
+		return "memberLoginDevice";
 	}
 
 }

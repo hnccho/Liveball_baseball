@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Text;
 
@@ -9,7 +9,7 @@ public class JoinGameSocketRequest : BaseSocketRequest {
 		Add ("type", ConstantsSocketType.REQ.TYPE_JOIN);
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
 		Add ("memberEamil", UserMgr.UserInfo.memberEmail);
-		Add ("memberName", UserMgr.UserInfo.memberName);
+		Add ("memberName", UserMgr.UserInfo.nick);
 		Add ("imagePath", "");
 		Add ("imageName", "");
 //		Add ("gameSeq", UserMgr.GameSeq);

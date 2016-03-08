@@ -4,10 +4,14 @@ using System.Collections;
 public class LoginRoot : SuperRoot {
 
 	CheckVersionEvent mVersionEvent;
+	LoginEvent mCheckEvent;
 	LoginEvent mLoginEvent;
+	LoginInfo mLoginInfo;
+	GetProfileEvent mProfileEvent;
 
 
 	bool mMustUpdate;
+	static string mNick = null;
 
 	// Use this for initialization
 	void Start () {
@@ -21,8 +25,14 @@ public class LoginRoot : SuperRoot {
 		if(UtilMgr.IsMLB())
 			transform.FindChild("SprTitle").GetComponent<UISprite>().spriteName = "logo_title1";
 
+		if(mNick != null){
+			Login ();
+			return;
+		}
+
 		mVersionEvent = new CheckVersionEvent(new EventDelegate(ReceivedVersion));
 		NetMgr.CheckVersion(mVersionEvent, false);
+
 	}
 
 	void Awake(){
@@ -117,19 +127,19 @@ public class LoginRoot : SuperRoot {
 		Constants.EXTR_SERVER_HOST = mVersionEvent.Response.data.EXTR;
 		Constants.EXTR_SERVER_PORT = int.Parse(mVersionEvent.Response.data.PORT);
 
-		Login();
+		CheckDevice();
 	}
 
-	void Login(){
+	void CheckDevice(){
 		if(Application.platform == RuntimePlatform.IPhonePlayer){
-			EventDelegate eventd = new EventDelegate(LoginWithUID);
+			EventDelegate eventd = new EventDelegate(CheckUID);
 			IOSMgr.GetUID("", eventd);
 		} else{
-			LoginWithUID();
+			CheckUID();
 		}
 	}
 
-	void LoginWithUID(){
+	void CheckUID(){
 		string deviceID;
 		if(Application.platform == RuntimePlatform.IPhonePlayer){
 			deviceID = IOSMgr.GetMsg();
@@ -137,18 +147,94 @@ public class LoginRoot : SuperRoot {
 			deviceID = SystemInfo.deviceUniqueIdentifier;
 		}
 
-		mLoginEvent = new LoginEvent(new EventDelegate(ReceivedLogin));
-		NetMgr.LoginDevice(deviceID, mLoginEvent);
+		mCheckEvent = new LoginEvent(new EventDelegate(ReceivedChecking));
+		NetMgr.CheckDevice(deviceID, mCheckEvent);
 	}
 
-	void ReceivedLogin(){
-		if(mLoginEvent.Response.code == 1){
+	void ReceivedChecking(){
+		if(mCheckEvent.Response.code == 1){
 			transform.FindChild("Terms").gameObject.SetActive(true);
 			return;
 		}
-		//continue
-		DialogueMgr.ShowDialogue("", mLoginEvent.Response.message, DialogueMgr.DIALOGUE_TYPE.Alert, null);
 
+		Login();
+	}
+
+	void Login(){
+		mLoginInfo = new LoginInfo();
+
+		if(mNick == null)
+			mLoginInfo.nick = mCheckEvent.Response.data.nick;
+		else
+			mLoginInfo.nick = mNick;
+
+		if (Application.platform == RuntimePlatform.Android) {
+			mLoginInfo.osType = 1;
+			AndroidMgr.RegistGCM(new EventDelegate(this, "SetGCMId"));
+		} else if (Application.platform == RuntimePlatform.IPhonePlayer) {
+			mLoginInfo.osType = 2;
+			//			if(CheckPushAgree()){
+			//				mLoginInfo.memUID = "";
+			//				//                NetMgr.DoLogin (mLoginInfo, mLoginEvent);
+			//				SetGCMId();
+			//			} else{
+			IOSMgr.RegistAPNS(new EventDelegate(this, "SetGCMId"));
+			//waiting 4 secs
+			StartCoroutine(WaitingToken());
+			//			}
+		} else if(Application.platform == RuntimePlatform.OSXEditor){
+			mLoginInfo.osType = 1;
+			mLoginInfo.memUID = "";
+			//            NetMgr.DoLogin (mLoginInfo, mLoginEvent);
+			SetGCMId();
+		}
+	}
+
+	public void SetGCMId()
+	{
+		UtilMgr.DismissLoading();
+		#if(UNITY_EDITOR)
+		mLoginInfo.memUID = AndroidMgr.GetMsg();
+		mLoginInfo.DeviceID = SystemInfo.deviceUniqueIdentifier;
+		DoLogin();
+		#elif(UNITY_ANDROID)
+		mLoginInfo.memUID = AndroidMgr.GetMsg();
+		mLoginInfo.DeviceID = SystemInfo.deviceUniqueIdentifier;
+		DoLogin();
+		#else
+		StopCoroutine(WaitingToken());
+		mLoginInfo.memUID = IOSMgr.GetMsg();
+		EventDelegate eventd = new EventDelegate(this, "DoLogin");
+		IOSMgr.GetUID("", eventd);
+		#endif
+	}
+
+	void DoLogin(){
+		if(Application.platform == RuntimePlatform.IPhonePlayer)
+			mLoginInfo.DeviceID = IOSMgr.GetMsg();
+
+		Debug.Log("ID is "+mLoginInfo.DeviceID);
+		//        NetMgr.DoLogin (mLoginInfo, mLoginEvent, UtilMgr.IsTestServer(), true);
+		mLoginEvent = new LoginEvent(new EventDelegate(ReceivedLogin));
+		NetMgr.LoginGuest(mLoginInfo, mLoginEvent, UtilMgr.IsTestServer(), true);
+	}
+
+	IEnumerator WaitingToken(){
+		UtilMgr.ShowLoading(true);
+		yield return new WaitForSeconds(3f);
+		Debug.Log("Skip Token");
+		IOSMgr.SkipToken();
+		
+	}
+
+	void ReceivedLogin(){
+		mProfileEvent = new GetProfileEvent(new EventDelegate(ReceivedProfile));
+		NetMgr.GetProfile(mLoginEvent.Response.data.memSeq, mProfileEvent);
+	}
+
+	void ReceivedProfile(){
+//		DialogueMgr.ShowDialogue("ok", mProfileEvent.Response.data.nick, DialogueMgr.DIALOGUE_TYPE.Alert, null);
+		AutoFade.LoadLevel("Landing");
 	}
 
 	void MustUpdate(){
@@ -189,5 +275,9 @@ public class LoginRoot : SuperRoot {
 				CheckPreference();
 			}
 		}
+	}
+
+	public void SetNick(string nick){
+		mNick = nick;
 	}
 }

@@ -13,12 +13,12 @@ public class CheckNickRequest : BaseRequest {
 
 	public override string GetType ()
 	{
-		return "apps";
+		return "apps.member";
 	}
 
 	public override string GetQueryId()
 	{
-		return "tubyFindUserCount";
+		return "findUser";
 	}
 
 }

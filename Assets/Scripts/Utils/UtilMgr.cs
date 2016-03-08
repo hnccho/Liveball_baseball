@@ -380,18 +380,18 @@ public class UtilMgr : MonoBehaviour {
 	}
 
 	public static void ShowLoading(bool unTouchable, WWW www){
-//		if (Instance.mProgressCircle == null) {
-//			GameObject prefab = Resources.Load ("ProgressCircle1") as GameObject;
-//			Instance.mProgressCircle = Instantiate (prefab, new Vector3 (0f, 0f, 0f), Quaternion.identity) as GameObject;
-//			Instance.mProgressCircle.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-//			Instance.mProgressCircle.transform.localPosition = new Vector3(0, 0, 0);
-//		}
-//		
-//		Instance.mProgressCircle.transform.parent = GameObject.Find ("UI Root").transform;
-//		Instance.mProgressCircle.SetActive (true);
-//		
-//		UtilMgr.IsUntouchable = unTouchable;
-//
+		if (Instance.mProgressCircle == null) {
+			GameObject prefab = Resources.Load ("Progress") as GameObject;
+			Instance.mProgressCircle = Instantiate (prefab, new Vector3 (0f, 0f, 0f), Quaternion.identity) as GameObject;
+		}
+		
+		Instance.mProgressCircle.transform.parent = GameObject.Find ("UI Root").transform;
+		Instance.mProgressCircle.transform.localScale = new Vector3(1f, 1f, 1f);
+		Instance.mProgressCircle.transform.localPosition = new Vector3(0, 0, 0);
+		Instance.mProgressCircle.SetActive (true);
+		
+		UtilMgr.IsUntouchable = unTouchable;
+
 //		if(www != null){
 //			mWWW = www;
 //			Instance.mProgressCircle.transform.FindChild("Panel").FindChild("SprBG").FindChild("Label").gameObject.SetActive(true);
@@ -400,8 +400,8 @@ public class UtilMgr : MonoBehaviour {
 //			Instance.mProgressCircle.transform.FindChild("Panel").FindChild("SprBG").FindChild("Label").gameObject.SetActive(false);
 //			Instance.mProgressCircle.transform.FindChild("Panel").FindChild("SprBG").FindChild("Sprite").gameObject.SetActive(false);
 //		}
-//
-//		IsShowLoading = true;
+
+		IsShowLoading = true;
 	}
 
 	public static void ShowLoading(){

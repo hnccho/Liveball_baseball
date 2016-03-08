@@ -147,12 +147,18 @@ public class NetMgr : MonoBehaviour{
 			Debug.Log(www.error);
 			//            DialogueMgr.ShowDialogue("네트워크오류", "네트워크 연결이 불안정합니다.\n인터넷 연결을 확인 후 다시 시도해주세요.", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 
-			if (Application.loadedLevelName.Equals ("SceneLogin")) {
-				DialogueMgr.ShowDialogue("네트워크오류", "네트워크 연결이 불안정합니다.\n인터넷 연결을 확인 후 다시 시도해주세요.",
-				                         DialogueMgr.DIALOGUE_TYPE.YesNo, "재시도", "", "게임 종료", ConnectHandlerForHttp);
+			if (Application.loadedLevelName.Equals ("Login")) {
+				DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrNetworkError"),
+				                         UtilMgr.GetLocalText("StrNetworkError1"),
+				                         DialogueMgr.DIALOGUE_TYPE.YesNo, 
+				                         UtilMgr.GetLocalText("StrRetry"), "", 
+				                         UtilMgr.GetLocalText("StrExit"), ConnectHandlerForHttp);
 			} else
-				DialogueMgr.ShowDialogue("네트워크오류", "네트워크 연결이 불안정합니다.\n인터넷 연결을 확인 후 다시 시도해주세요.",
-			                         DialogueMgr.DIALOGUE_TYPE.YesNo, "재시도", "", "타이틀로 가기", ConnectHandlerForHttp);
+				DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrNetworkError"),
+				                         UtilMgr.GetLocalText("StrNetworkError1"),
+			                         DialogueMgr.DIALOGUE_TYPE.YesNo, 
+				                         UtilMgr.GetLocalText("StrRetry"), "", 
+				                         UtilMgr.GetLocalText("StrGotoTitle"), ConnectHandlerForHttp);
 
 			Debug.Log(www.text);
 			mWWW = www;
@@ -169,8 +175,8 @@ public class NetMgr : MonoBehaviour{
 			Debug.Log("ReTry");
 		
 			WWW www;
-			if(mReqParam !=null){
-			 www = new WWW(mUrl,mReqParam);
+			if(mReqParam != null){
+			 	www = new WWW(mUrl,mReqParam);
 			}else if(mForm != null){
 				www = new WWW(mUrl,mForm);
 			}else{
@@ -180,10 +186,10 @@ public class NetMgr : MonoBehaviour{
 			//            mWWW = null;
 			//            mBaseEvent = null;
 		} else{
-			if (Application.loadedLevelName.Equals ("SceneLogin")) {
+			if (Application.loadedLevelName.Equals ("Login")) {
 				Application.Quit();
 			} else
-				AutoFade.LoadLevel("SceneLogin");
+				AutoFade.LoadLevel("Login");
 		}
 		
 	}
@@ -213,7 +219,6 @@ public class NetMgr : MonoBehaviour{
 	}
 	
 	private void webAPIProcessEvent(BaseRequest request, BaseEvent baseEvent){
-		Debug.Log("webAPIProcessEvent");
 		webAPIProcessEvent (request, baseEvent, true);
 	}
 	
@@ -252,6 +257,7 @@ public class NetMgr : MonoBehaviour{
 		
 		WWW www = new WWW (host , System.Text.Encoding.UTF8.GetBytes(reqParam));
 
+		mUrl = host;
 		mReqParam = null;
 		mForm = null;
 		mReqParam = System.Text.Encoding.UTF8.GetBytes(reqParam);
@@ -281,7 +287,7 @@ public class NetMgr : MonoBehaviour{
 		//        host = Constants.CHECK_TEST_SERVER_HOST;
 		
 		WWW www = new WWW (host , System.Text.Encoding.UTF8.GetBytes(reqParam));
-		mReqParam = null;
+		mUrl = host;
 		mForm = null;
 		mReqParam = System.Text.Encoding.UTF8.GetBytes(reqParam);
 		Debug.Log (host + "?" + reqParam);
@@ -291,7 +297,6 @@ public class NetMgr : MonoBehaviour{
 
 	private void webAPIProcessEvent(BaseRequest request, BaseEvent baseEvent, bool showLoading)
 	{
-		Debug.Log("webAPIProcessEvent2");
 		string reqParam = "";
 		string httpUrl = "";
 		if (request != null) {
@@ -301,13 +306,10 @@ public class NetMgr : MonoBehaviour{
 		} else {
 			//            httpUrl = Constants.QUERY_SERVER_HOST;
 		}
-		//AUTH_SERVER_HOST
 		WWW www = new WWW (Constants.APPS_SERVER_HOST , System.Text.Encoding.UTF8.GetBytes(reqParam));
-		mReqParam = null;
-		mUrl = "";
+		mUrl = Constants.APPS_SERVER_HOST;
 		mForm = null;
 		mReqParam = System.Text.Encoding.UTF8.GetBytes(reqParam);
-		mUrl = Constants.APPS_SERVER_HOST;
 		Debug.Log (reqParam);
 		if(UtilMgr.OnPause){
 			Debug.Log("Request is Canceled cause OnPause");
@@ -320,16 +322,15 @@ public class NetMgr : MonoBehaviour{
 
 	private void webAPIProcessEventInBackground(BaseRequest request, BaseEvent baseEvent)
 	{
-		Debug.Log("webAPIProcessEvent2");
 		string reqParam = "";
 		string httpUrl = "";
 		reqParam = request.ToRequestString();
 		WWW www = new WWW (Constants.APPS_SERVER_HOST , System.Text.Encoding.UTF8.GetBytes(reqParam));	
-		mReqParam = null;
-		mUrl = "";
+
+		mUrl = Constants.APPS_SERVER_HOST;
 		mForm = null;
 		mReqParam = System.Text.Encoding.UTF8.GetBytes(reqParam);
-		mUrl = Constants.APPS_SERVER_HOST;
+
 		Debug.Log (reqParam);
 		
 		StartCoroutine (webAPIProcessInBackground(www, baseEvent));
@@ -337,7 +338,6 @@ public class NetMgr : MonoBehaviour{
 
 	private void webAPIProcessGetScheduleEvent(BaseRequest request, BaseEvent baseEvent, bool showLoading)
 	{
-		Debug.Log("webAPIProcessEvent2");
 		string reqParam = "";
 		string httpUrl = "";
 		if (request != null) {
@@ -349,11 +349,11 @@ public class NetMgr : MonoBehaviour{
 		}
 		//AUTH_SERVER_HOST
 		WWW www = new WWW (Constants.AUTH_SERVER_HOST , System.Text.Encoding.UTF8.GetBytes(reqParam));
-		mReqParam = null;
-		mUrl = "";
+
+		mUrl = Constants.AUTH_SERVER_HOST;
 		mForm = null;
 		mReqParam = System.Text.Encoding.UTF8.GetBytes(reqParam);
-		mUrl = Constants.AUTH_SERVER_HOST;
+
 		
 		Debug.Log (reqParam);
 		if(UtilMgr.OnPause){
@@ -488,13 +488,12 @@ public class NetMgr : MonoBehaviour{
 	//        Instance.webAPIProcessEventToAuth (new LoginGuestRequest(loginInfo), baseEvent, isTest, showLoading);
 	//    }
 
-	public static void LoginDevice(string deviceID, BaseEvent baseEvent){
+	public static void CheckDevice(string deviceID, BaseEvent baseEvent){
 		Instance.webAPIUploadProcessEvent (new LoginDeviceRequest(deviceID), baseEvent, false, true);
 	}
 	
 	public static void LoginGuest(LoginInfo loginInfo, BaseEvent baseEvent, bool isTest, bool showLoading)
 	{
-		Debug.Log("LoginGuest");
 		//        Instance.webAPIProcessEventToAuth (new LoginGuestRequest(loginInfo), baseEvent, isTest, showLoading);
 		Instance.webAPIUploadProcessEvent (new LoginGuestRequest(loginInfo), baseEvent, isTest, showLoading);
 	}
