@@ -572,6 +572,9 @@ public class NetMgr : MonoBehaviour{
 	{
 		Instance.webAPIProcessEvent (new PresetUpdateRequest (ContestSeq,PresetSeq,ChoseList), baseEvent);
 	}
+	public static void GetLobbyInfo(int memSeq, BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new GetLobbyInfoRequest(memSeq), baseEvent);
+	}
 	public static void GetGift(EventDelegate E)
 	{
 //		WWW www = new WWW(Constants.IMAGE_SERVER_HOST+"gift/gift.json");

@@ -1192,8 +1192,8 @@
      <Compile Include="Assets\Scripts\Entries\BtnFolding.cs" />
      <Compile Include="Assets\Scripts\Entries\BtnInitialize.cs" />
      <Compile Include="Assets\Scripts\Entries\BtnRandom.cs" />
-     <Compile Include="Assets\Scripts\Landing\LandingRoot.cs" />
-     <Compile Include="Assets\Scripts\Landing\LandingTopMenuBtn.cs" />
+     <Compile Include="Assets\Scripts\Lobby\LandingRoot.cs" />
+     <Compile Include="Assets\Scripts\Lobby\TopMenuBtns.cs" />
      <Compile Include="Assets\Scripts\Login\BtnAgree.cs" />
      <Compile Include="Assets\Scripts\Login\BtnRegisterUsername.cs" />
      <Compile Include="Assets\Scripts\Login\LoginRoot.cs" />
@@ -1229,6 +1229,7 @@
      <Compile Include="Assets\Scripts\Network\Events\GetItemShopItemEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetItemShopRubyEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetLineupEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\GetLobbyInfoEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetMailEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetPlayerStatisticsEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetProfileEvent.cs" />
@@ -1289,6 +1290,7 @@
      <Compile Include="Assets\Scripts\Network\Models\JoinNEntryFee.cs" />
      <Compile Include="Assets\Scripts\Network\Models\JoinQuizInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\LineupInfo.cs" />
+     <Compile Include="Assets\Scripts\Network\Models\LobbyInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\LoginInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\MailBoxinfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\Mailinfo.cs" />
@@ -1382,6 +1384,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\GetItemShopItemRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetItemShopRubyRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetLineupRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\GetLobbyInfoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetMailboxRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetPlayerStatisticsRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetPreparedQuizRequest.cs" />
@@ -1451,6 +1454,7 @@
      <Compile Include="Assets\Scripts\Network\Responses\GetItemShopItemResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetItemShopRubyResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetLineupResponse.cs" />
+     <Compile Include="Assets\Scripts\Network\Responses\GetLobbyInfoResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetMailResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetPlayerStatisticsResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetProfileResponse.cs" />

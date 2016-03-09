@@ -26,7 +26,7 @@ public class SuperRoot : MonoBehaviour {
 //					OnBackPressed ();
 //				}
 //			}else{
-//				OnBackPressed ();
+				OnBackPressed ();
 //			}
 		}
 		
@@ -46,16 +46,16 @@ public class SuperRoot : MonoBehaviour {
 	
 	public void OnBackPressed()
 	{
-//		if (DialogueMgr.IsShown) {
-//			DialogueMgr.Instance.BtnCancelClicked();
-//		} else {
-//			UtilMgr.OnBackPressed ();
+		if (DialogueMgr.IsShown) {
+			DialogueMgr.Instance.BtnCancelClicked();
+		} else {
+			UtilMgr.OnBackPressed ();
 //			if(Application.loadedLevelName.Equals("SceneMain")){
 //				
 //				if(transform.FindChild("TF_Livetalk").gameObject.activeSelf){
 //					transform.FindChild("TF_Livetalk").FindChild("Panel").FindChild("Input").GetComponent<UIInput>().OpenKeboard();
 //				}
 //			}
-//		}
+		}
 	}
 }

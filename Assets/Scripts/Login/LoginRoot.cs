@@ -234,6 +234,7 @@ public class LoginRoot : SuperRoot {
 
 	void ReceivedProfile(){
 //		DialogueMgr.ShowDialogue("ok", mProfileEvent.Response.data.nick, DialogueMgr.DIALOGUE_TYPE.Alert, null);
+		UserMgr.UserInfo = mProfileEvent.Response.data;
 		AutoFade.LoadLevel("Landing");
 	}
 

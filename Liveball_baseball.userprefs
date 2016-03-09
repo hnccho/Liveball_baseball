@@ -1,60 +1,26 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Login/BtnRegisterUsername.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Utils/UtilMgr.cs">
     <Files>
-      <File FileName="Assets/Scripts/Roots/LoginRoot.cs" Line="146" Column="60" />
-      <File FileName="Assets/Scripts/Utils/DialogueMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Login/BtnRegisterUsername.cs" Line="8" Column="2" />
-      <File FileName="Assets/Scripts/Utils/UtilMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Network/Requests/JoinMemberRequest.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/Requests/LoginDeviceRequest.cs" Line="8" Column="18" />
+      <File FileName="Assets/Scripts/Login/LoginRoot.cs" Line="237" Column="50" />
       <File FileName="../Liveball/Assets/Scripts/Common/Login/ScriptTitle.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Network/Responses/CheckVersionResponse.cs" Line="8" Column="25" />
-      <File FileName="Assets/Scripts/Network/NetMgr.cs" Line="204" Column="20" />
-      <File FileName="Assets/Scripts/Utils/Constants.cs" Line="60" Column="61" />
-      <File FileName="Assets/Scripts/Network/Events/BaseEvent.cs" Line="48" Column="8" />
-      <File FileName="Assets/Scripts/Network/Requests/LoginDeviceRequest.cs" Line="8" Column="2" />
-      <File FileName="Assets/Scripts/Network/Requests/LoginGuestRequest.cs" Line="28" Column="3" />
+      <File FileName="Assets/Scripts/Utils/UtilMgr.cs" Line="121" Column="28" />
+      <File FileName="Assets/Extras/JsonDotNet/Source/Serialization/JsonSerializerInternalReader.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Utils/AutoFade.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/Requests/GetProfileRequest.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/Models/UserInfo.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Utils/AdjustListSize.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Landing/LandingRoot.cs" Line="4" Column="32" />
+      <File FileName="Assets/Scripts/Network/Events/GetLobbyInfoEvent.cs" Line="15" Column="5" />
+      <File FileName="Assets/Scripts/Network/Events/BaseEvent.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/NetMgr.cs" Line="699" Column="2" />
+      <File FileName="Assets/Scripts/Network/Requests/GetLobbyInfoRequest.cs" Line="7" Column="2" />
+      <File FileName="Assets/Scripts/Utils/SuperRoot.cs" Line="29" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Extras" expanded="True">
-              <Node name="Graph_Maker" expanded="True">
-                <Node name="Scripts" expanded="True">
-                  <Node name="GUIDependent" expanded="True" />
-                </Node>
-              </Node>
-            </Node>
-            <Node name="Scripts" expanded="True">
-              <Node name="CardPowerUp" expanded="True" />
-              <Node name="ContestDetail" expanded="True" />
-              <Node name="Entries" expanded="True" />
-              <Node name="Login" expanded="True">
-                <Node name="BtnRegisterUsername.cs" selected="True" />
-              </Node>
-              <Node name="PlayerCard" expanded="True" />
-              <Node name="Roots" expanded="True" />
-              <Node name="Test" expanded="True" />
-              <Node name="Utils" expanded="True" />
-            </Node>
-          </Node>
-          <Node name="Assembly-CSharp-Editor" expanded="True">
-            <Node name="Facebook" expanded="True">
-              <Node name="Editor" expanded="True">
-                <Node name="android" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
-          <Node name="Assembly-CSharp-firstpass" expanded="True">
-            <Node name="Plugins" expanded="True">
-              <Node name="Android" expanded="True" />
-              <Node name="NGUI" expanded="True">
-                <Node name="Internal" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
