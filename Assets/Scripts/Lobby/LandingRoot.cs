@@ -6,23 +6,35 @@ public class LandingRoot : SuperRoot {
 	GetLobbyInfoEvent mLobbyEvent;
 
 	// Use this for initialization
-	void Start () {
+	new void Start () {
 		base.Start();
 
-		mLobbyEvent = new GetLobbyInfoEvent(ReceivedLobby);
-		NetMgr.GetLobbyInfo(UserMgr.UserInfo.memSeq, mLobbyEvent);
+		InitLobby();
 	}
 	
-	void Awake(){
+	new void Awake(){
 		base.Awake();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	new void Update () {
 		base.Update();
 	}
 
+	public void InitLobby(){
+		mLobbyEvent = new GetLobbyInfoEvent(ReceivedLobby);
+		NetMgr.GetLobbyInfo(UserMgr.UserInfo.memSeq, mLobbyEvent);
+	}
+
 	void ReceivedLobby(){
-//		DialogueMgr.ShowDialogue("myCardCount", mLobbyEvent.Response.data.myCardCount+"", DialogueMgr.DIALOGUE_TYPE.Alert, null);
+		transform.FindChild("Lobby").FindChild("Body").FindChild("ScrollBody").FindChild("DFS")
+			.FindChild("BtnSpecial").FindChild("LblValue")
+				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.contestCountS+"";
+		transform.FindChild("Lobby").FindChild("Body").FindChild("ScrollBody").FindChild("DFS")
+			.FindChild("Btn50").FindChild("LblValue")
+				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.contestCount50+"";
+		transform.FindChild("Lobby").FindChild("Body").FindChild("ScrollBody").FindChild("DFS")
+			.FindChild("BtnRanking").FindChild("LblValue")
+				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.contestCountR+"";
 	}
 }

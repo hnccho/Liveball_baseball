@@ -516,9 +516,9 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent (new checkRecentMessageRequest (), baseEvent);
 	}
 
-	public static void GetContestList(BaseEvent baseEvent)
+	public static void GetContestList(int featured, int type, BaseEvent baseEvent)
 	{
-		Instance.webAPIProcessEvent (new ContestListRequest (), baseEvent);
+		Instance.webAPIProcessEvent (new ContestListRequest (featured, type), baseEvent);
 	}
 
 	public static void GetContestRanking(BaseEvent baseEvent)

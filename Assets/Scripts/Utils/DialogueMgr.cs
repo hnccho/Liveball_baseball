@@ -110,57 +110,61 @@ public class DialogueMgr : MonoBehaviour {
 		Instance.mDialogueBox.transform.localPosition = new Vector3(0, 0, 1000f);
 		Instance.mDialogueBox.SetActive (true);
 
-		Instance.mDialogueBox.transform.FindChild("LblTitle")
+		Instance.mDialogueBox.transform.FindChild("Box").FindChild("LblTitle")
 			.GetComponent<UILabel> ().text = strTitle;
-		Instance.mDialogueBox.transform.FindChild("LblBody")
+		Instance.mDialogueBox.transform.FindChild("Box").FindChild("LblBody")
 			.GetComponent<UILabel> ().text = "[333333]"+strBody+"[-]";
 
-		int bodyHeight = Instance.mDialogueBox.transform.FindChild("LblBody")
+		int bodyHeight = Instance.mDialogueBox.transform.FindChild("Box").FindChild("LblBody")
 			.GetComponent<UILabel> ().height;
 
 		Instance.SetTypeDialogue (type, strBtn1, strBtn2, strCancel, bodyHeight);
      	IsShown = true;
+
+		Instance.mDialogueBox.transform.FindChild("Box").localScale = new Vector3(0f, 0f, 0f);
+		TweenScale.Begin(Instance.mDialogueBox.transform.FindChild("Box").gameObject, 0.5f, new Vector3(1f, 1f, 1f));
+		Instance.mDialogueBox.transform.FindChild("Box").GetComponent<UITweener>().method = UITweener.Method.BounceIn;
 	}
 
 
 	void SetTypeDialogue(DIALOGUE_TYPE type, string strBtn1, string strBtn2, string strCancel, int bodyHeight)
 	{
-		Instance.mDialogueBox.transform.FindChild("SprBG").gameObject.SetActive(true);
-		Instance.mDialogueBox.transform.FindChild("SprBG").GetComponent<UISprite>().height
+		Instance.mDialogueBox.transform.FindChild("Box").FindChild("SprBG").gameObject.SetActive(true);
+		Instance.mDialogueBox.transform.FindChild("Box").FindChild("SprBG").GetComponent<UISprite>().height
 			= 260 + bodyHeight;
 
-		Instance.mDialogueBox.transform.FindChild("Alert").gameObject.SetActive(false);
-		Instance.mDialogueBox.transform.FindChild("Alert").localPosition
+		Instance.mDialogueBox.transform.FindChild("Box").FindChild("Alert").gameObject.SetActive(false);
+		Instance.mDialogueBox.transform.FindChild("Box").FindChild("Alert").localPosition
 			= new Vector3(0f, -86f-(bodyHeight/2f), 0f);
-		Instance.mDialogueBox.transform.FindChild("YesNo").gameObject.SetActive(false);
-		Instance.mDialogueBox.transform.FindChild("YesNo").localPosition
+		Instance.mDialogueBox.transform.FindChild("Box").FindChild("YesNo").gameObject.SetActive(false);
+		Instance.mDialogueBox.transform.FindChild("Box").FindChild("YesNo").localPosition
 			= new Vector3(0f, -86f-(bodyHeight/2f), 0f);
 
-		Instance.mDialogueBox.transform.FindChild("LblTitle").localPosition
+		Instance.mDialogueBox.transform.FindChild("Box").FindChild("LblTitle").localPosition
 			= new Vector3(0f, 60f+(bodyHeight/2f), 0f);
-		Instance.mDialogueBox.transform.FindChild("LblBody").localPosition
+		Instance.mDialogueBox.transform.FindChild("Box").FindChild("LblBody").localPosition
 //			= new Vector3(0f, 0f+(bodyHeight/2f), 0f);
 			= new Vector3(0f, 0f, 0f);
 
 
 		if (type == DIALOGUE_TYPE.Alert) {
-			Instance.mDialogueBox.transform.FindChild("Alert").gameObject.SetActive(true);
+			Instance.mDialogueBox.transform.FindChild("Box").FindChild("Alert").gameObject.SetActive(true);
 			if (strCancel == null || strCancel.Length < 1)
 				strCancel = UtilMgr.GetLocalText("StrConfirm");
 
-			Instance.mDialogueBox.transform.FindChild("Alert")
+			Instance.mDialogueBox.transform.FindChild("Box").FindChild("Alert")
 				.FindChild ("BtnCancel").FindChild("Label").GetComponent<UILabel> ().text = strCancel;
 //			btnCancel.transform.localPosition = new Vector3 (0, -100f, 0);
 		} else if (type == DIALOGUE_TYPE.YesNo) {
-			Instance.mDialogueBox.transform.FindChild("YesNo").gameObject.SetActive(true);
+			Instance.mDialogueBox.transform.FindChild("Box").FindChild("YesNo").gameObject.SetActive(true);
 			if (strBtn1 == null || strBtn1.Length < 1)
 				strBtn1 = UtilMgr.GetLocalText("StrConfirm");
 			if (strCancel == null || strCancel.Length < 1)
 				strCancel = UtilMgr.GetLocalText("StrCancel");
 
-			Instance.mDialogueBox.transform.FindChild("YesNo")
+			Instance.mDialogueBox.transform.FindChild("Box").FindChild("YesNo")
 				.FindChild ("Btn1").FindChild ("Label").GetComponent<UILabel> ().text = strBtn1;
-			Instance.mDialogueBox.transform.FindChild("YesNo")
+			Instance.mDialogueBox.transform.FindChild("Box").FindChild("YesNo")
 				.FindChild ("BtnCancel").FindChild ("Label").GetComponent<UILabel> ().text = strCancel;
 		} 
 //		else if (type == DIALOGUE_TYPE.Choose) {

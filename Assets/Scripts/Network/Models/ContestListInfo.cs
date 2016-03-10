@@ -2,6 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 public class ContestListInfo {
+
+	public static int FEATURED_ALL = 0;
+	public static int FEATURED_SPECIAL = 1;
+	public static int FEATURED_NONESP = 2;
+
+	public static int TYPE_ALL = 0;
+	public static int TYPE_FIFTY = 1;
+	public static int TYPE_RANK = 2;
+
 	int _contestSeq;
 
 	public int contestSeq {
@@ -283,6 +292,19 @@ public class ContestListInfo {
 			_hTeamName = value;
 		}
 	}
+
+	int _organ;
+
+	public int organ {
+		get {
+			return _organ;
+		}
+		set {
+			_organ = value;
+		}
+	}
+
+
 
 	List<RankRewardInfo> _rankReward;
 	

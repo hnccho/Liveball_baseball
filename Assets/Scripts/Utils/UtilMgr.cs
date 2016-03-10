@@ -23,9 +23,16 @@ public class UtilMgr : MonoBehaviour {
 	public static string PreLoadedLevelName;
 	Transform mRoot;
 
+	public enum DIRECTION{
+		ToLeft,
+		ToRight
+	}
+	GameObject mDisappear;
+
 	public enum STATE{
 		Lobby,
-		MyCard
+		MyCard,
+		Contests
 	}
 
 	static UtilMgr Instance
@@ -63,6 +70,28 @@ public class UtilMgr : MonoBehaviour {
 //		}
 	}
 
+	public static void AnimatePage(DIRECTION direction, GameObject disappear, GameObject appear){
+		appear.SetActive(true);
+		if(direction == DIRECTION.ToLeft){
+			appear.transform.localPosition = new Vector3(720f, 0, 0);
+			TweenPosition.Begin(disappear, 0.5f, new Vector3(-720f, 0, 0), false);
+		} else{
+			appear.transform.localPosition = new Vector3(-720f, 0, 0);
+			TweenPosition.Begin(disappear, 0.5f, new Vector3(720f, 0, 0), false);
+		}
+		disappear.GetComponent<UITweener>().SetOnFinished(Instance.DisappearFinished);
+		disappear.GetComponent<UITweener>().method = UITweener.Method.EaseOut;
+
+		TweenPosition.Begin(appear, 0.5f, new Vector3(0, 0, 0), false);
+		appear.GetComponent<UITweener>().method = UITweener.Method.EaseOut;
+
+		Instance.mDisappear = disappear;
+	}
+
+	void DisappearFinished(){
+		mDisappear.SetActive(false);
+	}
+
 	public static void SetRoot(Transform root){
 		Instance.mRoot = root;
 	}
@@ -85,8 +114,13 @@ public class UtilMgr : MonoBehaviour {
 		{
 			STATE state = mListBackState[mListBackState.Count-1];
 			if(state == STATE.MyCard){
-				Instance.mRoot.FindChild("MyCards").gameObject.SetActive(false);
-				Instance.mRoot.FindChild("Lobby").gameObject.SetActive(true);
+				AnimatePage(DIRECTION.ToRight,
+				            Instance.mRoot.FindChild("MyCards").gameObject,
+				            Instance.mRoot.FindChild("Lobby").gameObject);
+			} else if(state == STATE.Contests){
+				AnimatePage(DIRECTION.ToRight,
+				            Instance.mRoot.FindChild("Contests").gameObject,
+				            Instance.mRoot.FindChild("Lobby").gameObject);
 			}
 
 			mListBackState.RemoveAt(mListBackState.Count-1);

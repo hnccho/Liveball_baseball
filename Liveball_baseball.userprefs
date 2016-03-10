@@ -1,26 +1,28 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Utils/UtilMgr.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Lobby/DFSBtns.cs">
     <Files>
-      <File FileName="Assets/Scripts/Network/Requests/LoginDeviceRequest.cs" Line="8" Column="18" />
-      <File FileName="Assets/Scripts/Login/LoginRoot.cs" Line="237" Column="50" />
-      <File FileName="../Liveball/Assets/Scripts/Common/Login/ScriptTitle.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Utils/UtilMgr.cs" Line="121" Column="28" />
-      <File FileName="Assets/Extras/JsonDotNet/Source/Serialization/JsonSerializerInternalReader.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Utils/AutoFade.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Network/Requests/GetProfileRequest.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Network/Models/UserInfo.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Utils/AdjustListSize.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Landing/LandingRoot.cs" Line="4" Column="32" />
-      <File FileName="Assets/Scripts/Network/Events/GetLobbyInfoEvent.cs" Line="15" Column="5" />
-      <File FileName="Assets/Scripts/Network/Events/BaseEvent.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Network/NetMgr.cs" Line="699" Column="2" />
-      <File FileName="Assets/Scripts/Network/Requests/GetLobbyInfoRequest.cs" Line="7" Column="2" />
-      <File FileName="Assets/Scripts/Utils/SuperRoot.cs" Line="29" Column="2" />
+      <File FileName="Assets/Scripts/Network/NetMgr.cs" Line="519" Column="30" />
+      <File FileName="Assets/Scripts/Network/Requests/ContestListRequest.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Lobby/DFSBtns.cs" Line="40" Column="49" />
+      <File FileName="Assets/Scripts/Utils/AdjustBtmPosition.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Lobby/LandingRoot.cs" Line="25" Column="54" />
+      <File FileName="Assets/Scripts/Network/Events/GetLobbyInfoEvent.cs" Line="6" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State expanded="True" selected="True" />
+        <State expanded="True">
+          <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Scripts" expanded="True">
+              <Node name="Lobby" expanded="True">
+                <Node name="DFSBtns.cs" selected="True" />
+              </Node>
+              <Node name="Network" expanded="True">
+                <Node name="Events" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

@@ -14,7 +14,7 @@ public class LoginRoot : SuperRoot {
 	static string mNick = null;
 
 	// Use this for initialization
-	void Start () {
+	new void Start () {
 		base.Start();
 		transform.FindChild("Terms").gameObject.SetActive(false);
 		transform.FindChild("RegisterUsername").gameObject.SetActive(false);
@@ -35,12 +35,12 @@ public class LoginRoot : SuperRoot {
 
 	}
 
-	void Awake(){
+	new void Awake(){
 		base.Awake();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	new void Update () {
 		base.Update();
 	}
 
