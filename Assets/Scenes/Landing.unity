@@ -3406,7 +3406,6 @@ GameObject:
   - 4: {fileID: 69048032}
   - 114: {fileID: 69048035}
   - 114: {fileID: 69048034}
-  - 114: {fileID: 69048033}
   - 61: {fileID: 69048036}
   - 114: {fileID: 69048037}
   m_Layer: 5
@@ -3432,17 +3431,6 @@ Transform:
   - {fileID: 905290187}
   m_Father: {fileID: 2068454981}
   m_RootOrder: 1
---- !u!114 &69048033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 69048031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818dd878d5b914a6bb8f282005582f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &69048034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3483,7 +3471,7 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 69048033}
+  - mTarget: {fileID: 0}
     mMethodName: Clicked
     mParameters: []
     oneShot: 0
@@ -4348,7 +4336,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3065
+  startingRenderQueue: 3061
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -25380,7 +25368,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3067
+  startingRenderQueue: 3063
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -29458,7 +29446,6 @@ GameObject:
   - 4: {fileID: 667923800}
   - 114: {fileID: 667923802}
   - 114: {fileID: 667923801}
-  - 114: {fileID: 667923804}
   - 61: {fileID: 667923803}
   - 114: {fileID: 667923805}
   m_Layer: 5
@@ -29524,7 +29511,7 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 667923804}
+  - mTarget: {fileID: 0}
     mMethodName: Clicked
     mParameters: []
     oneShot: 0
@@ -29541,17 +29528,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 172, y: 142}
---- !u!114 &667923804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 667923799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818dd878d5b914a6bb8f282005582f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &667923805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31948,7 +31924,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3076
+  startingRenderQueue: 3072
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -45464,7 +45440,6 @@ GameObject:
   - 4: {fileID: 1022577299}
   - 114: {fileID: 1022577302}
   - 114: {fileID: 1022577301}
-  - 114: {fileID: 1022577300}
   - 61: {fileID: 1022577303}
   - 114: {fileID: 1022577304}
   m_Layer: 5
@@ -45491,17 +45466,6 @@ Transform:
   - {fileID: 308811049}
   m_Father: {fileID: 2068454981}
   m_RootOrder: 3
---- !u!114 &1022577300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1022577298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818dd878d5b914a6bb8f282005582f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1022577301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45542,7 +45506,7 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 1022577300}
+  - mTarget: {fileID: 0}
     mMethodName: Clicked
     mParameters: []
     oneShot: 0
@@ -58608,7 +58572,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3061
+  startingRenderQueue: 3078
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -63748,7 +63712,6 @@ GameObject:
   - 4: {fileID: 1432567428}
   - 114: {fileID: 1432567431}
   - 114: {fileID: 1432567430}
-  - 114: {fileID: 1432567429}
   - 61: {fileID: 1432567432}
   - 114: {fileID: 1432567433}
   m_Layer: 5
@@ -63774,17 +63737,6 @@ Transform:
   - {fileID: 64869298}
   m_Father: {fileID: 2068454981}
   m_RootOrder: 2
---- !u!114 &1432567429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1432567427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818dd878d5b914a6bb8f282005582f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1432567430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63825,7 +63777,7 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 1432567429}
+  - mTarget: {fileID: 0}
     mMethodName: Clicked
     mParameters: []
     oneShot: 0
@@ -74845,7 +74797,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 196957687}
+    mMethodName: OnBackPressed
+    mParameters: []
+    oneShot: 0
 --- !u!61 &1688840967
 BoxCollider2D:
   m_ObjectHideFlags: 0

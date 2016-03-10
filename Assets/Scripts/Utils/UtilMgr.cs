@@ -7,7 +7,7 @@ public class UtilMgr : MonoBehaviour {
 
 	static UtilMgr _instance;
 
-	static List<EventDelegate> mListBackEvent = new List<EventDelegate>();
+	static List<STATE> mListBackState = new List<STATE>();
 	GameObject mProgressCircle;
 
 	public static bool IsUntouchable;
@@ -21,6 +21,12 @@ public class UtilMgr : MonoBehaviour {
 	public static bool OnPause;
 	public static bool OnFocus;
 	public static string PreLoadedLevelName;
+	Transform mRoot;
+
+	public enum STATE{
+		Lobby,
+		MyCard
+	}
 
 	static UtilMgr Instance
 	{
@@ -50,69 +56,44 @@ public class UtilMgr : MonoBehaviour {
 	}
 
 	void Update(){
-		if(mWWW != null && IsShowLoading){
-			UILabel label = Instance.mProgressCircle.transform.FindChild("Panel").FindChild("SprBG").FindChild("Label").GetComponent<UILabel>();
-			int per = (int)(mWWW.uploadProgress * 100f);
-			label.text = per + "%";
-		}
+//		if(mWWW != null && IsShowLoading){
+//			UILabel label = Instance.mProgressCircle.transform.FindChild("Panel").FindChild("SprBG").FindChild("Label").GetComponent<UILabel>();
+//			int per = (int)(mWWW.uploadProgress * 100f);
+//			label.text = per + "%";
+//		}
 	}
 
-	public static void AddBackEvent(EventDelegate eventDel)
-	{
-		Debug.Log("AddBackEvent");
-		mListBackEvent.Add (eventDel);
+	public static void SetRoot(Transform root){
+		Instance.mRoot = root;
 	}
 
-	public static void RemoveAllBackEvents()
-	{
-		mListBackEvent.Clear ();
+	public static void AddBackState(STATE state){
+		mListBackState.Add(state);
 	}
 
-	public static void RemoveBackEvent()
-	{
-		mListBackEvent.RemoveAt(mListBackEvent.Count-1);
-	}
-
-	public static bool HasBackEvent()
-	{
-		if (mListBackEvent.Count > 0)
-						return true;
-		return false;
-	}
-
-	public static void RunAllBackEvents()
-	{
-		if (mListBackEvent.Count < 1)
-						return;
-
-		for(int i = mListBackEvent.Count-1; i > -1; i = mListBackEvent.Count-1){
-			EventDelegate eventDel = mListBackEvent[i];
-			RemoveBackEvent();
-			eventDel.Execute();
-		}
+	public static void ClearBackStates(){
+		mListBackState.Clear();
 	}
 
 	public static bool OnBackPressed()
 	{
-		Debug.Log("OnBackPressed");
-		if (UtilMgr.IsUntouchable)
-			return false;
+		Debug.Log("OnBackPressed : "+mListBackState.Count);
+//		if (UtilMgr.IsUntouchable)
+//			return false;
 
-		if(mListBackEvent.Count > 0)
+		if(mListBackState.Count > 0)
 		{
-			EventDelegate eventDel = mListBackEvent[mListBackEvent.Count-1];
-			RemoveBackEvent();
-			eventDel.Execute();
+			STATE state = mListBackState[mListBackState.Count-1];
+			if(state == STATE.MyCard){
+				Instance.mRoot.FindChild("MyCards").gameObject.SetActive(false);
+				Instance.mRoot.FindChild("Lobby").gameObject.SetActive(true);
+			}
+
+			mListBackState.RemoveAt(mListBackState.Count-1);
 			return true;
 		}
 		else
 		{
-//			if(Application.loadedLevelName.Equals("Landing")){
-//				NetMgr.ExitGame(null);
-//				AutoFade.LoadLevel("SceneGame");
-//			} else{
-//				Instance.ShowExitDialog();
-//			}
 			Instance.ShowExitDialog();
 			return false;
 		}
@@ -129,7 +110,6 @@ public class UtilMgr : MonoBehaviour {
 	}
 
 	public void DialogClickHandler(DialogueMgr.BTNS btn){
-//		Debug.Log("Clicked : "+btn);
 		if(btn == DialogueMgr.BTNS.Btn1){
 			UtilMgr.Quit();
 		}

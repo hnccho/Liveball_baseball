@@ -14,6 +14,7 @@ public class TopMenuBtns : MonoBehaviour {
 	}
 
 	public void OnClick(){
+		UtilMgr.AddBackState(UtilMgr.STATE.MyCard);
 		if(name.Equals("BtnMyCards")){
 			transform.root.FindChild("Lobby").gameObject.SetActive(false);
 			transform.root.FindChild("MyCards").gameObject.SetActive(true);

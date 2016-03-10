@@ -4,7 +4,7 @@ using System.Collections;
 public class SuperRoot : MonoBehaviour {
 		
 	protected void Start () {
-		
+		UtilMgr.SetRoot(transform);
 		transform.FindChild ("Camera").transform.localPosition = new Vector3(0f, UtilMgr.GetScaledPositionY(), -2000f);
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}

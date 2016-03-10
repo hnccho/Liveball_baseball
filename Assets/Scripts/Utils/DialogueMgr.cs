@@ -78,8 +78,8 @@ public class DialogueMgr : MonoBehaviour {
 //		string strTitle = Instance.mDialogueBox.GetComponent<PlayMakerFSM> ().FsmVariables.FindFsmString ("exitTitle").Value;
 //		string strBody = Instance.mDialogueBox.GetComponent<PlayMakerFSM> ().FsmVariables.FindFsmString ("exitBody").Value;
 
-		string strTitle = UtilMgr.GetLocalText("ExitTitle");
-		string strBody = UtilMgr.GetLocalText("ExitBody");
+		string strTitle = UtilMgr.GetLocalText("StrExitTitle");
+		string strBody = UtilMgr.GetLocalText("StrExitBody");
 
 		ShowDialogue (strTitle, strBody, DIALOGUE_TYPE.YesNo, null, null, null, handler);
 
