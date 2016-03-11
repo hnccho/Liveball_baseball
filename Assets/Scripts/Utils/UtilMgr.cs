@@ -29,6 +29,7 @@ public class UtilMgr : MonoBehaviour {
 	}
 	GameObject mAppear;
 	GameObject mDisappear;
+	Vector3 mOriCamVec;
 
 	public enum STATE{
 		Lobby,
@@ -75,17 +76,18 @@ public class UtilMgr : MonoBehaviour {
 
 	public static void AnimatePage(DIRECTION direction, GameObject disappear, GameObject appear){
 		appear.SetActive(true);
+		Instance.mOriCamVec = Instance.mRoot.FindChild("Camera").localPosition;
 		if(direction == DIRECTION.ToLeft){
 			appear.transform.localPosition = new Vector3(720f, 0, 0);
 			TweenPosition.Begin(Instance.mRoot.FindChild("Camera").gameObject
-			                    , 0.5f, new Vector3(720f, 0, -2000f), false);
+			                    , 0.5f, new Vector3(720f, Instance.mOriCamVec.y, Instance.mOriCamVec.z), false);
 //			TweenPosition.Begin(disappear, 0.5f, new Vector3(-720f, 0, 0), false);
 //			Instance.mRoot.FindChild("Camera").GetComponent<TweenPosition>().to
 //				= new Vector3(720f, 0, -2000f);
 		} else{
 			appear.transform.localPosition = new Vector3(-720f, 0, 0);
 			TweenPosition.Begin(Instance.mRoot.FindChild("Camera").gameObject
-			                    , 0.5f, new Vector3(-720f, 0, -2000f), false);
+			                    , 0.5f, new Vector3(-720f, Instance.mOriCamVec.y, Instance.mOriCamVec.z), false);
 //			TweenPosition.Begin(disappear, 0.5f, new Vector3(720f, 0, 0), false);
 //			Instance.mRoot.FindChild("Camera").GetComponent<TweenPosition>().to
 //				= new Vector3(-720f, 0, -2000f);
@@ -108,7 +110,8 @@ public class UtilMgr : MonoBehaviour {
 	void TweenFinished(){
 		Instance.mDisappear.SetActive(false);
 		Instance.mAppear.transform.localPosition = new Vector3(0, 0, 0);
-		Instance.mRoot.FindChild("Camera").transform.localPosition = new Vector3(0, 0, -2000f);
+		Instance.mRoot.FindChild("Camera").transform.localPosition
+			= new Vector3(0, Instance.mOriCamVec.y, Instance.mOriCamVec.z);
 	}
 
 //	void DisappearFinished(){

@@ -1190,9 +1190,6 @@
      <Compile Include="Assets\Scripts\CardPowerUp\CardPowerUp.cs" />
      <Compile Include="Assets\Scripts\ContestDetail\ContestDetailBtns.cs" />
      <Compile Include="Assets\Scripts\Contests\ItemContestsBtns.cs" />
-     <Compile Include="Assets\Scripts\Entries\BtnFolding.cs" />
-     <Compile Include="Assets\Scripts\Entries\BtnInitialize.cs" />
-     <Compile Include="Assets\Scripts\Entries\BtnRandom.cs" />
      <Compile Include="Assets\Scripts\Lobby\BtnWhat.cs" />
      <Compile Include="Assets\Scripts\Lobby\Contests.cs" />
      <Compile Include="Assets\Scripts\Lobby\DFSBtns.cs" />
@@ -1482,6 +1479,10 @@
      <Compile Include="Assets\Scripts\Network\Responses\procStoreGachaResponse.cs" />
      <Compile Include="Assets\Scripts\Network\UserMgr.cs" />
      <Compile Include="Assets\Scripts\PlayerCard\PlayerCardSelectionBtns.cs" />
+     <Compile Include="Assets\Scripts\RegisterEntry\BtnFolding.cs" />
+     <Compile Include="Assets\Scripts\RegisterEntry\BtnInitialize.cs" />
+     <Compile Include="Assets\Scripts\RegisterEntry\BtnRandom.cs" />
+     <Compile Include="Assets\Scripts\RegisterEntry\RegisterEntry.cs" />
      <Compile Include="Assets\Scripts\Shop\Shop.cs" />
      <Compile Include="Assets\Scripts\Shop\ShopItemBtns.cs" />
      <Compile Include="Assets\Scripts\Test\Lbl_Temp.cs" />

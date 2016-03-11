@@ -16,5 +16,6 @@ public class ItemContestsBtns : MonoBehaviour {
 	public void OnClick(){
 		UtilMgr.AddBackState(UtilMgr.STATE.RegisterEntry);
 		UtilMgr.AnimatePageToLeft("Contests", "RegisterEntry");
+		transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().InitRegisterEntry();
 	}
 }
