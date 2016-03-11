@@ -1,24 +1,45 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Lobby/DFSBtns.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ContestDetail/ContestDetailBtns.cs">
     <Files>
-      <File FileName="Assets/Scripts/Network/NetMgr.cs" Line="519" Column="30" />
+      <File FileName="Assets/Scripts/Network/NetMgr.cs" Line="766" Column="2" />
       <File FileName="Assets/Scripts/Network/Requests/ContestListRequest.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Lobby/DFSBtns.cs" Line="40" Column="49" />
+      <File FileName="Assets/Scripts/Lobby/DFSBtns.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Utils/AdjustBtmPosition.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Lobby/LandingRoot.cs" Line="25" Column="54" />
-      <File FileName="Assets/Scripts/Network/Events/GetLobbyInfoEvent.cs" Line="6" Column="2" />
+      <File FileName="Assets/Scripts/Lobby/LandingRoot.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/Events/GetLobbyInfoEvent.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Lobby/Contests.cs" Line="1" Column="1" />
+      <File FileName="../Liveball/Assets/Scripts/Common/Lobby/Lobby/LobbyNCCommander.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Utils/UtilMgr.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Utils/DialogueMgr.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Shop/Shop.cs" Line="39" Column="1" />
+      <File FileName="Assets/Scripts/Lobby/BtnWhat.cs" Line="26" Column="42" />
+      <File FileName="Assets/Scripts/Network/Models/ItemShopGoldInfo.cs" Line="4" Column="1" />
+      <File FileName="Assets/Scripts/Network/Requests/GetItemShopGoldRequest.cs" Line="9" Column="1" />
+      <File FileName="Assets/Scripts/ContestDetail/ContestDetailBtns.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="Lobby" expanded="True">
-                <Node name="DFSBtns.cs" selected="True" />
+              <Node name="ContestDetail" expanded="True">
+                <Node name="ContestDetailBtns.cs" selected="True" />
               </Node>
+              <Node name="Lobby" expanded="True" />
               <Node name="Network" expanded="True">
                 <Node name="Events" expanded="True" />
+                <Node name="Models" expanded="True" />
+                <Node name="Requests" expanded="True" />
+              </Node>
+              <Node name="Shop" expanded="True" />
+              <Node name="Utils" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="Assembly-CSharp-firstpass" expanded="True">
+            <Node name="Plugins" expanded="True">
+              <Node name="NGUI" expanded="True">
+                <Node name="UI" expanded="True" />
               </Node>
             </Node>
           </Node>

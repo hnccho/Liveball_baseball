@@ -58,4 +58,8 @@ public class SuperRoot : MonoBehaviour {
 //			}
 		}
 	}
+
+//	public void TweenFinished(){
+//		UtilMgr.TweenFinished();
+//	}
 }

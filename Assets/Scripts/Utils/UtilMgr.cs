@@ -27,12 +27,15 @@ public class UtilMgr : MonoBehaviour {
 		ToLeft,
 		ToRight
 	}
+	GameObject mAppear;
 	GameObject mDisappear;
 
 	public enum STATE{
 		Lobby,
 		MyCard,
-		Contests
+		Contests,
+		Shop,
+		RegisterEntry
 	}
 
 	static UtilMgr Instance
@@ -74,23 +77,43 @@ public class UtilMgr : MonoBehaviour {
 		appear.SetActive(true);
 		if(direction == DIRECTION.ToLeft){
 			appear.transform.localPosition = new Vector3(720f, 0, 0);
-			TweenPosition.Begin(disappear, 0.5f, new Vector3(-720f, 0, 0), false);
+			TweenPosition.Begin(Instance.mRoot.FindChild("Camera").gameObject
+			                    , 0.5f, new Vector3(720f, 0, -2000f), false);
+//			TweenPosition.Begin(disappear, 0.5f, new Vector3(-720f, 0, 0), false);
+//			Instance.mRoot.FindChild("Camera").GetComponent<TweenPosition>().to
+//				= new Vector3(720f, 0, -2000f);
 		} else{
 			appear.transform.localPosition = new Vector3(-720f, 0, 0);
-			TweenPosition.Begin(disappear, 0.5f, new Vector3(720f, 0, 0), false);
+			TweenPosition.Begin(Instance.mRoot.FindChild("Camera").gameObject
+			                    , 0.5f, new Vector3(-720f, 0, -2000f), false);
+//			TweenPosition.Begin(disappear, 0.5f, new Vector3(720f, 0, 0), false);
+//			Instance.mRoot.FindChild("Camera").GetComponent<TweenPosition>().to
+//				= new Vector3(-720f, 0, -2000f);
 		}
-		disappear.GetComponent<UITweener>().SetOnFinished(Instance.DisappearFinished);
-		disappear.GetComponent<UITweener>().method = UITweener.Method.EaseOut;
+//		disappear.GetComponent<UITweener>().SetOnFinished(Instance.DisappearFinished);
+//		disappear.GetComponent<UITweener>().method = UITweener.Method.EaseOut;
+		Instance.mRoot.FindChild("Camera").GetComponent<UITweener>().SetOnFinished(Instance.TweenFinished);
+		Instance.mRoot.FindChild("Camera").GetComponent<UITweener>().method = UITweener.Method.EaseOut;
 
-		TweenPosition.Begin(appear, 0.5f, new Vector3(0, 0, 0), false);
-		appear.GetComponent<UITweener>().method = UITweener.Method.EaseOut;
+//		TweenPosition.Begin(appear, 0.5f, new Vector3(0, 0, 0), false);
+//		appear.GetComponent<UITweener>().method = UITweener.Method.EaseOut;
 
 		Instance.mDisappear = disappear;
+		Instance.mAppear = appear;
+
+//		Instance.mRoot.FindChild("Camera").GetComponent<TweenPosition>().
+//		Instance.mRoot.FindChild("Camera").GetComponent<TweenPosition>().SetOnFinished(Instance.TweenFinished);
 	}
 
-	void DisappearFinished(){
-		mDisappear.SetActive(false);
+	void TweenFinished(){
+		Instance.mDisappear.SetActive(false);
+		Instance.mAppear.transform.localPosition = new Vector3(0, 0, 0);
+		Instance.mRoot.FindChild("Camera").transform.localPosition = new Vector3(0, 0, -2000f);
 	}
+
+//	void DisappearFinished(){
+//
+//	}
 
 	public static void SetRoot(Transform root){
 		Instance.mRoot = root;
@@ -113,14 +136,17 @@ public class UtilMgr : MonoBehaviour {
 		if(mListBackState.Count > 0)
 		{
 			STATE state = mListBackState[mListBackState.Count-1];
-			if(state == STATE.MyCard){
-				AnimatePage(DIRECTION.ToRight,
-				            Instance.mRoot.FindChild("MyCards").gameObject,
-				            Instance.mRoot.FindChild("Lobby").gameObject);
-			} else if(state == STATE.Contests){
-				AnimatePage(DIRECTION.ToRight,
-				            Instance.mRoot.FindChild("Contests").gameObject,
-				            Instance.mRoot.FindChild("Lobby").gameObject);
+			if(state == STATE.MyCard)	AnimatePageToRight("MyCards", "Lobby");
+			else if(state == STATE.Contests)	AnimatePageToRight("Contests", "Lobby");
+			else if(state == STATE.Shop){
+				if(mListBackState.Count == 1){
+					AnimatePageToRight("Shop", "Lobby");
+				}
+			}
+			else if(state == STATE.RegisterEntry){
+				if(mListBackState[mListBackState.Count-2] == STATE.Contests){
+					AnimatePageToRight("RegisterEntry", "Contests");
+				}
 			}
 
 			mListBackState.RemoveAt(mListBackState.Count-1);
@@ -131,6 +157,18 @@ public class UtilMgr : MonoBehaviour {
 			Instance.ShowExitDialog();
 			return false;
 		}
+	}
+
+	public static void AnimatePageToRight(string disappear, string appear){
+		AnimatePage(DIRECTION.ToRight,
+		            Instance.mRoot.FindChild(disappear).gameObject,
+		            Instance.mRoot.FindChild(appear).gameObject);
+	}
+
+	public static void AnimatePageToLeft(string disappear, string appear){
+		AnimatePage(DIRECTION.ToLeft,
+		            Instance.mRoot.FindChild(disappear).gameObject,
+		            Instance.mRoot.FindChild(appear).gameObject);
 	}
 
 	public static void Quit(){

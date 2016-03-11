@@ -763,8 +763,17 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new GetLineupRequest(teamCode), baseEvent);
 	}
 	
-	public static void GetItemShopGoldList(BaseEvent baseEvent)
+	public static void GetItemShopList(Shop.TYPE type, BaseEvent baseEvent)
 	{
+		if(type == Shop.TYPE.GOLD){
+
+		} else if(type == Shop.TYPE.TICKET){
+
+		} else if(type == Shop.TYPE.CARD){
+
+		} else if(type == Shop.TYPE.SKILL){
+
+		}
 		Instance.webAPIProcessEvent(new GetItemShopGoldRequest(), baseEvent);
 	}
 	

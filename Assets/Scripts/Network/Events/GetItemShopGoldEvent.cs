@@ -3,9 +3,9 @@ using System.Collections;
 
 public class GetItemShopGoldEvent : BaseEvent {
 
-	public GetItemShopGoldEvent(EventDelegate eventDelegate)
+	public GetItemShopGoldEvent(EventDelegate.Callback callback)
 	{
-		base.eventDelegate = eventDelegate;
+		base.eventDelegate = new EventDelegate(callback);
 
 		InitEvent += InitResponse;
 	}
