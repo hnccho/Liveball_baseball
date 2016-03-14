@@ -41,9 +41,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: b5dccc1288249425094e2e65fceca6f2, type: 2}
   mSprites:
-  - name: logo_team_ari
+  - name: 1
+    x: 386
+    y: 204
+    width: 39
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 16
+    paddingRight: 21
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 10
+    x: 471
+    y: 204
+    width: 37
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 20
+    paddingRight: 19
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 11
+    x: 139
+    y: 205
+    width: 56
+    height: 51
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 9
+    paddingRight: 11
+    paddingTop: 1
+    paddingBottom: 0
+  - name: 12
+    x: 252
+    y: 92
+    width: 40
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 18
+    paddingRight: 18
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 13
+    x: 379
+    y: 149
+    width: 33
+    height: 51
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 22
+    paddingRight: 21
+    paddingTop: 0
+    paddingBottom: 1
+  - name: 14
     x: 0
-    y: 151
+    y: 148
     width: 60
     height: 52
     borderLeft: 0
@@ -54,22 +119,61 @@ MonoBehaviour:
     paddingRight: 8
     paddingTop: 0
     paddingBottom: 0
-  - name: logo_team_atl
-    x: 77
+  - name: 15
+    x: 343
     y: 204
-    width: 55
+    width: 39
     height: 52
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 11
-    paddingRight: 10
+    paddingLeft: 19
+    paddingRight: 18
     paddingTop: 0
     paddingBottom: 0
-  - name: logo_team_bal
+  - name: 16
+    x: 300
+    y: 39
+    width: 36
+    height: 50
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 20
+    paddingRight: 20
+    paddingTop: 1
+    paddingBottom: 1
+  - name: 17
+    x: 252
+    y: 37
+    width: 40
+    height: 51
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 18
+    paddingRight: 18
+    paddingTop: 0
+    paddingBottom: 1
+  - name: 18
+    x: 300
+    y: 149
+    width: 37
+    height: 51
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 20
+    paddingRight: 19
+    paddingTop: 1
+    paddingBottom: 0
+  - name: 19
     x: 0
-    y: 45
+    y: 36
     width: 56
     height: 52
     borderLeft: 0
@@ -80,33 +184,7 @@ MonoBehaviour:
     paddingRight: 10
     paddingTop: 0
     paddingBottom: 0
-  - name: logo_team_bos
-    x: 285
-    y: 99
-    width: 36
-    height: 52
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 20
-    paddingRight: 20
-    paddingTop: 0
-    paddingBottom: 0
-  - name: logo_team_chc
-    x: 133
-    y: 152
-    width: 52
-    height: 52
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 12
-    paddingRight: 12
-    paddingTop: 0
-    paddingBottom: 0
-  - name: logo_team_cin
+  - name: 2
     x: 0
     y: 204
     width: 76
@@ -119,8 +197,47 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: logo_team_col
-    x: 240
+  - name: 20
+    x: 80
+    y: 148
+    width: 52
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 12
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 21
+    x: 341
+    y: 149
+    width: 34
+    height: 51
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 19
+    paddingRight: 23
+    paddingTop: 1
+    paddingBottom: 0
+  - name: 22
+    x: 199
+    y: 148
+    width: 49
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 13
+    paddingRight: 14
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 23
+    x: 252
     y: 204
     width: 44
     height: 52
@@ -132,165 +249,9 @@ MonoBehaviour:
     paddingRight: 19
     paddingTop: 0
     paddingBottom: 0
-  - name: logo_team_cws
-    x: 285
-    y: 48
-    width: 36
-    height: 50
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 20
-    paddingRight: 20
-    paddingTop: 1
-    paddingBottom: 1
-  - name: logo_team_det
-    x: 240
-    y: 46
-    width: 40
-    height: 51
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 18
-    paddingRight: 18
-    paddingTop: 0
-    paddingBottom: 1
-  - name: logo_team_hou
-    x: 77
-    y: 98
-    width: 52
-    height: 52
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 12
-    paddingRight: 12
-    paddingTop: 0
-    paddingBottom: 0
-  - name: logo_team_ind
-    x: 444
-    y: 204
-    width: 37
-    height: 52
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 20
-    paddingRight: 19
-    paddingTop: 0
-    paddingBottom: 0
-  - name: logo_team_kc
-    x: 133
-    y: 99
-    width: 51
-    height: 52
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 11
-    paddingRight: 14
-    paddingTop: 0
-    paddingBottom: 0
-  - name: logo_team_laa
-    x: 323
-    y: 152
-    width: 34
-    height: 51
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 19
-    paddingRight: 23
-    paddingTop: 1
-    paddingBottom: 0
-  - name: logo_team_lad
-    x: 325
-    y: 204
-    width: 39
-    height: 52
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 16
-    paddingRight: 21
-    paddingTop: 0
-    paddingBottom: 0
-  - name: logo_team_mia
-    x: 190
-    y: 204
-    width: 49
-    height: 52
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 13
-    paddingRight: 14
-    paddingTop: 0
-    paddingBottom: 0
-  - name: logo_team_mil
-    x: 190
-    y: 151
-    width: 49
-    height: 52
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 14
-    paddingRight: 13
-    paddingTop: 0
-    paddingBottom: 0
-  - name: logo_team_min
-    x: 77
-    y: 151
-    width: 52
-    height: 52
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 12
-    paddingRight: 12
-    paddingTop: 0
-    paddingBottom: 0
-  - name: logo_team_nym
-    x: 285
-    y: 152
-    width: 37
-    height: 51
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 20
-    paddingRight: 19
-    paddingTop: 1
-    paddingBottom: 0
-  - name: logo_team_nyy
-    x: 190
-    y: 45
-    width: 45
-    height: 52
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 16
-    paddingRight: 15
-    paddingTop: 0
-    paddingBottom: 0
-  - name: logo_team_oak
-    x: 133
-    y: 46
+  - name: 24
+    x: 139
+    y: 37
     width: 50
     height: 52
     borderLeft: 0
@@ -301,34 +262,112 @@ MonoBehaviour:
     paddingRight: 13
     paddingTop: 0
     paddingBottom: 0
-  - name: logo_team_pil
-    x: 240
-    y: 98
-    width: 40
+  - name: 25
+    x: 300
+    y: 93
+    width: 36
     height: 52
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 18
-    paddingRight: 18
+    paddingLeft: 20
+    paddingRight: 20
     paddingTop: 0
     paddingBottom: 0
-  - name: logo_team_pit
-    x: 405
+  - name: 26
+    x: 80
     y: 204
-    width: 38
+    width: 55
     height: 52
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 19
-    paddingRight: 19
+    paddingLeft: 11
+    paddingRight: 10
     paddingTop: 0
     paddingBottom: 0
-  - name: logo_team_sd
-    x: 365
+  - name: 28
+    x: 199
+    y: 92
+    width: 47
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 15
+    paddingRight: 14
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 29
+    x: 199
+    y: 36
+    width: 45
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 16
+    paddingRight: 15
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 3
+    x: 0
+    y: 92
+    width: 60
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 8
+    paddingRight: 8
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 30
+    x: 139
+    y: 149
+    width: 52
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 12
+    paddingRight: 12
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 31
+    x: 252
+    y: 148
+    width: 43
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 16
+    paddingRight: 17
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 32
+    x: 199
+    y: 204
+    width: 49
+    height: 52
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 14
+    paddingRight: 13
+    paddingTop: 0
+    paddingBottom: 0
+  - name: 33
+    x: 300
     y: 204
     width: 39
     height: 52
@@ -340,87 +379,48 @@ MonoBehaviour:
     paddingRight: 20
     paddingTop: 0
     paddingBottom: 0
-  - name: logo_team_sea
-    x: 323
-    y: 100
-    width: 33
-    height: 51
+  - name: 35
+    x: 80
+    y: 36
+    width: 52
+    height: 52
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 22
-    paddingRight: 21
+    paddingLeft: 12
+    paddingRight: 12
     paddingTop: 0
-    paddingBottom: 1
-  - name: logo_team_sf
-    x: 285
+    paddingBottom: 0
+  - name: 4
+    x: 429
     y: 204
-    width: 39
+    width: 38
     height: 52
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
     paddingLeft: 19
-    paddingRight: 18
+    paddingRight: 19
     paddingTop: 0
     paddingBottom: 0
-  - name: logo_team_stl
-    x: 240
-    y: 151
-    width: 43
+  - name: 5
+    x: 139
+    y: 93
+    width: 51
     height: 52
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 16
-    paddingRight: 17
-    paddingTop: 0
-    paddingBottom: 0
-  - name: logo_team_tb
-    x: 133
-    y: 205
-    width: 56
-    height: 51
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 9
-    paddingRight: 11
-    paddingTop: 1
-    paddingBottom: 0
-  - name: logo_team_tex
-    x: 190
-    y: 98
-    width: 47
-    height: 52
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 15
+    paddingLeft: 11
     paddingRight: 14
     paddingTop: 0
     paddingBottom: 0
-  - name: logo_team_tor
-    x: 0
-    y: 98
-    width: 60
-    height: 52
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 8
-    paddingRight: 8
-    paddingTop: 0
-    paddingBottom: 0
-  - name: logo_team_wsh
-    x: 77
-    y: 45
+  - name: 9
+    x: 80
+    y: 92
     width: 52
     height: 52
     borderLeft: 0

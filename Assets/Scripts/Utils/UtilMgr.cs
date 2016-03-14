@@ -36,7 +36,8 @@ public class UtilMgr : MonoBehaviour {
 		MyCard,
 		Contests,
 		Shop,
-		RegisterEntry
+		RegisterEntry,
+		Profile
 	}
 
 	static UtilMgr Instance
@@ -150,6 +151,11 @@ public class UtilMgr : MonoBehaviour {
 				if(mListBackState[mListBackState.Count-2] == STATE.Contests){
 					AnimatePageToRight("RegisterEntry", "Contests");
 				}
+			}
+			else if(state == STATE.Profile){
+				TweenPosition.Begin(Instance.mRoot.FindChild("Profile").gameObject,
+				                    1f, new Vector3(1600f, 0, 0), false);
+
 			}
 
 			mListBackState.RemoveAt(mListBackState.Count-1);

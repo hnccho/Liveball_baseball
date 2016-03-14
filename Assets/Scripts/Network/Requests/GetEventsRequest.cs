@@ -2,12 +2,25 @@
 using System.Collections;
 using System.Text;
 
-public class GetEventsRequest : BaseNanooRequest {
-
-	public GetEventsRequest(API_TYPE apiType)
+public class GetEventsRequest : BaseRequest {
+	
+	public GetEventsRequest()
 	{
-		mType = apiType;
-//		mParam = Constants.QUERY_SERVER_NANOO + "/v1/news/event?";
-		mParam = Constants.QUERY_SERVER_NANOO + "/v1/news/event";
+		Add ("memSeq", UserMgr.UserInfo.memSeq);
+		
+		//		mParams = JsonFx.Json.JsonWriter.Serialize (this);
+		mDic = this;
+		
 	}
+	
+	public override string GetType ()
+	{
+		return "apps.ginfo";
+	}
+	
+	public override string GetQueryId()
+	{
+		return "getEventListMLB";
+	}
+
 }

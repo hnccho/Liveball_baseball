@@ -2,15 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GetEventsResponse {
-	EventListInfo _result;
+public class GetEventsResponse : BaseResponse {
+	List<EventInfo> _data;
 
-	public EventListInfo result {
+	public List<EventInfo> data {
 		get {
-			return _result;
+			return _data;
 		}
 		set {
-			_result = value;
+			_data = value;
 		}
 	}
 }

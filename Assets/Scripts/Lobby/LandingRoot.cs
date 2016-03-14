@@ -3,13 +3,14 @@ using System.Collections;
 
 public class LandingRoot : SuperRoot {
 
-	GetLobbyInfoEvent mLobbyEvent;
+
+	GetEventsEvent mRTEvent;
 
 	// Use this for initialization
 	new void Start () {
 		base.Start();
 
-		InitLobby();
+		transform.FindChild("Lobby").GetComponent<Lobby>().Init();
 	}
 	
 	new void Awake(){
@@ -21,20 +22,10 @@ public class LandingRoot : SuperRoot {
 		base.Update();
 	}
 
-	public void InitLobby(){
-		mLobbyEvent = new GetLobbyInfoEvent(ReceivedLobby);
-		NetMgr.GetLobbyInfo(UserMgr.UserInfo.memSeq, mLobbyEvent);
-	}
-
-	void ReceivedLobby(){
-		transform.FindChild("Lobby").FindChild("Body").FindChild("ScrollBody").FindChild("DFS")
-			.FindChild("BtnSpecial").FindChild("LblValue")
-				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.contestCountS+"";
-		transform.FindChild("Lobby").FindChild("Body").FindChild("ScrollBody").FindChild("DFS")
-			.FindChild("Btn50").FindChild("LblValue")
-				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.contestCount50+"";
-		transform.FindChild("Lobby").FindChild("Body").FindChild("ScrollBody").FindChild("DFS")
-			.FindChild("BtnRanking").FindChild("LblValue")
-				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.contestCountR+"";
+	public void BtnMenuClick(){
+		UtilMgr.AddBackState(UtilMgr.STATE.Profile);
+		transform.FindChild("Profile").localPosition = new Vector3(720f, 0, 0);
+		TweenPosition.Begin(transform.FindChild("Profile").gameObject, 1f, new Vector3(132f, 0, 0), false);
+		transform.FindChild("Profile").GetComponent<UITweener>().method = UITweener.Method.EaseOut;
 	}
 }

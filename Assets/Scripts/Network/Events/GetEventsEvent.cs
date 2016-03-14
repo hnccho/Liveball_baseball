@@ -4,9 +4,9 @@ using System.Collections;
 public class GetEventsEvent : BaseEvent {
 	GetEventsResponse mResponse;
 
-	public GetEventsEvent(EventDelegate eventDelegate)
+	public GetEventsEvent(EventDelegate.Callback callback)
 	{
-		base.eventDelegate = eventDelegate;
+		base.eventDelegate = new EventDelegate(callback);
 
 		InitEvent += InitResponse;
 	}

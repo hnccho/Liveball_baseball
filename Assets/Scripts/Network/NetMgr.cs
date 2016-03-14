@@ -160,7 +160,7 @@ public class NetMgr : MonoBehaviour{
 				                         UtilMgr.GetLocalText("StrRetry"), "", 
 				                         UtilMgr.GetLocalText("StrGotoTitle"), ConnectHandlerForHttp);
 
-			Debug.Log(www.text);
+			Debug.Log(www.error);
 			mWWW = www;
 			mBaseEvent = baseEvent;
 			mIsUpload = isUpload;
@@ -776,6 +776,10 @@ public class NetMgr : MonoBehaviour{
 		}
 		Instance.webAPIProcessEvent(new GetItemShopGoldRequest(), baseEvent);
 	}
+
+	public static void GetEventList(BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new GetEventsRequest(), baseEvent);
+	}
 	
 	public static void GetItemShopRubyList(BaseEvent baseEvent)
 	{
@@ -846,9 +850,9 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new AccuseContentRequest(accuInfo), baseEvent);
 	}
 	
-	public static void GetEvents(BaseNanooRequest.API_TYPE apiType, BaseEvent baseEvent)
+	public static void GetEvents(BaseEvent baseEvent)
 	{
-		Instance.webAPINanooEvent(new GetEventsRequest(apiType), baseEvent, true);
+		Instance.webAPIProcessEvent(new GetEventsRequest(), baseEvent, true);
 	}
 	
 	public static void CSGetList(BaseCSEvent baseEvent){
