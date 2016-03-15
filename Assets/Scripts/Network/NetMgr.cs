@@ -103,7 +103,8 @@ public class NetMgr : MonoBehaviour{
 			}
 		}
 	}
-	
+
+	static int mRetryCnt = 0;
 	IEnumerator webAPIProcess(WWW www, BaseEvent baseEvent, bool showLoading, bool isUpload)
 	{
 		if(www == null){
@@ -136,6 +137,7 @@ public class NetMgr : MonoBehaviour{
 		if(www.error == null && www.isDone)
 		{
 			Debug.Log(www.text);
+			mRetryCnt = 0;
 			//            CommonDialogue.Show (www.text);
 			if(baseEvent != null){
 				Debug.Log("baseEvent != null");
@@ -145,26 +147,30 @@ public class NetMgr : MonoBehaviour{
 		else
 		{
 			Debug.Log(www.error);
-			//            DialogueMgr.ShowDialogue("네트워크오류", "네트워크 연결이 불안정합니다.\n인터넷 연결을 확인 후 다시 시도해주세요.", DialogueMgr.DIALOGUE_TYPE.Alert, null);
-
-			if (Application.loadedLevelName.Equals ("Login")) {
-				DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrNetworkError"),
-				                         UtilMgr.GetLocalText("StrNetworkError1"),
-				                         DialogueMgr.DIALOGUE_TYPE.YesNo, 
-				                         UtilMgr.GetLocalText("StrRetry"), "", 
-				                         UtilMgr.GetLocalText("StrExit"), ConnectHandlerForHttp);
-			} else
-				DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrNetworkError"),
-				                         UtilMgr.GetLocalText("StrNetworkError1"),
-			                         DialogueMgr.DIALOGUE_TYPE.YesNo, 
-				                         UtilMgr.GetLocalText("StrRetry"), "", 
-				                         UtilMgr.GetLocalText("StrGotoTitle"), ConnectHandlerForHttp);
-
-			Debug.Log(www.error);
 			mWWW = www;
 			mBaseEvent = baseEvent;
 			mIsUpload = isUpload;
 			mIsLoading = showLoading;
+			if(mRetryCnt < 10){
+				mRetryCnt++;
+				ConnectHandlerForHttp(DialogueMgr.BTNS.Btn1);
+			} else{
+				mRetryCnt = 0;
+
+				if (Application.loadedLevelName.Equals ("Login")) {
+					DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrNetworkError"),
+					                         UtilMgr.GetLocalText("StrNetworkError1"),
+					                         DialogueMgr.DIALOGUE_TYPE.YesNo, 
+					                         UtilMgr.GetLocalText("StrRetry"), "", 
+					                         UtilMgr.GetLocalText("StrExit"), ConnectHandlerForHttp);
+				} else
+					DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrNetworkError"),
+					                         UtilMgr.GetLocalText("StrNetworkError1"),
+				                         DialogueMgr.DIALOGUE_TYPE.YesNo, 
+					                         UtilMgr.GetLocalText("StrRetry"), "", 
+					                         UtilMgr.GetLocalText("StrGotoTitle"), ConnectHandlerForHttp);
+
+			}
 		}
 		
 		UtilMgr.DismissLoading ();
@@ -235,6 +241,22 @@ public class NetMgr : MonoBehaviour{
 		Debug.Log (request.ToRequestString());
 
 		StartCoroutine (webCSAPIProcess(www, baseEvent, showLoading));
+	}
+
+	void webAPIProcessEventForRankingball(BaseRequest request, BaseEvent baseEvent, bool showLoading){
+		string reqParam = request.ToRequestString();
+		WWW www = new WWW (Constants.RANK_SERVER_HOST+request.GetQueryId(),
+		                   System.Text.Encoding.UTF8.GetBytes(reqParam));
+		
+		
+		mReqParam = null;
+		mUrl = "";
+		mForm = null;
+		mReqParam = System.Text.Encoding.UTF8.GetBytes(reqParam);
+		mUrl = Constants.RANK_SERVER_HOST+request.GetQueryId();
+		Debug.Log (reqParam);
+		
+		StartCoroutine (webAPIProcess(www, baseEvent, showLoading, false));
 	}
 	
 	private void webAPIProcessEventForCheckVersion(BaseRequest request, BaseEvent baseEvent, bool isTest, bool showLoading)
@@ -853,6 +875,11 @@ public class NetMgr : MonoBehaviour{
 	public static void GetEvents(BaseEvent baseEvent)
 	{
 		Instance.webAPIProcessEvent(new GetEventsRequest(), baseEvent, true);
+	}
+
+	public static void GetTerms(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEventForRankingball(new GetTermsRequest(), baseEvent, true);
 	}
 	
 	public static void CSGetList(BaseCSEvent baseEvent){

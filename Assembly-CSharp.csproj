@@ -1195,6 +1195,7 @@
      <Compile Include="Assets\Scripts\Lobby\DFSBtns.cs" />
      <Compile Include="Assets\Scripts\Lobby\LandingRoot.cs" />
      <Compile Include="Assets\Scripts\Lobby\Lobby.cs" />
+     <Compile Include="Assets\Scripts\Lobby\RTDirectionBtns.cs" />
      <Compile Include="Assets\Scripts\Lobby\RTLobby.cs" />
      <Compile Include="Assets\Scripts\Lobby\TopMenuBtns.cs" />
      <Compile Include="Assets\Scripts\Login\BtnAgree.cs" />
@@ -1243,6 +1244,7 @@
      <Compile Include="Assets\Scripts\Network\Events\GetSimpleResultEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetSposTeamInfoEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetTeamRankingEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\GetTermsEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\HistoryListEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\IAPEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\InAppPurchaseEvent.cs" />
@@ -1401,6 +1403,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\GetSposTeamInfoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetTeamQuizRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetTeamRankingRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\GetTermsRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetUserRankingSeasonForecast.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetUserRankingSeasonPoint.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetUserRankingWeeklyForecast.cs" />
@@ -1468,6 +1471,7 @@
      <Compile Include="Assets\Scripts\Network\Responses\GetSimpleResultResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetSposTeamInfoResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetTeamRankingResponse.cs" />
+     <Compile Include="Assets\Scripts\Network\Responses\GetTermsResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\IAPResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\LoginResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\PresetAddResponse.cs" />
