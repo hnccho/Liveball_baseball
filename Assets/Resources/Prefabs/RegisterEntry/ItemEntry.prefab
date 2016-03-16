@@ -199,6 +199,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 426176}
+  - 114: {fileID: 11433518}
   m_Layer: 5
   m_Name: ItemEntry
   m_TagString: Untagged
@@ -362,6 +363,8 @@ GameObject:
   - 61: {fileID: 6181788}
   - 114: {fileID: 11482600}
   - 114: {fileID: 11427622}
+  - 114: {fileID: 11491454}
+  - 114: {fileID: 11460660}
   m_Layer: 5
   m_Name: BtnRight
   m_TagString: Untagged
@@ -381,6 +384,7 @@ GameObject:
   - 114: {fileID: 11487056}
   - 114: {fileID: 11489196}
   - 114: {fileID: 11444440}
+  - 114: {fileID: 11488280}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1120,6 +1124,17 @@ MonoBehaviour:
   trigger: 0
   volume: 1
   pitch: 1
+--- !u!114 &11433518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3a50d199aea4968a293f8f00864d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11433670
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1564,6 +1579,17 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &11460660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a7530942edd40f5944a6a4a9f48aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11460774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2089,6 +2115,17 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick: []
+--- !u!114 &11488280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a7530942edd40f5944a6a4a9f48aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11489196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2104,6 +2141,19 @@ MonoBehaviour:
   trigger: 0
   volume: 1
   pitch: 1
+--- !u!114 &11491454
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02842fa4878db54f9587ff4de7d9f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollView: {fileID: 0}
+  draggablePanel: {fileID: 0}
 --- !u!114 &11492360
 MonoBehaviour:
   m_ObjectHideFlags: 1

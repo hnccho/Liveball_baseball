@@ -7,8 +7,8 @@ public class GameJoinNEntryFee : BaseRequest {
 	public GameJoinNEntryFee()
 	{
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
-		Add ("gameSeq", UserMgr.Schedule.gameSeq);
-		Add ("entryFee", int.Parse(UserMgr.Schedule.entryFee));
+//		Add ("gameSeq", UserMgr.Schedule.gameSeq);
+//		Add ("entryFee", int.Parse(UserMgr.Schedule.entryFee));
 
 //		mParams = JsonFx.Json.JsonWriter.Serialize (this);
 		mDic = this;

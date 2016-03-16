@@ -7,7 +7,7 @@ public class GetGameParticipantRankingRequest : BaseRequest {
 	public GetGameParticipantRankingRequest()
 	{
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
-		Add ("gameSeq", UserMgr.Schedule.gameSeq);
+//		Add ("gameSeq", UserMgr.Schedule.gameSeq);
 	//	Add ("gameSeq", 1622);
 
 

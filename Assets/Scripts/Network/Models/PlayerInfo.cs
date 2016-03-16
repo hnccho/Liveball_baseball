@@ -46,6 +46,72 @@ public class PlayerInfo {
 		}
 	}
 
+	long _salary;
+
+	public long salary {
+		get {
+			return _salary;
+		}
+		set {
+			_salary = value;
+		}
+	}
+
+	string _firstName;
+
+	public string firstName {
+		get {
+			return _firstName;
+		}
+		set {
+			_firstName = value;
+		}
+	}
+
+	string _lastName;
+
+	public string lastName {
+		get {
+			return _lastName;
+		}
+		set {
+			_lastName = value;
+		}
+	}
+
+	int _backNumber;
+
+	public int backNumber {
+		get {
+			return _backNumber;
+		}
+		set {
+			_backNumber = value;
+		}
+	}
+
+	int _teamId;
+
+	public int teamId {
+		get {
+			return _teamId;
+		}
+		set {
+			_teamId = value;
+		}
+	}
+
+	string _teamName;
+
+	public string teamName {
+		get {
+			return _teamName;
+		}
+		set {
+			_teamName = value;
+		}
+	}
+
 	string _teamCode;
 
 	public string teamCode {
@@ -88,6 +154,17 @@ public class PlayerInfo {
 		}
 	}
 
+	long _playerId;
+
+	public long playerId {
+		get {
+			return _playerId;
+		}
+		set {
+			_playerId = value;
+		}
+	}
+
 	string _playerName;
 
 	public string playerName {
@@ -107,6 +184,50 @@ public class PlayerInfo {
 		}
 		set {
 			_playerNick = value;
+		}
+	}
+
+	string _injuryStatus;
+
+	public string injuryStatus {
+		get {
+			return _injuryStatus;
+		}
+		set {
+			_injuryStatus = value;
+		}
+	}
+
+	string _photoUrl;
+
+	public string photoUrl {
+		get {
+			return _photoUrl;
+		}
+		set {
+			_photoUrl = value;
+		}
+	}
+
+	string _injuryYN;
+
+	public string injuryYN {
+		get {
+			return _injuryYN;
+		}
+		set {
+			_injuryYN = value;
+		}
+	}
+
+	int _positionNo;
+
+	public int positionNo {
+		get {
+			return _positionNo;
+		}
+		set {
+			_positionNo = value;
 		}
 	}
 
@@ -313,6 +434,17 @@ public class PlayerInfo {
 		}
 		set {
 			_hitH = value;
+		}
+	}
+
+	bool isCard;
+
+	public bool IsCard {
+		get {
+			return isCard;
+		}
+		set {
+			isCard = value;
 		}
 	}
 }

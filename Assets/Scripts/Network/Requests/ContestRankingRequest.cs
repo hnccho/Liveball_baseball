@@ -8,11 +8,11 @@ public class ContestRankingeRequest : BaseRequest {
 	{		
 		Add("memSeq", UserMgr.UserInfo.memSeq);
 		if (GameSeq == 0) {
-			Add ("gameSeq", UserMgr.Schedule.gameSeq);
+//			Add ("gameSeq", UserMgr.Schedule.gameSeq);
 		} else {
 			Add ("gameSeq", GameSeq);
 		}
-		Add("contestSeq", UserMgr.CurrentContestSeq);
+//		Add("contestSeq", UserMgr.CurrentContestSeq);
 
 		mDic = this;
 	}

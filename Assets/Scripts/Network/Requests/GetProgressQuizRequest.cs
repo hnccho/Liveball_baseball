@@ -7,7 +7,7 @@ public class GetProgressQuizRequest : BaseRequest {
 	public GetProgressQuizRequest(int quizListSeq)
 	{
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
-		Add ("gameSeq", UserMgr.Schedule.gameSeq);
+//		Add ("gameSeq", UserMgr.Schedule.gameSeq);
 		Add ("teamCode", "");
 		Add ("quizListSeq", quizListSeq);
 

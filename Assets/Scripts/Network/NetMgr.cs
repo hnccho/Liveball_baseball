@@ -765,6 +765,11 @@ public class NetMgr : MonoBehaviour{
 	{
 		Instance.webAPIProcessEvent (new GetPlayerStatisticsRequest (), baseEvent);
 	}
+
+	public static void GetPlayerList(int positionNo, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent (new GetPlayerListRequest(positionNo), baseEvent);
+	}
 	
 	public static void CheckVersion(BaseEvent baseEvent, bool isTest)
 	{

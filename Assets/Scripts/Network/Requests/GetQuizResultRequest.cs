@@ -8,7 +8,7 @@ public class GetQuizResultRequest : BaseRequest {
 	public GetQuizResultRequest(int quizListSeq)
 	{
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
-		Add ("gameSeq", UserMgr.Schedule.gameSeq);
+//		Add ("gameSeq", UserMgr.Schedule.gameSeq);
 		Add ("quizListSeq", quizListSeq);
 
 //		mParams = JsonFx.Json.JsonWriter.Serialize (this);

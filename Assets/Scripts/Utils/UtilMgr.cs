@@ -37,7 +37,8 @@ public class UtilMgr : MonoBehaviour {
 		Contests,
 		Shop,
 		RegisterEntry,
-		Profile
+		Profile,
+		SelectPlayer
 	}
 
 	static UtilMgr Instance
@@ -147,7 +148,7 @@ public class UtilMgr : MonoBehaviour {
 					AnimatePageToRight("Shop", "Lobby");
 				}
 			}
-			else if(state == STATE.RegisterEntry){
+			else if(state == STATE.RegisterEntry){//need r u sure exit?
 				if(mListBackState[mListBackState.Count-2] == STATE.Contests){
 					AnimatePageToRight("RegisterEntry", "Contests");
 				}
@@ -156,6 +157,11 @@ public class UtilMgr : MonoBehaviour {
 				TweenPosition.Begin(Instance.mRoot.FindChild("Profile").gameObject,
 				                    1f, new Vector3(1600f, 0, 0), false);
 
+			}
+			else if(state == STATE.SelectPlayer){
+				if(mListBackState[mListBackState.Count-2] == STATE.RegisterEntry){
+					AnimatePageToRight("SelectPlayer", "RegisterEntry");
+				}
 			}
 
 			mListBackState.RemoveAt(mListBackState.Count-1);
@@ -278,6 +284,26 @@ public class UtilMgr : MonoBehaviour {
 	public static string GetLocalText(string key, params object[] values){
 		string oriTxt = Localization.Get(key);
 		return string.Format(oriTxt, values);
+	}
+
+	public static string GetPosition(int positionNo){
+		switch(positionNo)
+		{
+		case 1: return "P";
+		case 2: return "C";
+		case 3: return "1B";
+		case 4: return "2B";
+		case 5: return "3B";
+		case 6: return "SS";
+		case 7: return "LF";
+		case 8: return "CF";
+		case 9: return "RF";
+		case 10:return "DH";
+		case 11:return "OF";
+		case 12:return "IF";
+		default:
+			return "N";
+		}
 	}
 
 	public static string GetTeamEmblem(string imgName)

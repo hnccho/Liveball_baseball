@@ -7,7 +7,7 @@ public class JoinGameRequest : BaseRequest {
 	public JoinGameRequest()
 	{
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
-		Add ("gameSeq", UserMgr.Schedule.gameSeq);
+//		Add ("gameSeq", UserMgr.Schedule.gameSeq);
 
 
 //		mParams = JsonFx.Json.JsonWriter.Serialize (this);

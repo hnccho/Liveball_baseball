@@ -8,8 +8,7 @@ public class LoginRoot : SuperRoot {
 	LoginEvent mLoginEvent;
 	LoginInfo mLoginInfo;
 	GetProfileEvent mProfileEvent;
-	GetTermsEvent mTermsEvent;
-
+	GetPlayerListEvent mPlayerEvent;
 
 	bool mMustUpdate;
 	static string mNick = null;
@@ -17,10 +16,8 @@ public class LoginRoot : SuperRoot {
 	// Use this for initialization
 	new void Start () {
 		base.Start();
-		transform.FindChild("Terms").gameObject.SetActive(true);
-		mTermsEvent = new GetTermsEvent(ReceivedTerms);
-		NetMgr.GetTerms(mTermsEvent);
-		//
+		transform.FindChild("Terms").gameObject.SetActive(false);
+
 		transform.FindChild("RegisterUsername").gameObject.SetActive(false);
 
 		transform.FindChild("RegisterUsername").localPosition
@@ -35,7 +32,7 @@ public class LoginRoot : SuperRoot {
 		}
 
 		mVersionEvent = new CheckVersionEvent(new EventDelegate(ReceivedVersion));
-//		NetMgr.CheckVersion(mVersionEvent, false);
+		NetMgr.CheckVersion(mVersionEvent, false);
 
 	}
 
@@ -46,51 +43,6 @@ public class LoginRoot : SuperRoot {
 	// Update is called once per frame
 	new void Update () {
 		base.Update();
-	}
-
-	void ReceivedTerms(){
-		UILabel label1 = 
-			transform.FindChild("Terms").FindChild("Scroll View").FindChild("Item").FindChild("InfoTerms")
-				.FindChild("BGBody").FindChild("Scroll View").FindChild("Label1").GetComponent<UILabel>();
-		label1.text = mTermsEvent.Response.service1;
-		label1.transform.GetComponent<BoxCollider2D>().size = new Vector2(label1.width, label1.height);
-		label1.transform.GetComponent<BoxCollider2D>().offset = new Vector2(0, -(label1.height/2f));
-		UILabel label2 =
-			transform.FindChild("Terms").FindChild("Scroll View").FindChild("Item").FindChild("InfoTerms")
-				.FindChild("BGBody").FindChild("Scroll View").FindChild("Label2").GetComponent<UILabel>();
-		label2.text = mTermsEvent.Response.service2;
-		label2.transform.localPosition = new Vector3(0, -label1.height, 0);
-		label2.transform.GetComponent<BoxCollider2D>().size = new Vector2(label2.width, label2.height);
-		label2.transform.GetComponent<BoxCollider2D>().offset = new Vector2(0, -(label2.height/2f));
-		UILabel label3 =
-			transform.FindChild("Terms").FindChild("Scroll View").FindChild("Item").FindChild("InfoTerms")
-				.FindChild("BGBody").FindChild("Scroll View").FindChild("Label3").GetComponent<UILabel>();
-		label3.text = mTermsEvent.Response.service3;
-		label3.transform.localPosition = new Vector3(0, -(label1.height+label2.height), 0);
-		label3.transform.GetComponent<BoxCollider2D>().size = new Vector2(label3.width, label3.height);
-		label3.transform.GetComponent<BoxCollider2D>().offset = new Vector2(0, -(label3.height/2f));
-
-		transform.FindChild("Terms").FindChild("Scroll View").FindChild("Item").FindChild("InfoTerms")
-			.FindChild("BGBody").FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();
-//		Debug.Log("1 is "+label1.height + ", 2 is "+label2.height + ", 3 is "+label3.height);
-				
-		label1 =
-			transform.FindChild("Terms").FindChild("Scroll View").FindChild("Item").FindChild("InfoPrivacy")
-				.FindChild("BGBody").FindChild("Scroll View").FindChild("Label1").GetComponent<UILabel>();
-		label1.text = mTermsEvent.Response.personal1;
-		label1.transform.GetComponent<BoxCollider2D>().size = new Vector2(label1.width, label1.height);
-		label1.transform.GetComponent<BoxCollider2D>().offset = new Vector2(0, -(label1.height/2f));
-		label2 =
-			transform.FindChild("Terms").FindChild("Scroll View").FindChild("Item").FindChild("InfoPrivacy")
-				.FindChild("BGBody").FindChild("Scroll View").FindChild("Label2").GetComponent<UILabel>();
-		label2.text = mTermsEvent.Response.personal2;
-		label2.transform.localPosition = new Vector3(0, -label1.height, 0);
-		label2.transform.GetComponent<BoxCollider2D>().size = new Vector2(label2.width, label2.height);
-		label2.transform.GetComponent<BoxCollider2D>().offset = new Vector2(0, -(label2.height/2f));
-		transform.FindChild("Terms").FindChild("Scroll View").FindChild("Item").FindChild("InfoPrivacy")
-			.FindChild("BGBody").FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();
-
-
 	}
 
 	void ReceivedVersion(){
@@ -202,7 +154,8 @@ public class LoginRoot : SuperRoot {
 
 	void ReceivedChecking(){
 		if(mCheckEvent.Response.code == 1){
-			transform.FindChild("Terms").gameObject.SetActive(true);
+			//later
+			transform.FindChild("Terms").GetComponent<Terms>().Init();
 			return;
 		}
 
@@ -282,8 +235,13 @@ public class LoginRoot : SuperRoot {
 	}
 
 	void ReceivedProfile(){
-//		DialogueMgr.ShowDialogue("ok", mProfileEvent.Response.data.nick, DialogueMgr.DIALOGUE_TYPE.Alert, null);
 		UserMgr.UserInfo = mProfileEvent.Response.data;
+		mPlayerEvent = new GetPlayerListEvent(ReceivedPlayers);
+		NetMgr.GetPlayerList(0, mPlayerEvent);
+	}
+
+	void ReceivedPlayers(){
+		UserMgr.PlayerList = mPlayerEvent.Response.data;
 		AutoFade.LoadLevel("Landing");
 	}
 

@@ -1201,6 +1201,7 @@
      <Compile Include="Assets\Scripts\Login\BtnAgree.cs" />
      <Compile Include="Assets\Scripts\Login\BtnRegisterUsername.cs" />
      <Compile Include="Assets\Scripts\Login\LoginRoot.cs" />
+     <Compile Include="Assets\Scripts\Login\Terms.cs" />
      <Compile Include="Assets\Scripts\Network\Events\AccuseContentEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\BaseEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\BaseSocketEvent.cs" />
@@ -1235,6 +1236,7 @@
      <Compile Include="Assets\Scripts\Network\Events\GetLineupEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetLobbyInfoEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetMailEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\GetPlayerListEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetPlayerStatisticsEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetProfileEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetQuizEvent.cs" />
@@ -1305,7 +1307,6 @@
      <Compile Include="Assets\Scripts\Network\Models\ParticipantRankInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\PlayInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\PlayerInfo.cs" />
-     <Compile Include="Assets\Scripts\Network\Models\PlayerInfoSample.cs" />
      <Compile Include="Assets\Scripts\Network\Models\PlayerStatistics.cs" />
      <Compile Include="Assets\Scripts\Network\Models\PlayerStatisticsInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\PresetAddInfo.cs" />
@@ -1391,6 +1392,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\GetLineupRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetLobbyInfoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetMailboxRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\GetPlayerListRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetPlayerStatisticsRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetPreparedQuizRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetProfileRequest.cs" />
@@ -1462,6 +1464,7 @@
      <Compile Include="Assets\Scripts\Network\Responses\GetLineupResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetLobbyInfoResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetMailResponse.cs" />
+     <Compile Include="Assets\Scripts\Network\Responses\GetPlayerListResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetPlayerStatisticsResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetProfileResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetQuizResponse.cs" />
@@ -1487,8 +1490,13 @@
      <Compile Include="Assets\Scripts\PlayerCard\PlayerCardSelectionBtns.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\BtnFolding.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\BtnInitialize.cs" />
+     <Compile Include="Assets\Scripts\RegisterEntry\BtnItemEntry.cs" />
+     <Compile Include="Assets\Scripts\RegisterEntry\BtnPosition.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\BtnRandom.cs" />
+     <Compile Include="Assets\Scripts\RegisterEntry\ItemPosition.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\RegisterEntry.cs" />
+     <Compile Include="Assets\Scripts\SelectPlayer\BtnPlayerSelected.cs" />
+     <Compile Include="Assets\Scripts\SelectPlayer\SelectPlayer.cs" />
      <Compile Include="Assets\Scripts\Shop\Shop.cs" />
      <Compile Include="Assets\Scripts\Shop\ShopItemBtns.cs" />
      <Compile Include="Assets\Scripts\Test\Lbl_Temp.cs" />
