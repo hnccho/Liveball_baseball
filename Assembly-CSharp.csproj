@@ -1189,9 +1189,9 @@
      <Compile Include="Assets\ProLoading\Script\bl_Loading.cs" />
      <Compile Include="Assets\Scripts\CardPowerUp\CardPowerUp.cs" />
      <Compile Include="Assets\Scripts\ContestDetail\ContestDetailBtns.cs" />
+     <Compile Include="Assets\Scripts\Contests\Contests.cs" />
      <Compile Include="Assets\Scripts\Contests\ItemContestsBtns.cs" />
      <Compile Include="Assets\Scripts\Lobby\BtnWhat.cs" />
-     <Compile Include="Assets\Scripts\Lobby\Contests.cs" />
      <Compile Include="Assets\Scripts\Lobby\DFSBtns.cs" />
      <Compile Include="Assets\Scripts\Lobby\LandingRoot.cs" />
      <Compile Include="Assets\Scripts\Lobby\Lobby.cs" />
@@ -1257,6 +1257,7 @@
      <Compile Include="Assets\Scripts\Network\Events\PresetDataEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\PresetListEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\PresetUpdateEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\RegEntryEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\RemoveContestHistoryEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\RemoveContestPresetEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\UpdateMemberInfoEvent.cs" />
@@ -1427,6 +1428,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\PresetUpdateRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\PurchaseGoldRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\PurchaseItemRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\RegEntryRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\RemoveContestHistoryRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\RemoveContestPresetRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\RequestIAPRequest.cs" />
@@ -1488,11 +1490,14 @@
      <Compile Include="Assets\Scripts\Network\Responses\procStoreGachaResponse.cs" />
      <Compile Include="Assets\Scripts\Network\UserMgr.cs" />
      <Compile Include="Assets\Scripts\PlayerCard\PlayerCardSelectionBtns.cs" />
+     <Compile Include="Assets\Scripts\RegisterEntry\BtmInfo.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\BtnFolding.cs" />
+     <Compile Include="Assets\Scripts\RegisterEntry\BtnImport.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\BtnInitialize.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\BtnItemEntry.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\BtnPosition.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\BtnRandom.cs" />
+     <Compile Include="Assets\Scripts\RegisterEntry\BtnReg.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\ItemPosition.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\RegisterEntry.cs" />
      <Compile Include="Assets\Scripts\SelectPlayer\BtnPlayerSelected.cs" />

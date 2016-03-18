@@ -447,4 +447,26 @@ public class PlayerInfo {
 			isCard = value;
 		}
 	}
+
+	long _itemSeq;
+
+	public long itemSeq {
+		get {
+			return _itemSeq;
+		}
+		set {
+			_itemSeq = value;
+		}
+	}
+
+	long _itemId;
+
+	public long itemId {
+		get {
+			return _itemId;
+		}
+		set {
+			_itemId = value;
+		}
+	}
 }

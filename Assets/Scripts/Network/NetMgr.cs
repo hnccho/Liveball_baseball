@@ -652,6 +652,10 @@ public class NetMgr : MonoBehaviour{
 	{
 		Instance.webAPIProcessEvent (new GetInvenItemRequest (), baseEvent);
 	}
+
+	public static void RegEntry(int contestSeq, long[][] slots, BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new RegEntryRequest(contestSeq, slots), baseEvent);
+	}
 	
 	public static void GameJoinNEntryFee(BaseEvent baseEvent)
 	{

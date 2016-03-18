@@ -153,9 +153,13 @@ public class LoginRoot : SuperRoot {
 	}
 
 	void ReceivedChecking(){
-		if(mCheckEvent.Response.code == 1){
+		if(mCheckEvent.Response.code == 101){
 			//later
 			transform.FindChild("Terms").GetComponent<Terms>().Init();
+			return;
+		} else if(mCheckEvent.Response.code == 1){
+			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrServerError"), mCheckEvent.Response.message,
+		                         DialogueMgr.DIALOGUE_TYPE.Alert, null);
 			return;
 		}
 

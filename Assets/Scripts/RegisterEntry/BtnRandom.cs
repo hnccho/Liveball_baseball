@@ -26,7 +26,6 @@ public class BtnRandom : MonoBehaviour {
 
 		StartCoroutine("BtnAnim");
 
-		DialogueMgr.ShowDialogue("title", "a\nd", DialogueMgr.DIALOGUE_TYPE.Alert, "", "", "Confirm", null);
 //		DialogueMgr.ShowDialogue("title", "a\ndkdkdjfkdjfkd\nkdkdkdkdkd\ndkdkdkdk\nd\nddd\nddd\nd", DialogueMgr.DIALOGUE_TYPE.Alert, "", "", "Confirm", null);
 
 //		DialogueMgr.ShowExitDialogue(null);
@@ -45,5 +44,7 @@ public class BtnRandom : MonoBehaviour {
 		
 		sprite = transform.FindChild("Background").GetComponent<UISprite>();
 		sprite.flip = UIBasicSprite.Flip.Horizontally;
+
+		transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().Randomize();
 	}
 }

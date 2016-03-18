@@ -13665,7 +13665,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 294901094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99416132fc8684f2b9cb4a4802a20794, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ae9852d737084148b49df06c87c5fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &297823331
@@ -27135,6 +27135,7 @@ GameObject:
   - 61: {fileID: 651841714}
   - 114: {fileID: 651841713}
   - 114: {fileID: 651841712}
+  - 114: {fileID: 651841715}
   m_Layer: 5
   m_Name: BtnImport
   m_TagString: Untagged
@@ -27209,6 +27210,17 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 144, y: 124}
+--- !u!114 &651841715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 651841710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae936ac7eb5d47678ea8acdc7bd5085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &657249844
 GameObject:
   m_ObjectHideFlags: 0
@@ -40632,6 +40644,7 @@ GameObject:
   - 61: {fileID: 981381835}
   - 114: {fileID: 981381834}
   - 114: {fileID: 981381833}
+  - 114: {fileID: 981381836}
   m_Layer: 5
   m_Name: BtnReg
   m_TagString: Untagged
@@ -40707,6 +40720,17 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 144, y: 124}
+--- !u!114 &981381836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981381831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f80a6ad26c6b540d79da6b68636a5cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &982029646
 GameObject:
   m_ObjectHideFlags: 0
@@ -47445,7 +47469,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 478940, guid: c780fbd8e7529491b9c4ecb58897cc5b, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c780fbd8e7529491b9c4ecb58897cc5b, type: 2}
@@ -56708,6 +56732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3a50d199aea4968a293f8f00864d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mState: 0
 --- !u!1 &1347839600
 GameObject:
   m_ObjectHideFlags: 0
@@ -80320,6 +80345,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1967692830}
+  - 114: {fileID: 1967692831}
   m_Layer: 5
   m_Name: Btm
   m_TagString: Untagged
@@ -80343,6 +80369,17 @@ Transform:
   - {fileID: 1083013145}
   m_Father: {fileID: 1862449960}
   m_RootOrder: 5
+--- !u!114 &1967692831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1967692829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7778694880824eaeb9271ba3841f438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1969998414
 GameObject:
   m_ObjectHideFlags: 0

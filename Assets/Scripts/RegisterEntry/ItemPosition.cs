@@ -4,7 +4,7 @@ using System.Collections;
 public class ItemPosition : MonoBehaviour {
 
 	PlayerInfo mPlayerInfo;
-	BtnPosition.STATE mState;
+	public BtnPosition.STATE mState;
 	bool mNeedPhoto;
 
 	// Use this for initialization
@@ -14,13 +14,14 @@ public class ItemPosition : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+		if(mNeedPhoto){
+			StartCoroutine(LoadImage(mPlayerInfo.photoUrl, transform.FindChild("Photo").GetComponent<UITexture>()));
+			mNeedPhoto = false;
+		}
 	}
 
 	void OnEnable(){
-		if(mNeedPhoto)
-			StartCoroutine(LoadImage(mPlayerInfo.photoUrl, transform.FindChild("Photo").GetComponent<UITexture>()));
-		mNeedPhoto = false;
+
 	}
 
 	public void SetDesignated(PlayerInfo info){
@@ -38,6 +39,7 @@ public class ItemPosition : MonoBehaviour {
 	}
 
 	public void SetUndesignated(){
+		mPlayerInfo = null;
 		mState = BtnPosition.STATE.Undesignated;
 		transform.FindChild("Undesignated").FindChild("LblDesignated")
 			.GetComponent<UILabel>().text = "[333333]Select [-][006AD8][b]"
@@ -55,5 +57,9 @@ public class ItemPosition : MonoBehaviour {
 		texture.mainTexture = temp;
 		texture.width = 130;
 		www.Dispose();
+	}
+
+	public PlayerInfo GetPlayerInfo(){
+		return mPlayerInfo;
 	}
 }

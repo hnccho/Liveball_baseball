@@ -40,5 +40,7 @@ public class BtnInitialize : MonoBehaviour {
 		
 		sprite = transform.FindChild("Background").GetComponent<UISprite>();
 		sprite.flip = UIBasicSprite.Flip.Nothing;
+
+		transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().Initialize();
 	}
 }

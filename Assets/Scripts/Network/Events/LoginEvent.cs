@@ -14,8 +14,8 @@ public class LoginEvent : BaseEvent {
 	{
 		response = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginResponse>(data);
 
-//		if (checkError ())
-//			return;
+		if (checkError ())
+			return;
 
 		eventDelegate.Execute ();
 	}

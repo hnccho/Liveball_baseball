@@ -4,6 +4,7 @@ using System.Collections;
 public class RegisterEntry : MonoBehaviour {
 
 	public GameObject mRegItem;
+	int mContestSeq;
 
 	// Use this for initialization
 	void Start () {
@@ -15,13 +16,21 @@ public class RegisterEntry : MonoBehaviour {
 	
 	}
 
-	public void InitRegisterEntry(){
+	public void InitRegisterEntry(int contestSeq){
+		mContestSeq = contestSeq;
 
+		Initialize ();
+	}
+
+	public void Initialize(){
+		if(transform.FindChild("List").FindChild("Scroll View").childCount > 0)
+			ClearList();
+		
 		float height = 136f*8f;
 		for(int i = 0; i < transform.FindChild("Ground").FindChild("BtnPosition").childCount; i++){
 			transform.FindChild("Ground").FindChild("BtnPosition")
 				.GetChild(i).GetComponent<BtnPosition>().SetUndesignated();
-
+			
 			GameObject go = Instantiate(mRegItem);
 			go.transform.parent = transform.FindChild("List").FindChild("Scroll View");
 			go.transform.localPosition = new Vector3(0, height - (136f * i), 0);
@@ -30,6 +39,9 @@ public class RegisterEntry : MonoBehaviour {
 			go.transform.GetComponent<ItemPosition>().SetUndesignated();
 		}
 		transform.FindChild("List").FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();
+
+		transform.FindChild("Btm").GetComponent<BtmInfo>()
+			.SetBtmInfo(transform.FindChild("List").FindChild("Scroll View"));
 	}
 
 	public void SetDesignated(PlayerInfo info){
@@ -63,5 +75,61 @@ public class RegisterEntry : MonoBehaviour {
 				break;
 			}
 		}
+
+		transform.FindChild("Btm").GetComponent<BtmInfo>()
+			.SetBtmInfo(transform.FindChild("List").FindChild("Scroll View"));
+	}
+
+	public long[][] GetSlots(){
+		long[][] slots = new long[9][];
+		for(int i = 0; i < transform.FindChild("List").FindChild("Scroll View").childCount; i++){
+			slots[i] = new long[9];
+			PlayerInfo info = transform.FindChild("List").FindChild("Scroll View")
+				.GetChild(i).GetComponent<ItemPosition>().GetPlayerInfo();
+			slots[i][0] = info.playerId;
+			slots[i][1] = info.itemSeq;
+		}
+		return slots;
+	}
+
+	public int GetContestSeq(){
+		return mContestSeq;
+	}
+
+	void ClearList(){
+		GameObject[] gos = new GameObject[transform.FindChild("List").FindChild("Scroll View").childCount];
+		for(int i = 0; i < gos.Length; i++){
+			gos[i] = transform.FindChild("List").FindChild("Scroll View").GetChild(i).gameObject;
+		}
+		transform.FindChild("List").FindChild("Scroll View").DetachChildren();
+		for(int i = 0; i < gos.Length; i++){
+			Destroy(gos[i]);
+		}
+	}
+
+	public void Randomize(){
+		UtilMgr.ShowLoading();
+
+		StartCoroutine(EnumRand());
+	}
+
+	IEnumerator EnumRand(){
+		yield return null;
+
+		bool incorrect = true;
+		for(int i = 0; i < 9; i++){
+			incorrect = true;
+			do{
+				transform.root.FindChild("SelectPlayer").GetComponent<SelectPlayer>().mSelectedNo = (i+1);
+				int rand = Random.Range(0, UserMgr.PlayerList.Count-1);
+				if(UserMgr.PlayerList[rand].positionNo == (i+1)){
+					SetDesignated(UserMgr.PlayerList[rand]);
+					incorrect = false;
+				}
+			}while(incorrect);
+		}
+
+		
+		UtilMgr.DismissLoading();
 	}
 }

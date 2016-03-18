@@ -14,12 +14,14 @@ public class BaseEvent {
 		if (response.code > 0) {
 			if(response.code == 100){
 //				AutoFade.LoadLevel("SceneLogin");
-				DialogueMgr.ShowDialogue("서버점검", response.message, DialogueMgr.DIALOGUE_TYPE.Alert, DialogueHandler);
+				DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrServerMaintenance"),
+				                     response.message, DialogueMgr.DIALOGUE_TYPE.Alert, DialogueHandler);
 				return true;
 			}
 
 			Debug.Log("Response Error : " + response.message);
-			DialogueMgr.ShowDialogue("서버에러", response.message, DialogueMgr.DIALOGUE_TYPE.Alert, null);
+			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrServerError"),
+			                         response.message, DialogueMgr.DIALOGUE_TYPE.Alert, null);
 			return true;
 		} 
 		return false;

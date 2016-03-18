@@ -1090,6 +1090,48 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 478940, guid: c780fbd8e7529491b9c4ecb58897cc5b, type: 2}
   m_PrefabInternal: {fileID: 335039292}
+--- !u!1001 &405922253
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1054801997}
+    m_Modifications:
+    - target: {fileID: 429148, guid: 5f26e9e0d8f7e4095b59767818c42cba, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -833
+      objectReference: {fileID: 0}
+    - target: {fileID: 429148, guid: 5f26e9e0d8f7e4095b59767818c42cba, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -504
+      objectReference: {fileID: 0}
+    - target: {fileID: 429148, guid: 5f26e9e0d8f7e4095b59767818c42cba, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 429148, guid: 5f26e9e0d8f7e4095b59767818c42cba, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 429148, guid: 5f26e9e0d8f7e4095b59767818c42cba, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 429148, guid: 5f26e9e0d8f7e4095b59767818c42cba, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 429148, guid: 5f26e9e0d8f7e4095b59767818c42cba, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 429148, guid: 5f26e9e0d8f7e4095b59767818c42cba, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5f26e9e0d8f7e4095b59767818c42cba, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &434013065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,6 +2092,7 @@ Transform:
   - {fileID: 793316151}
   - {fileID: 586474421}
   - {fileID: 674618198}
+  - {fileID: 2052968822}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!114 &1054801998
@@ -4430,3 +4473,7 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!4 &2052968822 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 429148, guid: 5f26e9e0d8f7e4095b59767818c42cba, type: 2}
+  m_PrefabInternal: {fileID: 405922253}

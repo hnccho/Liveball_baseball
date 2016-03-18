@@ -31,5 +31,7 @@ public class Contests : MonoBehaviour {
 			.GetComponent<UILabel>().text = mContestList[index].contestName;
 		item.Target.gameObject.transform.FindChild("LblPrize").FindChild("Label")
 			.GetComponent<UILabel>().text = "[fc8535]"+mContestList[index].rewardValue;
+		item.Target.gameObject.transform.FindChild("Button").GetComponent<ItemContestsBtns>()
+			.SetContestSeq(mContestList[index].contestSeq);
 	}
 }
