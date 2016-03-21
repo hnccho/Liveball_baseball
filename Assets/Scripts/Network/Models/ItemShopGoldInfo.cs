@@ -2,6 +2,73 @@ using UnityEngine;
 using System.Collections;
 
 public class ItemShopGoldInfo {
+
+	int _category;
+
+	public int category {
+		get {
+			return _category;
+		}
+		set {
+			_category = value;
+		}
+	}
+
+	long _itemFK;
+
+	public long itemFK {
+		get {
+			return _itemFK;
+		}
+		set {
+			_itemFK = value;
+		}
+	}
+
+	string _priceDesc;
+
+	public string priceDesc {
+		get {
+			return _priceDesc;
+		}
+		set {
+			_priceDesc = value;
+		}
+	}
+
+	int _price;
+
+	public int price {
+		get {
+			return _price;
+		}
+		set {
+			_price = value;
+		}
+	}
+
+	int _recommend;
+
+	public int recommend {
+		get {
+			return _recommend;
+		}
+		set {
+			_recommend = value;
+		}
+	}
+
+	int _productFK;
+
+	public int productFK {
+		get {
+			return _productFK;
+		}
+		set {
+			_productFK = value;
+		}
+	}
+
 	int _productNo;
 	public int productNo {
 		get {
@@ -53,6 +120,17 @@ public class ItemShopGoldInfo {
 		}
 		set {
 			_brandName = value;
+		}
+	}
+
+	int _storeFK;
+
+	public int storeFK {
+		get {
+			return _storeFK;
+		}
+		set {
+			_storeFK = value;
 		}
 	}
 
@@ -133,6 +211,17 @@ public class ItemShopGoldInfo {
 		}
 	}
 
+	int _itemType;
+
+	public int itemType {
+		get {
+			return _itemType;
+		}
+		set {
+			_itemType = value;
+		}
+	}
+
 // "item_goldenball_5k.png",
 	int _discountNo;
 	public int discountNo {
@@ -141,6 +230,39 @@ public class ItemShopGoldInfo {
 		}
 		set {
 			_discountNo = value;
+		}
+	}
+
+	string _path;
+
+	public string path {
+		get {
+			return _path;
+		}
+		set {
+			_path = value;
+		}
+	}
+
+	int _bundle;
+
+	public int bundle {
+		get {
+			return _bundle;
+		}
+		set {
+			_bundle = value;
+		}
+	}
+
+	string _image;
+
+	public string image {
+		get {
+			return _image;
+		}
+		set {
+			_image = value;
 		}
 	}
 

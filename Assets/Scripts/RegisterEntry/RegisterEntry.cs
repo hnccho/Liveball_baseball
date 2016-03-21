@@ -23,8 +23,7 @@ public class RegisterEntry : MonoBehaviour {
 	}
 
 	public void Initialize(){
-		if(transform.FindChild("List").FindChild("Scroll View").childCount > 0)
-			ClearList();
+		UtilMgr.ClearList(transform.FindChild("List").FindChild("Scroll View"));
 		
 		float height = 136f*8f;
 		for(int i = 0; i < transform.FindChild("Ground").FindChild("BtnPosition").childCount; i++){
@@ -94,17 +93,6 @@ public class RegisterEntry : MonoBehaviour {
 
 	public int GetContestSeq(){
 		return mContestSeq;
-	}
-
-	void ClearList(){
-		GameObject[] gos = new GameObject[transform.FindChild("List").FindChild("Scroll View").childCount];
-		for(int i = 0; i < gos.Length; i++){
-			gos[i] = transform.FindChild("List").FindChild("Scroll View").GetChild(i).gameObject;
-		}
-		transform.FindChild("List").FindChild("Scroll View").DetachChildren();
-		for(int i = 0; i < gos.Length; i++){
-			Destroy(gos[i]);
-		}
 	}
 
 	public void Randomize(){

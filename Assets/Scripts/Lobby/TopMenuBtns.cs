@@ -3,6 +3,8 @@ using System.Collections;
 
 public class TopMenuBtns : MonoBehaviour {
 
+	GetCardInvenEvent mCardEvent;
+	GetMailEvent mMailEvent;
 	// Use this for initialization
 	void Start () {
 	
@@ -16,13 +18,8 @@ public class TopMenuBtns : MonoBehaviour {
 	public void OnClick(){
 
 		if(name.Equals("BtnMyCards")){
-//			transform.root.FindChild("Lobby").gameObject.SetActive(false);
-//			transform.root.FindChild("MyCards").gameObject.SetActive(true);
-//			transform.root.FindChild("MyCards").localPosition = new Vector3(0, 0);
-			UtilMgr.AddBackState(UtilMgr.STATE.MyCard);
-			UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
-			                    transform.root.FindChild("Lobby").gameObject,
-			                    transform.root.FindChild("MyCards").gameObject);
+			mCardEvent = new GetCardInvenEvent(ReceivedCards);
+			NetMgr.GetCardInven(mCardEvent);
 		} else if(name.Equals("BtnUpcoming")){
 			
 		} else if(name.Equals("BtnLive")){
@@ -30,5 +27,18 @@ public class TopMenuBtns : MonoBehaviour {
 		} else if(name.Equals("BtnRecent")){
 			
 		}
+	}
+
+	void ReceivedCards(){
+		mMailEvent = new GetMailEvent(ReceivedMail);
+		NetMgr.GetUserMailBox(mMailEvent);
+	}
+
+	void ReceivedMail(){
+		UtilMgr.AddBackState(UtilMgr.STATE.MyCards);
+		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
+		                    transform.root.FindChild("Lobby").gameObject,
+		                    transform.root.FindChild("MyCards").gameObject);
+		transform.root.FindChild("MyCards").GetComponent<MyCards>().Init(mCardEvent, mMailEvent);
 	}
 }

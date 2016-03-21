@@ -72,12 +72,18 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("Players").GetComponent<UILabel>().text
 					= "Top " + data.inning + UtilMgr.GetRoundString(data.inning);
 
-				StartCoroutine(loadImage(data.hitterPhoto, item.FindChild("Players").FindChild("Left")
-            				             .FindChild("Frame").FindChild("Photo").FindChild("TxtPlayer")));
+//				StartCoroutine(loadImage(data.hitterPhoto, item.FindChild("Players").FindChild("Left")
+//            				             .FindChild("Frame").FindChild("Photo").FindChild("TxtPlayer")));
+				UtilMgr.LoadImage(data.hitterPhoto,
+				                  item.FindChild("Players").FindChild("Left").FindChild("Frame")
+				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 				item.FindChild("Players").FindChild("Left")
 					.FindChild("Frame").FindChild("SprPos").FindChild("Label").GetComponent<UILabel>().text = "B";
-				StartCoroutine(loadImage(data.pitcherPhoto, item.FindChild("Players").FindChild("Right")
-				                         .FindChild("Frame").FindChild("Photo").FindChild("TxtPlayer")));
+//				StartCoroutine(loadImage(data.pitcherPhoto, item.FindChild("Players").FindChild("Right")
+//				                         .FindChild("Frame").FindChild("Photo").FindChild("TxtPlayer")));
+				UtilMgr.LoadImage(data.pitcherPhoto,
+				                  item.FindChild("Players").FindChild("Right").FindChild("Frame")
+				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 				item.FindChild("Players").FindChild("Right")
 					.FindChild("Frame").FindChild("SprPos").FindChild("Label").GetComponent<UILabel>().text = "P";
 
@@ -92,12 +98,19 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("Players").GetComponent<UILabel>().text
 					= "Bottom " + data.inning + UtilMgr.GetRoundString(data.inning);
 
-				StartCoroutine(loadImage(data.hitterPhoto, item.FindChild("Players").FindChild("Right")
-				                         .FindChild("Frame").FindChild("Photo").FindChild("TxtPlayer")));
+//				StartCoroutine(
+//					loadImage(data.hitterPhoto, item.FindChild("Players").FindChild("Right")
+//				                         .FindChild("Frame").FindChild("Photo").FindChild("TxtPlayer")));
+				UtilMgr.LoadImage(data.hitterPhoto,
+				                  item.FindChild("Players").FindChild("Right").FindChild("Frame")
+				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 				item.FindChild("Players").FindChild("Right")
 					.FindChild("Frame").FindChild("SprPos").FindChild("Label").GetComponent<UILabel>().text = "B";
-				StartCoroutine(loadImage(data.pitcherPhoto, item.FindChild("Players").FindChild("Left")
-				                         .FindChild("Frame").FindChild("Photo").FindChild("TxtPlayer")));
+//				StartCoroutine(loadImage(data.pitcherPhoto, item.FindChild("Players").FindChild("Left")
+//				                         .FindChild("Frame").FindChild("Photo").FindChild("TxtPlayer")));
+				UtilMgr.LoadImage(data.pitcherPhoto,
+				                  item.FindChild("Players").FindChild("Left").FindChild("Frame")
+				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 				item.FindChild("Players").FindChild("Left")
 					.FindChild("Frame").FindChild("SprPos").FindChild("Label").GetComponent<UILabel>().text = "P";
 
@@ -111,13 +124,13 @@ public class RTLobby : MonoBehaviour {
 		transform.FindChild("ScrollRT").GetComponent<UICenterOnChild>().Recenter();
 	}
 
-	IEnumerator loadImage(string url, Transform tf){
-		WWW www = new WWW(url);
-		yield return www;
-
-		Texture2D texture = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
-		www.LoadImageIntoTexture(texture);
-		tf.GetComponent<UITexture>().mainTexture = texture;
-		tf.GetComponent<UITexture>().color = Color.white;
-	}
+//	IEnumerator loadImage(string url, Transform tf){
+//		WWW www = new WWW(url);
+//		yield return www;
+//
+//		Texture2D texture = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
+//		www.LoadImageIntoTexture(texture);
+//		tf.GetComponent<UITexture>().mainTexture = texture;
+//		tf.GetComponent<UITexture>().color = Color.white;
+//	}
 }

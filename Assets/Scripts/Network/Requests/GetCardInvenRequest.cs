@@ -7,6 +7,7 @@ public class GetCardInvenRequest : BaseRequest {
 	public GetCardInvenRequest()
 	{
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
+		Add ("category", 0);
 
 //		mParams = JsonFx.Json.JsonWriter.Serialize (this);
 		mDic = this;
@@ -14,12 +15,12 @@ public class GetCardInvenRequest : BaseRequest {
 
 	public override string GetType ()
 	{
-		return "apps";
+		return "apps.member";
 	}
 
 	public override string GetQueryId()
 	{
-		return "tubyGetCardInven";
+		return "getMemberInvenCard";
 	}
 
 }

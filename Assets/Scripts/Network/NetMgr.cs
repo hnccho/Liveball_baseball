@@ -672,9 +672,9 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent (new DeleteInvenItemInfoRequest (itemNo,itemid), baseEvent);
 	}
 	
-	public static void GetUserMailBox(int memSeq,BaseEvent baseEvent)
+	public static void GetUserMailBox(BaseEvent baseEvent)
 	{
-		Instance.webAPIProcessEvent (new GetMailboxRequest (memSeq), baseEvent);
+		Instance.webAPIProcessEvent (new GetMailboxRequest (), baseEvent);
 	}
 	
 	public static void GetUserDoneMailBox(int memSeq,int mailSeq,int attachSeq,BaseEvent baseEvent)
@@ -794,18 +794,9 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new GetLineupRequest(teamCode), baseEvent);
 	}
 	
-	public static void GetItemShopList(Shop.TYPE type, BaseEvent baseEvent)
+	public static void GetItemShopList(int category, BaseEvent baseEvent)
 	{
-		if(type == Shop.TYPE.GOLD){
-
-		} else if(type == Shop.TYPE.TICKET){
-
-		} else if(type == Shop.TYPE.CARD){
-
-		} else if(type == Shop.TYPE.SKILL){
-
-		}
-		Instance.webAPIProcessEvent(new GetItemShopGoldRequest(), baseEvent);
+		Instance.webAPIProcessEvent(new GetItemShopGoldRequest(category), baseEvent);
 	}
 
 	public static void GetEventList(BaseEvent baseEvent){
@@ -850,9 +841,9 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEventToAuth(new InAppPurchaseRequest(productCode, token, purchaseKey), baseEvent, isTest, true);
 	}
 	
-	public static void PurchaseGold(int productId, BaseEvent baseEvent)
+	public static void PurchaseGold(string productCode, BaseEvent baseEvent)
 	{
-		Instance.webAPIProcessEvent(new PurchaseGoldRequest(productId), baseEvent);
+		Instance.webAPIProcessEvent(new PurchaseGoldRequest(productCode), baseEvent);
 	}
 	
 	public static void PurchaseItem(int productId, BaseEvent baseEvent)

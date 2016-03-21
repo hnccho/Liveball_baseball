@@ -4,10 +4,12 @@ using System.Text;
 
 public class PurchaseGoldRequest : BaseRequest {
 
-	public PurchaseGoldRequest(int productId)
+	public PurchaseGoldRequest(string productCode)
 	{		
-		Add ("productId", productId);
+		Add ("productCode", productCode);
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
+		Add ("bundle", "0");
+		Add ("token", "0");
 
 //		mParams = JsonFx.Json.JsonWriter.Serialize (this);
 		mDic = this;
@@ -15,12 +17,12 @@ public class PurchaseGoldRequest : BaseRequest {
 
 	public override string GetType ()
 	{
-		return "apps";
+		return "apps.product";
 	}
 
 	public override string GetQueryId()
 	{
-		return "tubyGoldPurchaseReq";
+		return "payStorePurchase";
 	}
 
 }

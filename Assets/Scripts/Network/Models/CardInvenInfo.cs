@@ -5,36 +5,36 @@ using System.Collections.Generic;
 public class CardInvenInfo {
 
 //	int _memberNo;
-	List<CardClassInfo> _cardClass;
-
-	public List<CardClassInfo> cardClass {
+	long _totalPoint;
+	
+	public long totalPoint {
 		get {
-			return _cardClass;
+			return _totalPoint;
 		}
 		set {
-			_cardClass = value;
+			_totalPoint = value;
+		}
+	}
+	
+	string _productCode;
+	
+	public string productCode {
+		get {
+			return _productCode;
+		}
+		set {
+			_productCode = value;
 		}
 	}
 
-	List<CardInfo> _pitcher;
+	List<CardInfo> _item;
 
-	public List<CardInfo> pitcher {
+	public List<CardInfo> item {
 		get {
-			return _pitcher;
+			return _item;
 		}
 		set {
-			_pitcher = value;
-		}
-	}
-
-	List<CardInfo> _hitter;
-
-	public List<CardInfo> hitter {
-		get {
-			return _hitter;
-		}
-		set {
-			_hitter = value;
+			_item = value;
 		}
 	}
 }

@@ -9,7 +9,7 @@ public class Constants {
 	
 	public const bool	IS_TSTORE = false;
 	public const string	MARKET_URI_TSTORE = "PRODUCT_VIEW/0000308300/0";
-	public const string GOOGLE_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjGkEP5nvlwmRj60ulqwkvUV+DzylEtfrPUkeWOBoffMXwWFJKXWK88zYeSpJJfu0sAxMJ7u7Cumv3KYlV6uuG3pvmwQ/65qaYWoWxLvdx5RUpyrxOo4DjuDW3DfAbi9fr6TxoXHveN4Pm6gSnNuOwhQxYB9GsuODUkMAWdBvamvHHa97/dOED9VorP9C4SVWFiY13nhAjqm8uxZcFnw3Pwm1qHgFRSwKbw1cPSsbiBF6Pq03Gem/kNitoBf/2EcvkLX/h7CO3LHNvVMCImO2WdPH+1DgMw2AjCnUtMeqZw9Z4YoTbOV/Q1jOLhVgdt2JWMWxaAeTQhNVV1tFhgA3vwIDAQAB";
+	public const string GOOGLE_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjheZ1n9Q1OoTh3MJ/xJgI/Rv3D/h6sETcaacKJInty/h6x+PxIRqOzK2uWHHue8ko4+S2X/s/UKVJed0Pz25SEVEaGy8NfV7K6TknCyw27orUt7zbpJOY29bavrcWMFpx61DsPeHe6kS/NFIaWTRJY08E4+UJadTT9lbbqhqs9yCZSRbBDpwAsghv0srmV8QaVhE09V8yrhRZCDSRKpDlRr2+55O7/kmacXRGPkxkUAkwRCBLS8vnLPNSbNqcGZAeidCUOjMtf+qTnS8V1i/AOEZll5p/b6tqljx/uHAdofV+9ohXVegStu1iYZ4zgCln0Z6rRus+Cw9Jsv9KX0SSQIDAQAB";
 	
 	public const string HOST					= 	"m3.liveball.kr";
 	public const string TEST_HOST					= 	"192.168.0.5";

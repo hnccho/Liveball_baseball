@@ -13,17 +13,16 @@ public class BtnWhat : MonoBehaviour {
 	
 	}
 
-	GetItemShopGoldEvent mShopEvent;
+//	GetItemShopGoldEvent mShopEvent;
 	public void OnClick(){
-		mShopEvent = new GetItemShopGoldEvent(ReceivedShop);
-		NetMgr.GetItemShopList(Shop.TYPE.TICKET, mShopEvent);
+//		mShopEvent = new GetItemShopGoldEvent(ReceivedShop);
+//		NetMgr.GetItemShopList(Shop.TYPE.TICKET, mShopEvent);
 	}
 
-	void ReceivedShop(){
-		transform.root.FindChild("Shop").GetComponent<Shop>().InitShop(UtilMgr.GetLocalText("StrTicketShop"),
-		                                                              mShopEvent.Response.data,
-		                                                               Shop.TYPE.TICKET);
-		UtilMgr.AddBackState(UtilMgr.STATE.Shop);
-		UtilMgr.AnimatePageToLeft("Lobby", "Shop");
-	}
+//	void ReceivedShop(){
+//		transform.root.FindChild("Shop").GetComponent<Shop>().InitShop(
+//			UtilMgr.GetLocalText("StrTicketShop"), Shop.TYPE.TICKET);
+//		UtilMgr.AddBackState(UtilMgr.STATE.Shop);
+//		UtilMgr.AnimatePageToLeft("Lobby", "Shop");
+//	}
 }

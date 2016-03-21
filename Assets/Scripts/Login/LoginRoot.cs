@@ -32,6 +32,7 @@ public class LoginRoot : SuperRoot {
 		}
 
 		mVersionEvent = new CheckVersionEvent(new EventDelegate(ReceivedVersion));
+//		transform.FindChild("Terms").GetComponent<Terms>().Init();
 		NetMgr.CheckVersion(mVersionEvent, false);
 
 	}
@@ -234,6 +235,11 @@ public class LoginRoot : SuperRoot {
 	}
 
 	void ReceivedLogin(){
+		if(mLoginEvent.Response.code == 1)
+			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrServerError"), mCheckEvent.Response.message,
+			                         DialogueMgr.DIALOGUE_TYPE.Alert, null);
+
+
 		mProfileEvent = new GetProfileEvent(new EventDelegate(ReceivedProfile));
 		NetMgr.GetProfile(mLoginEvent.Response.data.memSeq, mProfileEvent);
 	}

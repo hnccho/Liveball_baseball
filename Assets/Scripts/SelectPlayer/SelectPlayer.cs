@@ -65,9 +65,11 @@ public class SelectPlayer : MonoBehaviour {
 					item.Target.transform.FindChild("Sub").gameObject.SetActive(false);
 
 					Transform tf = item.Target.transform.FindChild("Main");
-					StartCoroutine(
-						LoadImage(info.photoUrl,
-					          tf.FindChild("BtnPhoto").FindChild("TxtPlayer").GetComponent<UITexture>()));
+//					StartCoroutine(
+//						LoadImage(info.photoUrl,
+//					          tf.FindChild("BtnPhoto").FindChild("TxtPlayer").GetComponent<UITexture>()));
+					UtilMgr.LoadImage(info.photoUrl
+					                  , tf.FindChild("BtnPhoto").FindChild("TxtPlayer").GetComponent<UITexture>());
 					tf.FindChild("BtnRight").GetComponent<BtnPlayerSelected>().mPlayerInfo = info;
 					tf.FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
 					tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
@@ -80,14 +82,14 @@ public class SelectPlayer : MonoBehaviour {
 		transform.FindChild("Body").FindChild("Scroll").GetComponent<UIDraggablePanel2>().ResetPosition();
 	}
 
-	IEnumerator LoadImage(string url, UITexture texture){
-		WWW www = new WWW(url);
-		yield return www;
-
-		Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
-		www.LoadImageIntoTexture(temp);
-		texture.mainTexture = temp;
-		texture.width = 130;
-		www.Dispose();
-	}
+//	IEnumerator LoadImage(string url, UITexture texture){
+//		WWW www = new WWW(url);
+//		yield return www;
+//
+//		Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
+//		www.LoadImageIntoTexture(temp);
+//		texture.mainTexture = temp;
+//		texture.width = 130;
+//		www.Dispose();
+//	}
 }

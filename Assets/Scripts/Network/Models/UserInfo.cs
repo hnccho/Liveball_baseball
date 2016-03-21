@@ -5,6 +5,83 @@ using System.Collections.Generic;
 public class UserInfo {
 	public static bool IsTest = false;
 
+	int _memType;
+
+	public int memType {
+		get {
+			return _memType;
+		}
+		set {
+			_memType = value;
+		}
+	}
+
+	int _status;
+
+	public int status {
+		get {
+			return _status;
+		}
+		set {
+			_status = value;
+		}
+	}
+
+	string _email;
+
+	public string email {
+		get {
+			return _email;
+		}
+		set {
+			_email = value;
+		}
+	}
+
+	long _gold;
+
+	public long gold {
+		get {
+			return _gold;
+		}
+		set {
+			_gold = value;
+		}
+	}
+
+	long _ticket;
+
+	public long ticket {
+		get {
+			return _ticket;
+		}
+		set {
+			_ticket = value;
+		}
+	}
+
+	string _pinValue;
+
+	public string pinValue {
+		get {
+			return _pinValue;
+		}
+		set {
+			_pinValue = value;
+		}
+	}
+
+	long _rankPoint;
+
+	public long rankPoint {
+		get {
+			return _rankPoint;
+		}
+		set {
+			_rankPoint = value;
+		}
+	}
+
 	int _memSeq;
 
 	public int memSeq {

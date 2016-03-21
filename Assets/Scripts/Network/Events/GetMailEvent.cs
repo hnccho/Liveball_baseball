@@ -3,9 +3,9 @@ using System.Collections;
 
 public class GetMailEvent : BaseEvent {
 
-	public GetMailEvent(EventDelegate eventDelegate)
+	public GetMailEvent(EventDelegate.Callback callback)
 	{
-		base.eventDelegate = eventDelegate;
+		base.eventDelegate = new EventDelegate(callback);
 
 		InitEvent += InitResponse;
 	}
@@ -14,8 +14,8 @@ public class GetMailEvent : BaseEvent {
 	{
 		response = Newtonsoft.Json.JsonConvert.DeserializeObject<GetMailResponse>(data);
 
-//		if (checkError ())
-//			return;
+		if (checkError ())
+			return;
 
 		eventDelegate.Execute ();
 	}

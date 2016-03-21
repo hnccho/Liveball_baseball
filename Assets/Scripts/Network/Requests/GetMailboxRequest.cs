@@ -4,9 +4,9 @@ using System.Text;
 
 public class GetMailboxRequest : BaseRequest {
 
-	public GetMailboxRequest(int memSeq)
+	public GetMailboxRequest()
 	{
-		Add ("memSeq", memSeq);
+		Add ("memSeq", UserMgr.UserInfo.memSeq);
 
 //		mParams = JsonFx.Json.JsonWriter.Serialize (this);
 		mDic = this;
@@ -15,12 +15,12 @@ public class GetMailboxRequest : BaseRequest {
 
 	public override string GetType ()
 	{
-		return "apps";
+		return "apps.member";
 	}
 
 	public override string GetQueryId()
 	{
-		return "getMailbox";
+		return "getMemberMail";
 	}
 
 }

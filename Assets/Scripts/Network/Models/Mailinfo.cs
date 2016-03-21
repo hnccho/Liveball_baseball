@@ -3,6 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Mailinfo {
+
+	long _itemFK;
+
+	public long itemFK {
+		get {
+			return _itemFK;
+		}
+		set {
+			_itemFK = value;
+		}
+	}
 	
 	private int _mailSeq;
 	public int mailSeq {
@@ -53,13 +64,102 @@ public class Mailinfo {
 			_sendDate = value;
 		}
 	}
-	private string _recvDateTime;
-	public string recvDateTime {
+
+	string _imageName;
+
+	public string imageName {
 		get {
-			return _recvDateTime;
+			return _imageName;
 		}
 		set {
-			_recvDateTime = value;
+			_imageName = value;
+		}
+	}
+
+	string _imagePath;
+
+	public string imagePath {
+		get {
+			return _imagePath;
+		}
+		set {
+			_imagePath = value;
+		}
+	}
+
+	long _nRemain;
+
+	public long nRemain {
+		get {
+			return _nRemain;
+		}
+		set {
+			_nRemain = value;
+		}
+	}
+
+	int _itemType;
+
+	public int itemType {
+		get {
+			return _itemType;
+		}
+		set {
+			_itemType = value;
+		}
+	}
+
+	private string _receiveDate;
+	public string recvDateTime {
+		get {
+			return _receiveDate;
+		}
+		set {
+			_receiveDate = value;
+		}
+	}
+
+	string _expireDate;
+
+	public string expireDate {
+		get {
+			return _expireDate;
+		}
+		set {
+			_expireDate = value;
+		}
+	}
+
+	string _sRemain;
+
+	public string sRemain {
+		get {
+			return _sRemain;
+		}
+		set {
+			_sRemain = value;
+		}
+	}
+
+	string _mail_desc;
+
+	public string mail_desc {
+		get {
+			return _mail_desc;
+		}
+		set {
+			_mail_desc = value;
+		}
+	}
+
+	int _bundle;
+
+	public int bundle {
+		get {
+			return _bundle;
+		}
+		set {
+			_bundle = value;
 		}
 	}
 

@@ -33,7 +33,7 @@ public class UtilMgr : MonoBehaviour {
 
 	public enum STATE{
 		Lobby,
-		MyCard,
+		MyCards,
 		Contests,
 		Shop,
 		RegisterEntry,
@@ -77,6 +77,8 @@ public class UtilMgr : MonoBehaviour {
 	}
 
 	public static void AnimatePage(DIRECTION direction, GameObject disappear, GameObject appear){
+		Instance.mRoot.GetComponent<SuperRoot>().IsAnimating = true;
+
 		appear.SetActive(true);
 		Instance.mOriCamVec = Instance.mRoot.FindChild("Camera").localPosition;
 		if(direction == DIRECTION.ToLeft){
@@ -110,10 +112,14 @@ public class UtilMgr : MonoBehaviour {
 	}
 
 	void TweenFinished(){
+		Instance.mRoot.GetComponent<SuperRoot>().IsAnimating = false;
+
 		Instance.mDisappear.SetActive(false);
 		Instance.mAppear.transform.localPosition = new Vector3(0, 0, 0);
 		Instance.mRoot.FindChild("Camera").transform.localPosition
 			= new Vector3(0, Instance.mOriCamVec.y, Instance.mOriCamVec.z);
+
+		Instance.mRoot.FindChild("Profile").gameObject.SetActive(false);
 	}
 
 //	void DisappearFinished(){
@@ -128,6 +134,17 @@ public class UtilMgr : MonoBehaviour {
 		mListBackState.Add(state);
 	}
 
+	public static void RemoveBackState(STATE state){
+		mListBackState.Remove(state);
+	}
+
+	public static STATE GetLastBackState(){
+		if(mListBackState.Count > 0)
+			return mListBackState[mListBackState.Count-1];
+		else
+			return STATE.Lobby;
+	}
+
 	public static void ClearBackStates(){
 		mListBackState.Clear();
 	}
@@ -138,33 +155,43 @@ public class UtilMgr : MonoBehaviour {
 //		if (UtilMgr.IsUntouchable)
 //			return false;
 
-		if(mListBackState.Count > 0)
+		if(mListBackState.Count > 1)
 		{
 			STATE state = mListBackState[mListBackState.Count-1];
-			if(state == STATE.MyCard)	AnimatePageToRight("MyCards", "Lobby");
-			else if(state == STATE.Contests)	AnimatePageToRight("Contests", "Lobby");
-			else if(state == STATE.Shop){
-				if(mListBackState.Count == 1){
-					AnimatePageToRight("Shop", "Lobby");
-				}
-			}
-			else if(state == STATE.RegisterEntry){//need r u sure exit?
-				if(mListBackState[mListBackState.Count-2] == STATE.Contests){
-					AnimatePageToRight("RegisterEntry", "Contests");
-				}
-			}
-			else if(state == STATE.Profile){
-				TweenPosition.Begin(Instance.mRoot.FindChild("Profile").gameObject,
-				                    1f, new Vector3(1600f, 0, 0), false);
 
+			if(state == STATE.Lobby){
+
+			} else{
+				AnimatePageToRight(state.ToString(), mListBackState[mListBackState.Count-2].ToString());
 			}
-			else if(state == STATE.SelectPlayer){
-				if(mListBackState[mListBackState.Count-2] == STATE.RegisterEntry){
-					AnimatePageToRight("SelectPlayer", "RegisterEntry");
-				}
-			}
+//			if(state == STATE.MyCard)	AnimatePageToRight("MyCards", "Lobby");
+//			else if(state == STATE.Contests)	AnimatePageToRight("Contests", "Lobby");
+//			else if(state == STATE.Shop){
+//				if(mListBackState.Count == 1){
+//					AnimatePageToRight("Shop", "Lobby");
+//				}
+//			}
+//			else if(state == STATE.RegisterEntry){//need r u sure exit?
+//				if(mListBackState[mListBackState.Count-2] == STATE.Contests){
+//					AnimatePageToRight("RegisterEntry", "Contests");
+//				}
+//			}
+//			else if(state == STATE.Profile){
+//				TweenPosition.Begin(Instance.mRoot.FindChild("Profile").gameObject,
+//				                    1f, new Vector3(1600f, 0, 0), false);
+//
+//			}
+//			else if(state == STATE.SelectPlayer){
+//				if(mListBackState[mListBackState.Count-2] == STATE.RegisterEntry){
+//					AnimatePageToRight("SelectPlayer", "RegisterEntry");
+//				}
+//			}
 
 			mListBackState.RemoveAt(mListBackState.Count-1);
+			if(mListBackState[mListBackState.Count-1] == STATE.Lobby){
+				ClearBackStates();
+				AddBackState(STATE.Lobby);
+			}
 			return true;
 		}
 		else
@@ -533,5 +560,35 @@ public class UtilMgr : MonoBehaviour {
 //			value = true;
 		
 		return value;
+	}
+
+	public static void ClearList(Transform tf){
+		if(tf.childCount == 0) return;
+
+		GameObject[] gos = new GameObject[tf.childCount];
+		for(int i = 0; i < gos.Length; i++){
+			gos[i] = tf.GetChild(i).gameObject;
+		}
+		tf.DetachChildren();
+		for(int i = 0; i < gos.Length; i++){
+			Destroy(gos[i]);
+		}
+	}
+
+	public static void LoadImage(string url, UITexture texture){
+		Instance.StartCoroutine(Instance.LoadingImage (url, texture));
+	}
+
+	IEnumerator LoadingImage(string url, UITexture texture){
+		WWW www = new WWW(url);
+		yield return www;
+
+		if(www.error == null && www.isDone){
+			Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
+			www.LoadImageIntoTexture(temp);
+			texture.mainTexture = temp;
+	//		texture.width = 130;
+			www.Dispose();
+		}
 	}
 }

@@ -48,6 +48,8 @@ public class SuperRoot : MonoBehaviour {
 	{
 		if (DialogueMgr.IsShown) {
 			DialogueMgr.Instance.BtnCancelClicked();
+		} else if(IsAnimating){
+			return;
 		} else {
 			UtilMgr.OnBackPressed ();
 //			if(Application.loadedLevelName.Equals("SceneMain")){
@@ -59,7 +61,14 @@ public class SuperRoot : MonoBehaviour {
 		}
 	}
 
-//	public void TweenFinished(){
-//		UtilMgr.TweenFinished();
-//	}
+	bool isAnimating;
+
+	public bool IsAnimating {
+		get {
+			return isAnimating;
+		}
+		set {
+			isAnimating = value;
+		}
+	}
 }

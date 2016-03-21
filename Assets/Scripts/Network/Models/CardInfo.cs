@@ -2,6 +2,23 @@
 using System.Collections;
 
 public class CardInfo {
+	public enum INVEN_TYPE{
+		PACK,
+		CARD,
+		EXPAND
+	}
+
+	INVEN_TYPE _mType;
+
+	public INVEN_TYPE mType {
+		get {
+			return _mType;
+		}
+		set {
+			_mType = value;
+		}
+	}
+
 	string _teamName;
 
 	public string teamName {
@@ -10,6 +27,105 @@ public class CardInfo {
 		}
 		set {
 			_teamName = value;
+		}
+	}
+
+	string _city;
+
+	public string city {
+		get {
+			return _city;
+		}
+		set {
+			_city = value;
+		}
+	}
+
+	string _dcRatio;
+
+	public string dcRatio {
+		get {
+			return _dcRatio;
+		}
+		set {
+			_dcRatio = value;
+		}
+	}
+
+	string _fppg;
+
+	public string fppg {
+		get {
+			return _fppg;
+		}
+		set {
+			_fppg = value;
+		}
+	}
+
+	string _playerName;
+
+	public string playerName {
+		get {
+			return _playerName;
+		}
+		set {
+			_playerName = value;
+		}
+	}
+
+	long _playerFK;
+
+	public long playerFK {
+		get {
+			return _playerFK;
+		}
+		set {
+			_playerFK = value;
+		}
+	}
+
+	int _salary_org;
+
+	public int salary_org {
+		get {
+			return _salary_org;
+		}
+		set {
+			_salary_org = value;
+		}
+	}
+
+	int _salary;
+
+	public int salary {
+		get {
+			return _salary;
+		}
+		set {
+			_salary = value;
+		}
+	}
+
+	int _jersey;
+
+	public int jersey {
+		get {
+			return _jersey;
+		}
+		set {
+			_jersey = value;
+		}
+	}
+
+	int _cardClass;
+
+	public int cardClass {
+		get {
+			return _cardClass;
+		}
+		set {
+			_cardClass = value;
 		}
 	}
 
@@ -43,6 +159,50 @@ public class CardInfo {
 		}
 		set {
 			_memSeq = value;
+		}
+	}
+
+	long _itemSeq;
+
+	public long itemSeq {
+		get {
+			return _itemSeq;
+		}
+		set {
+			_itemSeq = value;
+		}
+	}
+
+	int _itemType;
+
+	public int itemType {
+		get {
+			return _itemType;
+		}
+		set {
+			_itemType = value;
+		}
+	}
+
+	long _itemId;
+
+	public long itemId {
+		get {
+			return _itemId;
+		}
+		set {
+			_itemId = value;
+		}
+	}
+
+	int _useYn;
+
+	public int useYn {
+		get {
+			return _useYn;
+		}
+		set {
+			_useYn = value;
 		}
 	}
 
@@ -310,7 +470,18 @@ public class CardInfo {
 		}
 	}
 
-	public string _position;
+	string _posCode;
+
+	public string posCode {
+		get {
+			return _posCode;
+		}
+		set {
+			_posCode = value;
+		}
+	}
+
+	string _position;
 
 	public string position {
 		get {
@@ -320,4 +491,16 @@ public class CardInfo {
 			_position = value;
 		}
 	}
+
+	int _team;
+
+	public int team {
+		get {
+			return _team;
+		}
+		set {
+			_team = value;
+		}
+	}
+
 }

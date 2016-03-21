@@ -16,6 +16,8 @@ public class Lobby : MonoBehaviour {
 	}
 
 	public void Init(){
+		UtilMgr.AddBackState(UtilMgr.STATE.Lobby);
+
 		mLobbyEvent = new GetLobbyInfoEvent(ReceivedLobbyInfo);
 		NetMgr.GetLobbyInfo(UserMgr.UserInfo.memSeq, mLobbyEvent);
 	}
