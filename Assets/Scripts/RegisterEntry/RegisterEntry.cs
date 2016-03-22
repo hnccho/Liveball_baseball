@@ -1,23 +1,47 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class RegisterEntry : MonoBehaviour {
 
 	public GameObject mRegItem;
-	int mContestSeq;
+//	int mContestSeq;
+	ContestListInfo mContestInfo;
+	DateTime mContestTime;
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(mContestTime.Year < 2016)
+			return;
+
+		TimeSpan ts = mContestTime.AddHours(13d) - DateTime.Now.AddTicks(UserMgr.DiffTicks);
+
+		transform.FindChild("InfoTop").FindChild("Time").FindChild("LblRight").GetComponent<UILabel>().text
+			= UtilMgr.GetDateTime(ts);
 	}
 
-	public void InitRegisterEntry(int contestSeq){
-		mContestSeq = contestSeq;
+	public void InitRegisterEntry(ContestListInfo contestInfo){
+//		mContestSeq = contestSeq;
+		mContestInfo = contestInfo;
+		int year = int.Parse(mContestInfo.startTime.Substring(0, 4));
+		int mon = int.Parse(mContestInfo.startTime.Substring(4, 2));
+		int day = int.Parse(mContestInfo.startTime.Substring(6, 2));
+		int hour = int.Parse(mContestInfo.startTime.Substring(8, 2));
+		int min = int.Parse(mContestInfo.startTime.Substring(10, 2));
+		int sec = int.Parse(mContestInfo.startTime.Substring(12, 2));
+		mContestTime = new DateTime(year, mon, day, hour, min, sec);
+
+		string strMin = ""+min;
+		if(min < 10)
+			strMin = "0"+min;
+		transform.FindChild("InfoTop").FindChild("Time").FindChild("LblLeft").GetComponent<UILabel>().text
+			= "ET " + UtilMgr.GetAMPM(hour)[0] + ":" + strMin + " " + UtilMgr.GetAMPM(hour)[1] + " Start";
 
 		Initialize ();
 	}
@@ -92,7 +116,8 @@ public class RegisterEntry : MonoBehaviour {
 	}
 
 	public int GetContestSeq(){
-		return mContestSeq;
+//		return mContestSeq;
+		return mContestInfo.contestSeq;
 	}
 
 	public void Randomize(){
@@ -109,7 +134,7 @@ public class RegisterEntry : MonoBehaviour {
 			incorrect = true;
 			do{
 				transform.root.FindChild("SelectPlayer").GetComponent<SelectPlayer>().mSelectedNo = (i+1);
-				int rand = Random.Range(0, UserMgr.PlayerList.Count-1);
+				int rand = UnityEngine.Random.Range(0, UserMgr.PlayerList.Count-1);
 				if(UserMgr.PlayerList[rand].positionNo == (i+1)){
 					SetDesignated(UserMgr.PlayerList[rand]);
 					incorrect = false;

@@ -3,7 +3,8 @@ using System.Collections;
 
 public class ItemContestsBtns : MonoBehaviour {
 
-	int mContestSeq;
+//	int mContestSeq;
+	ContestListInfo mContestInfo;
 
 	// Use this for initialization
 	void Start () {
@@ -15,13 +16,14 @@ public class ItemContestsBtns : MonoBehaviour {
 	
 	}
 
-	public void SetContestSeq(int contestSeq){
-		mContestSeq = contestSeq;
+	public void SetContestSeq(ContestListInfo contestInfo){
+//		mContestSeq = contestSeq;
+		mContestInfo = contestInfo;
 	}
 
 	public void OnClick(){
 		UtilMgr.AddBackState(UtilMgr.STATE.RegisterEntry);
 		UtilMgr.AnimatePageToLeft("Contests", "RegisterEntry");
-		transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().InitRegisterEntry(mContestSeq);
+		transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().InitRegisterEntry(mContestInfo);
 	}
 }

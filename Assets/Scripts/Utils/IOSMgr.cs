@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -150,7 +150,7 @@ public class IOSMgr : MonoBehaviour
 
 	public static void OpenCamera(EventDelegate eventDelegate){
 		Instance.mEventDelegate = eventDelegate;
-		string timeStr = UtilMgr.GetDateTime ("yyyy-MM-dd HH:mm:ss");
+		string timeStr = UtilMgr.GetDateTimeNow ("yyyy-MM-dd HH:mm:ss");
 		timeStr += " by lb.jpg";
 		IOSMgr.CallIOSFunc("OpenCamera", timeStr);
 	}

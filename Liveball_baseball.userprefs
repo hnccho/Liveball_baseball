@@ -1,24 +1,38 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MyCards/ItemInvenCard.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Lobby/Lobby.cs">
     <Files>
-      <File FileName="Assets/Scripts/MyCards/MyCards.cs" Line="29" Column="93" />
-      <File FileName="Assets/Scripts/MyCards/BtnCardSkill.cs" Line="20" Column="62" />
-      <File FileName="Assets/Scripts/MyCards/ItemInvenCard.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SelectPlayer/SelectPlayer.cs" Line="98" Column="26" />
+      <File FileName="Assets/Scripts/Network/Requests/GetCardInvenRequest.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Login/LoginRoot.cs" Line="258" Column="27" />
+      <File FileName="Assets/Scripts/Network/Models/UserInfo.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Network/Models/AttendanceInfo.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Lobby/LandingRoot.cs" Line="13" Column="57" />
+      <File FileName="Assets/Scripts/Lobby/Lobby.cs" Line="26" Column="2" />
+      <File FileName="Assets/Scripts/RegisterEntry/RegisterEntry.cs" Line="23" Column="61" />
+      <File FileName="Assets/Scripts/RegisterEntry/BtnInitialize.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Contests/ItemContestsBtns.cs" Line="19" Column="43" />
+      <File FileName="Assets/Scripts/Contests/Contests.cs" Line="35" Column="14" />
+      <File FileName="Assets/Scripts/RegisterEntry/BtmInfo.cs" Line="20" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="Lobby" expanded="True" />
-              <Node name="MyCards" expanded="True">
-                <Node name="BtnCardSkill.cs" selected="True" />
+              <Node name="ContestDetail" expanded="True" />
+              <Node name="Contests" expanded="True" />
+              <Node name="Lobby" expanded="True">
+                <Node name="Lobby.cs" selected="True" />
               </Node>
+              <Node name="Login" expanded="True" />
+              <Node name="MyCards" expanded="True" />
               <Node name="Network" expanded="True">
                 <Node name="Models" expanded="True" />
-                <Node name="Responses" expanded="True" />
+                <Node name="Requests" expanded="True" />
               </Node>
+              <Node name="PlayerCard" expanded="True" />
+              <Node name="Profile" expanded="True" />
               <Node name="RegisterEntry" expanded="True" />
               <Node name="SelectPlayer" expanded="True" />
               <Node name="Shop" expanded="True" />

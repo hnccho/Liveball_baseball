@@ -90,7 +90,7 @@ StrCheckNick,이름 확인,Username Checking
 StrNickInput,사용자 이름을 입력해주세요.,Input username please.
 StrNickShort,5자 이상 입력해주세요.,Please input at least 5 chars.
 StrNickDuplicated,이미 사용중인 이름입니다.,That username is already in use.
-StrNickConfirm,가입이 완료되었습니다.,Your subcription has been completed.
+StrNickConfirmed,가입이 완료되었습니다.,Your subcription has been completed.
 StrNetworkError,네트워크 오류,Network Error
 StrNetworkError1,네트워크 연결이 불안정합니다.\n인터넷 연결을 확인 후 다시 시도해주세요.,Your network connection is unstable.\nPlease check your network connection and try again.
 StrRetry,재시도,Retry
@@ -124,8 +124,8 @@ StrLeftFielder,,Left Fielder
 StrCenterFielder,,Center Fielder
 StrRightFielder,,Right Fielder
 StrSelect,,Select
-LblAgreePrivacy,,I agree to the Terms of Use
-LblAgreeTerms,,I agree to the Privacy Policy
+LblAgreeTerms,,I agree to the Terms of Use
+LblAgreePrivacy,,I agree to the Privacy Policy
 LblTerms,,Terms
 LblRegEntryInfo,,${0} per open position ({1})
 StrSalaryLimit,,Salary Limit
@@ -137,3 +137,4 @@ StrRegSucceed,,Registration success
 StrRegSucceed2,,You have successfully registered.
 StrEntryNotEnough,,The 9 positions required for each player.
 StrPosition,,Position
+LblInputUsername,,Register your Username!

@@ -13,6 +13,28 @@ public class PlayerInfo {
 		}
 	}
 
+	int _level;
+
+	public int level {
+		get {
+			return _level;
+		}
+		set {
+			_level = value;
+		}
+	}
+
+	int _grade;
+
+	public int grade {
+		get {
+			return _grade;
+		}
+		set {
+			_grade = value;
+		}
+	}
+
 	int _homeNawayType;
 
 	public int homeNawayType {
@@ -43,6 +65,17 @@ public class PlayerInfo {
 		}
 		set {
 			_playerType = value;
+		}
+	}
+
+	long _salary_org;
+
+	public long salary_org {
+		get {
+			return _salary_org;
+		}
+		set {
+			_salary_org = value;
 		}
 	}
 

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class AndroidMgr : MonoBehaviour
@@ -100,7 +100,7 @@ public class AndroidMgr : MonoBehaviour
 
 	public static void OpenCamera(EventDelegate eventDelegate){
 		Instance.mEventDelegate = eventDelegate;
-		string timeStr = UtilMgr.GetDateTime ("yyyy-MM-dd HH:mm:ss");
+		string timeStr = UtilMgr.GetDateTimeNow ("yyyy-MM-dd HH:mm:ss");
 		timeStr += " by lb.jpg";
 		AndroidMgr.CallJavaFunc("OpenCamera", timeStr);
 	}

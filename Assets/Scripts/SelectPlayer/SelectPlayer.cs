@@ -54,12 +54,69 @@ public class SelectPlayer : MonoBehaviour {
 			}
 		}
 
+		for(int i = 0; i < mPlayerList.Count; i++){
+			PlayerInfo info = mPlayerList[i];
+			foreach(CardInfo card in UserMgr.CardList){
+				if(info.playerId == card.playerFK){
+					i++;
+					PlayerInfo newCard = new PlayerInfo();
+					newCard.playerId = info.playerId;
+					newCard.IsCard = true;
+					newCard.firstName = info.firstName;
+					newCard.lastName = info.lastName;
+					newCard.level = card.cardLevel;
+					newCard.grade = card.cardClass;
+					newCard.salary = card.salary;
+					newCard.salary_org = card.salary_org;
+					newCard.position = info.position;
+					newCard.itemSeq = card.itemSeq;
+					newCard.photoUrl = info.photoUrl;
+					mPlayerList.Insert(i, newCard);
+				}
+			}
+		}
+
 		transform.FindChild("Body").FindChild("Scroll").GetComponent<UIDraggablePanel2>()
 			.Init(mPlayerList.Count, delegate(UIListItem item, int index) {
 				PlayerInfo info = mPlayerList[index];
 				if(info.IsCard){
 					item.Target.transform.FindChild("Main").gameObject.SetActive(false);
 					item.Target.transform.FindChild("Sub").gameObject.SetActive(true);
+
+					Transform tf = item.Target.transform.FindChild("Sub");
+					tf.FindChild("BtnRight").GetComponent<BtnPlayerSelected>().mPlayerInfo = info;
+
+					tf.FindChild("LblSalaryB").GetComponent<UILabel>().text
+						= "[s]$ "+UtilMgr.AddsThousandsSeparator(info.salary_org+"");
+					tf.FindChild("LblSalary").GetComponent<UILabel>().text
+						= "$ "+UtilMgr.AddsThousandsSeparator(info.salary+"");
+					tf.FindChild("Level").FindChild("LblLV").FindChild("Label").GetComponent<UILabel>().text
+						= info.level+"";
+					tf.FindChild("LblSkill").FindChild("Label").GetComponent<UILabel>().text
+						= "1";
+
+					for(int i = 0; i < 6; i++){
+						tf.FindChild("Level").FindChild("Star"+(i+1)).GetComponent<UISprite>()
+							.color = new Color(102f/255f, 102f/255f, 102f/255f);
+					}
+
+					for(int i = 0; i <info.grade; i++){
+						tf.FindChild("Level").FindChild("Star"+(i+1)).GetComponent<UISprite>()
+							.color = new Color(252f/255f, 133f/255f, 53f/255f);
+					}
+//					switch(info.grade){
+//					case 6:  break;
+//					case 5: tf.FindChild("Level").FindChild("Star5").GetComponent<UISprite>()
+//						.color = new Color(252f/255f, 133f/255f, 53f/255f); break;
+//					case 4: tf.FindChild("Level").FindChild("Star4").GetComponent<UISprite>()
+//						.color = new Color(252f/255f, 133f/255f, 53f/255f); break;
+//					case 3: tf.FindChild("Level").FindChild("Star3").GetComponent<UISprite>()
+//						.color = new Color(252f/255f, 133f/255f, 53f/255f); break;
+//					case 2: tf.FindChild("Level").FindChild("Star2").GetComponent<UISprite>()
+//						.color = new Color(252f/255f, 133f/255f, 53f/255f); break;
+//					case 1: tf.FindChild("Level").FindChild("Star1").GetComponent<UISprite>()
+//						.color = new Color(252f/255f, 133f/255f, 53f/255f); break;
+//					}
 				} else{
 					item.Target.transform.FindChild("Main").gameObject.SetActive(true);
 					item.Target.transform.FindChild("Sub").gameObject.SetActive(false);
@@ -69,7 +126,8 @@ public class SelectPlayer : MonoBehaviour {
 //						LoadImage(info.photoUrl,
 //					          tf.FindChild("BtnPhoto").FindChild("TxtPlayer").GetComponent<UITexture>()));
 					UtilMgr.LoadImage(info.photoUrl
-					                  , tf.FindChild("BtnPhoto").FindChild("TxtPlayer").GetComponent<UITexture>());
+					                  , tf.FindChild("BtnPhoto")
+					                  .FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>());
 					tf.FindChild("BtnRight").GetComponent<BtnPlayerSelected>().mPlayerInfo = info;
 					tf.FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
 					tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;

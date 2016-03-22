@@ -21,7 +21,7 @@ public class MyCards : MonoBehaviour {
 
 	public void Init(GetCardInvenEvent cardEvent, GetMailEvent mailEvent){
 		transform.FindChild("Top").FindChild("Cards").FindChild("LblCardsV").GetComponent<UILabel>().text
-			= mCardEvent.Response.data.Count+"";
+			= cardEvent.Response.data.Count+"";
 		//need total inven
 		
 		transform.FindChild("Top").FindChild("Skills").FindChild("LblSkillsV").GetComponent<UILabel>().text

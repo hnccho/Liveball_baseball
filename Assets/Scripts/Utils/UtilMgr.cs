@@ -159,8 +159,9 @@ public class UtilMgr : MonoBehaviour {
 		{
 			STATE state = mListBackState[mListBackState.Count-1];
 
-			if(state == STATE.Lobby){
-
+			if(state == STATE.Profile){
+				TweenPosition.Begin(Instance.mRoot.FindChild("Profile").gameObject,
+				                    				                    1f, new Vector3(1600f, 0, 0), false);
 			} else{
 				AnimatePageToRight(state.ToString(), mListBackState[mListBackState.Count-2].ToString());
 			}
@@ -272,9 +273,38 @@ public class UtilMgr : MonoBehaviour {
 		return string.Format ("{0:n0}", number);
 	}
 
+	public static string GetDateTime(TimeSpan ts){
+		string value = "";
+
+		if(ts.Hours < 10)
+			value += "0"+ts.Hours;
+		else
+			value += ts.Hours+"";
+		value += ":";
+		if(ts.Minutes < 10)
+			value += "0"+ts.Minutes;
+		else
+			value += ts.Minutes+"";
+		value += ":";
+		if(ts.Seconds < 10)
+			value += "0"+ts.Seconds;
+		else
+			value += ts.Seconds+"";
+		return value;
+	}
+
 	/** "yyyy-MM-dd HH:mm:ss" */
-	public static string GetDateTime(string expression)
+	public static string GetDateTimeNow(string expression)
 	{
+//		DateTime oldDate = new DateTime(
+//		DateTime newDate = DateTime.Now;
+//		
+//		// Difference in days, hours, and minutes.
+//		TimeSpan ts = newDate - oldDate;
+//		// Difference in days.
+//		int differenceInDays = ts.Days;
+//		
+//		Console.WriteLine("Difference in days: {0} ", differenceInDays);
 		return System.DateTime.Now.ToString (expression);
 	}
 	/** "20150225182000"  */
@@ -575,6 +605,28 @@ public class UtilMgr : MonoBehaviour {
 		}
 	}
 
+	public static string[] GetAMPM(int hour){
+		string[] values = new string[2];
+		if(hour == 12){
+			values[0] = hour+"";
+			values[1] = "p.m";
+		} else if(hour > 12){
+			hour = hour - 12;
+			if(hour < 10)
+				values[0] = "0"+hour;
+			else
+				values[0] = hour+"";
+			values[1] = "p.m";
+		} else{
+			if(hour < 10)
+				values[0] = "0"+hour;
+			else
+				values[0] = hour+"";
+			values[1] = "a.m";
+		}
+		return values;
+	}
+
 	public static void LoadImage(string url, UITexture texture){
 		Instance.StartCoroutine(Instance.LoadingImage (url, texture));
 	}
@@ -588,6 +640,7 @@ public class UtilMgr : MonoBehaviour {
 			www.LoadImageIntoTexture(temp);
 			texture.mainTexture = temp;
 	//		texture.width = 130;
+			texture.color = new Color(1f, 1f, 1f, 1f);
 			www.Dispose();
 		}
 	}

@@ -9,6 +9,7 @@ public class LoginRoot : SuperRoot {
 	LoginInfo mLoginInfo;
 	GetProfileEvent mProfileEvent;
 	GetPlayerListEvent mPlayerEvent;
+	GetCardInvenEvent mCardEvent;
 
 	bool mMustUpdate;
 	static string mNick = null;
@@ -239,6 +240,28 @@ public class LoginRoot : SuperRoot {
 			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrServerError"), mCheckEvent.Response.message,
 			                         DialogueMgr.DIALOGUE_TYPE.Alert, null);
 
+		AttendanceInfo attendInfo = new AttendanceInfo();
+		attendInfo.attendDay = mLoginEvent.Response.data.attendDay;
+		attendInfo.freeGold = mLoginEvent.Response.data.freeGold;
+		attendInfo.freeTicket = mLoginEvent.Response.data.freeTicket;
+		attendInfo.joinFreeGold = mLoginEvent.Response.data.joinFreeGold;
+		attendInfo.joinFreeTicket = mLoginEvent.Response.data.joinFreeTicket;
+		UserMgr.AttendInfo = attendInfo;
+
+		int year = int.Parse(mLoginEvent.Response.data.serverTime.Substring(0, 4));
+		int mon = int.Parse(mLoginEvent.Response.data.serverTime.Substring(4, 2));
+		int day = int.Parse(mLoginEvent.Response.data.serverTime.Substring(6, 2));
+		int hour = int.Parse(mLoginEvent.Response.data.serverTime.Substring(8, 2));
+		int min = int.Parse(mLoginEvent.Response.data.serverTime.Substring(10, 2));
+		int sec = int.Parse(mLoginEvent.Response.data.serverTime.Substring(12, 2));
+		System.DateTime dt = new System.DateTime(year, mon, day, hour, min, sec);
+//		Debug.Log("dt is "+dt.ToString("yyyyMMddhhmmss"));
+		System.TimeSpan ts = dt - System.DateTime.Now;
+		UserMgr.DiffTicks = ts.Ticks;
+
+//		Debug.Log("diff is "+ts.Minutes+":"+ts.Seconds);
+//		Debug.Log("myTime is "+System.DateTime.Now.ToString("yyyyMMddhhmmss"));
+//		Debug.Log("diffTicks are "+UserMgr.DiffTicks);
 
 		mProfileEvent = new GetProfileEvent(new EventDelegate(ReceivedProfile));
 		NetMgr.GetProfile(mLoginEvent.Response.data.memSeq, mProfileEvent);
@@ -252,6 +275,12 @@ public class LoginRoot : SuperRoot {
 
 	void ReceivedPlayers(){
 		UserMgr.PlayerList = mPlayerEvent.Response.data;
+		mCardEvent = new GetCardInvenEvent(ReceivedCards);
+		NetMgr.GetCardInven(mCardEvent);
+	}
+
+	void ReceivedCards(){
+		UserMgr.CardList = mCardEvent.Response.data;
 		AutoFade.LoadLevel("Landing");
 	}
 

@@ -12,7 +12,7 @@ public class Lobby : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	public void Init(){
@@ -20,6 +20,8 @@ public class Lobby : MonoBehaviour {
 
 		mLobbyEvent = new GetLobbyInfoEvent(ReceivedLobbyInfo);
 		NetMgr.GetLobbyInfo(UserMgr.UserInfo.memSeq, mLobbyEvent);
+
+		DialogueMgr.ShowDialogue("Attendance", ""+UserMgr.AttendInfo.attendDay, DialogueMgr.DIALOGUE_TYPE.Alert, null);
 	}
 
 	void ReceivedLobbyInfo(){

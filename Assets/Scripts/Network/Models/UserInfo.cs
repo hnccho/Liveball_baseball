@@ -462,4 +462,6 @@ public class UserInfo {
 			_memPIN = value;
 		}
 	}
+
+
 }

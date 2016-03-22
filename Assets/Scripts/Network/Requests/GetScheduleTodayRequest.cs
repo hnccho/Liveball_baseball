@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Text;
 
@@ -7,7 +7,7 @@ public class GetScheduleTodayRequest : BaseRequest {
 	public GetScheduleTodayRequest()
 	{
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
-		Add ("date", UtilMgr.GetDateTime ("yyyyMMdd"));
+		Add ("date", UtilMgr.GetDateTimeNow ("yyyyMMdd"));
 
 //		mParams = JsonFx.Json.JsonWriter.Serialize (this);
 		mDic = this;

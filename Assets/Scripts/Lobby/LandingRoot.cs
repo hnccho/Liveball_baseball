@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LandingRoot : SuperRoot {
 
-
+	GetProfileEvent mProfileEvent;
 	GetEventsEvent mRTEvent;
 
 	// Use this for initialization
@@ -23,10 +23,16 @@ public class LandingRoot : SuperRoot {
 	}
 
 	public void BtnMenuClick(){
+		mProfileEvent = new GetProfileEvent(new EventDelegate(ReceivedProfile));
+		NetMgr.GetProfile(UserMgr.UserInfo.memSeq, mProfileEvent);
+	}
+
+	void ReceivedProfile(){
 		UtilMgr.AddBackState(UtilMgr.STATE.Profile);
 		transform.FindChild("Profile").gameObject.SetActive(true);
 		transform.FindChild("Profile").localPosition = new Vector3(720f, 0, 0);
 		TweenPosition.Begin(transform.FindChild("Profile").gameObject, 1f, new Vector3(132f, 0, 0), false);
 		transform.FindChild("Profile").GetComponent<UITweener>().method = UITweener.Method.EaseOut;
+		transform.FindChild("Profile").GetComponent<Profile>().Init(mProfileEvent);
 	}
 }

@@ -5,8 +5,11 @@ public class UserMgr : MonoBehaviour {
 
 	
 	static UserMgr _instance;
-	
+
+	long diffTicks;
+	AttendanceInfo _attendInfo;
 	UserInfo _userInfo;
+	List<CardInfo> _cardList;
 	List<PlayerInfo> _playerList;
 //	CardInvenInfo _cardInvenInfo;
 //	ScheduleInfo _schedule;
@@ -61,11 +64,31 @@ public class UserMgr : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public static long DiffTicks {
+		get {
+			return Instance.diffTicks;
+		}
+		set {
+			Instance.diffTicks = value;
+		}
+	}
+
+	public static AttendanceInfo AttendInfo
+	{
+		get{ return Instance._attendInfo;}
+		set{Instance._attendInfo = value;}
+	}
 	
 	public static UserInfo UserInfo
 	{
 		get{ return Instance._userInfo;}
 		set{Instance._userInfo = value;}
+	}
+
+	public static List<CardInfo> CardList{
+		get{ return Instance._cardList;}
+		set{Instance._cardList = value;}
 	}
 
 	public static List<PlayerInfo> PlayerList{
