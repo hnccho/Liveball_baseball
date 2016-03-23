@@ -3,16 +3,16 @@ using System.Collections;
 
 public class ContestDataEvent : BaseEvent {
 
-	public ContestDataEvent(EventDelegate eventDelegate)
+	public ContestDataEvent(EventDelegate.Callback callback)
 	{
-		base.eventDelegate = eventDelegate;
+		base.eventDelegate = new EventDelegate(callback);
 
 		InitEvent += InitResponse;
 	}
 
 	public void InitResponse(string data)
 	{
-		response = Newtonsoft.Json.JsonConvert.DeserializeObject<ContestDataResponse>(data);
+		response = Newtonsoft.Json.JsonConvert.DeserializeObject<ContestListResponse>(data);
 
 		if (checkError ())
 			return;
@@ -20,9 +20,9 @@ public class ContestDataEvent : BaseEvent {
 		eventDelegate.Execute ();
 	}
 
-	public ContestDataResponse Response
+	public ContestListResponse Response
 	{
-		get{ return response as ContestDataResponse;}
+		get{ return response as ContestListResponse;}
 	}
 
 }

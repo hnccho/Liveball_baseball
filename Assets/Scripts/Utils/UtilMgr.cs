@@ -38,7 +38,8 @@ public class UtilMgr : MonoBehaviour {
 		Shop,
 		RegisterEntry,
 		Profile,
-		SelectPlayer
+		SelectPlayer,
+		MyContests
 	}
 
 	static UtilMgr Instance
@@ -191,7 +192,8 @@ public class UtilMgr : MonoBehaviour {
 			mListBackState.RemoveAt(mListBackState.Count-1);
 			if(mListBackState[mListBackState.Count-1] == STATE.Lobby){
 				ClearBackStates();
-				AddBackState(STATE.Lobby);
+//				AddBackState(STATE.Lobby);
+				Instance.mRoot.FindChild("Lobby").GetComponent<Lobby>().Init();
 			}
 			return true;
 		}
@@ -592,6 +594,13 @@ public class UtilMgr : MonoBehaviour {
 		return value;
 	}
 
+	public static void ClearList(Transform tf, Vector2 clip, Vector3 position){
+		tf.GetComponent<UIPanel>().clipOffset = clip;
+		tf.localPosition = position;
+
+		ClearList(tf);
+	}
+
 	public static void ClearList(Transform tf){
 		if(tf.childCount == 0) return;
 
@@ -602,6 +611,7 @@ public class UtilMgr : MonoBehaviour {
 		tf.DetachChildren();
 		for(int i = 0; i < gos.Length; i++){
 			Destroy(gos[i]);
+//			DestroyImmediate(gos[i]);
 		}
 	}
 

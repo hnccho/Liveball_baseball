@@ -10,7 +10,7 @@ public class LandingRoot : SuperRoot {
 	new void Start () {
 		base.Start();
 
-		transform.FindChild("Lobby").GetComponent<Lobby>().Init();
+		transform.FindChild("Lobby").GetComponent<Lobby>().FirstInit();
 	}
 	
 	new void Awake(){

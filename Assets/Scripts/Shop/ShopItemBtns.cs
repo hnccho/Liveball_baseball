@@ -35,6 +35,8 @@ public class ShopItemBtns : MonoBehaviour {
 	void ReceivedPurchase(){
 		if(mInfo.category == Shop.CARD){
 			DialogueMgr.ShowDialogue("Card!", "Good!", DialogueMgr.DIALOGUE_TYPE.Alert, null);
+		} else if(mInfo.category == Shop.TICKET){
+			DialogueMgr.ShowDialogue("Ticket!", "Purchased!", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 		}
 	}
 }

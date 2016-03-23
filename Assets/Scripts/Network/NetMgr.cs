@@ -552,15 +552,15 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent (new ContestRankingeRequest (GameSeq), baseEvent);
 	}
 	
-	public static void GetContestData(BaseEvent baseEvent)
+	public static void GetContestData(int status, BaseEvent baseEvent)
 	{
-		Instance.webAPIProcessEvent (new ContestDataRequest (), baseEvent);
+		Instance.webAPIProcessEvent (new ContestDataRequest (status), baseEvent);
 	}
 
-	public static void GetContestDataInBackground(BaseEvent baseEvent)
-	{
-		Instance.webAPIProcessEventInBackground (new ContestDataRequest (), baseEvent);
-	}
+//	public static void GetContestDataInBackground(BaseEvent baseEvent)
+//	{
+//		Instance.webAPIProcessEventInBackground (new ContestDataRequest (), baseEvent);
+//	}
 	
 	public static void GetHistoryList(BaseEvent baseEvent)
 	{

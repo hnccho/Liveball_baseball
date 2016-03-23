@@ -41,7 +41,7 @@ public class BtmInfo : MonoBehaviour {
 	}
 
 	public bool CheckSalary(){
-//		if(mTotal <= MaxSalary)
+		if(mTotal <= MaxSalary)
 			return true;
 
 		return false;

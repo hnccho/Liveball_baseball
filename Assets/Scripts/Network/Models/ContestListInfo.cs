@@ -11,6 +11,11 @@ public class ContestListInfo {
 	public static int TYPE_FIFTY = 1;
 	public static int TYPE_RANK = 2;
 
+	public static int STATUS_ALL = 0;
+	public static int STATUS_UP = 1;
+	public static int STATUS_LIVE = 2;
+	public static int STATUS_RECENT = 3;
+
 	int _contestSeq;
 
 	public int contestSeq {
@@ -77,6 +82,39 @@ public class ContestListInfo {
 		}
 	}
 
+	string _lineupName;
+
+	public string lineupName {
+		get {
+			return _lineupName;
+		}
+		set {
+			_lineupName = value;
+		}
+	}
+
+	string _entryPlayers;
+
+	public string entryPlayers {
+		get {
+			return _entryPlayers;
+		}
+		set {
+			_entryPlayers = value;
+		}
+	}
+
+	int _entryTicket;
+
+	public int entryTicket {
+		get {
+			return _entryTicket;
+		}
+		set {
+			_entryTicket = value;
+		}
+	}
+
 	int _entryFee;
 	//MaxEntry
 	public int entryFee {
@@ -98,6 +136,18 @@ public class ContestListInfo {
 			_totalEntry = value;
 		}
 	}
+
+	int _totalJoin;
+
+	public int totalJoin {
+		get {
+			return _totalJoin;
+		}
+		set {
+			_totalJoin = value;
+		}
+	}
+
 	int _contestType;
 	// 1 :  50/50
 	// 2 : ranking
@@ -119,6 +169,18 @@ public class ContestListInfo {
 			_multiEntry = value;
 		}
 	}
+
+	int _myRank;
+
+	public int myRank {
+		get {
+			return _myRank;
+		}
+		set {
+			_myRank = value;
+		}
+	}
+
 	int _myPreset;
 	// preset game have
 	public int myPreset {
@@ -182,6 +244,40 @@ public class ContestListInfo {
 			_contentsType = value;
 		}
 	}
+
+	int _gameOverPlayers;
+
+	public int gameOverPlayers {
+		get {
+			return _gameOverPlayers;
+		}
+		set {
+			_gameOverPlayers = value;
+		}
+	}
+
+	float _totalFantasy;
+
+	public float totalFantasy {
+		get {
+			return _totalFantasy;
+		}
+		set {
+			_totalFantasy = value;
+		}
+	}
+
+	string _gameDayString;
+
+	public string gameDayString {
+		get {
+			return _gameDayString;
+		}
+		set {
+			_gameDayString = value;
+		}
+	}
+
 	string _gameName;
 	
 	public string gameName {
@@ -304,7 +400,16 @@ public class ContestListInfo {
 		}
 	}
 
+	long _earnedPoint;
 
+	public long earnedPoint {
+		get {
+			return _earnedPoint;
+		}
+		set {
+			_earnedPoint = value;
+		}
+	}
 
 	List<RankRewardInfo> _rankReward;
 	
@@ -316,6 +421,8 @@ public class ContestListInfo {
 			_rankReward = value;
 		}
 	}
+
+
 
 	public string GetRewardText(){
 		string value = "";

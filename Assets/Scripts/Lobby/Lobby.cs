@@ -15,18 +15,32 @@ public class Lobby : MonoBehaviour {
 
 	}
 
+	public void FirstInit(){
+		string freeGold = UtilMgr.AddsThousandsSeparator(UserMgr.AttendInfo.freeGold);
+		string freeTicket = UtilMgr.AddsThousandsSeparator(UserMgr.AttendInfo.freeTicket);
+		DialogueMgr.ShowDialogue("Attendance", "Attendance Day is "+UserMgr.AttendInfo.attendDay +
+		                         "\n"+ freeGold +" Gold and " + 
+		                         freeTicket +" Tickets", DialogueMgr.DIALOGUE_TYPE.Alert, null);
+
+		Init ();
+	}
+
 	public void Init(){
 		UtilMgr.AddBackState(UtilMgr.STATE.Lobby);
 
 		mLobbyEvent = new GetLobbyInfoEvent(ReceivedLobbyInfo);
 		NetMgr.GetLobbyInfo(UserMgr.UserInfo.memSeq, mLobbyEvent);
-
-		DialogueMgr.ShowDialogue("Attendance", ""+UserMgr.AttendInfo.attendDay, DialogueMgr.DIALOGUE_TYPE.Alert, null);
 	}
 
 	void ReceivedLobbyInfo(){
 		transform.FindChild("Body").FindChild("ScrollBody").FindChild("RT").GetComponent<RTLobby>().Init();
-			
+
+		transform.FindChild("Top").FindChild("TopMenu").FindChild("BtnMyCards").FindChild("LblValue")
+				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.myCardCount+"";
+		transform.FindChild("Top").FindChild("TopMenu").FindChild("BtnUpcoming").FindChild("LblValue")
+				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.upContestCount+"";
+		transform.FindChild("Top").FindChild("TopMenu").FindChild("BtnLive").FindChild("LblValue")
+			.GetComponent<UILabel>().text = mLobbyEvent.Response.data.myContestCount+"";
 		
 		transform.FindChild("Body").FindChild("ScrollBody").FindChild("DFS")
 			.FindChild("BtnSpecial").FindChild("LblValue")

@@ -4,10 +4,10 @@ using System.Text;
 
 public class ContestDataRequest : BaseRequest {
 
-	public ContestDataRequest()
+	public ContestDataRequest(int status)
 	{
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
-	
+		Add ("status", status);
 
 //		mParams = JsonFx.Json.JsonWriter.Serialize (this);
 		mDic = this;
@@ -15,12 +15,12 @@ public class ContestDataRequest : BaseRequest {
 
 	public override string GetType ()
 	{
-		return "apps";
+		return "apps.contest";
 	}
 
 	public override string GetQueryId()
 	{
-		return "getContestData";
+		return "contestMyEntryList";
 	}
 
 }

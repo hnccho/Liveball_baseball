@@ -34,7 +34,9 @@ public class BtnFolding : MonoBehaviour {
 			.GetComponent<UIPanel>();
 		UIScrollView panel2 = transform.root.FindChild("RegisterEntry").FindChild("List")
 			.GetChild(0).GetComponent<UIScrollView>();
-		panel.SetRect(0f, 0f, 720f, 326f);
+		panel.transform.localPosition = new Vector3(0f, -328f, 0f);
+		panel.SetRect(0f, 0f, 720f, 376f);
+		panel.clipOffset = Vector2.zero;
 		panel2.ResetPosition();
 	}
 
@@ -49,13 +51,13 @@ public class BtnFolding : MonoBehaviour {
 		if(mState == State.Ground){ //ground invisible
 //			transform.root.FindChild("RegisterEntry").FindChild("Ground").gameObject.SetActive(false);
 			TweenPosition.Begin(transform.root.FindChild("RegisterEntry").FindChild("Ground").gameObject
-			                    , 0.5f, new Vector3(0f, 520f, 0f), false);
+			                    , 0.5f, new Vector3(0f, 470f, 0f), false);
 //			TweenPosition.Begin(transform.root.FindChild("RegisterEntry").FindChild("List").GetChild (0).gameObject
 //			                    , 0.5f, new Vector3(0f, -95f, 0f), false);
 			transform.root.FindChild("RegisterEntry").FindChild("Ground").GetComponent<UITweener>()
 				.SetOnFinished(TweenFinished);
-			panel.transform.localPosition = new Vector3(0f, -95f, 0f);
-			panel.SetRect(0f, 0f, 720f, 842f);
+			panel.transform.localPosition = new Vector3(0f, -70f, 0f);
+			panel.SetRect(0f, 0f, 720f, 892f);
 			panel.clipOffset = Vector2.zero;
 			transform.GetComponent<UIButton>().normalSprite = "entry_btn_toground";
 			UILabel label = transform.FindChild("Label").GetComponent<UILabel>();
@@ -67,7 +69,7 @@ public class BtnFolding : MonoBehaviour {
 		} else{ //ground visible
 			transform.root.FindChild("RegisterEntry").FindChild("Ground").gameObject.SetActive(true);
 			TweenPosition.Begin(transform.root.FindChild("RegisterEntry").FindChild("Ground").gameObject
-			                    , 0.5f, new Vector3(0f, 0f, 0f), false);
+			                    , 0.5f, new Vector3(0f, 50f, 0f), false);
 //			TweenPosition.Begin(transform.root.FindChild("RegisterEntry").FindChild("List").GetChild(0).gameObject
 //			                    , 0.5f, new Vector3(0f, -352f, 0f), false);
 			transform.root.FindChild("RegisterEntry").FindChild("Ground").GetComponent<UITweener>()
@@ -86,8 +88,8 @@ public class BtnFolding : MonoBehaviour {
 		} else{
 			UIPanel panel = transform.root.FindChild("RegisterEntry").FindChild("List").GetChild(0)
 				.GetComponent<UIPanel>();
-			panel.transform.localPosition = new Vector3(0f, -352f, 0f);
-			panel.SetRect(0f, 0f, 720f, 326f);
+			panel.transform.localPosition = new Vector3(0f, -328f, 0f);
+			panel.SetRect(0f, 0f, 720f, 376f);
 			panel.clipOffset = new Vector2(0, 0);
 			transform.root.FindChild("RegisterEntry").FindChild("List")
 				.GetChild(0).GetComponent<UIScrollView>().ResetPosition();
