@@ -39,12 +39,12 @@ public class DFSBtns : MonoBehaviour {
 	}
 
 	void ReceivedContest(){
-		transform.root.FindChild("Contests").GetComponent<Contests>()
-			.InitContests(mTitle, mContestEvent.Response.data);
-
 		UtilMgr.AddBackState(UtilMgr.STATE.Contests);
 		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
 		                    transform.root.FindChild("Lobby").gameObject,
 		                    transform.root.FindChild("Contests").gameObject);
+
+		transform.root.FindChild("Contests").GetComponent<Contests>()
+			.InitContests(mTitle, mContestEvent.Response.data);
 	}
 }

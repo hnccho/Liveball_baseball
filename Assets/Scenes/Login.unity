@@ -415,7 +415,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: ea531756e615e4a90b9c3c1591d14903, type: 3}
   mFont: {fileID: 0}
-  mText: Text................................................................................
+  mText: 
   mFontSize: 24
   mFontStyle: 0
   mAlignment: 1
@@ -582,7 +582,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: ea531756e615e4a90b9c3c1591d14903, type: 3}
   mFont: {fileID: 0}
-  mText: Text................................................................................
+  mText: 
   mFontSize: 24
   mFontStyle: 0
   mAlignment: 1
@@ -712,6 +712,10 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!4 &139443249 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 493460, guid: 6101d46e5427e4bd69a6ed48b5253c3d, type: 2}
+  m_PrefabInternal: {fileID: 1174649666}
 --- !u!1 &164516813
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,7 +1356,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: ea531756e615e4a90b9c3c1591d14903, type: 3}
   mFont: {fileID: 0}
-  mText: Text................................................................................
+  mText: 
   mFontSize: 24
   mFontStyle: 0
   mAlignment: 1
@@ -2241,6 +2245,7 @@ Transform:
   - {fileID: 1400502879}
   - {fileID: 924139446}
   - {fileID: 110001377}
+  - {fileID: 139443249}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!114 &1054801998
@@ -2441,7 +2446,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: ea531756e615e4a90b9c3c1591d14903, type: 3}
   mFont: {fileID: 0}
-  mText: Text................................................................................
+  mText: 
   mFontSize: 24
   mFontStyle: 0
   mAlignment: 1
@@ -2601,7 +2606,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: .392156869, g: .392156869, b: .392156869, a: 1}
+  mColor: {r: .392156899, g: .392156899, b: .392156899, a: 1}
   mPivot: 4
   mWidth: 680
   mHeight: 60
@@ -2813,7 +2818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1173646434
 Transform:
   m_ObjectHideFlags: 0
@@ -2839,6 +2844,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c99879aea04bd4a529d519bdb17972f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1174649666
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1054801997}
+    m_Modifications:
+    - target: {fileID: 493460, guid: 6101d46e5427e4bd69a6ed48b5253c3d, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1004
+      objectReference: {fileID: 0}
+    - target: {fileID: 493460, guid: 6101d46e5427e4bd69a6ed48b5253c3d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 527
+      objectReference: {fileID: 0}
+    - target: {fileID: 493460, guid: 6101d46e5427e4bd69a6ed48b5253c3d, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493460, guid: 6101d46e5427e4bd69a6ed48b5253c3d, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493460, guid: 6101d46e5427e4bd69a6ed48b5253c3d, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493460, guid: 6101d46e5427e4bd69a6ed48b5253c3d, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 493460, guid: 6101d46e5427e4bd69a6ed48b5253c3d, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 493460, guid: 6101d46e5427e4bd69a6ed48b5253c3d, type: 2}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6101d46e5427e4bd69a6ed48b5253c3d, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1207767020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3847,7 +3894,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: ea531756e615e4a90b9c3c1591d14903, type: 3}
   mFont: {fileID: 0}
-  mText: Text................................................................................
+  mText: 
   mFontSize: 24
   mFontStyle: 0
   mAlignment: 1
@@ -4423,7 +4470,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3007
+  startingRenderQueue: 3006
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3

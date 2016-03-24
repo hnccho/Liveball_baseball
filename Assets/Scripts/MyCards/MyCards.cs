@@ -64,7 +64,9 @@ public class MyCards : MonoBehaviour {
 			item.Target.transform.FindChild("ItemExpand").gameObject.SetActive(false);
 
 			Transform tf = item.Target.transform.FindChild("ItemCard");
-			tf.FindChild("LblName").GetComponent<UILabel>().text = info.playerName;
+
+			tf.GetComponent<ItemCard>().mCardInfo = info;
+			tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
 			tf.FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
 			tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.teamName;
 			tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$"+info.salary;
@@ -72,6 +74,22 @@ public class MyCards : MonoBehaviour {
 			tf.FindChild("Level").FindChild("LblLevel").FindChild("LevelV").GetComponent<UILabel>().text = info.cardLevel+"";
 			tf.FindChild("LblFPPG").FindChild("LblFPPGV").GetComponent<UILabel>().text = info.fppg;
 			tf.FindChild("LblSkill").FindChild("LblSkillV").GetComponent<UILabel>().text = "1";
+			if(info.useYn > 0){
+				tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Inuse").gameObject.SetActive(true);
+				tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
+					= new Vector4(0, 0, 156f, 130f);
+			} else{
+				tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Inuse").gameObject.SetActive(false);
+				tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
+					= new Vector4(0, 0, 152f, 108f);
+			}
+			if((info.injuryYN != null) && (info.injuryYN.Equals("Y"))){
+				tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(true);
+			} else
+				tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
+
+			UtilMgr.LoadImage(info.photoUrl,
+			                  tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>());
 		} else if(info.mType == CardInfo.INVEN_TYPE.PACK){
 			item.Target.transform.FindChild("ItemCardPack").gameObject.SetActive(true);
 			item.Target.transform.FindChild("ItemCard").gameObject.SetActive(false);

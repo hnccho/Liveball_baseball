@@ -866,6 +866,21 @@ public class NetMgr : MonoBehaviour{
 	{
 		Instance.webAPIProcessEvent(new GetSposTeamInfoRequest(teamCode), baseEvent);
 	}
+
+	public static void PlayerSeasonInfo(long playerId , BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new PlayerSeasonInfoRequest(playerId), baseEvent);
+	}
+
+	public static void PlayerGameInfo(long playerId , BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new PlayerGameInfoRequest(playerId), baseEvent);
+	}
+
+	public static void PlayerNewsInfo(long playerId , BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new PlayerNewsInfoRequest(playerId), baseEvent);
+	}
 	
 	public static void AccuseContent(AccusationInfo accuInfo , BaseEvent baseEvent)
 	{

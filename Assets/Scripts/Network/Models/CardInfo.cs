@@ -52,6 +52,39 @@ public class CardInfo {
 		}
 	}
 
+	string _photoUrl;
+
+	public string photoUrl {
+		get {
+			return _photoUrl;
+		}
+		set {
+			_photoUrl = value;
+		}
+	}
+
+	string _firstName;
+
+	public string firstName {
+		get {
+			return _firstName;
+		}
+		set {
+			_firstName = value;
+		}
+	}
+
+	string _lastName;
+
+	public string lastName {
+		get {
+			return _lastName;
+		}
+		set {
+			_lastName = value;
+		}
+	}
+
 	string _fppg;
 
 	public string fppg {
@@ -192,6 +225,17 @@ public class CardInfo {
 		}
 		set {
 			_itemId = value;
+		}
+	}
+
+	string _injuryYN;
+
+	public string injuryYN {
+		get {
+			return _injuryYN;
+		}
+		set {
+			_injuryYN = value;
 		}
 	}
 

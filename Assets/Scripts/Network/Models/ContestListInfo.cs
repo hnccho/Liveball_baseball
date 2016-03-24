@@ -308,6 +308,18 @@ public class ContestListInfo {
 			_rewardCount = value;
 		}
 	}
+
+	int _myEntry;
+
+	public int myEntry {
+		get {
+			return _myEntry;
+		}
+		set {
+			_myEntry = value;
+		}
+	}
+
 	int _rewardValue;
 	
 	public int rewardValue {

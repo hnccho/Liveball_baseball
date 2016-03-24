@@ -84,7 +84,7 @@ public class SelectPlayer : MonoBehaviour {
 					item.Target.transform.FindChild("Sub").gameObject.SetActive(true);
 
 					Transform tf = item.Target.transform.FindChild("Sub");
-					tf.FindChild("BtnRight").GetComponent<BtnPlayerSelected>().mPlayerInfo = info;
+					tf.GetComponent<ItemSelectPlayerSub>().mPlayerInfo = info;
 
 					tf.FindChild("LblSalaryB").GetComponent<UILabel>().text
 						= "[s]$ "+UtilMgr.AddsThousandsSeparator(info.salary_org+"");
@@ -128,12 +128,16 @@ public class SelectPlayer : MonoBehaviour {
 					UtilMgr.LoadImage(info.photoUrl
 					                  , tf.FindChild("BtnPhoto")
 					                  .FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>());
-					tf.FindChild("BtnRight").GetComponent<BtnPlayerSelected>().mPlayerInfo = info;
+					tf.GetComponent<ItemSelectPlayerMain>().mPlayerInfo = info;
 					tf.FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
 					tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
 					tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.teamName;
 					tf.FindChild("LblYear").GetComponent<UILabel>().gameObject.SetActive(false);
 					tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$ "+UtilMgr.AddsThousandsSeparator(info.salary);
+					if((info.injuryYN != null) && (info.injuryYN.Equals("Y")))
+						tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(true);
+					else
+						tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
 
 				}
 			});

@@ -28,10 +28,10 @@ public class LoginRoot : SuperRoot {
 			transform.FindChild("SprTitle").GetComponent<UISprite>().spriteName = "logo_title1";
 
 		if(mNick != null){
+			Debug.Log("Nick is "+mNick);
 			Login ();
 			return;
 		}
-
 		mVersionEvent = new CheckVersionEvent(new EventDelegate(ReceivedVersion));
 //		transform.FindChild("Terms").GetComponent<Terms>().Init();
 		NetMgr.CheckVersion(mVersionEvent, false);
@@ -179,6 +179,7 @@ public class LoginRoot : SuperRoot {
 		if (Application.platform == RuntimePlatform.Android) {
 			mLoginInfo.osType = 1;
 			AndroidMgr.RegistGCM(new EventDelegate(this, "SetGCMId"));
+			StartCoroutine(WaitingToken());
 		} else if (Application.platform == RuntimePlatform.IPhonePlayer) {
 			mLoginInfo.osType = 2;
 			//			if(CheckPushAgree()){
@@ -187,7 +188,7 @@ public class LoginRoot : SuperRoot {
 			//				SetGCMId();
 			//			} else{
 			IOSMgr.RegistAPNS(new EventDelegate(this, "SetGCMId"));
-			//waiting 4 secs
+			//waiting 3 secs
 			StartCoroutine(WaitingToken());
 			//			}
 		} else if(Application.platform == RuntimePlatform.OSXEditor){
@@ -202,16 +203,16 @@ public class LoginRoot : SuperRoot {
 	{
 		UtilMgr.DismissLoading();
 		#if(UNITY_EDITOR)
-		mLoginInfo.memUID = AndroidMgr.GetMsg();
+		mLoginInfo.memUID = AndroidMgr.GetMsg() == null ? "" : AndroidMgr.GetMsg();
 		mLoginInfo.DeviceID = SystemInfo.deviceUniqueIdentifier;
 		DoLogin();
 		#elif(UNITY_ANDROID)
-		mLoginInfo.memUID = AndroidMgr.GetMsg();
+		mLoginInfo.memUID = AndroidMgr.GetMsg() == null ? "" : AndroidMgr.GetMsg();
 		mLoginInfo.DeviceID = SystemInfo.deviceUniqueIdentifier;
 		DoLogin();
 		#else
 		StopCoroutine(WaitingToken());
-		mLoginInfo.memUID = IOSMgr.GetMsg();
+		mLoginInfo.memUID = IOSMgr.GetMsg() == null ? "" : IOSMgr.GetMsg();
 		EventDelegate eventd = new EventDelegate(this, "DoLogin");
 		IOSMgr.GetUID("", eventd);
 		#endif
@@ -231,7 +232,8 @@ public class LoginRoot : SuperRoot {
 		UtilMgr.ShowLoading(true);
 		yield return new WaitForSeconds(3f);
 		Debug.Log("Skip Token");
-		IOSMgr.SkipToken();
+//		IOSMgr.SkipToken();
+		SetGCMId();
 		
 	}
 

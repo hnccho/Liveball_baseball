@@ -187,6 +187,61 @@ public class PlayerInfo {
 		}
 	}
 
+	string _throwHand;
+
+	public string throwHand {
+		get {
+			return _throwHand;
+		}
+		set {
+			_throwHand = value;
+		}
+	}
+
+	string _batHand;
+
+	public string batHand {
+		get {
+			return _batHand;
+		}
+		set {
+			_batHand = value;
+		}
+	}
+
+	float _FFPG;
+
+	public float FFPG {
+		get {
+			return _FFPG;
+		}
+		set {
+			_FFPG = value;
+		}
+	}
+
+	int _games;
+
+	public int games {
+		get {
+			return _games;
+		}
+		set {
+			_games = value;
+		}
+	}
+
+	int _played;
+
+	public int played {
+		get {
+			return _played;
+		}
+		set {
+			_played = value;
+		}
+	}
+
 	long _playerId;
 
 	public long playerId {
