@@ -145,6 +145,17 @@ public class PlayerInfo {
 		}
 	}
 
+	string _city;
+
+	public string city {
+		get {
+			return _city;
+		}
+		set {
+			_city = value;
+		}
+	}
+
 	string _teamCode;
 
 	public string teamCode {

@@ -14,7 +14,7 @@ public class ItemCard : MonoBehaviour {
 	void Update () {
 		if(mCardInfo == null) return;
 
-		if(mCardInfo.cardClass > 5){
+		if((mCardInfo.cardClass >= CardInfo.CLASS_MAX) && (mCardInfo.cardLevel >= CardInfo.LEVEL_MAX)){
 			transform.FindChild("BtnRight").GetComponent<UIButton>().normalSprite = "mycard_btn_compt";
 			transform.FindChild("BtnRight").GetComponent<UIButton>().isEnabled = false;
 		} else if(mCardInfo.cardLevel > 4){

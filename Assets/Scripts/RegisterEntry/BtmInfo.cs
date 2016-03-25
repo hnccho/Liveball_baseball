@@ -36,8 +36,8 @@ public class BtmInfo : MonoBehaviour {
 		transform.FindChild("Labels").FindChild("LblSmall").GetComponent<UILabel>().text
 			= string.Format(UtilMgr.GetLocalText("LblRegEntryInfo"),
 			                UtilMgr.AddsThousandsSeparator(avg+""), mCount);
-		transform.FindChild("Labels").FindChild("LblBigLeft").GetComponent<UILabel>().text
-			= "$" + UtilMgr.AddsThousandsSeparator(mTotal+"");
+		transform.FindChild("Labels").FindChild("LblBig").GetComponent<UILabel>().text
+			= "$" + UtilMgr.AddsThousandsSeparator(mTotal+"") + " [999999]of $35,000";
 	}
 
 	public bool CheckSalary(){

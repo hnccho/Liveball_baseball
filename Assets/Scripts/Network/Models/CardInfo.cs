@@ -8,6 +8,11 @@ public class CardInfo {
 		EXPAND
 	}
 
+	public static int CLASS_MIN = 1;
+	public static int CLASS_MAX = 6;
+	public static int LEVEL_MIN = 0;
+	public static int LEVEL_MAX = 5;
+
 	INVEN_TYPE _mType;
 
 	public INVEN_TYPE mType {

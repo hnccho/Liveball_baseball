@@ -5,6 +5,7 @@ public class ShopItemBtns : MonoBehaviour {
 
 	public ItemShopGoldInfo mInfo;
 	PurchaseGoldEvent mGoldEvent;
+	GetCardInvenEvent mCardEvent;
 
 	// Use this for initialization
 	void Start () {
@@ -34,9 +35,19 @@ public class ShopItemBtns : MonoBehaviour {
 
 	void ReceivedPurchase(){
 		if(mInfo.category == Shop.CARD){
-			DialogueMgr.ShowDialogue("Card!", "Purchased!", DialogueMgr.DIALOGUE_TYPE.Alert, null);
+			DialogueMgr.ShowDialogue("Card!", "Purchased!", DialogueMgr.DIALOGUE_TYPE.Alert, CardPurchasedHandler);
 		} else if(mInfo.category == Shop.TICKET){
 			DialogueMgr.ShowDialogue("Ticket!", "Purchased!", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 		}
+	}
+
+	void CardPurchasedHandler(DialogueMgr.BTNS btn){
+		mCardEvent = new GetCardInvenEvent(ReceivedCards);
+		NetMgr.GetCardInven(mCardEvent);
+	}
+
+	void ReceivedCards(){
+		transform.root.FindChild("MyCards").GetComponent<MyCards>().Init(mCardEvent,
+     		transform.root.FindChild("MyCards").GetComponent<MyCards>().GetMailEvent());
 	}
 }

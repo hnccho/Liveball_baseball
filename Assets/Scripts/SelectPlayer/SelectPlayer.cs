@@ -131,7 +131,9 @@ public class SelectPlayer : MonoBehaviour {
 					tf.GetComponent<ItemSelectPlayerMain>().mPlayerInfo = info;
 					tf.FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
 					tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
-					tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.teamName;
+					if(tf.FindChild("LblName").GetComponent<UILabel>().width > 232)
+						tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName.Substring(0, 1) + ". " +info.lastName;
+					tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.city + " " + info.teamName;
 					tf.FindChild("LblYear").GetComponent<UILabel>().gameObject.SetActive(false);
 					tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$ "+UtilMgr.AddsThousandsSeparator(info.salary);
 					if((info.injuryYN != null) && (info.injuryYN.Equals("Y")))

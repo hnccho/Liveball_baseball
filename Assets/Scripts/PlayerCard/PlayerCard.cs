@@ -17,7 +17,8 @@ public class PlayerCard : MonoBehaviour {
 	public GameObject mItemGameMonth;
 	public GameObject mItemGameArticlesP;
 	public GameObject mItemGameArticlesH;
-	public GameObject mItemGameSub;
+	public GameObject mItemGameSubH;
+	public GameObject mItemGameSubP;
 
 	string[][] DCRate = new string[6][]{
 		new string[]{"0.00%",		"0.20%",		"0.40%",		"0.60%",		"0.80%",		"1.00%"},
@@ -96,8 +97,10 @@ public class PlayerCard : MonoBehaviour {
 				height -= 25f;
 				go.transform.localScale = new Vector3(1f, 1f, 1f);
 			}
-
-			go = Instantiate(mItemGameSub);
+			if(IsPitcher)
+				go = Instantiate(mItemGameSubP);
+			else
+				go = Instantiate(mItemGameSubH);
 			
 			go.transform.parent = transform.FindChild("Changeables").FindChild("GameLog").FindChild("Scroll View");
 			height -= 25f;

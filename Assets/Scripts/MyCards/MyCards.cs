@@ -19,6 +19,10 @@ public class MyCards : MonoBehaviour {
 	
 	}
 
+	public GetMailEvent GetMailEvent(){
+		return mMailEvent;
+	}
+
 	public void Init(GetCardInvenEvent cardEvent, GetMailEvent mailEvent){
 		transform.FindChild("Top").FindChild("Cards").FindChild("LblCardsV").GetComponent<UILabel>().text
 			= cardEvent.Response.data.Count+"";
@@ -67,8 +71,10 @@ public class MyCards : MonoBehaviour {
 
 			tf.GetComponent<ItemCard>().mCardInfo = info;
 			tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
+			if(tf.FindChild("LblName").GetComponent<UILabel>().width > 232)
+				tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName.Substring(0, 1) + ". " + info.lastName;
 			tf.FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
-			tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.teamName;
+			tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.city + " " + info.teamName;
 			tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$"+info.salary;
 			tf.FindChild("Star").FindChild("SprStar").FindChild("StarV").GetComponent<UILabel>().text = info.cardClass+"";
 			tf.FindChild("Level").FindChild("LblLevel").FindChild("LevelV").GetComponent<UILabel>().text = info.cardLevel+"";
