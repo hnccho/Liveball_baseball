@@ -25,7 +25,19 @@ public class ItemCard : MonoBehaviour {
 	}
 
 	public void OnBtnRightClick(){
+		if((mCardInfo.cardClass >= CardInfo.CLASS_MAX) && (mCardInfo.cardLevel >= CardInfo.LEVEL_MAX)){
 
+		} else if(mCardInfo.cardLevel > 4){
+			transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().Init(mCardInfo,
+	             transform.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture,
+	             UtilMgr.GetLocalText("LblCardRankUp"), CardPowerUp.TYPE.RANKUP);
+		} else{
+			transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().Init(mCardInfo,
+	             transform.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture,
+	             UtilMgr.GetLocalText("LblCardLevelUp"), CardPowerUp.TYPE.LEVELUP);
+		}
+		UtilMgr.AddBackState(UtilMgr.STATE.CardPowerUp);
+		UtilMgr.AnimatePageToLeft("MyCards", "CardPowerUp");
 	}
 
 	public void OnBtnPhotoClick(){

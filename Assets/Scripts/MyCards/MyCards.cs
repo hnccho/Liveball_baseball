@@ -8,10 +8,11 @@ public class MyCards : MonoBehaviour {
 	GetMailEvent mMailEvent;
 
 	List<CardInfo> mList;
-
+	Texture2D mDefaultTxt;
+	
 	// Use this for initialization
 	void Start () {
-	
+		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");		
 	}
 	
 	// Update is called once per frame
@@ -93,6 +94,11 @@ public class MyCards : MonoBehaviour {
 				tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(true);
 			} else
 				tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
+
+			tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture = mDefaultTxt;
+
+			tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().color
+				= new Color(1f, 1f, 1f, 50f/255f);
 
 			UtilMgr.LoadImage(info.photoUrl,
 			                  tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>());

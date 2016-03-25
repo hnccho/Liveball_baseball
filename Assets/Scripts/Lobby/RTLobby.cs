@@ -5,10 +5,11 @@ public class RTLobby : MonoBehaviour {
 
 	GetEventsEvent mRTEvent;
 	public GameObject mItemRT;
+	Texture2D mDefaultTxt;
 
 	// Use this for initialization
 	void Start () {
-	
+		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
 	}
 	
 	// Update is called once per frame
@@ -51,6 +52,8 @@ public class RTLobby : MonoBehaviour {
 			}
 
 			item.FindChild("Top").FindChild("LblStadium").GetComponent<UILabel>().text = data.stadiumName;
+			item.FindChild("Top").FindChild("LblStadium").FindChild("Sprite").localPosition = new Vector3(
+				-((((float)item.FindChild("Top").FindChild("LblStadium").GetComponent<UILabel>().width) / 2f) +15f), 1f);
 
 			item.FindChild("Score").FindChild("Left").FindChild("LblScore").GetComponent<UILabel>().text
 				= data.awayTeamRuns+"";
@@ -72,15 +75,19 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("Players").GetComponent<UILabel>().text
 					= "Top " + data.inning + UtilMgr.GetRoundString(data.inning);
 
-//				StartCoroutine(loadImage(data.hitterPhoto, item.FindChild("Players").FindChild("Left")
-//            				             .FindChild("Frame").FindChild("Photo").FindChild("TxtPlayer")));
+				item.FindChild("Players").FindChild("Left").FindChild("Frame")
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
+
+				item.FindChild("Players").FindChild("Left").FindChild("Frame")
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
+						= new Color(1f, 1f, 1f, 50f/255f);
+
 				UtilMgr.LoadImage(data.hitterPhoto,
 				                  item.FindChild("Players").FindChild("Left").FindChild("Frame")
 				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 				item.FindChild("Players").FindChild("Left")
 					.FindChild("Frame").FindChild("SprPos").FindChild("Label").GetComponent<UILabel>().text = "B";
-//				StartCoroutine(loadImage(data.pitcherPhoto, item.FindChild("Players").FindChild("Right")
-//				                         .FindChild("Frame").FindChild("Photo").FindChild("TxtPlayer")));
+
 				UtilMgr.LoadImage(data.pitcherPhoto,
 				                  item.FindChild("Players").FindChild("Right").FindChild("Frame")
 				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
@@ -97,17 +104,27 @@ public class RTLobby : MonoBehaviour {
 
 				item.FindChild("Players").GetComponent<UILabel>().text
 					= "Bottom " + data.inning + UtilMgr.GetRoundString(data.inning);
+				
+				item.FindChild("Players").FindChild("Right").FindChild("Frame")
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
+				
+				item.FindChild("Players").FindChild("Right").FindChild("Frame")
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
+						= new Color(1f, 1f, 1f, 50f/255f);
+				
+				item.FindChild("Players").FindChild("Right").FindChild("Frame")
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
+				
+				item.FindChild("Players").FindChild("Right").FindChild("Frame")
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
+						= new Color(1f, 1f, 1f, 50f/255f);
 
-//				StartCoroutine(
-//					loadImage(data.hitterPhoto, item.FindChild("Players").FindChild("Right")
-//				                         .FindChild("Frame").FindChild("Photo").FindChild("TxtPlayer")));
 				UtilMgr.LoadImage(data.hitterPhoto,
 				                  item.FindChild("Players").FindChild("Right").FindChild("Frame")
 				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 				item.FindChild("Players").FindChild("Right")
 					.FindChild("Frame").FindChild("SprPos").FindChild("Label").GetComponent<UILabel>().text = "B";
-//				StartCoroutine(loadImage(data.pitcherPhoto, item.FindChild("Players").FindChild("Left")
-//				                         .FindChild("Frame").FindChild("Photo").FindChild("TxtPlayer")));
+
 				UtilMgr.LoadImage(data.pitcherPhoto,
 				                  item.FindChild("Players").FindChild("Left").FindChild("Frame")
 				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());

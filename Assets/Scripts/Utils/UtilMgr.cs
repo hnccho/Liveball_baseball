@@ -39,7 +39,9 @@ public class UtilMgr : MonoBehaviour {
 		RegisterEntry,
 		Profile,
 		SelectPlayer,
-		MyContests
+		MyContests,
+		CardPowerUp,
+		SelectFeeding
 	}
 
 	static UtilMgr Instance

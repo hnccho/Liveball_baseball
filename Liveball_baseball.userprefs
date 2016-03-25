@@ -1,36 +1,51 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SelectPlayer/SelectPlayer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CardPowerUp/CardPowerUp.cs">
     <Files>
-      <File FileName="Assets/Scripts/MyCards/MyCards.cs" Line="86" Column="63" />
-      <File FileName="Assets/Scripts/Network/Models/CardInfo.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SelectPlayer/SelectPlayer.cs" Line="89" Column="34" />
-      <File FileName="Assets/Scripts/SelectPlayer/ItemSelectPlayerMain.cs" Line="25" Column="70" />
-      <File FileName="Assets/Scripts/MyCards/ItemCard.cs" Line="32" Column="39" />
-      <File FileName="Assets/Scripts/PlayerCard/PlayerCardSelectionBtns.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerCard/PlayerCard.cs" Line="80" Column="42" />
-      <File FileName="Assets/Scripts/Network/NetMgr.cs" Line="882" Column="45" />
-      <File FileName="Assets/Scripts/Network/Requests/PlayerNewsInfoRequest.cs" Line="10" Column="26" />
-      <File FileName="Assets/Scripts/Network/Requests/PlayerGameInfoRequest.cs" Line="10" Column="28" />
-      <File FileName="Assets/Scripts/Network/Requests/PlayerSeasonInfoRequest.cs" Line="7" Column="23" />
+      <File FileName="Assets/Scripts/CardPowerUp/CardPowerUp.cs" Line="77" Column="3" />
+      <File FileName="Assets/Scripts/MyCards/ItemCard.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Profile/Profile.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Lobby/LandingRoot.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SelectFeeding/SelectFeeding.cs" Line="41" Column="3" />
+      <File FileName="Assets/Scripts/Utils/UtilMgr.cs" Line="44" Column="16" />
+      <File FileName="Assets/Scripts/SelectFeeding/BtnSelectCompletion.cs" Line="18" Column="62" />
+      <File FileName="Assets/Scripts/SelectFeeding/BtnSelectFeeding.cs" Line="44" Column="12" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
+            <Node name="Extras" expanded="True" />
             <Node name="Scripts" expanded="True">
+              <Node name="CardPowerUp" expanded="True">
+                <Node name="CardPowerUp.cs" selected="True" />
+              </Node>
+              <Node name="Lobby" expanded="True" />
               <Node name="Login" expanded="True" />
               <Node name="MyCards" expanded="True" />
-              <Node name="Network" expanded="True">
-                <Node name="Events" expanded="True" />
-                <Node name="Models" expanded="True" />
-                <Node name="Requests" expanded="True" />
-              </Node>
               <Node name="PlayerCard" expanded="True" />
-              <Node name="SelectPlayer" expanded="True">
-                <Node name="SelectPlayer.cs" selected="True" />
-              </Node>
+              <Node name="Profile" expanded="True" />
+              <Node name="RegisterEntry" expanded="True" />
+              <Node name="SelectFeeding" expanded="True" />
+              <Node name="SelectPlayer" expanded="True" />
+              <Node name="Shop" expanded="True" />
               <Node name="Utils" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="Assembly-CSharp-Editor" expanded="True">
+            <Node name="Extras" expanded="True">
+              <Node name="NGUI" expanded="True">
+                <Node name="Scripts" expanded="True">
+                  <Node name="Editor" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+          <Node name="Assembly-CSharp-firstpass" expanded="True">
+            <Node name="Plugins" expanded="True">
+              <Node name="NGUI" expanded="True">
+                <Node name="Interaction" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>

@@ -6,10 +6,11 @@ public class SelectPlayer : MonoBehaviour {
 
 	List<PlayerInfo> mPlayerList;
 	public int mSelectedNo;
+	static Texture2D mDefaultTxt;
 
 	// Use this for initialization
 	void Start () {
-	
+		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
 	}
 	
 	// Update is called once per frame
@@ -104,27 +105,18 @@ public class SelectPlayer : MonoBehaviour {
 						tf.FindChild("Level").FindChild("Star"+(i+1)).GetComponent<UISprite>()
 							.color = new Color(252f/255f, 133f/255f, 53f/255f);
 					}
-//					switch(info.grade){
-//					case 6:  break;
-//					case 5: tf.FindChild("Level").FindChild("Star5").GetComponent<UISprite>()
-//						.color = new Color(252f/255f, 133f/255f, 53f/255f); break;
-//					case 4: tf.FindChild("Level").FindChild("Star4").GetComponent<UISprite>()
-//						.color = new Color(252f/255f, 133f/255f, 53f/255f); break;
-//					case 3: tf.FindChild("Level").FindChild("Star3").GetComponent<UISprite>()
-//						.color = new Color(252f/255f, 133f/255f, 53f/255f); break;
-//					case 2: tf.FindChild("Level").FindChild("Star2").GetComponent<UISprite>()
-//						.color = new Color(252f/255f, 133f/255f, 53f/255f); break;
-//					case 1: tf.FindChild("Level").FindChild("Star1").GetComponent<UISprite>()
-//						.color = new Color(252f/255f, 133f/255f, 53f/255f); break;
-//					}
 				} else{
 					item.Target.transform.FindChild("Main").gameObject.SetActive(true);
 					item.Target.transform.FindChild("Sub").gameObject.SetActive(false);
 
 					Transform tf = item.Target.transform.FindChild("Main");
-//					StartCoroutine(
-//						LoadImage(info.photoUrl,
-//					          tf.FindChild("BtnPhoto").FindChild("TxtPlayer").GetComponent<UITexture>()));
+
+					tf.FindChild("BtnPhoto")
+						.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture
+							= mDefaultTxt;
+					tf.FindChild("BtnPhoto")
+						.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().color
+							= new Color(1f, 1f, 1f, 50f/255f);
 					UtilMgr.LoadImage(info.photoUrl
 					                  , tf.FindChild("BtnPhoto")
 					                  .FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>());

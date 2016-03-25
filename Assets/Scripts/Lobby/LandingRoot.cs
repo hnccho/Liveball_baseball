@@ -31,7 +31,7 @@ public class LandingRoot : SuperRoot {
 		UtilMgr.AddBackState(UtilMgr.STATE.Profile);
 		transform.FindChild("Profile").gameObject.SetActive(true);
 		transform.FindChild("Profile").localPosition = new Vector3(720f, 0, 0);
-		TweenPosition.Begin(transform.FindChild("Profile").gameObject, 1f, new Vector3(132f, 0, 0), false);
+		TweenPosition.Begin(transform.FindChild("Profile").gameObject, 0.5f, new Vector3(132f, 0, 0), false);
 		transform.FindChild("Profile").GetComponent<UITweener>().method = UITweener.Method.EaseOut;
 		transform.FindChild("Profile").GetComponent<Profile>().Init(mProfileEvent);
 	}
