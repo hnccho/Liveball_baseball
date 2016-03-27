@@ -36,6 +36,17 @@ public class AttendanceInfo {
 			_freeTicket = value;
 		}
 	}
+
+	long _freePack;
+
+	public long freePack {
+		get {
+			return _freePack;
+		}
+		set {
+			_freePack = value;
+		}
+	}
 	
 	long _joinFreeGold;
 	
@@ -56,6 +67,17 @@ public class AttendanceInfo {
 		}
 		set {
 			_joinFreeTicket = value;
+		}
+	}
+
+	long _joinFreePack;
+
+	public long joinFreePack {
+		get {
+			return _joinFreePack;
+		}
+		set {
+			_joinFreePack = value;
 		}
 	}
 }

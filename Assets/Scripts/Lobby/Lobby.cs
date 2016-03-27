@@ -16,13 +16,26 @@ public class Lobby : MonoBehaviour {
 	}
 
 	public void FirstInit(){
-		string freeGold = UtilMgr.AddsThousandsSeparator(UserMgr.AttendInfo.freeGold);
-		string freeTicket = UtilMgr.AddsThousandsSeparator(UserMgr.AttendInfo.freeTicket);
-		DialogueMgr.ShowDialogue("Attendance", "Attendance Day is "+UserMgr.AttendInfo.attendDay +
-		                         "\n"+ freeGold +" Gold and " + 
-		                         freeTicket +" Tickets", DialogueMgr.DIALOGUE_TYPE.Alert, null);
+//		string freeGold = UtilMgr.AddsThousandsSeparator(UserMgr.AttendInfo.freeGold);
+//		string freeTicket = UtilMgr.AddsThousandsSeparator(UserMgr.AttendInfo.freeTicket);
+//		DialogueMgr.ShowDialogue("Attendance", "Attendance Day is "+UserMgr.AttendInfo.attendDay +
+//		                         "\n"+ freeGold +" Gold and " + 
+//		                         freeTicket +" Tickets", DialogueMgr.DIALOGUE_TYPE.Alert, null);
+		if(UserMgr.AttendInfo.joinFreeGold > 0){
+			DialogueMgr.ShowAttendanceDialogue(DialogueMgr.DIALOGUE_TYPE.Welcome,
+			                                   UserMgr.AttendInfo, CloseAttendance);
+		} else{
+			DialogueMgr.ShowAttendanceDialogue(DialogueMgr.DIALOGUE_TYPE.Attendance,
+			                                   UserMgr.AttendInfo, CloseAttendance);
+		}
+
 
 		Init ();
+	}
+
+	void CloseAttendance(DialogueMgr.BTNS btn){
+		DialogueMgr.DismissDialogue();
+		Destroy(DialogueMgr.Instance.mAttendanceBox);
 	}
 
 	public void Init(){

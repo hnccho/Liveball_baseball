@@ -1,59 +1,36 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CardPowerUp/BtnPowerUp.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Contests/Contests.cs">
     <Files>
-      <File FileName="Assets/Scripts/MyCards/ItemCard.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Profile/Profile.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Lobby/LandingRoot.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SelectFeeding/SelectFeeding.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Utils/UtilMgr.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SelectFeeding/BtnSelectFeeding.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CardPowerUp/BtnFeedingCard.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CardPowerUp/CardPowerUp.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/SelectFeeding/BtnSelectCompletion.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/CardPowerUp/BtnPowerUp.cs" Line="33" Column="24" />
-      <File FileName="Assets/Scripts/Network/Events/CardUpEvent.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Network/Responses/CardUpResponse.cs" Line="6" Column="14" />
-      <File FileName="Assets/Scripts/Network/NetMgr.cs" Line="753" Column="43" />
-      <File FileName="Assets/Scripts/Network/Requests/CardLevelUpRequest.cs" Line="9" Column="2" />
-      <File FileName="Assets/Scripts/Network/Requests/CardRankUpRequest.cs" Line="13" Column="38" />
+      <File FileName="Assets/Scripts/Network/Responses/CardUpResponse.cs" Line="5" Column="1" />
+      <File FileName="Assets/Scripts/Network/Events/CardUpEvent.cs" Line="15" Column="66" />
+      <File FileName="Assets/Scripts/SelectFeeding/BtnSelectCompletion.cs" Line="18" Column="73" />
+      <File FileName="Assets/Scripts/SelectFeeding/BtnSelectFeeding.cs" Line="19" Column="10" />
+      <File FileName="Assets/Scripts/SelectFeeding/SelectFeeding.cs" Line="87" Column="84" />
+      <File FileName="Assets/Scripts/CardPowerUp/CardPowerUp.cs" Line="129" Column="48" />
+      <File FileName="Assets/Scripts/Utils/DialogueMgr.cs" Line="156" Column="53" />
+      <File FileName="Assets/Scripts/Login/LoginRoot.cs" Line="245" Column="7" />
+      <File FileName="Assets/Scripts/Network/Models/AttendanceInfo.cs" Line="42" Column="14" />
+      <File FileName="Assets/Scripts/Lobby/LandingRoot.cs" Line="13" Column="57" />
+      <File FileName="Assets/Scripts/Lobby/Lobby.cs" Line="25" Column="30" />
+      <File FileName="Assets/Scripts/MyContests/MyContests.cs" Line="45" Column="4" />
+      <File FileName="Assets/Scripts/Contests/Contests.cs" Line="37" Column="57" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Scripts" expanded="True">
-              <Node name="CardPowerUp" expanded="True">
-                <Node name="BtnPowerUp.cs" selected="True" />
-              </Node>
+            <Node name="Scripts" expanded="True" selected="True">
+              <Node name="Contests" expanded="True" />
               <Node name="Lobby" expanded="True" />
-              <Node name="Login" expanded="True" />
-              <Node name="MyCards" expanded="True" />
-              <Node name="Network" expanded="True">
-                <Node name="Requests" expanded="True" />
-              </Node>
-              <Node name="PlayerCard" expanded="True" />
-              <Node name="Profile" expanded="True" />
-              <Node name="RegisterEntry" expanded="True" />
-              <Node name="SelectFeeding" expanded="True" />
-              <Node name="SelectPlayer" expanded="True" />
-              <Node name="Shop" expanded="True" />
+              <Node name="MyContests" expanded="True" />
               <Node name="Utils" expanded="True" />
-            </Node>
-          </Node>
-          <Node name="Assembly-CSharp-Editor" expanded="True">
-            <Node name="Extras" expanded="True">
-              <Node name="NGUI" expanded="True">
-                <Node name="Scripts" expanded="True">
-                  <Node name="Editor" expanded="True" />
-                </Node>
-              </Node>
             </Node>
           </Node>
           <Node name="Assembly-CSharp-firstpass" expanded="True">
             <Node name="Plugins" expanded="True">
               <Node name="NGUI" expanded="True">
-                <Node name="Interaction" expanded="True" />
+                <Node name="Internal" expanded="True" />
               </Node>
             </Node>
           </Node>

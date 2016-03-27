@@ -13,6 +13,8 @@ public class DialogueMgr : MonoBehaviour {
 		Choose,
 		EventAlert_NonBg,
 		EventAlert,
+		Attendance,
+		Welcome
 	}
 
 	public enum BTNS
@@ -26,6 +28,7 @@ public class DialogueMgr : MonoBehaviour {
 	static DialogueMgr _instance;
 	GameObject mDialogueBox;
 	GameObject mAccusationBox;
+	public GameObject mAttendanceBox;
 	AccusationInfo mAccuInfo;
 	AccuseContentEvent mAccuEvent;
 //	EventDelegate mEvent;
@@ -126,6 +129,93 @@ public class DialogueMgr : MonoBehaviour {
 		Instance.mDialogueBox.transform.FindChild("Box").GetComponent<UITweener>().method = UITweener.Method.BounceIn;
 	}
 
+	public static void ShowAttendanceDialogue(DIALOGUE_TYPE type, AttendanceInfo info, DialogClickHandler handler){
+		GameObject prefab = Resources.Load ("Attendance") as GameObject;
+		Instance.mAttendanceBox = Instantiate (prefab, new Vector3 (0f, 0f, 0f), Quaternion.identity) as GameObject;
+
+		Instance.SetHandler(handler);
+		
+		if (IsShown) {
+			DialogueMgr.DismissDialogue();		
+		}
+		
+		Instance.mAttendanceBox.transform.parent = GameObject.Find ("Camera").transform;
+		Instance.mAttendanceBox.transform.localScale = new Vector3(1f, 1f, 1f);
+		Instance.mAttendanceBox.transform.localPosition = new Vector3(0, 0, 1000f);
+		Instance.mAttendanceBox.SetActive (true);
+
+		if(type == DIALOGUE_TYPE.Attendance){
+			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Top").FindChild("LblAttendanceBonus").gameObject.SetActive(true);
+			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Top").FindChild("LblMembershipBonus").gameObject.SetActive(false);
+			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Welcome").gameObject.SetActive(false);
+			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Attendance").gameObject.SetActive(true);
+
+
+			for(int i = 0; i < 7; i++){
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Attendance").FindChild("Box")
+					.FindChild(""+(i+1)).gameObject.SetActive(false);
+			}
+
+			for(int i = 0; i < info.attendDay; i++){
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Attendance").FindChild("Box")
+					.FindChild(""+(i+1)).gameObject.SetActive(true);
+			}
+
+			if(info.freeTicket > 0){
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Ticket").gameObject.SetActive(true);
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Ticket").FindChild("Sprite")
+					.FindChild("Label").GetComponent<UILabel>().text = info.freeTicket + " " + UtilMgr.GetLocalText("LblTickets");
+			} else
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Ticket").gameObject.SetActive(false);
+
+			if(info.freeGold > 0){
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Gold").gameObject.SetActive(true);
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Gold").FindChild("Sprite")
+					.FindChild("Label").GetComponent<UILabel>().text = info.freeGold + " " + UtilMgr.GetLocalText("LblGold");
+			} else
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Gold").gameObject.SetActive(false);
+
+			if(info.freePack > 0){
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Pack").gameObject.SetActive(true);
+				//				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Pack").FindChild("Sprite")
+//					.FindChild("Label").GetComponent<UILabel>().text = info.freePack + " " + UtilMgr.GetLocalText("LblTickets");
+			} else
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Pack").gameObject.SetActive(false);
+		} else{
+			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Top").FindChild("LblAttendanceBonus").gameObject.SetActive(false);
+			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Top").FindChild("LblMembershipBonus").gameObject.SetActive(true);
+			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Welcome").gameObject.SetActive(true);
+			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Attendance").gameObject.SetActive(false);
+						
+			if(info.joinFreeTicket > 0){
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Ticket").gameObject.SetActive(true);
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Ticket").FindChild("Sprite")
+					.FindChild("Label").GetComponent<UILabel>().text = info.freeGold + " " + UtilMgr.GetLocalText("LblTickets");
+			} else
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Ticket").gameObject.SetActive(false);
+			
+			if(info.joinFreeGold > 0){
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Gold").gameObject.SetActive(true);
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Gold").FindChild("Sprite")
+					.FindChild("Label").GetComponent<UILabel>().text = info.joinFreeGold + " " + UtilMgr.GetLocalText("LblGold");
+			} else
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Gold").gameObject.SetActive(false);
+			
+			if(info.joinFreePack > 0){
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Pack").gameObject.SetActive(true);
+				//				Instance.mAttendanceBox.transform.FindChild("Mid").FindChild("Pack").FindChild("Sprite")
+				//					.FindChild("Label").GetComponent<UILabel>().text = info.freePack + " " + UtilMgr.GetLocalText("LblTickets");
+			} else
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Pack").gameObject.SetActive(false);
+		}
+
+		IsShown = true;
+		
+		Instance.mAttendanceBox.transform.FindChild("Box").localScale = new Vector3(0f, 0f, 0f);
+		TweenScale.Begin(Instance.mAttendanceBox.transform.FindChild("Box").gameObject, 0.5f, new Vector3(1f, 1f, 1f));
+		Instance.mAttendanceBox.transform.FindChild("Box").GetComponent<UITweener>().method = UITweener.Method.BounceIn;
+
+	}
 
 	void SetTypeDialogue(DIALOGUE_TYPE type, string strBtn1, string strBtn2, string strCancel, int bodyHeight)
 	{

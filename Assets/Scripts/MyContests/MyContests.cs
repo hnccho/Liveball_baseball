@@ -111,7 +111,7 @@ public class MyContests : MonoBehaviour {
 			go.transform.FindChild("LblEntries").FindChild("Label").GetComponent<UILabel>().text 
 				= "[333333][b]"+ UtilMgr.AddsThousandsSeparator(info.totalJoin)
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalEntry);
-			go.transform.FindChild("LblTicket").FindChild("Label").GetComponent<UILabel>().text = info.entryTicket+"";
+			go.transform.FindChild("LblTickets").FindChild("Label").GetComponent<UILabel>().text = info.entryTicket+"";
 			go.transform.FindChild("LblBasicRP").FindChild("Label").GetComponent<UILabel>().text = "[333333]0";
 			go.transform.FindChild("LblPrizes").FindChild("Label").GetComponent<UILabel>().text = "[fc5034]0RP";
 
@@ -172,7 +172,7 @@ public class MyContests : MonoBehaviour {
 			go.transform.FindChild("LblPosition").FindChild("Label").GetComponent<UILabel>().text 
 				= "[333333][b]"+ UtilMgr.AddsThousandsSeparator(info.myRank)
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalJoin);
-			go.transform.FindChild("LblTicket").FindChild("Label").GetComponent<UILabel>().text = info.entryTicket+"";
+			go.transform.FindChild("LblTickets").FindChild("Label").GetComponent<UILabel>().text = info.entryTicket+"";
 			go.transform.FindChild("LblBasicRP").FindChild("Label").GetComponent<UILabel>().text = "[333333]0";
 			go.transform.FindChild("LblEarnedRP").FindChild("Label").GetComponent<UILabel>().text = "[fc5034]0RP";
 			
@@ -234,13 +234,13 @@ public class MyContests : MonoBehaviour {
 				= "[333333][b]"+ UtilMgr.AddsThousandsSeparator(info.myRank)
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalJoin);
 			float ratioLoc = ((float)info.myRank) / ((float)info.totalJoin);
-			go.transform.FindChild("Gauge").FindChild("Panel").FindChild("SprPin").localPosition
-				= new Vector3(((672f * ratioLoc) - 336f), 16f);
+			go.transform.FindChild("Gauge").FindChild("Panel2").FindChild("SprPin").localPosition
+				= new Vector3(((-672f * ratioLoc) + 336f), 16f);
 
-			go.transform.FindChild("LblTicket").FindChild("Label").GetComponent<UILabel>().text = info.entryTicket+"";
+			go.transform.FindChild("LblTickets").FindChild("Label").GetComponent<UILabel>().text = info.entryTicket+"";
 			go.transform.FindChild("LblBasicRP").FindChild("Label").GetComponent<UILabel>().text = "[333333]0";
 			go.transform.FindChild("LblPrizes").FindChild("Label").GetComponent<UILabel>().text = "[fc5034]0RP";
-			go.transform.FindChild("Gauge").FindChild("Panel").FindChild("SprPin").FindChild("Label").
+			go.transform.FindChild("Gauge").FindChild("Panel2").FindChild("SprPin").FindChild("Label").
 				GetComponent<UILabel>().text = info.totalFantasy+"";
 			
 			go.transform.FindChild("Lineup").FindChild("Label").GetComponent<UILabel>().text = info.entryPlayers;

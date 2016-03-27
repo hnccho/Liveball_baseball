@@ -95,6 +95,7 @@ public class SelectPlayer : MonoBehaviour {
 						= info.level+"";
 					tf.FindChild("LblSkill").FindChild("Label").GetComponent<UILabel>().text
 						= "1";
+					tf.FindChild("SprPhoto").GetComponent<UISprite>().spriteName = "starcard_" + info.grade;
 
 					for(int i = 0; i < 6; i++){
 						tf.FindChild("Level").FindChild("Star"+(i+1)).GetComponent<UISprite>()
