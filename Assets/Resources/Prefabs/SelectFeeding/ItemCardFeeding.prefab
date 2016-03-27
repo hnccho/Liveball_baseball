@@ -316,7 +316,6 @@ GameObject:
   - 114: {fileID: 11494896}
   - 114: {fileID: 11469770}
   - 114: {fileID: 11404574}
-  - 114: {fileID: 11475552}
   m_Layer: 5
   m_Name: BtnRight
   m_TagString: Untagged
@@ -2270,17 +2269,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11466982, guid: 77f33905a643e4432ab0003661390de4, type: 2}
   mSpriteName: mycard_icon_inuse
   mFillCenter: 1
---- !u!114 &11475552
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 149846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd42ad9b2f6a8461b81b2bb0a586b6fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11484080
 MonoBehaviour:
   m_ObjectHideFlags: 1

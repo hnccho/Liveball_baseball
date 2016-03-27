@@ -176,8 +176,8 @@ MonoBehaviour:
     y: 944
     width: 220
     height: 80
-    borderLeft: 0
-    borderRight: 0
+    borderLeft: 40
+    borderRight: 40
     borderTop: 0
     borderBottom: 0
     paddingLeft: 0
@@ -873,6 +873,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: mSprites.Array.data[7].borderTop
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[10].borderLeft
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: mSprites.Array.data[10].borderRight
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

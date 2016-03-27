@@ -54,23 +54,29 @@ public class CardPowerUp : MonoBehaviour {
 		tf.FindChild("TargetCard").FindChild("Frame").FindChild("Panel").FindChild("Texture").
 			GetComponent<UITexture>().mainTexture = mTargetTxt;
 		if(mType == TYPE.LEVELUP){
-			tf.FindChild("FeedingCardPowerUp").gameObject.SetActive(true);
-			tf.FindChild("FeedingCardUpgrade").gameObject.SetActive(false);
 			tf.FindChild("LabelsInfo").FindChild("InfoCardPowerUp").gameObject.SetActive(true);
 			tf.FindChild("LabelsInfo").FindChild("InfoCardUpgrade").gameObject.SetActive(false);
 			tf.FindChild("Btm").FindChild("CardPowerUp").gameObject.SetActive(true);
 			tf.FindChild("Btm").FindChild("CardUpgrade").gameObject.SetActive(false);
+			tf.FindChild("SprPowerUp").gameObject.SetActive(true);
+			tf.FindChild("SprUpgrade").gameObject.SetActive(false);
+			tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").gameObject.SetActive(true);
+			tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").gameObject.SetActive(false);
+
 			for(int i = 0; i < 4; i++){
 				InitFeedsToBlank(i);
 			}
 		} else{
-			tf.FindChild("FeedingCardPowerUp").gameObject.SetActive(false);
-			tf.FindChild("FeedingCardUpgrade").gameObject.SetActive(true);
 			tf.FindChild("LabelsInfo").FindChild("InfoCardPowerUp").gameObject.SetActive(false);
 			tf.FindChild("LabelsInfo").FindChild("InfoCardUpgrade").gameObject.SetActive(true);
 			tf.FindChild("Btm").FindChild("CardPowerUp").gameObject.SetActive(false);
 			tf.FindChild("Btm").FindChild("CardUpgrade").gameObject.SetActive(true);
+			tf.FindChild("SprPowerUp").gameObject.SetActive(false);
+			tf.FindChild("SprUpgrade").gameObject.SetActive(true);
+			tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").gameObject.SetActive(false);
+			tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").gameObject.SetActive(true);
 
+			InitsFeedToBlank();
 		}
 
 
@@ -95,7 +101,10 @@ public class CardPowerUp : MonoBehaviour {
 			tf.FindChild("Btm").FindChild("CardPowerUp").FindChild("SprMid").FindChild("Label").GetComponent<UILabel>()
 				.text = successRate + "G";
 		} else{
-
+			if(mCardFeedList.Count > 0)
+				InitsFeedToPlayer();
+			else
+				InitsFeedToBlank();
 
 			tf.FindChild("Btm").FindChild("CardUpgrade").FindChild("SprTop").FindChild("Label").GetComponent<UILabel>()
 				.text = "100%";
@@ -117,7 +126,7 @@ public class CardPowerUp : MonoBehaviour {
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
 			FindChild("Star").FindChild("Label").GetComponent<UILabel>().text = info.cardClass+"";
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
-			FindChild("LvlLv").gameObject.SetActive(false);
+			FindChild("LvlLv").gameObject.SetActive(true);
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
 			FindChild("LvlLv").FindChild("Label").GetComponent<UILabel>().text = info.cardLevel+"";
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
@@ -149,5 +158,45 @@ public class CardPowerUp : MonoBehaviour {
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
 			FindChild("Panel").FindChild("Sprite").GetComponent<UISprite>().color
 				= new Color(102f/255f, 102f/255f, 102f/255f);
+	}
+
+	void InitsFeedToBlank(){
+		Transform tf = transform.FindChild("Body").FindChild("Scroll").FindChild("ItemCardPowerUp");
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("FG").gameObject.SetActive(false);
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblName").gameObject.SetActive(false);
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Level").gameObject.SetActive(false);
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Pos").gameObject.SetActive(false);
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Button").gameObject.SetActive(true);
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblSelectPlayer").gameObject.SetActive(true);
+	}
+
+	void InitsFeedToPlayer(){
+		Transform tf = transform.FindChild("Body").FindChild("Scroll").FindChild("ItemCardPowerUp");
+		CardInfo info = mCardFeedList[0];
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("FG").gameObject.SetActive(true);
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("FG").GetComponent<UISprite>().spriteName
+			= "upgrade_bg_target_"+info.cardClass;
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblName").gameObject.SetActive(true);
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblName").GetComponent<UILabel>().text = info.playerName;
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Level").gameObject.SetActive(true);
+		for(int i = 0; i < 6; i++){
+			tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Level").FindChild("Star"+(i+1)).GetComponent<UISprite>().color
+				= new Color(102f/255f, 102f/255f, 102f/255f);
+		}
+		for(int i = 0; i < info.cardClass; i++){
+			tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Level").FindChild("Star"+(i+1)).GetComponent<UISprite>().color
+				= new Color(252f/255f, 133f/255f, 53f/255f);
+		}
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Level").FindChild("LvV").GetComponent<UILabel>()
+			.text = info.cardLevel+"";
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Pos").gameObject.SetActive(true);
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Pos").FindChild("SprPos").FindChild("Label").
+			GetComponent<UILabel>().text = info.posCode;
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Button").gameObject.SetActive(false);
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblSelectPlayer").gameObject.SetActive(false);
+
+		UtilMgr.LoadImage(info.photoUrl,
+			tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Frame").FindChild("Panel")
+		                  .FindChild("Texture").GetComponent<UITexture>());
 	}
 }

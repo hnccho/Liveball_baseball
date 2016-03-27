@@ -47,7 +47,7 @@ public class SelectFeeding : MonoBehaviour {
 					continue;
 				} else if(info.useYn > 0){
 					continue;
-				} else if(info.cardClass != mTargetCard.cardClass){
+				} else if(info.cardClass < mTargetCard.cardClass){
 					continue;
 				} else if(info.cardLevel < 5){
 					continue;
@@ -81,7 +81,17 @@ public class SelectFeeding : MonoBehaviour {
 	void InitInvenItem(UIListItem item, int index){
 		CardInfo info = mSortedList[index];
 		item.Target.transform.FindChild("ItemCard").FindChild("BtnRight").GetComponent<BtnSelectFeeding>().mCardInfo = info;
-		
+
+		item.Target.transform.FindChild("ItemCard").FindChild("BtnRight").GetComponent<BtnSelectFeeding>().IsSelected = false;
+
+		if(transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().mCardFeedList != null)
+		foreach(CardInfo feedInfo in transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().mCardFeedList){
+				if(feedInfo.itemSeq == info.itemSeq){
+					item.Target.transform.FindChild("ItemCard").FindChild("BtnRight").GetComponent<BtnSelectFeeding>().IsSelected = true;
+					break;
+				}
+			}
+
 		Transform tf = item.Target.transform.FindChild("ItemCard");
 
 		tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;

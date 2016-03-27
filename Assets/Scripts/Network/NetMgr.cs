@@ -744,6 +744,14 @@ public class NetMgr : MonoBehaviour{
 	{
 		Instance.webAPIProcessEvent (new JoinQuizRequest (joinInfo), baseEvent);
 	}
+
+	public static void CardLevelUp(CardInfo targetCard, List<CardInfo> feedingCards, BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new CardLevelUpRequest(targetCard, feedingCards), baseEvent);
+	}
+
+	public static void CardRankUp(CardInfo targetCard, CardInfo feedingCard, BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new CardRankUpRequest(targetCard, feedingCard), baseEvent);
+	}
 	
 	public static void GetQuizResult(int quizListSeq, BaseEvent baseEvent)
 	{

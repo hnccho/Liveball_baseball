@@ -1215,6 +1215,7 @@
      <Compile Include="Assets\Scripts\Network\Events\BaseSocketEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\CS\BaseCSEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\CS\CSGetListEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\CardUpEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\ChangeGestEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\CheckMemberDeviceEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\CheckMemberPincodeEvent.cs" />
@@ -1281,6 +1282,7 @@
      <Compile Include="Assets\Scripts\Network\Models\CardClassInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\CardInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\CardInvenInfo.cs" />
+     <Compile Include="Assets\Scripts\Network\Models\CardUpInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\CheckMailbox.cs" />
      <Compile Include="Assets\Scripts\Network\Models\CheckMemberDeviceInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\ContestDataInfo.cs" />
@@ -1375,6 +1377,8 @@
      <Compile Include="Assets\Scripts\Network\Requests\CS\CSGetListRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\CS\CSParamItem.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\CancelIAPRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\CardLevelUpRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\CardRankUpRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\ChangeGestRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\CheckMemberDeviceRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\CheckMemberPincodeRequest.cs" />
@@ -1459,6 +1463,7 @@
      <Compile Include="Assets\Scripts\Network\Responses\BaseResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\CS\BaseCSResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\CS\CSGetListResponse.cs" />
+     <Compile Include="Assets\Scripts\Network\Responses\CardUpResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\CheckMemberDeviceResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\CheckMemberPincodeResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\CheckVersionResponse.cs" />
