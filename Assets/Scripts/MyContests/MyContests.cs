@@ -101,6 +101,7 @@ public class MyContests : MonoBehaviour {
 			}
 
 			go = Instantiate(mItemUpcomingSub);
+			go.transform.FindChild("BG").GetComponent<ItemMyContests>().mContestInfo = mList[i];
 			go.transform.parent = transform.FindChild("Body").FindChild("Scroll View");
 			stackedHeight -= 276f/2f;
 			go.transform.localPosition = new Vector3(0, stackedHeight);
@@ -154,14 +155,16 @@ public class MyContests : MonoBehaviour {
 
 				totalFP = 0;
 				foreach(ContestListInfo info2 in mList){
-					if(info.startTime == info2.startTime)
+					if(info.startTime == info2.startTime){
 						totalFP += info2.totalFantasy;
+					}
 				}
 				go.transform.FindChild("Time").FindChild ("SprArrow").FindChild("Label").GetComponent<UILabel>().text
-					= totalFP+"";
+					= string.Format("{0:F1}", totalFP);
 			}
 			
 			go = Instantiate(mItemSettledSub);
+			go.transform.FindChild("BG").GetComponent<ItemMyContests>().mContestInfo = mList[i];
 			go.transform.parent = transform.FindChild("Body").FindChild("Scroll View");
 			stackedHeight -= 276f/2f;
 			go.transform.localPosition = new Vector3(0, stackedHeight);
@@ -219,10 +222,18 @@ public class MyContests : MonoBehaviour {
 						totalFP += info2.totalFantasy;
 				}
 				go.transform.FindChild("Time").FindChild ("SprArrow").FindChild("Label").GetComponent<UILabel>().text
-					= totalFP+"";
+					= string.Format("{0:F1}", totalFP);
+
+				float ratio = info.gameOverPlayers / 9f;
+				int width = (int)(124 * ratio);
+				go.transform.FindChild("Time").FindChild ("SprArrow").FindChild("Panel").FindChild("Sprite")
+					.GetComponent<UISprite>().width = width;
+				go.transform.FindChild("Time").FindChild ("SprArrow").FindChild("Panel").FindChild("Sprite")
+					.localPosition = new Vector3(-((124 - width)/2), 0);
 			}
 			
 			go = Instantiate(mItemLiveSub);
+			go.transform.FindChild("BG").GetComponent<ItemMyContests>().mContestInfo = mList[i];
 			go.transform.parent = transform.FindChild("Body").FindChild("Scroll View");
 			stackedHeight -= 170f;
 			go.transform.localPosition = new Vector3(0, stackedHeight);

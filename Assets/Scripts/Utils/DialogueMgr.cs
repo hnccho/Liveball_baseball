@@ -129,7 +129,8 @@ public class DialogueMgr : MonoBehaviour {
 		Instance.mDialogueBox.transform.FindChild("Box").GetComponent<UITweener>().method = UITweener.Method.BounceIn;
 	}
 
-	public static void ShowAttendanceDialogue(DIALOGUE_TYPE type, AttendanceInfo info, DialogClickHandler handler){
+	public static void ShowAttendanceDialogue(DIALOGUE_TYPE type, DialogClickHandler handler){
+		LoginInfo info = UserMgr.LoginInfo;
 		GameObject prefab = Resources.Load ("Attendance") as GameObject;
 		Instance.mAttendanceBox = Instantiate (prefab, new Vector3 (0f, 0f, 0f), Quaternion.identity) as GameObject;
 
@@ -175,10 +176,10 @@ public class DialogueMgr : MonoBehaviour {
 			} else
 				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Gold").gameObject.SetActive(false);
 
-			if(info.freePack > 0){
+			if(info.freeItem != null && info.freeItem.Length > 0){
 				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Pack").gameObject.SetActive(true);
-				//				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Pack").FindChild("Sprite")
-//					.FindChild("Label").GetComponent<UILabel>().text = info.freePack + " " + UtilMgr.GetLocalText("LblTickets");
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Pack").FindChild("Sprite")
+					.FindChild("Label").GetComponent<UILabel>().text = info.freeItem;
 			} else
 				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Pack").gameObject.SetActive(false);
 		} else{
@@ -201,10 +202,10 @@ public class DialogueMgr : MonoBehaviour {
 			} else
 				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Gold").gameObject.SetActive(false);
 			
-			if(info.joinFreePack > 0){
+			if(info.joinFreeItem != null && info.joinFreeItem.Length > 0){
 				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Pack").gameObject.SetActive(true);
-				//				Instance.mAttendanceBox.transform.FindChild("Mid").FindChild("Pack").FindChild("Sprite")
-				//					.FindChild("Label").GetComponent<UILabel>().text = info.freePack + " " + UtilMgr.GetLocalText("LblTickets");
+				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Pack").FindChild("Sprite")
+					.FindChild("Label").GetComponent<UILabel>().text = info.joinFreeItem;
 			} else
 				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Pack").gameObject.SetActive(false);
 		}

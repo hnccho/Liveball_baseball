@@ -15,6 +15,6 @@ public class ItemMyContests : MonoBehaviour {
 	}
 
 	public void OnClick(){
-//		transform.parent.parent.GetComponent<UIScrollView>().ResetPosition();
+		transform.root.FindChild("ContestDetails").GetComponent<ContestDetails>().Init(mContestInfo);
 	}
 }

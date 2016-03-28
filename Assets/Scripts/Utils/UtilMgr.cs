@@ -41,7 +41,9 @@ public class UtilMgr : MonoBehaviour {
 		SelectPlayer,
 		MyContests,
 		CardPowerUp,
-		SelectFeeding
+		SelectFeeding,
+		ContestDetails,
+		Lineup
 	}
 
 	static UtilMgr Instance

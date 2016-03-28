@@ -47,6 +47,7 @@ public class ShopItemBtns : MonoBehaviour {
 	}
 
 	void ReceivedCards(){
+		UserMgr.CardList = mCardEvent.Response.data;
 		transform.root.FindChild("MyCards").GetComponent<MyCards>().Init(mCardEvent,
      		transform.root.FindChild("MyCards").GetComponent<MyCards>().GetMailEvent());
 	}

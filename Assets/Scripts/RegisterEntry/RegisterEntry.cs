@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +24,62 @@ public class RegisterEntry : MonoBehaviour {
 
 		transform.FindChild("InfoTop").FindChild("Time").FindChild("LblRight").GetComponent<UILabel>().text
 			= UtilMgr.GetDateTime(ts);
+	}
+
+	PlayerInfo MakePlayerCard(PlayerInfo info){
+		CardInfo cardInfo = null;
+		foreach(CardInfo card in UserMgr.CardList){
+			if(info.playerId == card.playerFK){
+				cardInfo = card;
+			}
+		}
+		PlayerInfo playerInfo = new PlayerInfo();
+		playerInfo.playerId = info.playerId;
+		playerInfo.IsCard = true;
+		playerInfo.firstName = info.firstName;
+		playerInfo.lastName = info.lastName;
+		playerInfo.level = cardInfo.cardLevel;
+		playerInfo.grade = cardInfo.cardClass;
+		playerInfo.salary = cardInfo.salary;
+		playerInfo.salary_org = cardInfo.salary_org;
+		playerInfo.position = info.position;
+		playerInfo.itemSeq = cardInfo.itemSeq;
+		playerInfo.photoUrl = info.photoUrl;
+		return playerInfo;
+	}
+
+	public void InitRegisterEntry(ContestListInfo contestInfo, LineupInfo lineup){
+		InitRegisterEntry(contestInfo);
+
+		if(lineup == null)
+			return;
+
+		long [][] lineupArr = new long[2][]{
+			new long[]{lineup.slot1, lineup.slot2, lineup.slot3, lineup.slot4, lineup.slot5,
+				lineup.slot6, lineup.slot7, lineup.slot8, lineup.slot9 },
+			new long[]{lineup.item1, lineup.item2, lineup.item3, lineup.item4, lineup.item5,
+				lineup.item6, lineup.item7, lineup.item8, lineup.item9 },
+		};
+
+		for(int i = 0; i < lineupArr[0].Length; i++){
+			PlayerInfo playerInfo = null;
+			foreach(PlayerInfo info in UserMgr.PlayerList){
+				if(info.playerId == lineupArr[0][i]){
+					playerInfo = info;
+					break;
+				}
+			}
+
+			if(lineupArr[1][i] > 0){
+				playerInfo = MakePlayerCard(playerInfo);
+			}
+
+			transform.root.FindChild("SelectPlayer").GetComponent<SelectPlayer>().mSelectedNo = i+1;
+			SetDesignated(playerInfo);
+		}
+
+		transform.FindChild("InfoTop").FindChild("NewEntry").FindChild("Input").GetComponent<UIInput>()
+			.value = lineup.name;
 	}
 
 	public void InitRegisterEntry(ContestListInfo contestInfo){
@@ -65,6 +121,9 @@ public class RegisterEntry : MonoBehaviour {
 
 		transform.FindChild("Btm").GetComponent<BtmInfo>()
 			.SetBtmInfo(transform.FindChild("List").FindChild("Scroll View"));
+
+		transform.FindChild("InfoTop").FindChild("NewEntry").FindChild("Input").GetComponent<UIInput>().value = 
+			transform.FindChild("InfoTop").FindChild("NewEntry").FindChild("Input").GetComponent<UIInput>().defaultText;
 	}
 
 	public void SetDesignated(PlayerInfo info){
@@ -144,5 +203,15 @@ public class RegisterEntry : MonoBehaviour {
 
 		
 		UtilMgr.DismissLoading();
+	}
+
+	public string GetLineupName(){
+		if(transform.FindChild("InfoTop").FindChild("NewEntry").FindChild("Input").GetComponent<UIInput>()
+			.value.Length < 1)
+			return transform.FindChild("InfoTop").FindChild("NewEntry").FindChild("Input").GetComponent<UIInput>()
+				.defaultText;
+		else
+			return transform.FindChild("InfoTop").FindChild("NewEntry").FindChild("Input").GetComponent<UIInput>()
+				.value;
 	}
 }

@@ -35,6 +35,7 @@ public class TopMenuBtns : MonoBehaviour {
 	}
 
 	void ReceivedCards(){
+		UserMgr.CardList = mCardEvent.Response.data;
 		mMailEvent = new GetMailEvent(ReceivedMail);
 		NetMgr.GetUserMailBox(mMailEvent);
 	}

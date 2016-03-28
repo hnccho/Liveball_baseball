@@ -3,9 +3,9 @@ using System.Collections;
 
 public class GetLineupEvent : BaseEvent {
 
-	public GetLineupEvent(EventDelegate eventDelegate)
+	public GetLineupEvent(EventDelegate.Callback callback)
 	{
-		base.eventDelegate = eventDelegate;
+		base.eventDelegate = new EventDelegate(callback);
 
 		InitEvent += InitResponse;
 	}

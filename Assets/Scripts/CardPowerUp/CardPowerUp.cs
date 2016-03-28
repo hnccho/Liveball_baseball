@@ -14,6 +14,22 @@ public class CardPowerUp : MonoBehaviour {
 //	CardInfo[] mCardsFeed;
 	public List<CardInfo> mCardFeedList;
 	Texture2D mDefaultTxt;
+	string[][] LevelUpRate = new string[6][]{
+		new string[]{"100%", "100%", "100%", "100%", "100%", "100%"},
+		new string[]{"50%", "100%", "100%", "100%", "100%", "100%"},
+		new string[]{"25%", "50%", "100%", "100%", "100%", "100%"},
+		new string[]{"10%", "25%", "50%", "100%", "100%", "100%"},
+		new string[]{"5%", "10%", "25%", "50%", "100%", "100%"},
+		new string[]{"1%", "5%", "10%", "25%", "50%", "100%"}
+	};
+
+	int[] LevelUpFee = new int[]{
+		20, 40, 70, 100, 140, 180
+	};
+
+	int[] RankUpFee = new int[]{
+		50, 100, 150, 200, 300
+	};
 
 	// Use this for initialization
 	void Start () {
@@ -63,9 +79,9 @@ public class CardPowerUp : MonoBehaviour {
 			tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").gameObject.SetActive(true);
 			tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").gameObject.SetActive(false);
 
-			for(int i = 0; i < 4; i++){
-				InitFeedsToBlank(i);
-			}
+//			for(int i = 0; i < 4; i++){
+//				InitFeedsToBlank(i);
+//			}
 		} else{
 			tf.FindChild("LabelsInfo").FindChild("InfoCardPowerUp").gameObject.SetActive(false);
 			tf.FindChild("LabelsInfo").FindChild("InfoCardUpgrade").gameObject.SetActive(true);
@@ -76,15 +92,15 @@ public class CardPowerUp : MonoBehaviour {
 			tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").gameObject.SetActive(false);
 			tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").gameObject.SetActive(true);
 
-			InitsFeedToBlank();
+//			InitsFeedToBlank();
 		}
-
+		LoadFeedsInfo();
 
 	}
 
 	public void LoadFeedsInfo(){
-		float successRate = 0;
-		float fee = 0;
+//		float successRate = 0;
+		int fee = 0;
 		Transform tf = transform.FindChild("Body").FindChild("Scroll").FindChild("ItemCardPowerUp");
 		if(mType == TYPE.LEVELUP){
 			int i = 0;
@@ -96,27 +112,50 @@ public class CardPowerUp : MonoBehaviour {
 				InitFeedsToBlank(i);
 			}
 
-			tf.FindChild("Btm").FindChild("CardPowerUp").FindChild("SprTop").FindChild("Label").GetComponent<UILabel>()
-				.text = successRate + "%";
-			tf.FindChild("Btm").FindChild("CardPowerUp").FindChild("SprMid").FindChild("Label").GetComponent<UILabel>()
-				.text = successRate + "G";
-		} else{
-			if(mCardFeedList.Count > 0)
-				InitsFeedToPlayer();
-			else
-				InitsFeedToBlank();
+			string successRate = "";
+			for(i = mCardFeedList.Count -1; i > -1; i--){
+				if(mCardFeedList.Count < 1) break;
 
-			tf.FindChild("Btm").FindChild("CardUpgrade").FindChild("SprTop").FindChild("Label").GetComponent<UILabel>()
-				.text = "100%";
-			tf.FindChild("Btm").FindChild("CardUpgrade").FindChild("SprMid").FindChild("Label").GetComponent<UILabel>()
-				.text = successRate + "G";
+				CardInfo info = mCardFeedList[i];
+				successRate += LevelUpRate[mTargetCard.cardClass-1][info.cardClass-1] + " /";
+				fee += LevelUpFee[mTargetCard.cardClass-1];
+			}
+			if(mCardFeedList.Count > 0){
+				tf.FindChild("Btm").FindChild("CardPowerUp").FindChild("SprTop").FindChild("Label").GetComponent<UILabel>()
+					.text = successRate.Substring(0, successRate.Length -2);
+				tf.FindChild("Btm").FindChild("CardPowerUp").FindChild("SprMid").FindChild("Label").GetComponent<UILabel>()
+					.text = fee + "G";
+			} else{
+				tf.FindChild("Btm").FindChild("CardPowerUp").FindChild("SprTop").FindChild("Label").GetComponent<UILabel>()
+					.text = "0%";
+				tf.FindChild("Btm").FindChild("CardPowerUp").FindChild("SprMid").FindChild("Label").GetComponent<UILabel>()
+					.text = "0G";
+			}
+
+
+		} else{
+			if(mCardFeedList.Count > 0){
+				InitsFeedToPlayer();
+				tf.FindChild("Btm").FindChild("CardUpgrade").FindChild("SprTop").FindChild("Label").GetComponent<UILabel>()
+					.text = "100%";
+				tf.FindChild("Btm").FindChild("CardUpgrade").FindChild("SprMid").FindChild("Label").GetComponent<UILabel>()
+					.text = RankUpFee[mTargetCard.cardClass-1] + "G";
+			} else{
+				InitsFeedToBlank();
+				tf.FindChild("Btm").FindChild("CardUpgrade").FindChild("SprTop").FindChild("Label").GetComponent<UILabel>()
+					.text = "0%";
+				tf.FindChild("Btm").FindChild("CardUpgrade").FindChild("SprMid").FindChild("Label").GetComponent<UILabel>()
+					.text = "0G";
+			}
+
+
 		}
 	}
 
 	void InitFeedsToPlayer(int i){
 		Transform tf = transform.FindChild("Body").FindChild("Scroll").FindChild("ItemCardPowerUp");
 		CardInfo info = mCardFeedList[i];
-		Debug.Log("cardClass is "+info.cardClass);
+//		Debug.Log("cardClass is "+info.cardClass);
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
 			FindChild("FG").gameObject.SetActive(true);
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).

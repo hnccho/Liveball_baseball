@@ -242,13 +242,7 @@ public class LoginRoot : SuperRoot {
 			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrServerError"), mCheckEvent.Response.message,
 			                         DialogueMgr.DIALOGUE_TYPE.Alert, null);
 
-		AttendanceInfo attendInfo = new AttendanceInfo();
-		attendInfo.attendDay = mLoginEvent.Response.data.attendDay;
-		attendInfo.freeGold = mLoginEvent.Response.data.freeGold;
-		attendInfo.freeTicket = mLoginEvent.Response.data.freeTicket;
-		attendInfo.joinFreeGold = mLoginEvent.Response.data.joinFreeGold;
-		attendInfo.joinFreeTicket = mLoginEvent.Response.data.joinFreeTicket;
-		UserMgr.AttendInfo = attendInfo;
+		UserMgr.LoginInfo = mLoginEvent.Response.data;
 
 		int year = int.Parse(mLoginEvent.Response.data.serverTime.Substring(0, 4));
 		int mon = int.Parse(mLoginEvent.Response.data.serverTime.Substring(4, 2));

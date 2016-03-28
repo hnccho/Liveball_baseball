@@ -27,6 +27,7 @@ public class SelectFeeding : MonoBehaviour {
 	}
 
 	void ReceivedCard(){
+		UserMgr.CardList = mCardEvent.Response.data;
 		UtilMgr.ClearList(transform.FindChild("Body").FindChild("Draggable"));
 
 		if(mSortedList != null) mSortedList.Clear();
@@ -47,7 +48,7 @@ public class SelectFeeding : MonoBehaviour {
 					continue;
 				} else if(info.useYn > 0){
 					continue;
-				} else if(info.cardClass < mTargetCard.cardClass){
+				} else if(info.cardClass != mTargetCard.cardClass){
 					continue;
 				} else if(info.cardLevel < 5){
 					continue;
@@ -72,8 +73,6 @@ public class SelectFeeding : MonoBehaviour {
 				.GetComponent<UILabel>().text = 
 					transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().mCardFeedList.Count+"/1";
 		}
-
-
 		UtilMgr.AddBackState(UtilMgr.STATE.SelectFeeding);
 		UtilMgr.AnimatePageToLeft("CardPowerUp", "SelectFeeding");
 	}
@@ -81,11 +80,10 @@ public class SelectFeeding : MonoBehaviour {
 	void InitInvenItem(UIListItem item, int index){
 		CardInfo info = mSortedList[index];
 		item.Target.transform.FindChild("ItemCard").FindChild("BtnRight").GetComponent<BtnSelectFeeding>().mCardInfo = info;
-
 		item.Target.transform.FindChild("ItemCard").FindChild("BtnRight").GetComponent<BtnSelectFeeding>().IsSelected = false;
 
 		if(transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().mCardFeedList != null)
-		foreach(CardInfo feedInfo in transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().mCardFeedList){
+			foreach(CardInfo feedInfo in transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().mCardFeedList){
 				if(feedInfo.itemSeq == info.itemSeq){
 					item.Target.transform.FindChild("ItemCard").FindChild("BtnRight").GetComponent<BtnSelectFeeding>().IsSelected = true;
 					break;

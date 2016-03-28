@@ -25,8 +25,11 @@ public class ItemCard : MonoBehaviour {
 	}
 
 	public void OnBtnRightClick(){
-		if((mCardInfo.cardClass >= CardInfo.CLASS_MAX) && (mCardInfo.cardLevel >= CardInfo.LEVEL_MAX)){
-
+		if(mCardInfo.useYn > 0){
+			DialogueMgr.ShowDialogue("InUse", "InUse", DialogueMgr.DIALOGUE_TYPE.Alert, null);
+			return;
+		}else if((mCardInfo.cardClass >= CardInfo.CLASS_MAX) && (mCardInfo.cardLevel >= CardInfo.LEVEL_MAX)){
+			return;
 		} else if(mCardInfo.cardLevel > 4){
 			transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().Init(mCardInfo,
 	             transform.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture,
@@ -34,7 +37,7 @@ public class ItemCard : MonoBehaviour {
 		} else{
 			transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().Init(mCardInfo,
 	             transform.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture,
-	             UtilMgr.GetLocalText("LblCardLevelUp"), CardPowerUp.TYPE.LEVELUP);
+	             UtilMgr.GetLocalText("LblCardPowerUp"), CardPowerUp.TYPE.LEVELUP);
 		}
 		UtilMgr.AddBackState(UtilMgr.STATE.CardPowerUp);
 		UtilMgr.AnimatePageToLeft("MyCards", "CardPowerUp");

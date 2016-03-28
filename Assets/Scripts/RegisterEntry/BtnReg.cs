@@ -20,8 +20,9 @@ public class BtnReg : MonoBehaviour {
 		if(transform.parent.GetComponent<BtmInfo>().CheckSalary()){
 			if(transform.parent.GetComponent<BtmInfo>().CheckFull()){
 				mRegEvent = new RegEntryEvent(ReceivedEntry);
+				string lineupName = transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().GetLineupName();
 				RegisterEntry re = transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>();
-				NetMgr.RegEntry(re.GetContestSeq(), re.GetSlots(), mRegEvent);
+				NetMgr.RegEntry(lineupName, re.GetContestSeq(), re.GetSlots(), mRegEvent);
 			} else{
 				DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrError"),
 				                         UtilMgr.GetLocalText("StrEntryNotEnough"), DialogueMgr.DIALOGUE_TYPE.Alert, null);

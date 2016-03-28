@@ -14,6 +14,6 @@ public class BtnImport : MonoBehaviour {
 	}
 
 	public void OnClick(){
-
+		transform.root.FindChild("Lineup").GetComponent<MyLineup>().Init();
 	}
 }

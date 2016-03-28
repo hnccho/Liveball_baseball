@@ -362,4 +362,26 @@ public class LoginInfo {
 			_serverTime = value;
 		}
 	}
+
+	string _joinFreeItem;
+
+	public string joinFreeItem {
+		get {
+			return _joinFreeItem;
+		}
+		set {
+			_joinFreeItem = value;
+		}
+	}
+
+	string _freeItem;
+
+	public string freeItem {
+		get {
+			return _freeItem;
+		}
+		set {
+			_freeItem = value;
+		}
+	}
 }

@@ -653,8 +653,8 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent (new GetInvenItemRequest (), baseEvent);
 	}
 
-	public static void RegEntry(int contestSeq, long[][] slots, BaseEvent baseEvent){
-		Instance.webAPIProcessEvent(new RegEntryRequest(contestSeq, slots), baseEvent);
+	public static void RegEntry(string lineupName, int contestSeq, long[][] slots, BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new RegEntryRequest(lineupName, contestSeq, slots), baseEvent);
 	}
 	
 	public static void GameJoinNEntryFee(BaseEvent baseEvent)
@@ -797,10 +797,10 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent (new CheckNickRequest (name), baseEvent);
 	}
 	
-	public static void GetLineup(string teamCode, BaseEvent baseEvent)
-	{
-		Instance.webAPIProcessEvent(new GetLineupRequest(teamCode), baseEvent);
-	}
+//	public static void GetLineup(string teamCode, BaseEvent baseEvent)
+//	{
+//		Instance.webAPIProcessEvent(new GetLineupRequest(teamCode), baseEvent);
+//	}
 	
 	public static void GetItemShopList(int category, BaseEvent baseEvent)
 	{
@@ -885,9 +885,44 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new PlayerGameInfoRequest(playerId), baseEvent);
 	}
 
+	public static void GetMyLineup(int entrySeq, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new GetMyLineupRequest(entrySeq), baseEvent);
+	}
+
+	public static void GetLineup(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new GetLineupRequest(), baseEvent);
+	}
+
+	public static void EditLineup(string name, int lineupSeq, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new EditLineupRequest(name, lineupSeq), baseEvent);
+	}
+
+	public static void DeleteLineup(int lineupSeq, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new DeleteLineupRequest(lineupSeq), baseEvent);
+	}
+
+	public static void ContestMyTeamList(int contestSeq , BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new ContestMyTeamRequest(contestSeq), baseEvent);
+	}
+
 	public static void PlayerNewsInfo(long playerId , BaseEvent baseEvent)
 	{
 		Instance.webAPIProcessEvent(new PlayerNewsInfoRequest(playerId), baseEvent);
+	}
+
+	public static void EntryList(int contestSeq , BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new EntryListRequest(contestSeq), baseEvent);
+	}
+
+	public static void ContestDetails(int entrySeq , BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new ContestDetailsRequest(entrySeq), baseEvent);
 	}
 	
 	public static void AccuseContent(AccusationInfo accuInfo , BaseEvent baseEvent)

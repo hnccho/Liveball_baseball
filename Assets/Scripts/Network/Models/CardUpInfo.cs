@@ -90,15 +90,15 @@ public class CardUpInfo {
 	}
 
 //72436,
-	int _position;
-	public int position {
-		get {
-			return _position;
-		}
-		set {
-			_position = value;
-		}
-	}
+//	int _position;
+//	public int position {
+//		get {
+//			return _position;
+//		}
+//		set {
+//			_position = value;
+//		}
+//	}
 
 //4,				
 	string _posCode;

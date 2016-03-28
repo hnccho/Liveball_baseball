@@ -5,6 +5,7 @@ public class BtnPowerUp : MonoBehaviour {
 
 	CardUpEvent mCardUpEvent;
 	int mLevelBefore;
+	int mClassBefore;
 	GetCardInvenEvent mInvenEvent;
 
 	// Use this for initialization
@@ -25,6 +26,7 @@ public class BtnPowerUp : MonoBehaviour {
 				transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().mTargetCard,
 				transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().mCardFeedList, mCardUpEvent);
 		} else{
+			mClassBefore = transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().mTargetCard.cardClass;
 			mCardUpEvent = new CardUpEvent(ReceivedRankUp);
 			NetMgr.CardRankUp(
 				transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().mTargetCard,
@@ -53,7 +55,8 @@ public class BtnPowerUp : MonoBehaviour {
 	}
 
 	void ReceivedRankUp(){
-		DialogueMgr.ShowDialogue("Success", "Card Rank Up!", DialogueMgr.DIALOGUE_TYPE.Alert, ReloadInven);
+		DialogueMgr.ShowDialogue("Success", "Card Rank Up!\nRank "
+		                         + mClassBefore + " -> " + (mClassBefore+1), DialogueMgr.DIALOGUE_TYPE.Alert, ReloadInven);
 	}
 
 	void ReloadInven(DialogueMgr.BTNS btn){
@@ -62,6 +65,7 @@ public class BtnPowerUp : MonoBehaviour {
 	}
 
 	void ReceivedInven(){
+		UserMgr.CardList = mInvenEvent.Response.data;
 		transform.root.FindChild("MyCards").GetComponent<MyCards>().Init(mInvenEvent,
              transform.root.FindChild("MyCards").GetComponent<MyCards>().GetMailEvent());
 		UtilMgr.OnBackPressed();

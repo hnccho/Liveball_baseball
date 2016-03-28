@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GetLineupResponse : BaseResponse {
-	LineupInfo _data;
+	List<LineupInfo> _data;
 
-	public LineupInfo data
+	public List<LineupInfo> data
 	{
 		get{ return _data;}
 		set{ _data = value;}

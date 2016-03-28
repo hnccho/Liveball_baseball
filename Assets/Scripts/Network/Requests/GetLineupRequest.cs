@@ -4,24 +4,21 @@ using System.Text;
 
 public class GetLineupRequest : BaseRequest {
 
-	public GetLineupRequest(string teamCode)
+	public GetLineupRequest()
 	{
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
-//		Add ("gameSeq", UserMgr.Schedule.gameSeq);
-		Add ("teamCode", teamCode);
 
-//		mParams = JsonFx.Json.JsonWriter.Serialize (this);
 		mDic = this;
 	}
 
 	public override string GetType ()
 	{
-		return "spos";
+		return "apps.contest";
 	}
 
 	public override string GetQueryId()
 	{
-		return "gameSposGameLineup";
+		return "contestMyLineupList";
 	}
 
 }

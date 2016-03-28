@@ -7,7 +7,7 @@ public class UserMgr : MonoBehaviour {
 	static UserMgr _instance;
 
 	long diffTicks;
-	AttendanceInfo _attendInfo;
+	LoginInfo _loginInfo;
 	UserInfo _userInfo;
 	List<CardInfo> _cardList;
 	List<PlayerInfo> _playerList;
@@ -74,10 +74,10 @@ public class UserMgr : MonoBehaviour {
 		}
 	}
 
-	public static AttendanceInfo AttendInfo
+	public static LoginInfo LoginInfo
 	{
-		get{ return Instance._attendInfo;}
-		set{Instance._attendInfo = value;}
+		get{ return Instance._loginInfo;}
+		set{Instance._loginInfo = value;}
 	}
 	
 	public static UserInfo UserInfo

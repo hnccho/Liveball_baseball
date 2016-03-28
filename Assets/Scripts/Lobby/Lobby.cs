@@ -21,14 +21,11 @@ public class Lobby : MonoBehaviour {
 //		DialogueMgr.ShowDialogue("Attendance", "Attendance Day is "+UserMgr.AttendInfo.attendDay +
 //		                         "\n"+ freeGold +" Gold and " + 
 //		                         freeTicket +" Tickets", DialogueMgr.DIALOGUE_TYPE.Alert, null);
-		if(UserMgr.AttendInfo.joinFreeGold > 0){
-			DialogueMgr.ShowAttendanceDialogue(DialogueMgr.DIALOGUE_TYPE.Welcome,
-			                                   UserMgr.AttendInfo, CloseAttendance);
-		} else{
-			DialogueMgr.ShowAttendanceDialogue(DialogueMgr.DIALOGUE_TYPE.Attendance,
-			                                   UserMgr.AttendInfo, CloseAttendance);
+		if(UserMgr.LoginInfo.joinFreeGold > 0){
+			DialogueMgr.ShowAttendanceDialogue(DialogueMgr.DIALOGUE_TYPE.Welcome, CloseAttendance);
+		} else if(UserMgr.LoginInfo.freeGold > 0){
+			DialogueMgr.ShowAttendanceDialogue(DialogueMgr.DIALOGUE_TYPE.Attendance, CloseAttendance);
 		}
-
 
 		Init ();
 	}

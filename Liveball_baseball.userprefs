@@ -1,37 +1,32 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Contests/Contests.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/RegisterEntry/RegisterEntry.cs">
     <Files>
-      <File FileName="Assets/Scripts/Network/Responses/CardUpResponse.cs" Line="5" Column="1" />
-      <File FileName="Assets/Scripts/Network/Events/CardUpEvent.cs" Line="15" Column="66" />
-      <File FileName="Assets/Scripts/SelectFeeding/BtnSelectCompletion.cs" Line="18" Column="73" />
-      <File FileName="Assets/Scripts/SelectFeeding/BtnSelectFeeding.cs" Line="19" Column="10" />
-      <File FileName="Assets/Scripts/SelectFeeding/SelectFeeding.cs" Line="87" Column="84" />
-      <File FileName="Assets/Scripts/CardPowerUp/CardPowerUp.cs" Line="129" Column="48" />
-      <File FileName="Assets/Scripts/Utils/DialogueMgr.cs" Line="156" Column="53" />
-      <File FileName="Assets/Scripts/Login/LoginRoot.cs" Line="245" Column="7" />
-      <File FileName="Assets/Scripts/Network/Models/AttendanceInfo.cs" Line="42" Column="14" />
-      <File FileName="Assets/Scripts/Lobby/LandingRoot.cs" Line="13" Column="57" />
-      <File FileName="Assets/Scripts/Lobby/Lobby.cs" Line="25" Column="30" />
-      <File FileName="Assets/Scripts/MyContests/MyContests.cs" Line="45" Column="4" />
-      <File FileName="Assets/Scripts/Contests/Contests.cs" Line="37" Column="57" />
+      <File FileName="Assets/Scripts/Lineup/ItemLineup.cs" Line="16" Column="1" />
+      <File FileName="Assets/Scripts/Lineup/MyLineup.cs" Line="34" Column="97" />
+      <File FileName="Assets/Scripts/Lineup/BtnEditList.cs" Line="11" Column="14" />
+      <File FileName="Assets/Scripts/RegisterEntry/BtnImport.cs" Line="17" Column="65" />
+      <File FileName="Assets/Scripts/RegisterEntry/BtnReg.cs" Line="23" Column="101" />
+      <File FileName="Assets/Scripts/RegisterEntry/RegisterEntry.cs" Line="55" Column="18" />
+      <File FileName="Assets/Scripts/Contests/ItemContestsBtns.cs" Line="38" Column="79" />
+      <File FileName="Assets/Scripts/RegisterEntry/BtnInitialize.cs" Line="44" Column="74" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
-            <Node name="Scripts" expanded="True" selected="True">
+            <Node name="Scripts" expanded="True">
               <Node name="Contests" expanded="True" />
-              <Node name="Lobby" expanded="True" />
-              <Node name="MyContests" expanded="True" />
-              <Node name="Utils" expanded="True" />
-            </Node>
-          </Node>
-          <Node name="Assembly-CSharp-firstpass" expanded="True">
-            <Node name="Plugins" expanded="True">
-              <Node name="NGUI" expanded="True">
-                <Node name="Internal" expanded="True" />
+              <Node name="Network" expanded="True">
+                <Node name="Events" expanded="True" />
+                <Node name="Models" expanded="True" />
+                <Node name="Requests" expanded="True" />
+                <Node name="Responses" expanded="True" />
               </Node>
+              <Node name="RegisterEntry" expanded="True">
+                <Node name="RegisterEntry.cs" selected="True" />
+              </Node>
+              <Node name="Utils" expanded="True" />
             </Node>
           </Node>
         </State>
