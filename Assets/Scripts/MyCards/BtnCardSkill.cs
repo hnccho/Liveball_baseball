@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class BtnCardSkill : MonoBehaviour {
@@ -27,7 +27,7 @@ public class BtnCardSkill : MonoBehaviour {
 		UtilMgr.AddBackState(UtilMgr.STATE.Shop);
 		UtilMgr.AnimatePageToLeft("MyCards", "Shop");
 
-		transform.root.FindChild("Shop").GetComponent<Shop>().InitGoldShop(
+		transform.root.FindChild("Shop").GetComponent<Shop>().InitItemShop(
 			UtilMgr.GetLocalText("LblCardShop"), Shop.CARD, mGoldEvent);
 	}
 }

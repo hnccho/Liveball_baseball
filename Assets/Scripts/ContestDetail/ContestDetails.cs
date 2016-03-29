@@ -93,7 +93,7 @@ public class ContestDetails : MonoBehaviour {
 	}
 
 	void ReceivedDetails(){
-		transform.FindChild("InfoTop").FindChild("LblTitle").GetComponent<UILabel>().text = mContestEvent.Response.data.contestName;
+		transform.FindChild("InfoTop").FindChild("LblTitle").GetComponent<UILabel>().text = mContest.contestName;
 
 		string strMin = ""+mContestTime.Minute;
 		if(mContestTime.Minute < 10)
@@ -159,16 +159,17 @@ public class ContestDetails : MonoBehaviour {
 		Transform tf = transform.FindChild("Changeables").FindChild("Games");
 		tf.gameObject.SetActive(true);
 		UtilMgr.ClearList(tf.FindChild("Draggable"));
-		tf.FindChild("Draggable").GetComponent<UIDraggablePanel2>().Init(mEntryEvent.Response.data.Count,
+		tf.FindChild("Draggable").GetComponent<UIDraggablePanel2>().Init(mTeamEvent.Response.data.Count,
 		                                                                 delegate(UIListItem item, int index) {
 			item.Target.transform.FindChild("SprLeft").FindChild("Label").GetComponent<UILabel>()
 				.text = mTeamEvent.Response.data[index].awayTeamRuns+"";
 			item.Target.transform.FindChild("SprLeft").FindChild("SprEmblem").GetComponent<UISprite>()
 				.spriteName = mTeamEvent.Response.data[index].awayTeamId+"";
+			item.Target.transform.FindChild("SprRight").FindChild("SprEmblem").GetComponent<UISprite>()
+				.spriteName = mTeamEvent.Response.data[index].homeTeamId+"";
 			item.Target.transform.FindChild("SprRight").FindChild("Label").GetComponent<UILabel>()
 				.text = mTeamEvent.Response.data[index].homeTeamRuns+"";
-			item.Target.transform.FindChild("SprRIght").FindChild("SprEmblem").GetComponent<UISprite>()
-				.spriteName = mTeamEvent.Response.data[index].homeTeamId+"";
+
 			item.Target.transform.FindChild("LblCenter").GetComponent<UILabel>()
 				.text = mTeamEvent.Response.data[index].awayTeam + "         " + mTeamEvent.Response.data[index].homeTeam;
 			int hour = int.Parse(mTeamEvent.Response.data[index].dateTime.Substring(8, 2));

@@ -1246,6 +1246,7 @@
      <Compile Include="Assets\Scripts\Network\Events\GetGameParticipantRankingEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetGamePresetLineupEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetGameSposDetailBoardEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\GetGoldShopEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetInAppHistoryEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetInvenItemEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetItemShopGoldEvent.cs" />
@@ -1359,6 +1360,7 @@
      <Compile Include="Assets\Scripts\Network\Models\ScheduleInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\ScoreInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\ServiceInfo.cs" />
+     <Compile Include="Assets\Scripts\Network\Models\ShopGoldInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\SimpleResultInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\SimpleResultInfoSample.cs" />
      <Compile Include="Assets\Scripts\Network\Models\SocketMsgInfo.cs" />
@@ -1421,6 +1423,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\GetGamePresetLineupRequset.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetGameSposDetailBoardRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetGameSposPlayBoardRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\GetGoldShopRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetInAppHistoryRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetInvenItemRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetItemShopGoldRequest.cs" />
@@ -1502,6 +1505,7 @@
      <Compile Include="Assets\Scripts\Network\Responses\GetGameParticipantRankingResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetGamePresetLineupResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetGameSposDetailBoardResponse.cs" />
+     <Compile Include="Assets\Scripts\Network\Responses\GetGoldShopResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetInAppHistoryResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetInvenItemResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetItemShopGoldResponse.cs" />

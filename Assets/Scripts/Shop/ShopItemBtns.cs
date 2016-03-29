@@ -3,7 +3,8 @@ using System.Collections;
 
 public class ShopItemBtns : MonoBehaviour {
 
-	public ItemShopGoldInfo mInfo;
+	public ShopGoldInfo mGoldInfo;
+	public ItemShopGoldInfo mItemInfo;
 	PurchaseGoldEvent mGoldEvent;
 	GetCardInvenEvent mCardEvent;
 
@@ -18,13 +19,20 @@ public class ShopItemBtns : MonoBehaviour {
 	}
 
 	public void OnClick(){
-		if(UserMgr.UserInfo.gold < mInfo.price){
-			DialogueMgr.ShowDialogue("", "", DialogueMgr.DIALOGUE_TYPE.YesNo, "", "", "", BuyGold);
-			return;
+		if(transform.root.FindChild("Shop").GetComponent<Shop>().mCategory == Shop.GOLD){
+			transform.root.FindChild("Shop").GetComponent<Shop>().RequestIAP(mGoldInfo.productCode,
+			                                                                 mGoldInfo.productName);
+		} else{
+//			if(UserMgr.UserInfo.gold < mItemInfo.price){
+//				DialogueMgr.ShowDialogue("", "", DialogueMgr.DIALOGUE_TYPE.YesNo, "", "", "", BuyGold);
+//				return;
+//			}
+			
+			mGoldEvent = new PurchaseGoldEvent(ReceivedPurchase);
+			NetMgr.PurchaseGold(mItemInfo.productCode, mGoldEvent);
 		}
 
-		mGoldEvent = new PurchaseGoldEvent(ReceivedPurchase);
-		NetMgr.PurchaseGold(mInfo.productCode, mGoldEvent);
+
 	}
 
 	void BuyGold(DialogueMgr.BTNS btn){
@@ -34,9 +42,9 @@ public class ShopItemBtns : MonoBehaviour {
 	}
 
 	void ReceivedPurchase(){
-		if(mInfo.category == Shop.CARD){
+		if(mItemInfo.category == Shop.CARD){
 			DialogueMgr.ShowDialogue("Card!", "Purchased!", DialogueMgr.DIALOGUE_TYPE.Alert, CardPurchasedHandler);
-		} else if(mInfo.category == Shop.TICKET){
+		} else if(mItemInfo.category == Shop.TICKET){
 			DialogueMgr.ShowDialogue("Ticket!", "Purchased!", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 		}
 	}

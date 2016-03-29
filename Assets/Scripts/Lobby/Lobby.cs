@@ -4,10 +4,11 @@ using System.Collections;
 public class Lobby : MonoBehaviour {
 
 	GetLobbyInfoEvent mLobbyEvent;
+	UtilMgr.STATE mState;
 
 	// Use this for initialization
 	void Start () {
-	
+		mState = UtilMgr.STATE.Lobby;
 	}
 	
 	// Update is called once per frame
@@ -33,6 +34,11 @@ public class Lobby : MonoBehaviour {
 	void CloseAttendance(DialogueMgr.BTNS btn){
 		DialogueMgr.DismissDialogue();
 		Destroy(DialogueMgr.Instance.mAttendanceBox);
+	}
+
+	public void Init(UtilMgr.STATE state){
+		mState = state;
+		Init ();
 	}
 
 	public void Init(){
@@ -61,5 +67,10 @@ public class Lobby : MonoBehaviour {
 		transform.FindChild("Body").FindChild("ScrollBody").FindChild("DFS")
 			.FindChild("BtnRanking").FindChild("LblValue")
 				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.contestCountR+"";
+
+		if(mState != UtilMgr.STATE.Lobby){
+			UtilMgr.AnimatePageToRight(mState.ToString(), "Lobby");
+			mState = UtilMgr.STATE.Lobby;
+		}
 	}
 }

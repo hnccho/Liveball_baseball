@@ -22,7 +22,7 @@ public class InAppPurchaseRequest : BaseRequest {
 	
 	public override string GetQueryId()
 	{
-		return "tubyInAppPurchase";
+		return "paymentInAppPurchase";
 	}
 	
 }

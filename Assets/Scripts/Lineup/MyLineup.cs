@@ -40,6 +40,9 @@ public class MyLineup : MonoBehaviour {
 				item.Target.GetComponent<ItemLineup>().mLineupInfo = info;
 
 				item.Target.transform.FindChild("Normal").FindChild("LblName").GetComponent<UILabel>().text = info.name;
+				int width = item.Target.transform.FindChild("Normal").FindChild("LblName").GetComponent<UILabel>().width;
+				item.Target.transform.FindChild("Normal").FindChild("LblName").FindChild("BtnEdit").
+					localPosition = new Vector3(width+40f, 0);
 				item.Target.transform.FindChild("Delete").FindChild("LblName").GetComponent<UILabel>().text = info.name;
 				item.Target.transform.FindChild("Normal").FindChild("LblValue").GetComponent<UILabel>().text = info.entryPlayers;
 				item.Target.transform.FindChild("Delete").FindChild("LblValue").GetComponent<UILabel>().text = info.entryPlayers;

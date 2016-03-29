@@ -3,7 +3,8 @@ using System.Collections;
 
 public class BtnsShop : MonoBehaviour {
 
-	GetItemShopGoldEvent mGoldEvent;
+	GetItemShopGoldEvent mItemEvent;
+	GetGoldShopEvent mGoldEvent;
 
 	// Use this for initialization
 	void Start () {
@@ -17,15 +18,24 @@ public class BtnsShop : MonoBehaviour {
 
 	public void OnClick(){
 		if(name.Equals("BtnGold")){
-//			transform.root.FindChild("Shop").GetComponent<Shop>().InitShop(
-//				UtilMgr.GetLocalText("StrGoldShop"), Shop.GOLD);
+			mGoldEvent = new GetGoldShopEvent(ReceivedGold);
+			NetMgr.GetGoldShop(mGoldEvent);
 			return;
 		} else if(name.Equals("BtnTicket")){
-			mGoldEvent = new GetItemShopGoldEvent(ReceivedTicketShop);
-			NetMgr.GetItemShopList(Shop.TICKET, mGoldEvent);
+			mItemEvent = new GetItemShopGoldEvent(ReceivedTicketShop);
+			NetMgr.GetItemShopList(Shop.TICKET, mItemEvent);
 
 
 		}
+	}
+
+	void ReceivedGold(){
+		UtilMgr.RemoveBackState(UtilMgr.STATE.Profile);
+		UtilMgr.AnimatePageToLeft(UtilMgr.GetLastBackState().ToString(), "Shop");
+		UtilMgr.AddBackState(UtilMgr.STATE.Shop);
+
+		transform.root.FindChild("Shop").GetComponent<Shop>().InitGoldShop(
+			UtilMgr.GetLocalText("StrGoldShop"), Shop.GOLD, mGoldEvent);
 	}
 
 	void ReceivedTicketShop(){
@@ -33,7 +43,7 @@ public class BtnsShop : MonoBehaviour {
 		UtilMgr.AnimatePageToLeft(UtilMgr.GetLastBackState().ToString(), "Shop");
 		UtilMgr.AddBackState(UtilMgr.STATE.Shop);
 
-		transform.root.FindChild("Shop").GetComponent<Shop>().InitGoldShop(
-			UtilMgr.GetLocalText("StrTicketShop"), Shop.TICKET, mGoldEvent);
+		transform.root.FindChild("Shop").GetComponent<Shop>().InitItemShop(
+			UtilMgr.GetLocalText("StrTicketShop"), Shop.TICKET, mItemEvent);
 	}
 }

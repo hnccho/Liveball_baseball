@@ -167,38 +167,15 @@ public class UtilMgr : MonoBehaviour {
 			if(state == STATE.Profile){
 				TweenPosition.Begin(Instance.mRoot.FindChild("Profile").gameObject,
 				                    				                    1f, new Vector3(1600f, 0, 0), false);
+			} else if(mListBackState[mListBackState.Count-2] == STATE.Lobby){
+				ClearBackStates();
+				Instance.mRoot.FindChild("Lobby").GetComponent<Lobby>().Init(state);
+				return true;
 			} else{
 				AnimatePageToRight(state.ToString(), mListBackState[mListBackState.Count-2].ToString());
 			}
-//			if(state == STATE.MyCard)	AnimatePageToRight("MyCards", "Lobby");
-//			else if(state == STATE.Contests)	AnimatePageToRight("Contests", "Lobby");
-//			else if(state == STATE.Shop){
-//				if(mListBackState.Count == 1){
-//					AnimatePageToRight("Shop", "Lobby");
-//				}
-//			}
-//			else if(state == STATE.RegisterEntry){//need r u sure exit?
-//				if(mListBackState[mListBackState.Count-2] == STATE.Contests){
-//					AnimatePageToRight("RegisterEntry", "Contests");
-//				}
-//			}
-//			else if(state == STATE.Profile){
-//				TweenPosition.Begin(Instance.mRoot.FindChild("Profile").gameObject,
-//				                    1f, new Vector3(1600f, 0, 0), false);
-//
-//			}
-//			else if(state == STATE.SelectPlayer){
-//				if(mListBackState[mListBackState.Count-2] == STATE.RegisterEntry){
-//					AnimatePageToRight("SelectPlayer", "RegisterEntry");
-//				}
-//			}
 
 			mListBackState.RemoveAt(mListBackState.Count-1);
-			if(mListBackState[mListBackState.Count-1] == STATE.Lobby){
-				ClearBackStates();
-//				AddBackState(STATE.Lobby);
-				Instance.mRoot.FindChild("Lobby").GetComponent<Lobby>().Init();
-			}
 			return true;
 		}
 		else

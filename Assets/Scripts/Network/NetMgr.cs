@@ -905,6 +905,12 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new DeleteLineupRequest(lineupSeq), baseEvent);
 	}
 
+	public static void GetGoldShop(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new GetGoldShopRequest(), baseEvent);
+	}
+
+
 	public static void ContestMyTeamList(int contestSeq , BaseEvent baseEvent)
 	{
 		Instance.webAPIProcessEvent(new ContestMyTeamRequest(contestSeq), baseEvent);

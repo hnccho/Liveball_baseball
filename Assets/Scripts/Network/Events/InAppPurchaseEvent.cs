@@ -3,9 +3,9 @@ using System.Collections;
 
 public class InAppPurchaseEvent : BaseEvent {
 
-	public InAppPurchaseEvent(EventDelegate eventDelegate)
+	public InAppPurchaseEvent(EventDelegate.Callback callback)
 	{
-		base.eventDelegate = eventDelegate;
+		base.eventDelegate = new EventDelegate(callback);
 
 		InitEvent += InitResponse;
 	}
