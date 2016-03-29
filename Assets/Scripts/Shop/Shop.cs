@@ -376,8 +376,8 @@ public class Shop : MonoBehaviour {
 	void purchaseSucceededEvent(string receipt)
 	{	
 		byte[] bytes = System.Text.Encoding.UTF8.GetBytes(receipt);
-		mIAPEvent = new InAppPurchaseEvent(new EventDelegate(this, "FinishIAP"));
-		NetMgr.InAppPurchase(IsTest, itemcode, System.Convert.ToBase64String(bytes), "", mIAPEvent);
+		mIAPEvent = new InAppPurchaseEvent(FinishIAP);
+		NetMgr.InAppPurchase(false, mItemcode, System.Convert.ToBase64String(bytes), "", mIAPEvent);
 	}
 	
 	void purchaseFailedEvent(string receipt)

@@ -25,7 +25,7 @@ public class ItemContestsBtns : MonoBehaviour {
 	public void OnClick(){
 		if(mContestInfo.myEntry > 0){
 			mLineupEvent = new GetMyLineupEvent(ReceivedEntry);
-			NetMgr.GetMyLineup(mContestInfo.myEntry, mLineupEvent);
+			NetMgr.GetMyEntryData(mContestInfo.myEntry, mLineupEvent);
 			return;
 		}
 

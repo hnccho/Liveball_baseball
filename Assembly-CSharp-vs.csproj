@@ -1255,7 +1255,7 @@
      <Compile Include="Assets\Scripts\Network\Events\GetLineupEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetLobbyInfoEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetMailEvent.cs" />
-     <Compile Include="Assets\Scripts\Network\Events\GetMyLineupEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\GetMyEntryDataEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetPlayerListEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetPlayerStatisticsEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetProfileEvent.cs" />
@@ -1432,7 +1432,8 @@
      <Compile Include="Assets\Scripts\Network\Requests\GetLineupRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetLobbyInfoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetMailboxRequest.cs" />
-     <Compile Include="Assets\Scripts\Network\Requests\GetMyLineupRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\GetMyEntryDataRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\GetMyLineupDataRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetPlayerListRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetPlayerStatisticsRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetPreparedQuizRequest.cs" />

@@ -4,7 +4,7 @@ using System.Collections;
 public class Lobby : MonoBehaviour {
 
 	GetLobbyInfoEvent mLobbyEvent;
-	UtilMgr.STATE mState;
+	public UtilMgr.STATE mState;
 
 	// Use this for initialization
 	void Start () {
@@ -68,9 +68,6 @@ public class Lobby : MonoBehaviour {
 			.FindChild("BtnRanking").FindChild("LblValue")
 				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.contestCountR+"";
 
-		if(mState != UtilMgr.STATE.Lobby){
-			UtilMgr.AnimatePageToRight(mState.ToString(), "Lobby");
-			mState = UtilMgr.STATE.Lobby;
-		}
+
 	}
 }

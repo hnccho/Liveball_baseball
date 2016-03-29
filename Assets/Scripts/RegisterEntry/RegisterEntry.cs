@@ -7,7 +7,7 @@ public class RegisterEntry : MonoBehaviour {
 
 	public GameObject mRegItem;
 //	int mContestSeq;
-	ContestListInfo mContestInfo;
+	public ContestListInfo mContestInfo;
 	DateTime mContestTime;
 
 	// Use this for initialization
@@ -78,8 +78,12 @@ public class RegisterEntry : MonoBehaviour {
 			SetDesignated(playerInfo);
 		}
 
-		transform.FindChild("InfoTop").FindChild("NewEntry").FindChild("Input").GetComponent<UIInput>()
-			.value = lineup.name;
+		if(lineup.name == null || lineup.name.Length < 1)
+			transform.FindChild("InfoTop").FindChild("NewEntry").FindChild("Input").GetComponent<UIInput>()
+				.value = lineup.lineupName;
+		else
+			transform.FindChild("InfoTop").FindChild("NewEntry").FindChild("Input").GetComponent<UIInput>()
+				.value = lineup.name;
 	}
 
 	public void InitRegisterEntry(ContestListInfo contestInfo){

@@ -28,10 +28,11 @@ public class RTLobby : MonoBehaviour {
 	}
 
 	void ReceivedRT(){
+		UtilMgr.ClearList(transform.FindChild("ScrollRT"));
 		float width = 720f;
 		for(int i = 0; i < mRTEvent.Response.data.Count; i++){
 			Transform item = Instantiate(mItemRT).transform;
-			item.parent = transform.FindChild("ScrollRT").transform;
+			item.parent = transform.FindChild("ScrollRT");
 			item.localPosition = new Vector3(width * i, 1f, 1f);
 			item.localScale = new Vector3(1f, 1f, 1f);
 			EventInfo data = mRTEvent.Response.data[i];
@@ -139,6 +140,12 @@ public class RTLobby : MonoBehaviour {
 		}
 		transform.FindChild("ScrollRT").GetComponent<UIScrollView>().ResetPosition();
 		transform.FindChild("ScrollRT").GetComponent<UICenterOnChild>().Recenter();
+
+		if(transform.root.FindChild("Lobby").GetComponent<Lobby>().mState != UtilMgr.STATE.Lobby){
+			UtilMgr.AnimatePageToRight(
+				transform.root.FindChild("Lobby").GetComponent<Lobby>().mState.ToString(), "Lobby");
+			transform.root.FindChild("Lobby").GetComponent<Lobby>().mState = UtilMgr.STATE.Lobby;
+		}
 	}
 
 //	IEnumerator loadImage(string url, Transform tf){

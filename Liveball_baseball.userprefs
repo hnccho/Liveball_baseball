@@ -1,20 +1,40 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Shop/ShopItemBtns.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Lineup/ItemLineup.cs">
     <Files>
-      <File FileName="Assets/Scripts/Shop/Shop.cs" Line="57" Column="31" />
-      <File FileName="Assets/Scripts/Shop/ShopItemBtns.cs" Line="23" Column="4" />
+      <File FileName="Assets/Scripts/Shop/Shop.cs" Line="380" Column="40" />
+      <File FileName="Assets/Scripts/Shop/ShopItemBtns.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Lobby/Lobby.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Lobby/RTLobby.cs" Line="16" Column="18" />
+      <File FileName="Assets/Scripts/SelectPlayer/ItemSelectPlayerSub.cs" Line="15" Column="3" />
+      <File FileName="Assets/Scripts/SelectPlayer/SelectPlayer.cs" Line="87" Column="60" />
+      <File FileName="Assets/Scripts/SelectPlayer/ItemSelectPlayerMain.cs" Line="6" Column="25" />
+      <File FileName="Assets/Scripts/RegisterEntry/BtnPosition.cs" Line="34" Column="3" />
+      <File FileName="Assets/Scripts/Lineup/MyLineup.cs" Line="76" Column="113" />
+      <File FileName="Assets/Scripts/Utils/UtilMgr.cs" Line="157" Column="2" />
+      <File FileName="Assets/Scripts/Lineup/ItemLineup.cs" Line="30" Column="31" />
+      <File FileName="Assets/Scripts/Contests/ItemContestsBtns.cs" Line="28" Column="25" />
+      <File FileName="Assets/Scripts/RegisterEntry/RegisterEntry.cs" Line="78" Column="30" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Assembly-CSharp" expanded="True">
             <Node name="Scripts" expanded="True">
-              <Node name="MyCards" expanded="True" />
-              <Node name="Profile" expanded="True" />
-              <Node name="Shop" expanded="True">
-                <Node name="ShopItemBtns.cs" selected="True" />
+              <Node name="Contests" expanded="True" />
+              <Node name="Lineup" expanded="True">
+                <Node name="ItemLineup.cs" selected="True" />
               </Node>
+              <Node name="Lobby" expanded="True" />
+              <Node name="Login" expanded="True" />
+              <Node name="Network" expanded="True">
+                <Node name="Events" expanded="True" />
+                <Node name="Models" expanded="True" />
+                <Node name="Requests" expanded="True" />
+              </Node>
+              <Node name="RegisterEntry" expanded="True" />
+              <Node name="SelectPlayer" expanded="True" />
+              <Node name="Utils" expanded="True" />
             </Node>
           </Node>
         </State>

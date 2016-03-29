@@ -961,7 +961,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -768, y: 298, z: 0}
+  m_LocalPosition: {x: 736, y: 229, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 491250}
@@ -2213,7 +2213,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3006
+  startingRenderQueue: 3069
   mClipTexture: {fileID: 2800000, guid: 004950842d1aa4da8af157b7ff17436d, type: 3}
   mAlpha: 1
   mClipping: 1
@@ -3365,7 +3365,7 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
   onClick:
-  - mTarget: {fileID: 11414268}
+  - mTarget: {fileID: 11484030}
     mMethodName: OnBtnRightClick
     mParameters: []
     oneShot: 0

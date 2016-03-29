@@ -2,8 +2,11 @@
 using System.Collections;
 
 public class SuperRoot : MonoBehaviour {
+
+	public GameObject mPopup;
 		
 	protected void Start () {
+		mPopup = null;
 		UtilMgr.SetRoot(transform);
 		transform.FindChild ("Camera").transform.localPosition = new Vector3(0f, UtilMgr.GetScaledPositionY(), -2000f);
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -46,6 +49,10 @@ public class SuperRoot : MonoBehaviour {
 	
 	public void OnBackPressed()
 	{
+		if(mPopup != null){
+			mPopup.SetActive(false);
+			mPopup = null;
+		} else
 		if (DialogueMgr.IsShown) {
 			DialogueMgr.Instance.BtnCancelClicked();
 		} else if(IsAnimating){

@@ -24,6 +24,17 @@ public class LineupInfo {
 		}
 	}
 
+	string _lineupName;
+
+	public string lineupName {
+		get {
+			return _lineupName;
+		}
+		set {
+			_lineupName = value;
+		}
+	}
+
 //lineup1,
 	long _slot1;
 	public long slot1 {

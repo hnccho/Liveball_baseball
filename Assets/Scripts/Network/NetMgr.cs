@@ -885,9 +885,14 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new PlayerGameInfoRequest(playerId), baseEvent);
 	}
 
-	public static void GetMyLineup(int entrySeq, BaseEvent baseEvent)
+	public static void GetMyEntryData(int entrySeq, BaseEvent baseEvent)
 	{
-		Instance.webAPIProcessEvent(new GetMyLineupRequest(entrySeq), baseEvent);
+		Instance.webAPIProcessEvent(new GetMyEntryDataRequest(entrySeq), baseEvent);
+	}
+
+	public static void GetMyLineupData(int lineupSeq, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new GetMyLineupDataRequest(lineupSeq), baseEvent);
 	}
 
 	public static void GetLineup(BaseEvent baseEvent)

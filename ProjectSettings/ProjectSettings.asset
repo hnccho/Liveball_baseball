@@ -119,12 +119,12 @@ PlayerSettings:
   iOSLaunchScreenCustomXibPath: 
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
-  androidSplashScreen: {fileID: 0}
+  androidSplashScreen: {fileID: 2800000, guid: b2369329d98c343c5adf6935096ab467, type: 3}
   AndroidKeystoreName: /Users/sunken/projects/street.keystore
   AndroidKeyaliasName: street
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
-  androidEnableBanner: 1
+  androidEnableBanner: 0
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -136,6 +136,20 @@ PlayerSettings:
     m_Icons:
     - m_Icon: {fileID: 0}
       m_Size: 128
+  - m_BuildTarget: Android
+    m_Icons:
+    - m_Icon: {fileID: 0}
+      m_Size: 192
+    - m_Icon: {fileID: 0}
+      m_Size: 144
+    - m_Icon: {fileID: 2800000, guid: 876f05700b16d455c9c7346c41b9a98c, type: 3}
+      m_Size: 96
+    - m_Icon: {fileID: 2800000, guid: 967c93167536a4a939e801833dcd702f, type: 3}
+      m_Size: 72
+    - m_Icon: {fileID: 2800000, guid: 7c9d16947bc6047ff83b40d6970f65f0, type: 3}
+      m_Size: 48
+    - m_Icon: {fileID: 2800000, guid: 1faf8a1de8dac459a87314438f8ffb20, type: 3}
+      m_Size: 36
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   webPlayerTemplate: APPLICATION:Default

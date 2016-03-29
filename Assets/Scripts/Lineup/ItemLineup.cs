@@ -5,6 +5,7 @@ public class ItemLineup : MonoBehaviour {
 
 	public LineupInfo mLineupInfo;
 	DeleteLineupEvent mDeleteEvent;
+	GetMyLineupEvent mMyLineupEvent;
 
 	// Use this for initialization
 	void Start () {
@@ -23,15 +24,24 @@ public class ItemLineup : MonoBehaviour {
 	}
 
 	public void BtnEditClick(){
-
+		transform.root.FindChild("Lineup").GetComponent<MyLineup>().ShowEditBox(mLineupInfo);
 	}
 
 	public void BtnSelectClick(){
+		mMyLineupEvent = new GetMyLineupEvent(ReceivedMyLineup);
+		NetMgr.GetMyLineupData(mLineupInfo.lineupSeq, mMyLineupEvent);
+	}
 
+	void ReceivedMyLineup(){
+		transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().InitRegisterEntry(
+			transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mContestInfo
+				, mMyLineupEvent.Response.data);
+		UtilMgr.OnBackPressed();
 	}
 
 	public void BtnDeleteClick(){
 		mDeleteEvent = new DeleteLineupEvent(ReceivedDelete);
+		NetMgr.DeleteLineup(mLineupInfo.lineupSeq, mDeleteEvent);
 	}
 
 	void ReceivedDelete(){
