@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Constants {	
 	public const float DEFAULT_SCR_RATIO = 1280f / 720f;
-	public const string APPTAG = "StreetLab_Tuby";	
+	public const string APPTAG = "RankingBall";	
 	public const bool IS_DEBUGGABLE = false;
 	public const string CS_APP_KEY = "2gv515iiuby";	
 	
@@ -30,7 +30,7 @@ public class Constants {
 //	public const string URL_ATTENDANCE = "events/attendance_confirm/";
 	public const string URL_ATTENDANCE = "events/daily_reward/";
 
-	public const string STORE_GOOGLE ="market://details?id=com.streetlab.tuby";
+	public const string STORE_GOOGLE ="market://details?id=com.rankingball";
 	public const string STORE_IPHONE ="https://itunes.apple.com/kr/app/id1000138413?mt=8";
 
 	/*/
@@ -59,7 +59,8 @@ public class Constants {
 	public static string CS_ICON_HOST			 		= 	"http://www.crossshock.com/Icon/";
 
 //	public static string CHECK_TEST_SERVER_HOST 		= 	"http://" + HOST + ":4002/webTuby/query.frz";
-	public static string CHECK_SERVER_HOST 				= 	"http://" + HOST + ":6080/rankBall/query.frz";
+	public static string CHECK_SERVER_HOST_MLB 			= 	"http://" + HOST + ":6080/rankBall/query.frz";
+	public static string CHECK_SERVER_HOST_KBO 			= 	"http://" + HOST + ":7080/rankBall/query.frz";
 //	public static string CHECK_SERVER_HOST2				= 	"http://" + HOST + ":600/webTuby/query.frz";
 
 	public const string EULA_URL = "https://game.nanoo.so/liveball/notice/1714";

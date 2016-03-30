@@ -24,8 +24,8 @@ public class LoginRoot : SuperRoot {
 		transform.FindChild("RegisterUsername").localPosition
 			= new Vector3(0f, UtilMgr.GetScaledPositionY ());
 
-		if(UtilMgr.IsMLB())
-			transform.FindChild("SprTitle").GetComponent<UISprite>().spriteName = "logo_title1";
+//		if(UtilMgr.IsMLB())
+//			transform.FindChild("SprTitle").GetComponent<UISprite>().spriteName = "logo_title1";
 
 		if(mNick != null){
 			Debug.Log("Nick is "+mNick);

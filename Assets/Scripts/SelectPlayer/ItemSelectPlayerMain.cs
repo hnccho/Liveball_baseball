@@ -15,6 +15,12 @@ public class ItemSelectPlayerMain : MonoBehaviour {
 	
 	}
 
+	public void LoadImage(){
+		UtilMgr.LoadImage(mPlayerInfo.photoUrl
+	      , transform.FindChild("BtnPhoto")
+              .FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>());
+	}
+
 	public void OnBtnRightClick(){
 		transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().SetDesignated(mPlayerInfo);
 		UtilMgr.OnBackPressed();

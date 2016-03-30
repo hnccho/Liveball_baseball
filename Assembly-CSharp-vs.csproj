@@ -1197,8 +1197,10 @@
      <Compile Include="Assets\Scripts\Lineup\BtnEditList.cs" />
      <Compile Include="Assets\Scripts\Lineup\ItemLineup.cs" />
      <Compile Include="Assets\Scripts\Lineup\MyLineup.cs" />
+     <Compile Include="Assets\Scripts\Lobby\BtnRank.cs" />
      <Compile Include="Assets\Scripts\Lobby\BtnWhat.cs" />
      <Compile Include="Assets\Scripts\Lobby\DFSBtns.cs" />
+     <Compile Include="Assets\Scripts\Lobby\ItemRT.cs" />
      <Compile Include="Assets\Scripts\Lobby\LandingRoot.cs" />
      <Compile Include="Assets\Scripts\Lobby\Lobby.cs" />
      <Compile Include="Assets\Scripts\Lobby\RTDirectionBtns.cs" />
@@ -1257,6 +1259,7 @@
      <Compile Include="Assets\Scripts\Network\Events\GetMailEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetMyEntryDataEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetPlayerListEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\GetPlayerRankEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetPlayerStatisticsEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetProfileEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetQuizEvent.cs" />
@@ -1463,7 +1466,9 @@
      <Compile Include="Assets\Scripts\Network\Requests\MergeMembershipRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\OrderNoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\PlayerGameInfoRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\PlayerHitterRankingRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\PlayerNewsInfoRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\PlayerPitcherRankingRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\PlayerSeasonInfoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\PresetAddRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\PresetDataRequest.cs" />
@@ -1476,7 +1481,11 @@
      <Compile Include="Assets\Scripts\Network\Requests\RemoveContestHistoryRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\RemoveContestPresetRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\RequestIAPRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\UpdateEntryRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\UpdateMemberInfoRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\UserDailyRankingRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\UserMonthlyRankingRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\UserWeeklyRankingRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\WithdrawRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\checkRecentMessageRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\procStoreGachaRequest.cs" />
@@ -1547,6 +1556,10 @@
      <Compile Include="Assets\Scripts\PlayerCard\PlayerCardSelectionBtns.cs" />
      <Compile Include="Assets\Scripts\Profile\BtnsShop.cs" />
      <Compile Include="Assets\Scripts\Profile\Profile.cs" />
+     <Compile Include="Assets\Scripts\Ranking\BtnFilter.cs" />
+     <Compile Include="Assets\Scripts\Ranking\BtnRankingSort.cs" />
+     <Compile Include="Assets\Scripts\Ranking\ItemUserRanking.cs" />
+     <Compile Include="Assets\Scripts\Ranking\Ranking.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\BtmInfo.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\BtnFolding.cs" />
      <Compile Include="Assets\Scripts\RegisterEntry\BtnImport.cs" />

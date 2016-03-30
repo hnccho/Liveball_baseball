@@ -12,6 +12,17 @@ public class EntryListInfo {
 		}
 	}
 
+	int _rankPoint;
+
+	public int rankPoint {
+		get {
+			return _rankPoint;
+		}
+		set {
+			_rankPoint = value;
+		}
+	}
+
 //1,				
 	int _rank;
 	public int rank {

@@ -42,17 +42,19 @@ public class TopMenuBtns : MonoBehaviour {
 
 	void ReceivedMail(){
 		UtilMgr.AddBackState(UtilMgr.STATE.MyCards);
-		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
-		                    transform.root.FindChild("Lobby").gameObject,
-		                    transform.root.FindChild("MyCards").gameObject);
+//		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
+//		                    transform.root.FindChild("Lobby").gameObject,
+//		                    transform.root.FindChild("MyCards").gameObject);
+		UtilMgr.AnimatePageToLeft("Lobby", "MyCards");
 		transform.root.FindChild("MyCards").GetComponent<MyCards>().Init(mCardEvent, mMailEvent);
 	}
 
 	void ReceivedUpcoming(){
 		UtilMgr.AddBackState(UtilMgr.STATE.MyContests);
-		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
-		                    transform.root.FindChild("Lobby").gameObject,
-		                    transform.root.FindChild("MyContests").gameObject);
+//		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
+//		                    transform.root.FindChild("Lobby").gameObject,
+//		                    transform.root.FindChild("MyContests").gameObject);
+		UtilMgr.AnimatePageToLeft("Lobby", "MyContests");
 
 		transform.root.FindChild("MyContests").GetComponent<MyContests>().Init(
 			UtilMgr.GetLocalText("LblUpcomingContests"), mContestEvent);
@@ -60,9 +62,10 @@ public class TopMenuBtns : MonoBehaviour {
 
 	void ReceivedLive(){
 		UtilMgr.AddBackState(UtilMgr.STATE.MyContests);
-		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
-		                    transform.root.FindChild("Lobby").gameObject,
-		                    transform.root.FindChild("MyContests").gameObject);
+//		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
+//		                    transform.root.FindChild("Lobby").gameObject,
+//		                    transform.root.FindChild("MyContests").gameObject);
+		UtilMgr.AnimatePageToLeft("Lobby", "MyContests");
 
 		transform.root.FindChild("MyContests").GetComponent<MyContests>().Init(
 			UtilMgr.GetLocalText("LblLive"), mContestEvent);
@@ -70,9 +73,10 @@ public class TopMenuBtns : MonoBehaviour {
 
 	void ReceivedRecent(){
 		UtilMgr.AddBackState(UtilMgr.STATE.MyContests);
-		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
-		                    transform.root.FindChild("Lobby").gameObject,
-		                    transform.root.FindChild("MyContests").gameObject);
+//		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
+//		                    transform.root.FindChild("Lobby").gameObject,
+//		                    transform.root.FindChild("MyContests").gameObject);
+		UtilMgr.AnimatePageToLeft("Lobby", "MyContests");
 
 		transform.root.FindChild("MyContests").GetComponent<MyContests>().Init(
 			UtilMgr.GetLocalText("LblSettledEntries"), mContestEvent);

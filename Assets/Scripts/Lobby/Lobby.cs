@@ -5,6 +5,7 @@ public class Lobby : MonoBehaviour {
 
 	GetLobbyInfoEvent mLobbyEvent;
 	public UtilMgr.STATE mState;
+	public GameObject mBodyItem;
 
 	// Use this for initialization
 	void Start () {
@@ -17,11 +18,6 @@ public class Lobby : MonoBehaviour {
 	}
 
 	public void FirstInit(){
-//		string freeGold = UtilMgr.AddsThousandsSeparator(UserMgr.AttendInfo.freeGold);
-//		string freeTicket = UtilMgr.AddsThousandsSeparator(UserMgr.AttendInfo.freeTicket);
-//		DialogueMgr.ShowDialogue("Attendance", "Attendance Day is "+UserMgr.AttendInfo.attendDay +
-//		                         "\n"+ freeGold +" Gold and " + 
-//		                         freeTicket +" Tickets", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 		if(UserMgr.LoginInfo.joinFreeGold > 0){
 			DialogueMgr.ShowAttendanceDialogue(DialogueMgr.DIALOGUE_TYPE.Welcome, CloseAttendance);
 		} else if(UserMgr.LoginInfo.freeGold > 0){
@@ -49,7 +45,14 @@ public class Lobby : MonoBehaviour {
 	}
 
 	void ReceivedLobbyInfo(){
-		transform.FindChild("Body").FindChild("ScrollBody").FindChild("RT").GetComponent<RTLobby>().Init();
+//		UtilMgr.ClearList(transform.FindChild("Body").FindChild("ScrollBody"));
+//		GameObject bodyItem = Instantiate(mBodyItem);
+//		bodyItem.transform.parent = transform.FindChild("Body").FindChild("ScrollBody");
+//		bodyItem.transform.localScale = new Vector3(1f, 1f, 1f);
+//		bodyItem.transform.localPosition = Vector3.zero;
+		GameObject bodyItem = transform.FindChild("Body").FindChild("ScrollBody").GetChild(0).gameObject;
+
+		bodyItem.transform.FindChild("RT").GetComponent<RTLobby>().Init();
 
 		transform.FindChild("Top").FindChild("TopMenu").FindChild("BtnMyCards").FindChild("LblValue")
 				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.myCardCount+"";
@@ -58,16 +61,13 @@ public class Lobby : MonoBehaviour {
 		transform.FindChild("Top").FindChild("TopMenu").FindChild("BtnLive").FindChild("LblValue")
 			.GetComponent<UILabel>().text = mLobbyEvent.Response.data.myContestCount+"";
 		
-		transform.FindChild("Body").FindChild("ScrollBody").FindChild("DFS")
-			.FindChild("BtnSpecial").FindChild("LblValue")
+		bodyItem.transform.FindChild("DFS").FindChild("BtnSpecial").FindChild("LblValue")
 				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.contestCountS+"";
-		transform.FindChild("Body").FindChild("ScrollBody").FindChild("DFS")
-			.FindChild("Btn50").FindChild("LblValue")
+		bodyItem.transform.FindChild("DFS").FindChild("Btn50").FindChild("LblValue")
 				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.contestCount50+"";
-		transform.FindChild("Body").FindChild("ScrollBody").FindChild("DFS")
-			.FindChild("BtnRanking").FindChild("LblValue")
+		bodyItem.transform.FindChild("DFS").FindChild("BtnRanking").FindChild("LblValue")
 				.GetComponent<UILabel>().text = mLobbyEvent.Response.data.contestCountR+"";
 
-
+//		transform.FindChild("Body").FindChild("ScrollBody").GetComponent<UIScrollView>().ResetPosition();
 	}
 }

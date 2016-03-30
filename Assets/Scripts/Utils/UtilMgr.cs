@@ -23,6 +23,8 @@ public class UtilMgr : MonoBehaviour {
 	public static string PreLoadedLevelName;
 	Transform mRoot;
 
+	EventDelegate mEventTweenFinish;
+
 	public enum DIRECTION{
 		ToLeft,
 		ToRight
@@ -43,7 +45,9 @@ public class UtilMgr : MonoBehaviour {
 		CardPowerUp,
 		SelectFeeding,
 		ContestDetails,
-		Lineup
+		Lineup,
+		Bingo,
+		Ranking
 	}
 
 	static UtilMgr Instance
@@ -81,8 +85,9 @@ public class UtilMgr : MonoBehaviour {
 //		}
 	}
 
-	public static void AnimatePage(DIRECTION direction, GameObject disappear, GameObject appear){
+	public static void AnimatePage(DIRECTION direction, GameObject disappear, GameObject appear, EventDelegate eventDelegate){
 		Instance.mRoot.GetComponent<SuperRoot>().IsAnimating = true;
+		Instance.mEventTweenFinish = eventDelegate;
 
 		appear.SetActive(true);
 		Instance.mOriCamVec = Instance.mRoot.FindChild("Camera").localPosition;
@@ -125,6 +130,12 @@ public class UtilMgr : MonoBehaviour {
 			= new Vector3(0, Instance.mOriCamVec.y, Instance.mOriCamVec.z);
 
 		Instance.mRoot.FindChild("Profile").gameObject.SetActive(false);
+
+		if(Instance.mEventTweenFinish != null){
+			Instance.mEventTweenFinish.Execute();
+			Instance.mEventTweenFinish.Clear();
+			Instance.mEventTweenFinish = null;
+		}
 	}
 
 //	void DisappearFinished(){
@@ -186,15 +197,23 @@ public class UtilMgr : MonoBehaviour {
 	}
 
 	public static void AnimatePageToRight(string disappear, string appear){
-		AnimatePage(DIRECTION.ToRight,
-		            Instance.mRoot.FindChild(disappear).gameObject,
-		            Instance.mRoot.FindChild(appear).gameObject);
+		AnimatePageToRight(disappear, appear, null);
 	}
 
 	public static void AnimatePageToLeft(string disappear, string appear){
+		AnimatePageToLeft(disappear, appear, null);
+	}
+
+	public static void AnimatePageToRight(string disappear, string appear, EventDelegate eventDelegate){
+		AnimatePage(DIRECTION.ToRight,
+		            Instance.mRoot.FindChild(disappear).gameObject,
+		            Instance.mRoot.FindChild(appear).gameObject, eventDelegate);
+	}
+	
+	public static void AnimatePageToLeft(string disappear, string appear, EventDelegate eventDelegate){
 		AnimatePage(DIRECTION.ToLeft,
 		            Instance.mRoot.FindChild(disappear).gameObject,
-		            Instance.mRoot.FindChild(appear).gameObject);
+		            Instance.mRoot.FindChild(appear).gameObject, eventDelegate);
 	}
 
 	public static void Quit(){
@@ -560,7 +579,7 @@ public class UtilMgr : MonoBehaviour {
 
 	public static bool IsMLB(){
 		bool value = false;
-		if(Application.bundleIdentifier.Equals("com.streetlab.liveball.mlb"))
+		if(Application.productName.Equals("RankingBall"))
 		   value = true;
 
 		return value;
@@ -616,6 +635,10 @@ public class UtilMgr : MonoBehaviour {
 			values[1] = "a.m";
 		}
 		return values;
+	}
+
+	public static void StopAllCoroutine(){
+		Instance.StopAllCoroutines();
 	}
 
 	public static void LoadImage(string url, UITexture texture){

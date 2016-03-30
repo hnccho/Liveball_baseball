@@ -40,9 +40,10 @@ public class DFSBtns : MonoBehaviour {
 
 	void ReceivedContest(){
 		UtilMgr.AddBackState(UtilMgr.STATE.Contests);
-		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
-		                    transform.root.FindChild("Lobby").gameObject,
-		                    transform.root.FindChild("Contests").gameObject);
+//		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
+//		                    transform.root.FindChild("Lobby").gameObject,
+//		                    transform.root.FindChild("Contests").gameObject);
+		UtilMgr.AnimatePageToLeft("Lobby", "Contests");
 
 		transform.root.FindChild("Contests").GetComponent<Contests>()
 			.InitContests(mTitle, mContestEvent.Response.data);

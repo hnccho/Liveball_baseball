@@ -22,7 +22,21 @@ public class BtnReg : MonoBehaviour {
 				mRegEvent = new RegEntryEvent(ReceivedEntry);
 				string lineupName = transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().GetLineupName();
 				RegisterEntry re = transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>();
-				NetMgr.RegEntry(lineupName, re.GetContestSeq(), re.GetSlots(), mRegEvent);
+
+
+				if(transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mContestInfo.myEntry < 1){
+					//check tickets. . .? on list side
+					NetMgr.RegEntry(lineupName,
+					                transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mLineup == null ? 0 : 
+					                transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mLineup.lineupSeq
+					                , re.GetContestSeq(), re.GetSlots(), mRegEvent);
+				} else{
+					NetMgr.UpdateEntry(lineupName,
+					                transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mLineup == null ? 0 : 
+					                transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mLineup.lineupSeq
+					                   ,transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mContestInfo.myEntry
+					                   , re.GetContestSeq(), re.GetSlots(), mRegEvent);
+				}
 			} else{
 				DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrError"),
 				                         UtilMgr.GetLocalText("StrEntryNotEnough"), DialogueMgr.DIALOGUE_TYPE.Alert, null);

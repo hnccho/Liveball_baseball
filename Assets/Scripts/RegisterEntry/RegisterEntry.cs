@@ -9,6 +9,7 @@ public class RegisterEntry : MonoBehaviour {
 //	int mContestSeq;
 	public ContestListInfo mContestInfo;
 	DateTime mContestTime;
+	public LineupInfo mLineup;
 
 	// Use this for initialization
 	void Start () {
@@ -84,6 +85,8 @@ public class RegisterEntry : MonoBehaviour {
 		else
 			transform.FindChild("InfoTop").FindChild("NewEntry").FindChild("Input").GetComponent<UIInput>()
 				.value = lineup.name;
+
+		mLineup = lineup;
 	}
 
 	public void InitRegisterEntry(ContestListInfo contestInfo){
@@ -164,6 +167,8 @@ public class RegisterEntry : MonoBehaviour {
 
 		transform.FindChild("Btm").GetComponent<BtmInfo>()
 			.SetBtmInfo(transform.FindChild("List").FindChild("Scroll View"));
+
+		mLineup = null;
 	}
 
 	public long[][] GetSlots(){

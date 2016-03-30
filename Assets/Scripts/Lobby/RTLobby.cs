@@ -36,6 +36,7 @@ public class RTLobby : MonoBehaviour {
 			item.localPosition = new Vector3(width * i, 1f, 1f);
 			item.localScale = new Vector3(1f, 1f, 1f);
 			EventInfo data = mRTEvent.Response.data[i];
+			item.GetComponent<ItemRT>().mEventInfo = data;
 
 			item.FindChild("Label").GetComponent<UILabel>().text = i+"";
 			if(i == 0){
@@ -83,15 +84,15 @@ public class RTLobby : MonoBehaviour {
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
 						= new Color(1f, 1f, 1f, 50f/255f);
 
-				UtilMgr.LoadImage(data.hitterPhoto,
-				                  item.FindChild("Players").FindChild("Left").FindChild("Frame")
-				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
+//				UtilMgr.LoadImage(data.hitterPhoto,
+//				                  item.FindChild("Players").FindChild("Left").FindChild("Frame")
+//				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 				item.FindChild("Players").FindChild("Left")
 					.FindChild("Frame").FindChild("SprPos").FindChild("Label").GetComponent<UILabel>().text = "B";
 
-				UtilMgr.LoadImage(data.pitcherPhoto,
-				                  item.FindChild("Players").FindChild("Right").FindChild("Frame")
-				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
+//				UtilMgr.LoadImage(data.pitcherPhoto,
+//				                  item.FindChild("Players").FindChild("Right").FindChild("Frame")
+//				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 				item.FindChild("Players").FindChild("Right")
 					.FindChild("Frame").FindChild("SprPos").FindChild("Label").GetComponent<UILabel>().text = "P";
 
@@ -120,15 +121,15 @@ public class RTLobby : MonoBehaviour {
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
 						= new Color(1f, 1f, 1f, 50f/255f);
 
-				UtilMgr.LoadImage(data.hitterPhoto,
-				                  item.FindChild("Players").FindChild("Right").FindChild("Frame")
-				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
+//				UtilMgr.LoadImage(data.hitterPhoto,
+//				                  item.FindChild("Players").FindChild("Right").FindChild("Frame")
+//				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 				item.FindChild("Players").FindChild("Right")
 					.FindChild("Frame").FindChild("SprPos").FindChild("Label").GetComponent<UILabel>().text = "B";
 
-				UtilMgr.LoadImage(data.pitcherPhoto,
-				                  item.FindChild("Players").FindChild("Left").FindChild("Frame")
-				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
+//				UtilMgr.LoadImage(data.pitcherPhoto,
+//				                  item.FindChild("Players").FindChild("Left").FindChild("Frame")
+//				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 				item.FindChild("Players").FindChild("Left")
 					.FindChild("Frame").FindChild("SprPos").FindChild("Label").GetComponent<UILabel>().text = "P";
 
@@ -139,13 +140,22 @@ public class RTLobby : MonoBehaviour {
 			}
 		}
 		transform.FindChild("ScrollRT").GetComponent<UIScrollView>().ResetPosition();
-		transform.FindChild("ScrollRT").GetComponent<UICenterOnChild>().Recenter();
+//		transform.FindChild("ScrollRT").GetComponent<UICenterOnChild>().Recenter();
 
 		if(transform.root.FindChild("Lobby").GetComponent<Lobby>().mState != UtilMgr.STATE.Lobby){
 			UtilMgr.AnimatePageToRight(
-				transform.root.FindChild("Lobby").GetComponent<Lobby>().mState.ToString(), "Lobby");
+				transform.root.FindChild("Lobby").GetComponent<Lobby>().mState.ToString(), "Lobby",
+				new EventDelegate(AnimationFinish));
 			transform.root.FindChild("Lobby").GetComponent<Lobby>().mState = UtilMgr.STATE.Lobby;
+		} else{
+			AnimationFinish();
 		}
+	}
+
+	void AnimationFinish(){
+		ItemRT[] items = transform.FindChild("ScrollRT").GetComponentsInChildren<ItemRT>();
+		foreach(ItemRT item in items)
+			item.LoadImage();
 	}
 
 //	IEnumerator loadImage(string url, Transform tf){

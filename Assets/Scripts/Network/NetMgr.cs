@@ -267,8 +267,12 @@ public class NetMgr : MonoBehaviour{
 			reqParam = request.ToRequestString();
 		} else {
 		}
-		
-		string host = Constants.CHECK_SERVER_HOST;
+
+		string host = "";
+		if(UtilMgr.IsMLB())
+			host = Constants.CHECK_SERVER_HOST_MLB;
+		else
+			host = Constants.CHECK_SERVER_HOST_KBO;
 //		if(isTest){
 //			host = Constants.CHECK_TEST_SERVER_HOST;
 //			Debug.Log("Send to Test Server");
@@ -647,14 +651,17 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent (new GetGameParticipantRankingRequest (), baseEvent);
 	}
 	
-	
 	public static void GetInvenItem(BaseEvent baseEvent)
 	{
 		Instance.webAPIProcessEvent (new GetInvenItemRequest (), baseEvent);
 	}
 
-	public static void RegEntry(string lineupName, int contestSeq, long[][] slots, BaseEvent baseEvent){
-		Instance.webAPIProcessEvent(new RegEntryRequest(lineupName, contestSeq, slots), baseEvent);
+	public static void RegEntry(string lineupName, int lineupSeq, int contestSeq, long[][] slots, BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new RegEntryRequest(lineupName, lineupSeq, contestSeq, slots), baseEvent);
+	}
+
+	public static void UpdateEntry(string lineupName, int lineupSeq, int entrySeq, int contestSeq, long[][] slots, BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new UpdateEntryRequest(lineupName, lineupSeq, entrySeq, contestSeq, slots), baseEvent);
 	}
 	
 	public static void GameJoinNEntryFee(BaseEvent baseEvent)
@@ -929,6 +936,31 @@ public class NetMgr : MonoBehaviour{
 	public static void EntryList(int contestSeq , BaseEvent baseEvent)
 	{
 		Instance.webAPIProcessEvent(new EntryListRequest(contestSeq), baseEvent);
+	}
+
+	public static void UserDailyRanking(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new UserDailyRankingRequest(), baseEvent);
+	}
+
+	public static void UserMonthlyRanking(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new UserMonthlyRankingRequest(), baseEvent);
+	}
+
+	public static void UserWeeklyRanking(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new UserWeeklyRankingRequest(), baseEvent);
+	}
+
+	public static void PlayerHitterRanking(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new PlayerHitterRankingRequest(), baseEvent);
+	}
+
+	public static void PlayerPitcherRanking(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new PlayerPitcherRankingRequest(), baseEvent);
 	}
 
 	public static void ContestDetails(int entrySeq , BaseEvent baseEvent)

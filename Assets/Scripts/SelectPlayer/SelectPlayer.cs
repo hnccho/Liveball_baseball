@@ -76,7 +76,8 @@ public class SelectPlayer : MonoBehaviour {
 				}
 			}
 		}
-
+		transform.FindChild("Body").FindChild("Scroll").GetComponent<UIDraggablePanel2>().onDragStarted = OnDragStarted;
+		transform.FindChild("Body").FindChild("Scroll").GetComponent<UIDraggablePanel2>().onDragFinished = OnDragFinished;
 		transform.FindChild("Body").FindChild("Scroll").GetComponent<UIDraggablePanel2>()
 			.Init(mPlayerList.Count, delegate(UIListItem item, int index) {
 				PlayerInfo info = mPlayerList[index];
@@ -118,9 +119,9 @@ public class SelectPlayer : MonoBehaviour {
 					tf.FindChild("BtnPhoto")
 						.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().color
 							= new Color(1f, 1f, 1f, 50f/255f);
-					UtilMgr.LoadImage(info.photoUrl
-					                  , tf.FindChild("BtnPhoto")
-					                  .FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>());
+//					UtilMgr.LoadImage(info.photoUrl
+//					                  , tf.FindChild("BtnPhoto")
+//					                  .FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>());
 					tf.GetComponent<ItemSelectPlayerMain>().mPlayerInfo = info;
 					tf.FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
 					tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
@@ -137,6 +138,18 @@ public class SelectPlayer : MonoBehaviour {
 				}
 			});
 		transform.FindChild("Body").FindChild("Scroll").GetComponent<UIDraggablePanel2>().ResetPosition();
+		OnDragFinished();
+	}
+
+	void OnDragStarted(){
+		UtilMgr.StopAllCoroutine();
+	}
+
+	void OnDragFinished(){
+		ItemSelectPlayerMain[] items 
+			= transform.FindChild("Body").FindChild("Scroll").GetComponentsInChildren<ItemSelectPlayerMain>();
+		foreach(ItemSelectPlayerMain item in items)
+			item.LoadImage();
 	}
 
 //	IEnumerator LoadImage(string url, UITexture texture){
