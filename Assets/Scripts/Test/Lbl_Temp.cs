@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Facebook.Unity;
+//using Facebook.Unity;
 
 public class Lbl_Temp : MonoBehaviour {
 
@@ -14,20 +14,20 @@ public class Lbl_Temp : MonoBehaviour {
 		Debug.Log("Start");
 	}
 
-	void onInitComplete(){
-		Debug.Log("FB Init Complete");
-		List<string> permissions = new List<string>();
-		permissions.Add("email.publish_actions");
-		FB.LogInWithPublishPermissions(permissions, AuthCallback);
-	}
+//	void onInitComplete(){
+//		Debug.Log("FB Init Complete");
+//		List<string> permissions = new List<string>();
+//		permissions.Add("email.publish_actions");
+//		FB.LogInWithPublishPermissions(permissions, AuthCallback);
+//	}
 
 //	ILoginResult AuthCallback = new ILoginResult(){
 //
 //	};
 
-	void AuthCallback(ILoginResult result){
-
-	}
+//	void AuthCallback(ILoginResult result){
+//
+//	}
 
 	void onHideUnity(bool isUnityShown){
 		Debug.Log("Unity is Shown "+isUnityShown);

@@ -457,6 +457,50 @@ public class ContestListInfo {
 		}
 	}
 
+	int _firstRewardRP;
+
+	public int firstRewardRP {
+		get {
+			return _firstRewardRP;
+		}
+		set {
+			_firstRewardRP = value;
+		}
+	}
+
+	int _firstRewardGold;
+
+	public int firstRewardGold {
+		get {
+			return _firstRewardGold;
+		}
+		set {
+			_firstRewardGold = value;
+		}
+	}
+
+	int _myRewardGold;
+
+	public int myRewardGold {
+		get {
+			return _myRewardGold;
+		}
+		set {
+			_myRewardGold = value;
+		}
+	}
+
+	int _myRewardRP;
+
+	public int myRewardRP {
+		get {
+			return _myRewardRP;
+		}
+		set {
+			_myRewardRP = value;
+		}
+	}
+
 	long _earnedPoint;
 
 	public long earnedPoint {
@@ -687,6 +731,17 @@ public class ContestListInfo {
 		}
 		set {
 			_item9 = value;
+		}
+	}
+
+	int _salaryLimit;
+
+	public int salaryLimit {
+		get {
+			return _salaryLimit;
+		}
+		set {
+			_salaryLimit = value;
 		}
 	}
 }

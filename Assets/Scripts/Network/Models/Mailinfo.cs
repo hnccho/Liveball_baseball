@@ -4,6 +4,19 @@ using System.Collections.Generic;
 
 public class Mailinfo {
 
+	string _mail_title;
+
+	public string mail_title {
+		get {
+			return _mail_title;
+		}
+		set {
+			_mail_title = value;
+		}
+	}
+
+
+
 	long _itemFK;
 
 	public long itemFK {

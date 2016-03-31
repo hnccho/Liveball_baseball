@@ -32,7 +32,7 @@ public class Contests : MonoBehaviour {
 			.SetContestSeq(mContestList[index]);
 		item.Target.gameObject.transform.FindChild("LblTitle")
 			.GetComponent<UILabel>().text = mContestList[index].contestName;
-		item.Target.gameObject.transform.FindChild("LblPrizes").FindChild("Label")
+		item.Target.gameObject.transform.FindChild("LblPrizes").FindChild("Label")//enties
 			.GetComponent<UILabel>().text = "[fc8535]"+UtilMgr.AddsThousandsSeparator(mContestList[index].rewardValue);
 		item.Target.gameObject.transform.FindChild("LblTickets").FindChild("Label")
 			.GetComponent<UILabel>().text = mContestList[index].entryTicket+"";
@@ -42,5 +42,10 @@ public class Contests : MonoBehaviour {
 			item.Target.gameObject.transform.FindChild("SprJoin").gameObject.SetActive(true);
 		else
 			item.Target.gameObject.transform.FindChild("SprJoin").gameObject.SetActive(false);
+
+		item.Target.gameObject.transform.FindChild("LblEntries").FindChild("Label")
+			.GetComponent<UILabel>().text = "[333333][b]" +
+				UtilMgr.AddsThousandsSeparator(mContestList[index].totalJoin) + "[/b][-][666666] / "+
+				UtilMgr.AddsThousandsSeparator(mContestList[index].totalEntry);
 	}
 }

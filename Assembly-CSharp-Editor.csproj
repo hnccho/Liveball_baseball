@@ -169,15 +169,6 @@
      <Compile Include="Assets\Extras\PlayMaker\Editor\ReportWindow.cs" />
      <Compile Include="Assets\Extras\Playmaker NGUI Scripts\Scripts\Editor\ExportAssetBundles.cs" />
      <Compile Include="Assets\Extras\iTween\PlayMaker\Editor\iTweenMoveToActionEditor.cs" />
-     <Compile Include="Assets\Facebook\Editor\FacebookBuild.cs" />
-     <Compile Include="Assets\Facebook\Editor\FacebookPostprocess.cs" />
-     <Compile Include="Assets\Facebook\Editor\FacebookSettingsEditor.cs" />
-     <Compile Include="Assets\Facebook\Editor\Utility.cs" />
-     <Compile Include="Assets\Facebook\Editor\android\FacebookAndroidUtil.cs" />
-     <Compile Include="Assets\Facebook\Editor\android\ManifestMod.cs" />
-     <Compile Include="Assets\Facebook\Editor\iOS\FixupFiles.cs" />
-     <Compile Include="Assets\Facebook\Editor\iOS\PListDict.cs" />
-     <Compile Include="Assets\Facebook\Editor\iOS\PListParser.cs" />
      <None Include="Assets\Extras\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\Extras\IGSoft_Resources\ToolResources\EffectShader\FXMaker_Mask Alpha Blended.shader" />
      <None Include="Assets\Extras\NGUI\ReadMe - 3.7.6.txt" />
@@ -251,7 +242,6 @@
      <None Include="Assets\ProLoading\Example\Present\TopRight.txt" />
      <None Include="Assets\Extras\NGUI\Examples\Shaders\Unlit - Additive Colored.shader" />
      <None Include="Assets\Extras\Universal Sound FX\#Game Genre References\8bit and Retro.txt" />
-     <None Include="Assets\Facebook\Scripts\Canvas\Resources\JSSDKBindings.txt" />
      <None Include="Assets\Extras\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
      <None Include="Assets\Extras\NGUI\Examples\Shaders\Refractive.shader" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Text (TextureClip).shader" />
@@ -372,8 +362,6 @@
       <Project>{C6033AC8-B1E0-0A2C-5A1F-B409999A6C9A}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
       <Project>{8758EFF9-F7A2-2C04-F729-EFD158356CFF}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
-    <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{C612B281-F152-AA59-AADA-A4BEEDBC7D5D}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript.unityproj">
       <Project>{983EBB4D-F4BE-C9FF-A709-B531DA1BC723}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>

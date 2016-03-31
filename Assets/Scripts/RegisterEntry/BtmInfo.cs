@@ -4,7 +4,7 @@ using System.Collections;
 public class BtmInfo : MonoBehaviour {
 
 	long mTotal;
-	const long MaxSalary = 35000l;
+//	public static int MaxSalary = 35000;
 	int mCount;
 
 	// Use this for initialization
@@ -32,16 +32,18 @@ public class BtmInfo : MonoBehaviour {
 			avg = mTotal / mCount;
 		else
 			avg = mTotal;
+		int salaryLimit = transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mContestInfo.salaryLimit;
 
 		transform.FindChild("Labels").FindChild("LblSmall").GetComponent<UILabel>().text
 			= string.Format(UtilMgr.GetLocalText("LblRegEntryInfo"),
 			                UtilMgr.AddsThousandsSeparator(avg+""), mCount);
 		transform.FindChild("Labels").FindChild("LblBig").GetComponent<UILabel>().text
-			= "$" + UtilMgr.AddsThousandsSeparator(mTotal+"") + " [999999]of $35,000";
+			= "$" + UtilMgr.AddsThousandsSeparator(mTotal+"") + " [999999]of $"
+				+ UtilMgr.AddsThousandsSeparator(salaryLimit);
 	}
 
 	public bool CheckSalary(){
-		if(mTotal <= MaxSalary)
+		if(mTotal <= transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mContestInfo.salaryLimit)
 			return true;
 
 		return false;

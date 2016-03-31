@@ -29,10 +29,15 @@ public class MyContests : MonoBehaviour {
 		transform.FindChild("Top").FindChild("LblTitle").GetComponent<UILabel>().text = title;
 
 		int totalTickets = 0;
-		long totalEarned = 0;
+		long totalEarnedRP = 0;
+		long totalEarnedGold = 0;
+		long total1stPrize = 0;
+
 		foreach(ContestListInfo info in mList){
 			totalTickets += info.entryTicket;
-			totalEarned += info.earnedPoint;
+			totalEarnedRP += info.myRewardRP;
+			totalEarnedGold += info.myRewardGold;
+			total1stPrize += info.firstRewardGold;
 		}
 
 		UtilMgr.ClearList(transform.FindChild("Body").FindChild("Scroll View"));//,
@@ -59,7 +64,7 @@ public class MyContests : MonoBehaviour {
 			transform.FindChild("Top").FindChild("Live").FindChild("EntryFees").FindChild("LblEntryFeesV")
 				.GetComponent<UILabel>().text = totalTickets+"";
 			transform.FindChild("Top").FindChild("Live").FindChild("Winnings").FindChild("LblWinningsV")
-				.GetComponent<UILabel>().text = totalEarned+"RP";
+				.GetComponent<UILabel>().text = total1stPrize+"G";
 
 			InitLiveList ();
 		} else{
@@ -68,9 +73,9 @@ public class MyContests : MonoBehaviour {
 			transform.FindChild("Top").FindChild("Recent").gameObject.SetActive(true);
 
 			transform.FindChild("Top").FindChild("Recent").FindChild("EntryFees").FindChild("LblEntryFeesV")
-				.GetComponent<UILabel>().text = totalTickets+"";
+				.GetComponent<UILabel>().text = totalEarnedRP+"RP";
 			transform.FindChild("Top").FindChild("Live").FindChild("Winnings").FindChild("LblWinningsV")
-				.GetComponent<UILabel>().text = totalEarned+"RP";
+				.GetComponent<UILabel>().text = totalEarnedGold+"G";
 
 			InitRecentList();
 		}
@@ -114,7 +119,8 @@ public class MyContests : MonoBehaviour {
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalEntry);
 			go.transform.FindChild("LblTickets").FindChild("Label").GetComponent<UILabel>().text = info.entryTicket+"";
 			go.transform.FindChild("LblBasicRP").FindChild("Label").GetComponent<UILabel>().text = "[333333]0";
-			go.transform.FindChild("LblPrizes").FindChild("Label").GetComponent<UILabel>().text = "[fc5034]0RP";
+			go.transform.FindChild("Lbl1stPrize").FindChild("Label").GetComponent<UILabel>().text = "[fc5034]"
+				+info.firstRewardGold+"G";
 
 			go.transform.FindChild("Lineup").FindChild("Label").GetComponent<UILabel>().text = info.entryPlayers;
 			if((info.lineupName != null) && (info.lineupName.Length > 0)){
@@ -176,8 +182,11 @@ public class MyContests : MonoBehaviour {
 				= "[333333][b]"+ UtilMgr.AddsThousandsSeparator(info.myRank)
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalJoin);
 			go.transform.FindChild("LblTickets").FindChild("Label").GetComponent<UILabel>().text = info.entryTicket+"";
-			go.transform.FindChild("LblBasicRP").FindChild("Label").GetComponent<UILabel>().text = "[333333]0";
-			go.transform.FindChild("LblEarnedRP").FindChild("Label").GetComponent<UILabel>().text = "[fc5034]0RP";
+
+			go.transform.FindChild("LblEarnedRP").FindChild("Label").GetComponent<UILabel>().text = "[333333]"
+				+info.myRewardRP+"RP";
+			go.transform.FindChild("LblEarnedGold").FindChild("Label").GetComponent<UILabel>().text = "[fc5034]"
+				+info.myRewardGold+"G";
 			
 			go.transform.FindChild("Lineup").FindChild("Label").GetComponent<UILabel>().text = info.entryPlayers;
 			if((info.lineupName != null) && (info.lineupName.Length > 0)){
@@ -250,7 +259,8 @@ public class MyContests : MonoBehaviour {
 
 			go.transform.FindChild("LblTickets").FindChild("Label").GetComponent<UILabel>().text = info.entryTicket+"";
 			go.transform.FindChild("LblBasicRP").FindChild("Label").GetComponent<UILabel>().text = "[333333]0";
-			go.transform.FindChild("LblPrizes").FindChild("Label").GetComponent<UILabel>().text = "[fc5034]0RP";
+			go.transform.FindChild("Lbl1stPrize").FindChild("Label").GetComponent<UILabel>().text = "[fc5034]"
+				+info.firstRewardGold+"G";
 			go.transform.FindChild("Gauge").FindChild("Panel2").FindChild("SprPin").FindChild("Label").
 				GetComponent<UILabel>().text = info.totalFantasy+"";
 			
