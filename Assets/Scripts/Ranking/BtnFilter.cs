@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BtnFilter : MonoBehaviour {
 
-	bool IsOpen;
+	public bool IsOpen;
 
 	// Use this for initialization
 	void Start () {

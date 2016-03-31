@@ -17,6 +17,12 @@ public class LoginRoot : SuperRoot {
 	// Use this for initialization
 	new void Start () {
 		base.Start();
+
+		if(UtilMgr.IsMLB())
+			transform.FindChild("SprTitle").FindChild("SprK").gameObject.SetActive(false);
+		else
+			transform.FindChild("SprTitle").FindChild("SprK").gameObject.SetActive(true);
+
 		transform.FindChild("Terms").gameObject.SetActive(false);
 
 		transform.FindChild("RegisterUsername").gameObject.SetActive(false);
@@ -207,6 +213,7 @@ public class LoginRoot : SuperRoot {
 		mLoginInfo.DeviceID = SystemInfo.deviceUniqueIdentifier;
 		DoLogin();
 		#elif(UNITY_ANDROID)
+		Debug.Log ("PushKey : "+AndroidMgr.GetMsg());
 		mLoginInfo.memUID = AndroidMgr.GetMsg() == null ? "" : AndroidMgr.GetMsg();
 		mLoginInfo.DeviceID = SystemInfo.deviceUniqueIdentifier;
 		DoLogin();
@@ -299,7 +306,10 @@ public class LoginRoot : SuperRoot {
 			if(btn == DialogueMgr.BTNS.Btn1){
 				Debug.Log("Go to Store");
 				#if(UNITY_ANDROID)
-				Application.OpenURL(Constants.STORE_GOOGLE);
+				if(UtilMgr.IsMLB())
+					Application.OpenURL(Constants.STORE_GOOGLE_MLB);
+				else
+					Application.OpenURL(Constants.STORE_GOOGLE_KBO);
 				#else
 				Application.OpenURL(Constants.STORE_IPHONE);
 				#endif
@@ -310,7 +320,10 @@ public class LoginRoot : SuperRoot {
 			if(btn == DialogueMgr.BTNS.Btn1){
 				Debug.Log("Go to Store");
 				#if(UNITY_ANDROID)
-				Application.OpenURL(Constants.STORE_GOOGLE);
+				if(UtilMgr.IsMLB())
+					Application.OpenURL(Constants.STORE_GOOGLE_MLB);
+				else
+					Application.OpenURL(Constants.STORE_GOOGLE_KBO);
 				#else
 				Application.OpenURL(Constants.STORE_IPHONE);
 				#endif

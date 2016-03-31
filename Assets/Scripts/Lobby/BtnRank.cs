@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class BtnRank : MonoBehaviour {
@@ -17,7 +17,7 @@ public class BtnRank : MonoBehaviour {
 
 	public void OnClick(){
 		if(name.Equals("BtnRanking")){
-			transform.root.FindChild("Ranking").GetComponent<Ranking>().Init();
+			transform.root.FindChild("Ranking").GetComponent<Ranking>().InitUser();
 		} else{
 
 		}

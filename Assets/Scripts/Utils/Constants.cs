@@ -30,7 +30,8 @@ public class Constants {
 //	public const string URL_ATTENDANCE = "events/attendance_confirm/";
 	public const string URL_ATTENDANCE = "events/daily_reward/";
 
-	public const string STORE_GOOGLE ="market://details?id=com.rankingball";
+	public const string STORE_GOOGLE_MLB ="market://details?id=com.rankingball";
+	public const string STORE_GOOGLE_KBO ="market://details?id=com.rankingball.k";
 	public const string STORE_IPHONE ="https://itunes.apple.com/kr/app/id1000138413?mt=8";
 
 	/*/

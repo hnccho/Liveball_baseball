@@ -8,7 +8,9 @@ public class Ranking : MonoBehaviour {
 	public enum TYPE{
 		USER_DAILY,
 		USER_WEEKLY,
-		USER_MONTHLY
+		USER_MONTHLY,
+		PLAYER_PITCHER,
+		PLAYER_HITTER
 	}
 
 	public TYPE mType;
@@ -34,28 +36,30 @@ public class Ranking : MonoBehaviour {
 			InitUserWeekly();
 		} else if(mType == TYPE.USER_MONTHLY){
 			InitUserMonthly();
-		} 
+		} else if(mType == TYPE.PLAYER_PITCHER){
+			InitPlayerPitcher();
+		} else{
+			InitPlayerHitter();
+		}
 	}
 
-	public void Init(){
-		transform.FindChild("Top").FindChild("SprTri").gameObject.SetActive(false);
+	public void InitPlayer(){
+
+	}
+
+	public void InitUser(){
+		transform.FindChild("Top").FindChild("User").FindChild("SprTri").gameObject.SetActive(false);
+		transform.FindChild("Top").FindChild("User").FindChild("Selection").localPosition = new Vector3(0, 400f);
+		transform.FindChild("Top").FindChild("User").FindChild("BtnFilter").GetComponent<BtnFilter>().IsOpen = false;
+
 		NeedAnimation = true;
 		transform.localPosition = new Vector3(2000f, 0);
 		transform.gameObject.SetActive(true);
 
-//		for(int i = 0; i < 3; i++){
-//			transform.FindChild("Top").FindChild("Selection").GetChild(i).FindChild("Sprite").gameObject.SetActive(false);
-//			transform.FindChild("Top").FindChild("Selection").GetChild(i).GetComponent<UIButton>().defaultColor = new Color(51f/255f, 51f/255f, 51f/255f);
-//			transform.FindChild("Top").FindChild("Selection").GetChild(i).GetComponent<UIButton>().hover = new Color(51f/255f, 51f/255f, 51f/255f);
-//		}
 		for(int i = 0; i < 3; i++){
-			transform.FindChild("Top").FindChild("Selection").GetChild(i).GetComponent<BtnRankingSort>().IsSelected = false;
+			transform.FindChild("Top").FindChild("User").FindChild("Selection").GetChild(i).GetComponent<BtnRankingSort>().IsSelected = false;
 		}
-		transform.FindChild("Top").FindChild("Selection").GetChild(0).GetComponent<BtnRankingSort>().IsSelected = true;
-
-//		transform.FindChild("Top").FindChild("Selection").FindChild("1").FindChild("Sprite").gameObject.SetActive(true);
-//		transform.FindChild("Top").FindChild("Selection").FindChild("1").GetComponent<UIButton>().defaultColor = new Color(0, 160f/255f, 233f/255f);
-//		transform.FindChild("Top").FindChild("Selection").FindChild("1").GetComponent<UIButton>().hover = new Color(0, 160f/255f, 233f/255f);
+		transform.FindChild("Top").FindChild("User").FindChild("Selection").GetChild(0).GetComponent<BtnRankingSort>().IsSelected = true;
 
 		mType = TYPE.USER_DAILY;
 		InitUserDaily();
@@ -80,6 +84,14 @@ public class Ranking : MonoBehaviour {
 		NetMgr.UserMonthlyRanking(mUserEvent);
 		transform.FindChild("Top").FindChild("LblTitle").GetComponent<UILabel>().
 			text = UtilMgr.GetLocalText("StrMonthlyRanking");
+	}
+
+	void InitPlayerPitcher(){
+
+	}
+
+	void InitPlayerHitter(){
+
 	}
 
 	void ReceivedUserRanking(){
