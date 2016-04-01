@@ -28,8 +28,15 @@ public class ItemSelectPlayerMain : MonoBehaviour {
 	
 	public void OnBtnPhotoClick(){
 		transform.root.FindChild("PlayerCard").localPosition = Vector3.zero;
-		transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(mPlayerInfo,
-			transform.FindChild("BtnPhoto").FindChild("Panel").FindChild("TxtPlayer").
-			GetComponent<UITexture>().mainTexture);
+		if(UtilMgr.IsMLB()){
+			transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(mPlayerInfo,
+				transform.FindChild("MLB").FindChild("BtnPhoto").FindChild("Panel").FindChild("TxtPlayer").
+				GetComponent<UITexture>().mainTexture);	
+		} else{
+			transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(mPlayerInfo,
+				transform.FindChild("KBO").FindChild("BtnPhoto").FindChild("Panel").FindChild("TxtPlayer").
+				GetComponent<UITexture>().mainTexture);	
+		}
+
 	}
 }

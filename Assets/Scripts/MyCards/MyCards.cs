@@ -81,27 +81,58 @@ public class MyCards : MonoBehaviour {
 			tf.FindChild("Level").FindChild("LblLevel").FindChild("LevelV").GetComponent<UILabel>().text = info.cardLevel+"";
 			tf.FindChild("LblFPPG").FindChild("LblFPPGV").GetComponent<UILabel>().text = info.fppg;
 			tf.FindChild("LblSkill").FindChild("LblSkillV").GetComponent<UILabel>().text = "1";
-			if(info.useYn > 0){
-				tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Inuse").gameObject.SetActive(true);
-				tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
-					= new Vector4(0, 0, 156f, 130f);
+			if(UtilMgr.IsMLB()){
+				tf.FindChild("MLB").gameObject.SetActive(true);
+				tf.FindChild("KBO").gameObject.SetActive(false);
+
+				tf = item.Target.transform.FindChild("ItemCard").FindChild("MLB");
+				
+				if((info.injuryYN != null) && (info.injuryYN.Equals("Y"))){
+					tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(true);
+				} else
+					tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
+
+				if(info.useYn > 0){
+					tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Inuse").gameObject.SetActive(true);
+					tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
+						= new Vector4(0, 0, 156f, 130f);
+				} else{
+					tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Inuse").gameObject.SetActive(false);
+					tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
+						= new Vector4(0, 0, 152f, 108f);
+				}
 			} else{
+				tf.FindChild("MLB").gameObject.SetActive(false);
+				tf.FindChild("KBO").gameObject.SetActive(true);
+
+				tf = item.Target.transform.FindChild("ItemCard").FindChild("KBO");
+
 				tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Inuse").gameObject.SetActive(false);
 				tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
+					= new Vector4(0, 0, 152f, 186f);
+
+				if(info.useYn > 0){
+					tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Inuse").gameObject.SetActive(true);
+					tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
+					= new Vector4(0, 0, 156f, 130f);
+				} else{
+					tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Inuse").gameObject.SetActive(false);
+					tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
 					= new Vector4(0, 0, 152f, 108f);
+				}
 			}
-			if((info.injuryYN != null) && (info.injuryYN.Equals("Y"))){
-				tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(true);
-			} else
-				tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
+
+
 
 			tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture = mDefaultTxt;
-
+			
 			tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().color
 				= new Color(1f, 1f, 1f, 50f/255f);
-
+			
 			UtilMgr.LoadImage(info.photoUrl,
 			                  tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>());
+
+
 		} else if(info.mType == CardInfo.INVEN_TYPE.PACK){
 			item.Target.transform.FindChild("ItemCardPack").gameObject.SetActive(true);
 			item.Target.transform.FindChild("ItemCard").gameObject.SetActive(false);

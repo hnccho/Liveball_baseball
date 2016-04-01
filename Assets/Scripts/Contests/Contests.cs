@@ -32,12 +32,12 @@ public class Contests : MonoBehaviour {
 			.SetContestSeq(mContestList[index]);
 		item.Target.gameObject.transform.FindChild("LblTitle")
 			.GetComponent<UILabel>().text = mContestList[index].contestName;
-		item.Target.gameObject.transform.FindChild("LblPrizes").FindChild("Label")//enties
-			.GetComponent<UILabel>().text = "[fc8535]"+UtilMgr.AddsThousandsSeparator(mContestList[index].rewardValue);
+		item.Target.gameObject.transform.FindChild("Lbl1stPrize").FindChild("Label")//enties
+			.GetComponent<UILabel>().text = "[fc8535]"+UtilMgr.AddsThousandsSeparator(mContestList[index].firstRewardGold)+"G";
 		item.Target.gameObject.transform.FindChild("LblTickets").FindChild("Label")
 			.GetComponent<UILabel>().text = mContestList[index].entryTicket+"";
 		item.Target.gameObject.transform.FindChild("LblBasicRP").FindChild("Label")
-			.GetComponent<UILabel>().text = "0RP";
+			.GetComponent<UILabel>().text = mContestList[index].basicRP+"RP";
 		if(mContestList[index].myEntry > 0)
 			item.Target.gameObject.transform.FindChild("SprJoin").gameObject.SetActive(true);
 		else

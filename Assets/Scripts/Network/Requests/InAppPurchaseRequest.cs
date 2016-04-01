@@ -17,7 +17,7 @@ public class InAppPurchaseRequest : BaseRequest {
 	
 	public override string GetType ()
 	{
-		return "apps";
+		return "apps.product";
 	}
 	
 	public override string GetQueryId()

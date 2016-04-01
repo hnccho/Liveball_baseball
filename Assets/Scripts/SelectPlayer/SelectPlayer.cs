@@ -113,15 +113,6 @@ public class SelectPlayer : MonoBehaviour {
 
 					Transform tf = item.Target.transform.FindChild("Main");
 
-					tf.FindChild("BtnPhoto")
-						.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture
-							= mDefaultTxt;
-					tf.FindChild("BtnPhoto")
-						.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().color
-							= new Color(1f, 1f, 1f, 50f/255f);
-//					UtilMgr.LoadImage(info.photoUrl
-//					                  , tf.FindChild("BtnPhoto")
-//					                  .FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>());
 					tf.GetComponent<ItemSelectPlayerMain>().mPlayerInfo = info;
 					tf.FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
 					tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
@@ -130,10 +121,33 @@ public class SelectPlayer : MonoBehaviour {
 					tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.city + " " + info.teamName;
 					tf.FindChild("LblYear").GetComponent<UILabel>().gameObject.SetActive(false);
 					tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$ "+UtilMgr.AddsThousandsSeparator(info.salary);
-					if((info.injuryYN != null) && (info.injuryYN.Equals("Y")))
-						tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(true);
-					else
-						tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
+
+					if(UtilMgr.IsMLB()){
+						item.Target.transform.FindChild("Main").FindChild("MLB").gameObject.SetActive(true);
+						item.Target.transform.FindChild("Main").FindChild("KBO").gameObject.SetActive(false);
+						tf = item.Target.transform.FindChild("Main").FindChild("MLB");
+
+						if((info.injuryYN != null) && (info.injuryYN.Equals("Y")))
+							tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(true);
+						else
+							tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
+					} else{
+						item.Target.transform.FindChild("Main").FindChild("MLB").gameObject.SetActive(false);
+						item.Target.transform.FindChild("Main").FindChild("KBO").gameObject.SetActive(true);
+						tf = item.Target.transform.FindChild("Main").FindChild("KBO");
+					}
+
+					tf.FindChild("BtnPhoto")
+						.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture
+							= mDefaultTxt;
+					tf.FindChild("BtnPhoto")
+						.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().color
+							= new Color(1f, 1f, 1f, 50f/255f);
+
+					UtilMgr.LoadImage(info.photoUrl
+					                  , tf.FindChild("BtnPhoto")
+					                  .FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>());
+
 
 				}
 			});
@@ -142,14 +156,14 @@ public class SelectPlayer : MonoBehaviour {
 	}
 
 	void OnDragStarted(){
-		UtilMgr.StopAllCoroutine();
+//		UtilMgr.StopAllCoroutine();
 	}
 
 	void OnDragFinished(){
-		ItemSelectPlayerMain[] items 
-			= transform.FindChild("Body").FindChild("Scroll").GetComponentsInChildren<ItemSelectPlayerMain>();
-		foreach(ItemSelectPlayerMain item in items)
-			item.LoadImage();
+//		ItemSelectPlayerMain[] items 
+//			= transform.FindChild("Body").FindChild("Scroll").GetComponentsInChildren<ItemSelectPlayerMain>();
+//		foreach(ItemSelectPlayerMain item in items)
+//			item.LoadImage();
 	}
 
 //	IEnumerator LoadImage(string url, UITexture texture){

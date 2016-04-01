@@ -18,6 +18,8 @@ public class Lobby : MonoBehaviour {
 	}
 
 	public void FirstInit(){
+		transform.gameObject.SetActive(true);
+
 		if(UserMgr.LoginInfo.joinFreeGold > 0){
 			DialogueMgr.ShowAttendanceDialogue(DialogueMgr.DIALOGUE_TYPE.Welcome, CloseAttendance);
 		} else if(UserMgr.LoginInfo.freeGold > 0){

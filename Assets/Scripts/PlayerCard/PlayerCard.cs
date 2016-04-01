@@ -36,7 +36,7 @@ public class PlayerCard : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 	public void OnClose(){
@@ -215,7 +215,17 @@ public class PlayerCard : MonoBehaviour {
 	}
 
 	void InitPlayerInfo(){
-		transform.FindChild("Info").FindChild("Panel").FindChild("Photo").GetComponent<UITexture>().mainTexture = mPhoto;
+		if(UtilMgr.IsMLB()){
+			transform.FindChild("Info").FindChild ("MLB").gameObject.SetActive(true);
+			transform.FindChild("Info").FindChild ("KBO").gameObject.SetActive(false);
+
+			transform.FindChild("Info").FindChild ("MLB").FindChild("Panel").FindChild("Photo").GetComponent<UITexture>().mainTexture = mPhoto;
+		} else{
+			transform.FindChild("Info").FindChild ("MLB").gameObject.SetActive(false);
+			transform.FindChild("Info").FindChild ("KBO").gameObject.SetActive(true);
+
+			transform.FindChild("Info").FindChild ("KBO").FindChild("Panel").FindChild("Photo").GetComponent<UITexture>().mainTexture = mPhoto;
+		}
 
 		PlayerInfo playerInfo = null;
 		foreach(PlayerInfo info in UserMgr.PlayerList){

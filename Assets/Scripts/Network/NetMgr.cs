@@ -978,6 +978,11 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new GetEventsRequest(), baseEvent, true);
 	}
 
+	public static void GetEventsBack(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEventInBackground(new GetEventsRequest(), baseEvent);
+	}
+
 	public static void GetTerms(BaseEvent baseEvent)
 	{
 		Instance.webAPIProcessEventForRankingball(new GetTermsRequest(), baseEvent, true);

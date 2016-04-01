@@ -21,7 +21,7 @@ public class ShopItemBtns : MonoBehaviour {
 	public void OnClick(){
 		if(transform.root.FindChild("Shop").GetComponent<Shop>().mCategory == Shop.GOLD){
 			transform.root.FindChild("Shop").GetComponent<Shop>().RequestIAP(mGoldInfo.productCode,
-			                                                                 mGoldInfo.productName);
+			                                                                mGoldInfo.productName);
 		} else{
 //			if(UserMgr.UserInfo.gold < mItemInfo.price){
 //				DialogueMgr.ShowDialogue("", "", DialogueMgr.DIALOGUE_TYPE.YesNo, "", "", "", BuyGold);

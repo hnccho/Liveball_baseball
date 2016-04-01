@@ -1,8 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+//using UnityEngine.Purchasing;
+using System;
 
-public class Shop : MonoBehaviour {
+public class Shop : MonoBehaviour{//, IStoreListener {
+
+//	private static IStoreController mStoreController;
+//	private static IAppleExtensions mAppleExtensions;
+
+	private static string kProductIDConsumable =    "consumable";                                                         // General handle for the consumable product.
+	private static string kProductIDNonConsumable = "nonconsumable";                                                  // General handle for the non-consumable product.
+	private static string kProductIDSubscription =  "subscription";                                                   // General handle for the subscription product.
 
 	public GameObject mItemShop;
 	public GameObject mItemCard;
@@ -23,10 +32,48 @@ public class Shop : MonoBehaviour {
 	string mItemname;
 	string mItemcode;
 
+	string[] mProductCodes = new string[]{"com.liveball.cash5000", "com.liveball.cash10000", "com.liveball.cash20000",
+		"com.liveball.cash30000", "com.liveball.cash50000"};
+
 	// Use this for initialization
 	void Start () {
 		SetDelegates();
 		IsSupported = false;
+
+//		if(mStoreController == null){
+//			InitializePurchasing();
+//		}
+	}
+
+	void InitializePurchasing(){
+//		if (IsInitialized()) return;
+//
+//		var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+//
+//		if(UtilMgr.IsMLB())
+//			builder.Configure<IGooglePlayConfiguration>().SetPublicKey(Constants.GOOGLE_PUBLIC_KEY_MLB);
+//		else
+//			builder.Configure<IGooglePlayConfiguration>().SetPublicKey(Constants.GOOGLE_PUBLIC_KEY_KBO);
+//
+//		// Add a product to sell / restore by way of its identifier, associating the general identifier with its store-specific identifiers.
+//		builder.AddProduct(mProductCodes[0], ProductType.Consumable, 
+//			new IDs(){{ mProductCodes[0], AppleAppStore.Name},{ mProductCodes[0],  GooglePlay.Name },});
+//		builder.AddProduct(mProductCodes[1], ProductType.Consumable, 
+//			new IDs(){{ mProductCodes[1], AppleAppStore.Name},{ mProductCodes[1],  GooglePlay.Name },});
+//		builder.AddProduct(mProductCodes[2], ProductType.Consumable, 
+//			new IDs(){{ mProductCodes[2], AppleAppStore.Name},{ mProductCodes[2],  GooglePlay.Name },});
+//		builder.AddProduct(mProductCodes[3], ProductType.Consumable, 
+//			new IDs(){{ mProductCodes[3], AppleAppStore.Name},{ mProductCodes[3],  GooglePlay.Name },});
+//		builder.AddProduct(mProductCodes[4], ProductType.Consumable, 
+//			new IDs(){{ mProductCodes[4], AppleAppStore.Name},{ mProductCodes[4],  GooglePlay.Name },});
+//
+//		UnityPurchasing.Initialize(this, builder);
+	}
+
+	bool IsInitialized()
+	{
+//		return mStoreController != null && mAppleExtensions != null;
+		return false;
 	}
 	
 	// Update is called once per frame
@@ -49,7 +96,10 @@ public class Shop : MonoBehaviour {
 			IOSMgr.InAppInit();
 		} else if(Application.platform == RuntimePlatform.Android){
 			#if(UNITY_ANDROID)
-			GoogleIAB.init(Constants.GOOGLE_PUBLIC_KEY);
+			if(UtilMgr.IsMLB())
+				GoogleIAB.init(Constants.GOOGLE_PUBLIC_KEY_MLB);
+			else
+				GoogleIAB.init(Constants.GOOGLE_PUBLIC_KEY_KBO);
 			#endif
 		}
 	}
@@ -99,14 +149,10 @@ public class Shop : MonoBehaviour {
 			if(IsSupported){
 				go.transform.FindChild("LblPrice").gameObject.SetActive(true);
 				go.transform.FindChild("LblPrice").GetComponent<UILabel>().text
-					= mGoldList[i].priceDesc;
+					= mGoldList[i].priceDesc;					
 			} else
 				go.transform.FindChild("LblPrice").gameObject.SetActive(false);
 			go.transform.FindChild("LblPrice").FindChild("Sprite").gameObject.SetActive(false);
-//			int width = go.transform.FindChild("LblPrice").GetComponent<UILabel>().width;
-//			Vector3 oriVec = go.transform.FindChild("LblPrice").FindChild("Sprite").localPosition;
-//			go.transform.FindChild("LblPrice").FindChild("Sprite").localPosition
-//				= new Vector3(width + 5f, oriVec.y);
 			
 			go.transform.FindChild("BtnRight").GetComponent<ShopItemBtns>().mGoldInfo = shopInfo;
 		}
@@ -237,17 +283,6 @@ public class Shop : MonoBehaviour {
 		IOSMgr.PurchaseFailedEvent -= purchaseFailedEvent;
 		#endif
 	}
-
-//	public void prime31(string id,string code,string product,string buyruby,string addruby,string addgold){
-//		Debug.Log ("id : " + id + " code : " + code);
-//		itemid = int.Parse(id);
-//		itemcode = code;
-//		mItemname = product;
-//		Bruby = float.Parse(buyruby);
-//		Aruby = float.Parse(addruby);
-//		Agold = float.Parse(addgold);
-//		RequestIAP(code);
-//	}
 	
 	public void RequestIAP(string itemcode, string itemname){
 		mItemname = itemname;
@@ -257,6 +292,44 @@ public class Shop : MonoBehaviour {
 		#else
 		IOSMgr.BuyItem(itemcode);
 		#endif
+	}
+
+	public void BuyProduct(string itemCode, string itemName){
+//		mItemname = itemName;
+//		mItemcode = itemCode;
+//		try
+//		{
+//			if (IsInitialized())
+//			{
+//				// ... look up the Product reference with the general product identifier and the Purchasing system's products collection.
+//				Product product = mStoreController.products.WithID(mItemcode);
+//
+//				// If the look up found a product for this device's store and that product is ready to be sold ... 
+//				if (product != null && product.availableToPurchase)
+//				{
+//					Debug.Log (string.Format("Purchasing product asychronously: '{0}'", product.definition.id));// ... buy the product. Expect a response either through ProcessPurchase or OnPurchaseFailed asynchronously.
+//					mStoreController.InitiatePurchase(product);
+//				}
+//				// Otherwise ...
+//				else
+//				{
+//					// ... report the product look-up failure situation  
+//					Debug.Log ("BuyProductID: FAIL. Not purchasing product, either is not found or is not available for purchase");
+//				}
+//			}
+//			// Otherwise ...
+//			else
+//			{
+//				// ... report the fact Purchasing has not succeeded initializing yet. Consider waiting longer or retrying initiailization.
+//				Debug.Log("BuyProductID FAIL. Not initialized.");
+//			}
+//		}
+//		// Complete the unexpected exception handling ...
+//		catch (Exception e)
+//		{
+//			// ... by reporting any unexpected exception for later diagnosis.
+//			Debug.Log ("BuyProductID: FAIL. Exception during purchase. " + e);
+//		}
 	}
 	
 	void billingSupportedEvent()
@@ -296,34 +369,18 @@ public class Shop : MonoBehaviour {
 		InitGoldList();
 //		Prime31.Utils.logObject( purchases );
 //		Prime31.Utils.logObject( skus );
-//		if(purchases.Count > 0){
-//			mPurchase = purchases[0];
-//			foreach(ItemShopRubyInfo info in getruby.Response.data){
-//				if(info.productCode.Equals(mPurchase.productId)){
-//					itemcode = info.productCode;
-//					mItemname = "루비 " + info.productValue+"개";
-//					purchaseSucceededEvent(mPurchase);
-//					break;
-//				}
-//			}			
-//			
-//		}
-	}
-	
-//	public void CheckOrderNo(){
-//		Debug.Log("DeveloperPayload Status : "+mPurchase.developerPayload);
-//		foreach(InAppHistoryInfo info in mHistoryEvent.Response.data){
-//			Debug.Log("purchase key : "+info.purchaseKey+", Status : "+info.purchaseStatus);
-//			if(info.purchaseKey.Equals(mPurchase.developerPayload)){
-//				orderNo = info.orderNo;
-//				itemcode = info.productCode;
-//				mItemname = "루비 " + info.productValue+"개";
-//				purchaseSucceededEvent(mPurchase);
-//				break;
-//			}
-//		}
-//	}
-	
+		if(purchases.Count > 0){
+			mPurchase = purchases[0];
+			foreach(ShopGoldInfo info in mGoldList){
+				if(info.productCode.Equals(mPurchase.productId)){
+					mItemcode = info.productCode;
+					mItemname = info.productName;
+					purchaseSucceededEvent(mPurchase);
+					break;
+				}
+			}						
+		}
+	}	
 	
 	void queryInventoryFailedEvent( string error )
 	{
@@ -342,10 +399,10 @@ public class Shop : MonoBehaviour {
 		
 		byte[] bytes = System.Text.Encoding.UTF8.GetBytes(purchase.originalJson);
 		string basedJson = System.Convert.ToBase64String(bytes);
-		Debug.Log("purchase.signature : "+purchase.signature);
 		bytes = System.Text.Encoding.UTF8.GetBytes(purchase.signature);
 		string basedSign = System.Convert.ToBase64String(bytes);
-		NetMgr.InAppPurchase(false, purchase.productId, basedJson, basedSign, mIAPEvent);
+//		NetMgr.InAppPurchase(false, purchase.productId, basedJson, basedSign, mIAPEvent);
+		NetMgr.InAppPurchase(false, purchase.productId, "", basedJson, mIAPEvent);
 		
 		Debug.Log( "purchaseSucceededEvent: " + purchase );
 	}
@@ -356,8 +413,10 @@ public class Shop : MonoBehaviour {
 	}
 	
 	void mCancelIAP(){
-		DialogueMgr.ShowDialogue("구매 실패", mItemname + " 구매를 실패 했습니다.", DialogueMgr.DIALOGUE_TYPE.Alert, null);
-		Debug.Log ("FailedEvent");		
+		DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPurchaseFailed"),
+			string.Format(UtilMgr.GetLocalText("StrPurchaseFailed2"), mItemname),
+			DialogueMgr.DIALOGUE_TYPE.Alert, null);
+//		Debug.Log ("FailedEvent");		
 	}
 	
 	void consumePurchaseSucceededEvent( GooglePurchase purchase )
@@ -368,8 +427,8 @@ public class Shop : MonoBehaviour {
 	
 	void consumePurchaseFailedEvent( string error )
 	{
-		DialogueMgr.ShowDialogue("컨슘 실패", mItemname + " 컨슘을 실패 했습니다.", DialogueMgr.DIALOGUE_TYPE.Alert, null);
-		Debug.Log ("FailedConsume");
+		DialogueMgr.ShowDialogue("Consume Failed", mItemname + " Consume Failed", DialogueMgr.DIALOGUE_TYPE.Alert, null);
+//		Debug.Log ("FailedConsume");
 	}
 	
 	#else	
@@ -392,10 +451,8 @@ public class Shop : MonoBehaviour {
 	#endif
 	
 	public void mDoneIAP(){
-//		mProfileEvent = new GetProfileEvent (new EventDelegate (this, "addruby"));
-//		NetMgr.GetProfile (UserMgr.UserInfo.memSeq,mProfileEvent);
-//		UserMgr.UserMailCount += 1;
-		DialogueMgr.ShowDialogue("구매 성공", mItemname + " 구매가 완료 되었습니다.\n우편함을 확인해주세요.", DialogueMgr.DIALOGUE_TYPE.Alert, null);
+		DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPurchaseSuccess"),
+			string.Format(UtilMgr.GetLocalText("StrPurchaseSuccess2"), mItemname), DialogueMgr.DIALOGUE_TYPE.Alert, null);
 		
 		Debug.Log ("All PurchaseSucceeded");
 		
@@ -408,10 +465,108 @@ public class Shop : MonoBehaviour {
 			#else
 			mDoneIAP();
 			#endif
-			
+//			mDoneIAP();
 		} else{
 			//failed
-			DialogueMgr.ShowDialogue("구매 실패", mItemname + " 구매를 실패 했습니다.", DialogueMgr.DIALOGUE_TYPE.Alert, null);
+					DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPurchaseFailed"),
+						string.Format(UtilMgr.GetLocalText("StrPurchaseFailed2"), mItemname),
+						DialogueMgr.DIALOGUE_TYPE.Alert, null);
 		}
 	}
+
+	// IstoreListener
+//	public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
+//	{
+//		mStoreController = controller;
+//		mAppleExtensions = extensions.GetExtension<IAppleExtensions>();
+//
+//		Debug.Log("Available items:");
+//		foreach (var item in controller.products.all)
+//		{
+//			if (item.availableToPurchase)
+//			{
+//				Debug.Log(string.Join(" - ",
+//					new[]
+//					{
+//						item.metadata.localizedTitle,
+//						item.metadata.localizedDescription,
+//						item.metadata.isoCurrencyCode,
+//						item.metadata.localizedPrice.ToString(),
+//						item.metadata.localizedPriceString
+//					}));
+//			}
+//		}
+//
+//		if (null != mStoreController)
+//		{
+//			// Prepare model for purchasing
+////			if (mStoreController.products.all.Length > 0) 
+////			{
+////				m_SelectedItemIndex = 0;
+////			}
+//
+//			// Populate the product menu now that we have Products
+//			for (int t = 0; t < mStoreController.products.all.Length; t++)
+//			{
+//				var item = mStoreController.products.all[t];
+//				var description = string.Format("{0} - {1}", item.metadata.localizedTitle, item.metadata.localizedPriceString);
+//
+//				// NOTE: my options list is created in InitUI
+////				GetDropdown().options[t] = new Dropdown.OptionData(description);
+//			}
+//
+//			// Ensure I render the selected list element
+////			GetDropdown().RefreshShownValue();
+//
+//			// Now that I have real products, begin showing product purchase history
+////			UpdateHistoryUI();
+//		}
+//	}
+//
+//
+//	public void OnInitializeFailed(InitializationFailureReason error)
+//	{
+//		// Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
+//		Debug.Log("OnInitializeFailed InitializationFailureReason:" + error);
+//	}
+//
+//
+//	public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) 
+//	{
+//		// A consumable product has been purchased by this user.
+//		if (string.Equals(args.purchasedProduct.definition.id, kProductIDConsumable, StringComparison.Ordinal))
+//		{
+//			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));//If the consumable item has been successfully purchased, add 100 coins to the player's in-game score.
+////			ScoreManager.score += 100;
+//			mIAPEvent = new InAppPurchaseEvent(FinishIAP);
+//
+//			byte[] bytes = System.Text.Encoding.UTF8.GetBytes(args.purchasedProduct.receipt);
+//			string basedJson = System.Convert.ToBase64String(bytes);
+//			Debug.Log("receipt : " + args.purchasedProduct.receipt);
+////			bytes = System.Text.Encoding.UTF8.GetBytes(purchase.signature);
+////			string basedSign = System.Convert.ToBase64String(bytes);
+//			NetMgr.InAppPurchase(false, args.purchasedProduct.definition.id, basedJson, "", mIAPEvent);
+//
+////			Debug.Log( "purchaseSucceededEvent: " + purchase );
+//		}
+//
+//		// Or ... a non-consumable product has been purchased by this user.
+//		else if (String.Equals(args.purchasedProduct.definition.id, kProductIDNonConsumable, StringComparison.Ordinal))
+//		{
+//			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));}// Or ... a subscription product has been purchased by this user.
+//		else if (String.Equals(args.purchasedProduct.definition.id, kProductIDSubscription, StringComparison.Ordinal))
+//		{
+//			Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));}// Or ... an unknown product has been purchased by this user. Fill in additional products here.
+//		else 
+//		{
+//			Debug.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));}// Return a flag indicating wither this product has completely been received, or if the application needs to be reminded of this purchase at next app launch. Is useful when saving purchased products to the cloud, and when that save is delayed.
+//		return PurchaseProcessingResult.Complete;
+//	}
+//
+//
+//	public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
+//	{
+//		// A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing this reason with the user.
+//		Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}",product.definition.storeSpecificId, failureReason));
+//	}
 }

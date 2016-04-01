@@ -126,6 +126,17 @@ public class ContestListInfo {
 		}
 	}
 
+	int _basicRP;
+
+	public int basicRP {
+		get {
+			return _basicRP;
+		}
+		set {
+			_basicRP = value;
+		}
+	}
+
 	int _entryTicket;
 
 	public int entryTicket {

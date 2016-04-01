@@ -7,6 +7,8 @@ public class RTLobby : MonoBehaviour {
 	public GameObject mItemRT;
 	Texture2D mDefaultTxt;
 
+	int mMatchCnt;
+
 	// Use this for initialization
 	void Start () {
 		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
@@ -22,19 +24,51 @@ public class RTLobby : MonoBehaviour {
 			= page + " / " + mRTEvent.Response.data.Count + "Games";
 	}
 
+	void OnEnable(){
+		Debug.Log("Start Coroutine");
+		StartCoroutine(ReloadRT());
+	}
+
+	void OnDisable(){
+		Debug.Log("Stop Coroutine");
+		StopCoroutine(ReloadRT());
+	}
+
 	public void Init(){
 		mRTEvent = new GetEventsEvent(ReceivedRT);
 		NetMgr.GetEvents(mRTEvent);
 	}
 
+	IEnumerator ReloadRT(){
+		while(true){
+			yield return new WaitForSeconds(30f);
+
+			mMatchCnt = mRTEvent.Response.data.Count;
+			mRTEvent = new GetEventsEvent(ReceivedRT);
+			NetMgr.GetEventsBack(mRTEvent);
+		}
+	}
+
 	void ReceivedRT(){
-		UtilMgr.ClearList(transform.FindChild("ScrollRT"));
+		bool DonotDelete = false;
+		if(mMatchCnt == mRTEvent.Response.data.Count)
+			DonotDelete = true;
+
+		if(!DonotDelete)
+			UtilMgr.ClearList(transform.FindChild("ScrollRT"));
+		
 		float width = 720f;
 		for(int i = 0; i < mRTEvent.Response.data.Count; i++){
-			Transform item = Instantiate(mItemRT).transform;
-			item.parent = transform.FindChild("ScrollRT");
-			item.localPosition = new Vector3(width * i, 1f, 1f);
-			item.localScale = new Vector3(1f, 1f, 1f);
+			Transform item = null;
+			if(!DonotDelete){
+				item = Instantiate(mItemRT).transform;
+				item.parent = transform.FindChild("ScrollRT");
+				item.localPosition = new Vector3(width * i, 1f, 1f);
+				item.localScale = new Vector3(1f, 1f, 1f);
+			} else{				
+				item = transform.FindChild("ScrollRT").GetChild(i);
+			}
+
 			EventInfo data = mRTEvent.Response.data[i];
 			item.GetComponent<ItemRT>().mEventInfo = data;
 
@@ -75,7 +109,7 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("Score").FindChild("Right").FindChild("SprStar").gameObject.SetActive(false);
 
 				item.FindChild("Players").GetComponent<UILabel>().text
-					= "Top " + data.inning + UtilMgr.GetRoundString(data.inning);
+				= UtilMgr.GetLocalText("StrTop") + " " + data.inning + UtilMgr.GetRoundString(data.inning);
 
 				item.FindChild("Players").FindChild("Left").FindChild("Frame")
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
@@ -83,12 +117,25 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("Players").FindChild("Left").FindChild("Frame")
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
 						= new Color(1f, 1f, 1f, 50f/255f);
+				if(!UtilMgr.IsMLB())
+				item.FindChild("Players").FindChild("Left").FindChild("Frame")
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().width = 70;
 
 //				UtilMgr.LoadImage(data.hitterPhoto,
 //				                  item.FindChild("Players").FindChild("Left").FindChild("Frame")
 //				                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 				item.FindChild("Players").FindChild("Left")
 					.FindChild("Frame").FindChild("SprPos").FindChild("Label").GetComponent<UILabel>().text = "B";
+
+				item.FindChild("Players").FindChild("Right").FindChild("Frame")
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
+
+				item.FindChild("Players").FindChild("Right").FindChild("Frame")
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
+					= new Color(1f, 1f, 1f, 50f/255f);
+				if(!UtilMgr.IsMLB())
+					item.FindChild("Players").FindChild("Right").FindChild("Frame")
+						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().width = 70;
 
 //				UtilMgr.LoadImage(data.pitcherPhoto,
 //				                  item.FindChild("Players").FindChild("Right").FindChild("Frame")
@@ -105,7 +152,18 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("Score").FindChild("Left").FindChild("SprStar").gameObject.SetActive(false);
 
 				item.FindChild("Players").GetComponent<UILabel>().text
-					= "Bottom " + data.inning + UtilMgr.GetRoundString(data.inning);
+				= UtilMgr.GetLocalText("StrBottom") + " " + data.inning + UtilMgr.GetRoundString(data.inning);
+				
+				item.FindChild("Players").FindChild("Left").FindChild("Frame")
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
+				
+				item.FindChild("Players").FindChild("Left").FindChild("Frame")
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
+						= new Color(1f, 1f, 1f, 50f/255f);
+
+				if(!UtilMgr.IsMLB())
+					item.FindChild("Players").FindChild("Left").FindChild("Frame")
+						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().width = 70;
 				
 				item.FindChild("Players").FindChild("Right").FindChild("Frame")
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
@@ -113,13 +171,10 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("Players").FindChild("Right").FindChild("Frame")
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
 						= new Color(1f, 1f, 1f, 50f/255f);
-				
-				item.FindChild("Players").FindChild("Right").FindChild("Frame")
-					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
-				
-				item.FindChild("Players").FindChild("Right").FindChild("Frame")
-					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
-						= new Color(1f, 1f, 1f, 50f/255f);
+
+				if(!UtilMgr.IsMLB())
+					item.FindChild("Players").FindChild("Right").FindChild("Frame")
+						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().width = 70;
 
 //				UtilMgr.LoadImage(data.hitterPhoto,
 //				                  item.FindChild("Players").FindChild("Right").FindChild("Frame")
@@ -139,8 +194,9 @@ public class RTLobby : MonoBehaviour {
 					.FindChild("Frame").FindChild("Label").GetComponent<UILabel>().text = data.pitcherName;
 			}
 		}
-		transform.FindChild("ScrollRT").GetComponent<UIScrollView>().ResetPosition();
-//		transform.FindChild("ScrollRT").GetComponent<UICenterOnChild>().Recenter();
+
+//		transform.FindChild("ScrollRT").GetComponent<UIScrollView>().ResetPosition();
+		transform.FindChild("ScrollRT").GetComponent<UICenterOnChild>().Recenter();
 
 		if(transform.root.FindChild("Lobby").GetComponent<Lobby>().mState != UtilMgr.STATE.Lobby){
 			UtilMgr.AnimatePageToRight(
