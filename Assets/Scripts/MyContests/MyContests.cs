@@ -74,7 +74,7 @@ public class MyContests : MonoBehaviour {
 
 			transform.FindChild("Top").FindChild("Recent").FindChild("EntryFees").FindChild("LblEntryFeesV")
 				.GetComponent<UILabel>().text = totalEarnedRP+"RP";
-			transform.FindChild("Top").FindChild("Live").FindChild("Winnings").FindChild("LblWinningsV")
+			transform.FindChild("Top").FindChild("Recent").FindChild("Winnings").FindChild("LblWinningsV")
 				.GetComponent<UILabel>().text = totalEarnedGold+"G";
 
 			InitRecentList();

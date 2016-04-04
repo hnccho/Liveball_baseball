@@ -1204,6 +1204,7 @@
      <Compile Include="Assets\Scripts\Network\Events\RegEntryEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\RemoveContestHistoryEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\RemoveContestPresetEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\RewardInfoEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\UpdateMemberInfoEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\WithdrawEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\checkRecentMessageEvent.cs" />
@@ -1277,6 +1278,7 @@
      <Compile Include="Assets\Scripts\Network\Models\Rankinfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\Rankrankinfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\RemoveContestPresetInfo.cs" />
+     <Compile Include="Assets\Scripts\Network\Models\RewardInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\ScheduleInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\ScoreInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\ServiceInfo.cs" />
@@ -1398,6 +1400,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\RemoveContestHistoryRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\RemoveContestPresetRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\RequestIAPRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\RewardInfoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\UpdateEntryRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\UpdateMemberInfoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\UserDailyRankingRequest.cs" />
@@ -1466,6 +1469,7 @@
      <Compile Include="Assets\Scripts\Network\Responses\PurchaseGoldResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\RemoveContestHistoryResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\RemoveContestPresetResponse.cs" />
+     <Compile Include="Assets\Scripts\Network\Responses\RewardInfoResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\checkRecentMessageResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\procStoreGachaResponse.cs" />
      <Compile Include="Assets\Scripts\Network\UserMgr.cs" />
@@ -1492,6 +1496,7 @@
      <Compile Include="Assets\Scripts\SelectFeeding\BtnSelectCompletion.cs" />
      <Compile Include="Assets\Scripts\SelectFeeding\BtnSelectFeeding.cs" />
      <Compile Include="Assets\Scripts\SelectFeeding\SelectFeeding.cs" />
+     <Compile Include="Assets\Scripts\SelectPlayer\BtnSearchConfirm.cs" />
      <Compile Include="Assets\Scripts\SelectPlayer\ItemSelectPlayerMain.cs" />
      <Compile Include="Assets\Scripts\SelectPlayer\ItemSelectPlayerSub.cs" />
      <Compile Include="Assets\Scripts\SelectPlayer\SelectPlayer.cs" />
@@ -1540,11 +1545,11 @@
      <None Include="Assets\ProLoading\Example\Present\BottonLeft.txt" />
      <None Include="Assets\Extras\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
      <None Include="Assets\Plugins\JIVER\README.txt" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Net20\HtmlAgilityPack.xml" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Transparent Colored (TextureClip).shader" />
      <None Include="Assets\Extras\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
      <None Include="Assets\Extras\Universal Sound FX\#Game Genre References\Fighting.txt" />
-     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Extras\Universal Sound FX\#Game Genre References\Platform.txt" />
      <None Include="Assets\Extras\IGSoft_Resources\ToolResources\EffectShader\FXMaker_Mask Additive.shader" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
@@ -1603,9 +1608,6 @@
      <None Include="Assets\Extras\NGUI\Examples\Models\Orc Armor\Orc Armor.shader" />
      <None Include="Assets\Extras\PlayMaker\Versions\readme.txt" />
      <None Include="Assets\Extras\Activity Indicators\ReadMe_txt.txt" />
- <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>/Volumes/SSD/Projects/Liveball_baseball/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Volumes/SSD/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -1637,6 +1639,8 @@
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
       <Project>{C6033AC8-B1E0-0A2C-5A1F-B409999A6C9A}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{8758EFF9-F7A2-2C04-F729-EFD158356CFF}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

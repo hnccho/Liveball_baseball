@@ -134,6 +134,28 @@ public class PlayerInfo {
 		}
 	}
 
+	string _korTeamName;
+
+	public string korTeamName {
+		get {
+			return _korTeamName;
+		}
+		set {
+			_korTeamName = value;
+		}
+	}
+
+	string _korName;
+
+	public string korName {
+		get {
+			return _korName;
+		}
+		set {
+			_korName = value;
+		}
+	}
+
 	string _teamName;
 
 	public string teamName {

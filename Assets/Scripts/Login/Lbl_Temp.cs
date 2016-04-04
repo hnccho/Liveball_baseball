@@ -37,6 +37,11 @@ public class Lbl_Temp : MonoBehaviour {
 		TextAsset ta = Resources.Load("Liveball - sheet1", typeof(TextAsset)) as TextAsset;
 		Localization.LoadCSV(ta);
 
+		if(UtilMgr.IsMLB()){
+			Localization.language = "English";
+			return;
+		}
+		
 		if(Application.systemLanguage == SystemLanguage.Korean)
 			Localization.language = "Korean";
 		else

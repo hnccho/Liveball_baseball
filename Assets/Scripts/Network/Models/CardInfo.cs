@@ -68,6 +68,28 @@ public class CardInfo {
 		}
 	}
 
+	string _korName;
+
+	public string korName {
+		get {
+			return _korName;
+		}
+		set {
+			_korName = value;
+		}
+	}
+
+	string _korTeamName;
+
+	public string korTeamName {
+		get {
+			return _korTeamName;
+		}
+		set {
+			_korTeamName = value;
+		}
+	}
+
 	string _firstName;
 
 	public string firstName {

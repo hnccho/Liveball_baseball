@@ -46,9 +46,16 @@ public class PlayerCard : MonoBehaviour {
 	public void Init(PlayerInfo playerInfo, Texture photo){
 		mPhoto = photo;
 		IsCard = false;
+		if(UtilMgr.IsMLB()){
+			transform.FindChild("Info").FindChild("KBO").FindChild("Panel").FindChild("Photo")
+				.GetComponent<UITexture>().width = 135;
+			transform.FindChild("Info").FindChild("KBO").FindChild("Panel").FindChild("Photo")
+				.GetComponent<UITexture>().height = 180;
+		}
 		transform.FindChild("SelectionForPlayer").gameObject.SetActive(true);
 		transform.FindChild("SelectionForCard").gameObject.SetActive(false);
 		mPlayerId = playerInfo.playerId;
+
 		GetInfos();
 	}
 
@@ -56,6 +63,18 @@ public class PlayerCard : MonoBehaviour {
 		mPhoto = photo;
 		IsCard = true;
 		mCardInfo = cardInfo;
+		if(UtilMgr.IsMLB()){			
+			transform.FindChild("Info").FindChild("KBO").FindChild("Panel").FindChild("Photo")
+				.GetComponent<UITexture>().width = 135;
+			transform.FindChild("Info").FindChild("KBO").FindChild("Panel").FindChild("Photo")
+				.GetComponent<UITexture>().height = 180;
+			
+//			transform.FindChild("SelectionForPlayer").gameObject.SetActive(false);
+//			transform.FindChild("SelectionForCard").gameObject.SetActive(true);
+		} else{
+//			transform.FindChild("SelectionForPlayer").gameObject.SetActive(true);
+//			transform.FindChild("SelectionForCard").gameObject.SetActive(false);
+		}
 		transform.FindChild("SelectionForPlayer").gameObject.SetActive(false);
 		transform.FindChild("SelectionForCard").gameObject.SetActive(true);
 		mPlayerId = cardInfo.playerFK;
@@ -215,27 +234,39 @@ public class PlayerCard : MonoBehaviour {
 	}
 
 	void InitPlayerInfo(){
-		if(UtilMgr.IsMLB()){
-			transform.FindChild("Info").FindChild ("MLB").gameObject.SetActive(true);
-			transform.FindChild("Info").FindChild ("KBO").gameObject.SetActive(false);
-
-			transform.FindChild("Info").FindChild ("MLB").FindChild("Panel").FindChild("Photo").GetComponent<UITexture>().mainTexture = mPhoto;
-		} else{
+//		if(UtilMgr.IsMLB()){
+//			transform.FindChild("Info").FindChild ("MLB").gameObject.SetActive(true);
+//			transform.FindChild("Info").FindChild ("KBO").gameObject.SetActive(false);
+//
+//			transform.FindChild("Info").FindChild ("MLB").FindChild("Panel").FindChild("Photo").GetComponent<UITexture>().mainTexture = mPhoto;
+//		} else{
 			transform.FindChild("Info").FindChild ("MLB").gameObject.SetActive(false);
 			transform.FindChild("Info").FindChild ("KBO").gameObject.SetActive(true);
 
 			transform.FindChild("Info").FindChild ("KBO").FindChild("Panel").FindChild("Photo").GetComponent<UITexture>().mainTexture = mPhoto;
-		}
+//		}
 
 		PlayerInfo playerInfo = null;
 		foreach(PlayerInfo info in UserMgr.PlayerList){
 			if(info.playerId == mPlayerId){
 				if(info.positionNo == 1){
 					IsPitcher = true;
-					mHand = info.throwHand.Equals("L") ? UtilMgr.GetLocalText("StrLeft") : UtilMgr.GetLocalText("StrRight");
+//					mHand = info.throwHand.Equals("L") ? UtilMgr.GetLocalText("StrLeft") : UtilMgr.GetLocalText("StrRight");
+					if(info.throwHand.Equals("S"))
+						mHand = UtilMgr.GetLocalText("StrSwitch");
+					else if(info.throwHand.Equals("L"))
+						mHand = UtilMgr.GetLocalText("StrLeft");
+					else
+						mHand = UtilMgr.GetLocalText("StrRight");
 				} else{
 					IsPitcher = false;
-					mHand = info.batHand.Equals("L") ? UtilMgr.GetLocalText("StrLeft") : UtilMgr.GetLocalText("StrRight");
+//					mHand = info.batHand.Equals("L") ? UtilMgr.GetLocalText("StrLeft") : UtilMgr.GetLocalText("StrRight");
+					if(info.batHand.Equals("S"))
+						mHand = UtilMgr.GetLocalText("StrSwitch");
+					else if(info.batHand.Equals("L"))
+						mHand = UtilMgr.GetLocalText("StrLeft");
+					else
+						mHand = UtilMgr.GetLocalText("StrRight");
 				}
 				playerInfo = info;
 				break;

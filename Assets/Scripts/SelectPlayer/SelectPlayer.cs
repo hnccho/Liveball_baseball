@@ -7,6 +7,7 @@ public class SelectPlayer : MonoBehaviour {
 	List<PlayerInfo> mPlayerList;
 	public int mSelectedNo;
 	static Texture2D mDefaultTxt;
+	string mName;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +19,20 @@ public class SelectPlayer : MonoBehaviour {
 	
 	}
 
+	public void Search(string name){
+		mName = name;
+		Init(mSelectedNo);
+	}
+
 	public void Init(int positionNo){
+		transform.FindChild("Top").FindChild("Input").gameObject.SetActive(false);
+		transform.FindChild("Top").FindChild("BtnConfirm").gameObject.SetActive(false);
+		transform.FindChild("Top").FindChild("LblTitle").gameObject.SetActive(true);
+		transform.FindChild("Top").FindChild("BtnSearch").gameObject.SetActive(true);
+		transform.FindChild("Top").FindChild("Input").GetComponent<UIInput>().defaultText
+		= UtilMgr.GetLocalText("StrInputPlayerName");
+		transform.FindChild("Top").FindChild("Input").GetComponent<UIInput>().value = "";
+
 		mSelectedNo = positionNo;
 		string title = "";
 		switch(positionNo){
@@ -48,10 +62,21 @@ public class SelectPlayer : MonoBehaviour {
 		posList.Add(positionNo);
 		foreach(PlayerInfo info in UserMgr.PlayerList){
 			foreach(int no in posList){
-				if(info.positionNo == no){
-					mPlayerList.Add(info);
-					//get CardInvenInfo then add them
+				if(mName == null || mName.Length < 1){
+					if(info.positionNo == no){
+						mPlayerList.Add(info);
+						//get CardInvenInfo then add them
+					}	
+				} else{
+					if(info.positionNo == no){						
+						if(info.lastName.ToLower().IndexOf(mName.ToLower()) >= 0){
+							mPlayerList.Add(info);	
+						} else if(info.firstName.ToLower().IndexOf(mName.ToLower()) >= 0){
+							mPlayerList.Add(info);
+						}
+					}
 				}
+
 			}
 		}
 
@@ -80,79 +105,91 @@ public class SelectPlayer : MonoBehaviour {
 		transform.FindChild("Body").FindChild("Scroll").GetComponent<UIDraggablePanel2>().onDragFinished = OnDragFinished;
 		transform.FindChild("Body").FindChild("Scroll").GetComponent<UIDraggablePanel2>()
 			.Init(mPlayerList.Count, delegate(UIListItem item, int index) {
-				PlayerInfo info = mPlayerList[index];
-				if(info.IsCard){
-					item.Target.transform.FindChild("Main").gameObject.SetActive(false);
-					item.Target.transform.FindChild("Sub").gameObject.SetActive(true);
-
-					Transform tf = item.Target.transform.FindChild("Sub");
-					tf.GetComponent<ItemSelectPlayerSub>().mPlayerInfo = info;
-
-					tf.FindChild("LblSalaryB").GetComponent<UILabel>().text
-						= "[s]$ "+UtilMgr.AddsThousandsSeparator(info.salary_org+"");
-					tf.FindChild("LblSalary").GetComponent<UILabel>().text
-						= "$ "+UtilMgr.AddsThousandsSeparator(info.salary+"");
-					tf.FindChild("Level").FindChild("LblLV").FindChild("Label").GetComponent<UILabel>().text
-						= info.level+"";
-					tf.FindChild("LblSkill").FindChild("Label").GetComponent<UILabel>().text
-						= "1";
-					tf.FindChild("SprPhoto").GetComponent<UISprite>().spriteName = "starcard_" + info.grade;
-
-					for(int i = 0; i < 6; i++){
-						tf.FindChild("Level").FindChild("Star"+(i+1)).GetComponent<UISprite>()
-							.color = new Color(102f/255f, 102f/255f, 102f/255f);
-					}
-
-					for(int i = 0; i <info.grade; i++){
-						tf.FindChild("Level").FindChild("Star"+(i+1)).GetComponent<UISprite>()
-							.color = new Color(252f/255f, 133f/255f, 53f/255f);
-					}
-				} else{
-					item.Target.transform.FindChild("Main").gameObject.SetActive(true);
-					item.Target.transform.FindChild("Sub").gameObject.SetActive(false);
-
-					Transform tf = item.Target.transform.FindChild("Main");
-
-					tf.GetComponent<ItemSelectPlayerMain>().mPlayerInfo = info;
-					tf.FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
-					tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
-					if(tf.FindChild("LblName").GetComponent<UILabel>().width > 232)
-						tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName.Substring(0, 1) + ". " +info.lastName;
-					tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.city + " " + info.teamName;
-					tf.FindChild("LblYear").GetComponent<UILabel>().gameObject.SetActive(false);
-					tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$ "+UtilMgr.AddsThousandsSeparator(info.salary);
-
-					if(UtilMgr.IsMLB()){
-						item.Target.transform.FindChild("Main").FindChild("MLB").gameObject.SetActive(true);
-						item.Target.transform.FindChild("Main").FindChild("KBO").gameObject.SetActive(false);
-						tf = item.Target.transform.FindChild("Main").FindChild("MLB");
-
-						if((info.injuryYN != null) && (info.injuryYN.Equals("Y")))
-							tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(true);
-						else
-							tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
-					} else{
-						item.Target.transform.FindChild("Main").FindChild("MLB").gameObject.SetActive(false);
-						item.Target.transform.FindChild("Main").FindChild("KBO").gameObject.SetActive(true);
-						tf = item.Target.transform.FindChild("Main").FindChild("KBO");
-					}
-
-					tf.FindChild("BtnPhoto")
-						.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture
-							= mDefaultTxt;
-					tf.FindChild("BtnPhoto")
-						.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().color
-							= new Color(1f, 1f, 1f, 50f/255f);
-
-					UtilMgr.LoadImage(info.photoUrl
-					                  , tf.FindChild("BtnPhoto")
-					                  .FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>());
-
-
-				}
+				InitItem(item, index);
 			});
 		transform.FindChild("Body").FindChild("Scroll").GetComponent<UIDraggablePanel2>().ResetPosition();
 		OnDragFinished();
+
+		mName = "";
+	}
+
+	void InitItem(UIListItem item, int index){
+		PlayerInfo info = mPlayerList[index];
+		if(info.IsCard){
+			item.Target.transform.FindChild("Main").gameObject.SetActive(false);
+			item.Target.transform.FindChild("Sub").gameObject.SetActive(true);
+
+			Transform tf = item.Target.transform.FindChild("Sub");
+			tf.GetComponent<ItemSelectPlayerSub>().mPlayerInfo = info;
+
+			tf.FindChild("LblSalaryB").GetComponent<UILabel>().text
+			= "[s]$ "+UtilMgr.AddsThousandsSeparator(info.salary_org+"");
+			tf.FindChild("LblSalary").GetComponent<UILabel>().text
+			= "$ "+UtilMgr.AddsThousandsSeparator(info.salary+"");
+			tf.FindChild("Level").FindChild("LblLV").FindChild("Label").GetComponent<UILabel>().text
+			= info.level+"";
+			tf.FindChild("LblSkill").FindChild("Label").GetComponent<UILabel>().text
+			= "1";
+			tf.FindChild("SprPhoto").GetComponent<UISprite>().spriteName = "starcard_" + info.grade;
+
+			for(int i = 0; i < 6; i++){
+				tf.FindChild("Level").FindChild("Star"+(i+1)).GetComponent<UISprite>()
+					.color = new Color(102f/255f, 102f/255f, 102f/255f);
+			}
+
+			for(int i = 0; i <info.grade; i++){
+				tf.FindChild("Level").FindChild("Star"+(i+1)).GetComponent<UISprite>()
+					.color = new Color(252f/255f, 133f/255f, 53f/255f);
+			}
+		} else{
+			item.Target.transform.FindChild("Main").gameObject.SetActive(true);
+			item.Target.transform.FindChild("Sub").gameObject.SetActive(false);
+
+			Transform tf = item.Target.transform.FindChild("Main");
+
+			tf.GetComponent<ItemSelectPlayerMain>().mPlayerInfo = info;
+			tf.FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
+			if(Localization.language.Equals("English")){
+				tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
+				if(tf.FindChild("LblName").GetComponent<UILabel>().width > 232)
+					tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName.Substring(0, 1) + ". " +info.lastName;
+				tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.city + " " + info.teamName;	
+			} else{
+				tf.FindChild("LblName").GetComponent<UILabel>().text = info.korName;
+				tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.korTeamName;
+			}
+
+			tf.FindChild("LblYear").GetComponent<UILabel>().gameObject.SetActive(false);
+			tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$ "+UtilMgr.AddsThousandsSeparator(info.salary);
+
+			//					if(UtilMgr.IsMLB()){
+			//						item.Target.transform.FindChild("Main").FindChild("MLB").gameObject.SetActive(true);
+			//						item.Target.transform.FindChild("Main").FindChild("KBO").gameObject.SetActive(false);
+			//						tf = item.Target.transform.FindChild("Main").FindChild("MLB");
+			//
+			//						if((info.injuryYN != null) && (info.injuryYN.Equals("Y")))
+			//							tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(true);
+			//						else
+			//							tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
+			//					} else{
+			item.Target.transform.FindChild("Main").FindChild("MLB").gameObject.SetActive(false);
+			item.Target.transform.FindChild("Main").FindChild("KBO").gameObject.SetActive(true);
+			tf = item.Target.transform.FindChild("Main").FindChild("KBO");
+			//					}
+
+			tf.FindChild("BtnPhoto")
+				.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture
+				= mDefaultTxt;
+			tf.FindChild("BtnPhoto")
+				.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().color
+				= new Color(1f, 1f, 1f, 50f/255f);
+
+			UtilMgr.LoadImage(info.photoUrl
+				, tf.FindChild("BtnPhoto")
+				.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>());
+
+
+		}
 	}
 
 	void OnDragStarted(){

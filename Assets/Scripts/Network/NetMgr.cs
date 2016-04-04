@@ -1000,6 +1000,10 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEventToAuth(new MergeMembershipRequest(pincode), baseEvent, false, true);
 	}
 
+	public static void RewardInfo(int contestSeq, BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new RewardInfoRequest(contestSeq), baseEvent);
+	}
+
 	public static void Withdraw( BaseEvent baseEvent){
 		Instance.webAPIProcessEventToAuth(new WithdrawRequest(), baseEvent, false, true);
 	}

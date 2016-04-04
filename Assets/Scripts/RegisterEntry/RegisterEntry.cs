@@ -21,10 +21,17 @@ public class RegisterEntry : MonoBehaviour {
 		if(mContestTime.Year < 2016)
 			return;
 
-		TimeSpan ts = mContestTime.AddHours(13d) - DateTime.Now.AddTicks(UserMgr.DiffTicks);
+		if(UtilMgr.IsMLB()){
+			TimeSpan ts = mContestTime.AddHours(13d) - DateTime.Now.AddTicks(UserMgr.DiffTicks);
 
-		transform.FindChild("InfoTop").FindChild("Time").FindChild("LblRight").GetComponent<UILabel>().text
+			transform.FindChild("InfoTop").FindChild("Time").FindChild("LblRight").GetComponent<UILabel>().text
+				= UtilMgr.GetDateTime(ts);
+		} else{
+			TimeSpan ts = mContestTime - DateTime.Now.AddTicks(UserMgr.DiffTicks);
+
+			transform.FindChild("InfoTop").FindChild("Time").FindChild("LblRight").GetComponent<UILabel>().text
 			= UtilMgr.GetDateTime(ts);
+		}
 	}
 
 	PlayerInfo MakePlayerCard(PlayerInfo info){
@@ -92,19 +99,31 @@ public class RegisterEntry : MonoBehaviour {
 	public void InitRegisterEntry(ContestListInfo contestInfo){
 //		mContestSeq = contestSeq;
 		mContestInfo = contestInfo;
-		int year = int.Parse(mContestInfo.startTime.Substring(0, 4));
-		int mon = int.Parse(mContestInfo.startTime.Substring(4, 2));
-		int day = int.Parse(mContestInfo.startTime.Substring(6, 2));
-		int hour = int.Parse(mContestInfo.startTime.Substring(8, 2));
-		int min = int.Parse(mContestInfo.startTime.Substring(10, 2));
-		int sec = int.Parse(mContestInfo.startTime.Substring(12, 2));
+
+		int year = 0, mon = 0, day = 0, hour = 0, min = 0, sec = 0;
+		if(mContestInfo.startTime == null || mContestInfo.startTime.Length < 13){
+			mContestTime = new DateTime(2016, 1, 1, 1, 1, 1);
+		} else{
+			year = int.Parse(mContestInfo.startTime.Substring(0, 4));
+			mon = int.Parse(mContestInfo.startTime.Substring(4, 2));
+			day = int.Parse(mContestInfo.startTime.Substring(6, 2));
+			hour = int.Parse(mContestInfo.startTime.Substring(8, 2));
+			min = int.Parse(mContestInfo.startTime.Substring(10, 2));
+			sec = int.Parse(mContestInfo.startTime.Substring(12, 2));
+		}
 		mContestTime = new DateTime(year, mon, day, hour, min, sec);
+
 
 		string strMin = ""+min;
 		if(min < 10)
 			strMin = "0"+min;
-		transform.FindChild("InfoTop").FindChild("Time").FindChild("LblLeft").GetComponent<UILabel>().text
-			= "ET " + UtilMgr.GetAMPM(hour)[0] + ":" + strMin + " " + UtilMgr.GetAMPM(hour)[1] + " Start";
+
+		if(UtilMgr.IsMLB())
+			transform.FindChild("InfoTop").FindChild("Time").FindChild("LblLeft").GetComponent<UILabel>().text
+			= "ET " + UtilMgr.GetAMPM(hour)[0] + ":" + strMin + " " + UtilMgr.GetAMPM(hour)[1] + UtilMgr.GetLocalText("StrStart");
+		else
+			transform.FindChild("InfoTop").FindChild("Time").FindChild("LblLeft").GetComponent<UILabel>().text
+			= "KST " + UtilMgr.GetAMPM(hour)[0] + ":" + strMin + " " + UtilMgr.GetAMPM(hour)[1] + UtilMgr.GetLocalText("StrStart");
 
 		Initialize ();
 	}

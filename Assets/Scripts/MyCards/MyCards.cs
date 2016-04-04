@@ -48,9 +48,9 @@ public class MyCards : MonoBehaviour {
 		}
 
 		//if not max expand
-		CardInfo expand = new CardInfo();
-		expand.mType = CardInfo.INVEN_TYPE.EXPAND;
-		mList.Add(expand);
+//		CardInfo expand = new CardInfo();
+//		expand.mType = CardInfo.INVEN_TYPE.EXPAND;
+//		mList.Add(expand);
 
 		transform.FindChild("Body").FindChild("Draggable").GetComponent<UIDraggablePanel2>()
 			.Init(mList.Count, delegate (UIListItem item, int index){
@@ -71,11 +71,19 @@ public class MyCards : MonoBehaviour {
 			Transform tf = item.Target.transform.FindChild("ItemCard");
 
 			tf.GetComponent<ItemCard>().mCardInfo = info;
-			tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
-			if(tf.FindChild("LblName").GetComponent<UILabel>().width > 232)
-				tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName.Substring(0, 1) + ". " + info.lastName;
 			tf.FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
-			tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.city + " " + info.teamName;
+
+			if(Localization.language.Equals("English")){
+				tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
+				if(tf.FindChild("LblName").GetComponent<UILabel>().width > 232)
+					tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName.Substring(0, 1) + ". " +info.lastName;
+				tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.city + " " + info.teamName;
+			} else{
+				tf.FindChild("LblName").GetComponent<UILabel>().text = info.korName;
+				tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.korTeamName;
+			}
+
+			
 			tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$"+info.salary;
 			tf.FindChild("Star").FindChild("SprStar").FindChild("StarV").GetComponent<UILabel>().text = info.cardClass+"";
 			tf.FindChild("Level").FindChild("LblLevel").FindChild("LevelV").GetComponent<UILabel>().text = info.cardLevel+"";

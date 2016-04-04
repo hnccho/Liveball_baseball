@@ -3,7 +3,7 @@ Title,라이브볼,Liveball
 Reward,{0} 포인트를 획득하였습니다.,You have acquired {0} points.
 LblMyCards,My Cards,My Cards
 LblReady,경기 전,Upcoming
-LblJoined,Live,Live
+LblJoined,참가중,Joined
 LblHistory,대회 기록,History
 LblEntryFee,참가비 : {0}G,Entry Fees : {0}G
 LblReward,우승시 : {0}G,Winning : {0}G
@@ -14,7 +14,7 @@ LblTargetCard,주 카드,Target Card
 LblFeedingCard,소모 카드,Feeding Card
 LblCardPowerUpInfo1,주 카드를 소모 카드를 사용하여 강화할 수 있습니다.,Attempting to strengthen the target card with feeding cards.
 LblCardPowerUpInfo2,최대 4장의 소모 카드를 사용할 수 있습니다.,"In multiple attempts, max of 4 cards are allowed."
-LblCardPowerUpInfo3,,"If the attempt succeeds, remaining feeding cards and gold will be returned."
+LblCardPowerUpInfo3,강화에 성공하면 레벨이 상승합니다.,If successful in strengthening the level is rising.
 LblCardUpgradeInfo1,같은 등급 최대 레벨의 소모 카드를 사용하여 주 카드의 등급을 올립니다.,Use the same maxed level card to attempt at getting 1 upgraded card.
 LblBtnPowerUp,레벨 업!,Level Up!
 LblBtnUpgrade,등급 업!,Rank Up!
@@ -47,12 +47,12 @@ LblC,포수,C
 Lbl1B,1루수,1B
 LblRandom,무작위,Random
 LblInitialize,초기화,Initialize
-LblRegisterEntry,엔트리 등록,Register Entry
+LblRegisterEntry,Register Entry,Register Entry
 LblCard,카드,Card
 LblPrize,획득,Prize
 LblFFPG,FFPG,FFPG
 LblAnalysis,분석,Analysis
-LblContact,Contact,Contact
+LblContact,타력,Contact
 LblBattingEye,선구안,Batting eye
 LblGameLog,게임 기록,Game log
 LblPower,힘,Power
@@ -61,7 +61,7 @@ LblSeason,시즌,Season
 LblSpeed,속도,Speed
 LblPlayer,선수,Player
 LblPlayed,경기횟수,Played
-LblConcentration,집중,Concentration
+LblConcentration,집중력,Concentration
 LblImport,추가,Import
 LblPrizes,보상,Prizes
 LblSkillsetShop,스킬셋 상점,Skillset Shop
@@ -81,8 +81,8 @@ StrNo,아니오,No
 LblConfirm,확인,Confirm
 LblRegisterUsername,[00a0e9]사용자 이름[-] 등록,Register [00a0e9]Username
 StrCheckVersion,버전체크,Version Checking
-StrMustUpdate,새로운 버전이 있습니다. 업데이트를 진행해주십시오.,
-StrRecommendUpdate,새로운 버전이 있습니다. 업데이트 후 시작하시겠습니까?,
+StrMustUpdate,새로운 버전이 있습니다. 업데이트를 진행해주십시오.,You have an update. Please update the app first.
+StrRecommendUpdate,새로운 버전이 있습니다. 업데이트 후 시작하시겠습니까?,You have an update. Do you want to update before start?
 StrExit,종료,Exit
 StrSkip,무시하기,Skip
 StrUpdate,업데이트,Update
@@ -94,7 +94,7 @@ StrNickConfirmed,가입이 완료되었습니다.,Your subcription has been comp
 StrNetworkError,네트워크 오류,Network Error
 StrNetworkError1,네트워크 연결이 불안정합니다.\n인터넷 연결을 확인 후 다시 시도해주세요.,Your network connection is unstable.\nPlease check your network connection and try again.
 StrRetry,재시도,Retry
-StrGotoTitle,타이틀로 가기,Go to title
+StrGotoTitle,타이틀로 가기,Back to home
 LblUpcoming,경기 전,Upcoming
 LblRecent,최근 경기,Recent
 LblEnter,입장,Enter
@@ -124,24 +124,24 @@ StrLeftFielder,Left Fielder,Left Fielder
 StrCenterFielder,Center Fielder,Center Fielder
 StrRightFielder,Right Fielder,Right Fielder
 StrSelect,Select,Select
-LblAgreeTerms,이용 약관에 동의합니다,I agree to the Terms of Use
-LblAgreePrivacy,개인정보 보호정책에 동의합니다,I agree to the Privacy Policy
-LblTerms,이용 약관,Terms
+LblAgreeTerms,이용 약관에 동의합니다,I agree on the Terms of Use
+LblAgreePrivacy,개인정보 보호정책에 동의합니다,I agree on the Privacy Policy
+LblTerms,이용 약관,Terms of Use
 LblRegEntryInfo,"총 {1}명 선택, 평균 비용 ${0}",${0} per open position ({1})
 StrSalaryLimit,샐러리 한계,Salary Limit
 StrSalaryLimit2,샐러리 한계치를 넘었습니다.,You have exceeded the salary limit.
 StrServerError,서버 오류,Server Error
-StrServerMaintenance,서버 점검 중,Server Maintenance
+StrServerMaintenance,서버 점검 중,Server is under maintenance
 StrError,오류,Error
 StrRegSucceed,등록 성공,Registration success
 StrRegSucceed2,성공적으로 등록하였습니다.,You have successfully registered.
-StrEntryNotEnough,9개의 포지션에 선수를 등록해야 합니다.,The 9 positions required for each player.
+StrEntryNotEnough,9개의 포지션에 선수를 등록해야 합니다.,You need to register players for each 9 positions.
 StrPosition,포지션,Position
-LblInputUsername,유저 이름을 등록해주세요!,Register your Username!
+LblInputUsername,유저 이름을 등록해주세요!,Register your nickname!
 LblEntryTickets,입장 티켓,Entry Tickets
 LblBasicRP,기본 RP,Basic RP
 LblEarnedRP,적립 RP,Earned RP
-LblNews,News,News
+LblNews,뉴스,News
 StrLeft,왼손,Left
 StrRight,오른손,Right
 LblCardRankUp,Card Rank Up,Card Rank Up
@@ -159,21 +159,21 @@ LblAttendanceDesc,출석일 수에 따라 다양한 보너스를 획득할 수 �
 LblWelcomeDesc,내일부터 출석 보너스를 받을 수 있습니다.,You can get Attendance Bonus from Next day.
 LblYouGotAll,보너스 획득!!,You got all!
 LblGold,골드,Gold
-StrSingle,Single,Single
-StrDouble,Double,Double
-StrTriple,Triple,Triple
-StrHomeRun,Home Run,Home Run
-StrRBI,RBI,RBI
-StrRunScored,Run Scored,Run Scored
-StrBaseOnBalls,Base on Balls,Base on Balls
-StrStolenBase,Stolen Base,Stolen Base
-StrHitByPitch,Hit by Pitch,Hit by Pitch
-StrOut,Out,Out
-StrWin,Win,Win
-StrEarnedRun,Earned Run,Earned Run
-StrStrikeout,Strikeout,Strikeout
-StrInningPitched,Inning Pitched,Inning Pitched
-StrHitAgainst,Hit Against,Hit Against
+StrSingle,안타,Single
+StrDouble,2루타,Double
+StrTriple,3루타,Triple
+StrHomeRun,홈런,Home Run
+StrRBI,타점,RBI
+StrRunScored,득점,Run Scored
+StrBaseOnBalls,4볼,Base on Balls
+StrStolenBase,도루,Stolen Base
+StrHitByPitch,사구,Hit by Pitch
+StrOut,아웃,Out
+StrWin,승리,Win
+StrEarnedRun,자책점,Earned Run
+StrStrikeout,삼진,Strikeout
+StrInningPitched,이닝,Inning Pitched
+StrHitAgainst,피안타,Hit Against
 StrHitter,타자,Hitter
 LblMyLineup,My Line up,My Line up
 LblDone,완료,Done
@@ -194,5 +194,20 @@ StrPurchaseFailed2,{0} 구매에 실패하였습니다.,You failed to buy {0}
 StrPurchaseSuccess,구매 성공,Purchase Success
 StrPurchaseSuccess2,{0} 구매에 성공하였습니다.,You succeeded in buying {0}
 LblSettings2,설정,Settings
-StrTop,전반전,Top
-StrBottom,후반전,Bottom
+StrTop,초,Top
+StrBottom,말,Bottom
+StrInputPlayerName,선수 이름을 입력하세요.,Input playername.
+StrStart,시작,Start
+StrGameOver,경기 종료,Game over
+StrGameReady,경기 준비 중,Game ready
+LblLiveBingo,라이브 빙고,Live Bingo
+LblFantasyChallengeLeague,판타지 챌린지 리그,Fantasy Challenge League
+LblGameInformation,게임 정보,Game Information
+LblMyCards2,나의 카드,My Cards
+LblLive2,라이브,Live
+LblEntered,참가중,Entered
+StrSwitch,스위치,Switch
+StrSelect2,선택,Select
+LblCardShop2,카드 상점,Card Shop
+LblSkillsList2,스킬 리스트,Skill List
+StrPitcher2,투수,Pitcher

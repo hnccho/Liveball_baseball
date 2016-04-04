@@ -34,16 +34,36 @@ public class ItemPosition : MonoBehaviour {
 		mNeedPhoto = true;
 		transform.FindChild("Designated").FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
 		transform.FindChild("Designated").FindChild("LblSalary").GetComponent<UILabel>().text = info.salary+"";
-		transform.FindChild("Designated").FindChild("LblName")
-			.GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
+
+		if(Localization.language.Equals("English")){
+			transform.FindChild("Designated").FindChild("LblTeam")
+				.GetComponent<UILabel>().text = info.city + " " + info.teamName;
+			transform.FindChild("Designated").FindChild("LblName")
+				.GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
+			if(transform.FindChild("Designated").FindChild("LblName").GetComponent<UILabel>().width > 232)
+				transform.FindChild("Designated").FindChild("LblName").GetComponent<UILabel>().text
+					= info.firstName.Substring(0, 1) + ". " +info.lastName;
+		} else{
+			transform.FindChild("Designated").FindChild("LblTeam")
+				.GetComponent<UILabel>().text = info.korTeamName;
+			transform.FindChild("Designated").FindChild("LblName")
+				.GetComponent<UILabel>().text = info.korName;
+		}
 	}
 
 	public void SetUndesignated(){
 		mPlayerInfo = null;
 		mState = BtnPosition.STATE.Undesignated;
-		transform.FindChild("Undesignated").FindChild("LblDesignated")
-			.GetComponent<UILabel>().text = "[333333]Select [-][006AD8][b]"
-				+ UtilMgr.GetPosition(int.Parse(transform.FindChild("Label").GetComponent<UILabel>().text));
+		if(Localization.language.Equals("English")){
+			transform.FindChild("Undesignated").FindChild("LblDesignated")
+				.GetComponent<UILabel>().text = "[333333]" + UtilMgr.GetLocalText("StrSelect2") + " [-][006AD8][b]"
+					+ UtilMgr.GetPosition(int.Parse(transform.FindChild("Label").GetComponent<UILabel>().text));
+		} else{
+			transform.FindChild("Undesignated").FindChild("LblDesignated")
+				.GetComponent<UILabel>().text ="[006AD8][b]"
+					+ UtilMgr.GetPosition(int.Parse(transform.FindChild("Label").GetComponent<UILabel>().text))
+					+  "[-][333333] " + UtilMgr.GetLocalText("StrSelect");
+		}
 		transform.FindChild("Designated").gameObject.SetActive(false);
 		transform.FindChild("Undesignated").gameObject.SetActive(true);
 	}

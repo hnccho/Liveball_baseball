@@ -7,6 +7,7 @@ public class ContestDetails : MonoBehaviour {
 	ContestDetailsEvent mContestEvent;
 	EntryListEvent mEntryEvent;
 	ContestMyTeamEvent mTeamEvent;
+	RewardInfoEvent mRewardEvent;
 
 	ContestListInfo mContest;
 	DateTime mContestTime;
@@ -16,9 +17,9 @@ public class ContestDetails : MonoBehaviour {
 
 	public class RuleInfo {
 		public string mName;
-		public float mPoint;
+		public string mPoint;
 
-		public RuleInfo(string name, float pt){
+		public RuleInfo(string name, string pt){
 			mName = name;
 			mPoint = pt;
 		}
@@ -29,23 +30,23 @@ public class ContestDetails : MonoBehaviour {
 	void Start () {
 		RulesInfo = new RuleInfo[2][]{
 			new RuleInfo[]{
-				new RuleInfo(UtilMgr.GetLocalText("StrSingle"), 3f),
-				new RuleInfo(UtilMgr.GetLocalText("StrDouble"), 6f),
-				new RuleInfo(UtilMgr.GetLocalText("StrTriple"), 9f),
-				new RuleInfo(UtilMgr.GetLocalText("StrHomeRun"), 12f),
-				new RuleInfo(UtilMgr.GetLocalText("StrRBI"), 3f),
-				new RuleInfo(UtilMgr.GetLocalText("StrRunScored"), 3f),
-				new RuleInfo(UtilMgr.GetLocalText("StrBaseOnBalls"), 3f),
-				new RuleInfo(UtilMgr.GetLocalText("StrStolenBase"), 6f),
-				new RuleInfo(UtilMgr.GetLocalText("StrHitByPitch"), 3f),
-				new RuleInfo(UtilMgr.GetLocalText("StrOut"), 0)
+				new RuleInfo(UtilMgr.GetLocalText("StrSingle"), "+ 3"),
+				new RuleInfo(UtilMgr.GetLocalText("StrDouble"), "+ 6"),
+				new RuleInfo(UtilMgr.GetLocalText("StrTriple"), "+ 9"),
+				new RuleInfo(UtilMgr.GetLocalText("StrHomeRun"), "+ 12"),
+				new RuleInfo(UtilMgr.GetLocalText("StrRBI"), "+ 3"),
+				new RuleInfo(UtilMgr.GetLocalText("StrRunScored"), "+ 3"),
+				new RuleInfo(UtilMgr.GetLocalText("StrBaseOnBalls"), "+ 3"),
+				new RuleInfo(UtilMgr.GetLocalText("StrStolenBase"), "+ 6"),
+				new RuleInfo(UtilMgr.GetLocalText("StrHitByPitch"), "+ 3"),
+//				new RuleInfo(UtilMgr.GetLocalText("StrOut"), 0)
 			},
 			new RuleInfo[]{
-				new RuleInfo(UtilMgr.GetLocalText("StrWin"), 12f),
-				new RuleInfo(UtilMgr.GetLocalText("StrEarnedRun"), -3f),
-				new RuleInfo(UtilMgr.GetLocalText("StrStrikeout"), 3f),
-				new RuleInfo(UtilMgr.GetLocalText("StrInningPitched"), 3f),
-				new RuleInfo(UtilMgr.GetLocalText("StrHitAgainst"), 0)
+				new RuleInfo(UtilMgr.GetLocalText("StrWin"), "+ 12"),
+				new RuleInfo(UtilMgr.GetLocalText("StrEarnedRun"), "- 3"),
+				new RuleInfo(UtilMgr.GetLocalText("StrStrikeout"), "+ 3"),
+				new RuleInfo(UtilMgr.GetLocalText("StrInningPitched"), "+ 3"),
+//				new RuleInfo(UtilMgr.GetLocalText("StrHitAgainst"), 0)
 			}
 			
 		};
@@ -83,13 +84,18 @@ public class ContestDetails : MonoBehaviour {
 	}
 
 	void ReceivedTeam(){
-		mContestEvent = new ContestDetailsEvent(ReceivedDetails);
-		NetMgr.ContestDetails(mContest.entrySeq, mContestEvent);
+		mRewardEvent = new RewardInfoEvent(ReceivedReward);
+		NetMgr.RewardInfo(mContest.contestSeq, mRewardEvent);
 	}
 
 	void ReceivedEntry(){
 		mTeamEvent = new ContestMyTeamEvent(ReceivedTeam);
 		NetMgr.ContestMyTeamList(mContest.contestSeq, mTeamEvent);
+	}
+
+	void ReceivedReward(){
+		mContestEvent = new ContestDetailsEvent(ReceivedDetails);
+		NetMgr.ContestDetails(mContest.entrySeq, mContestEvent);
 	}
 
 	void ReceivedDetails(){
@@ -182,6 +188,19 @@ public class ContestDetails : MonoBehaviour {
 	}
 
 	void InitPrizes(){
+		Transform tf = transform.FindChild("Changeables").FindChild("Prizes");
+		tf.gameObject.SetActive(true);
+		UtilMgr.ClearList(tf.FindChild("Draggable"));
+
+		tf.FindChild("Draggable").GetComponent<UIDraggablePanel2>().Init(
+			mRewardEvent.Response.data.Count, delegate(UIListItem item, int index) {
+				item.Target.transform.FindChild("LblLeft").GetComponent<UILabel>().text
+					= mRewardEvent.Response.data[index].rank
+					+ UtilMgr.GetOrderString(mRewardEvent.Response.data[index].rank);
+				item.Target.transform.FindChild("LblRight").GetComponent<UILabel>().text
+					= mRewardEvent.Response.data[index].gold + "G";
+		});
+
 
 	}
 
@@ -208,7 +227,9 @@ public class ContestDetails : MonoBehaviour {
 			go.transform.localScale = new Vector3(1f, 1f, 1f);
 			go.transform.FindChild("LblLeft").GetComponent<UILabel>().text = RulesInfo[0][i].mName;
 			go.transform.FindChild("LblRight").GetComponent<UILabel>().text
-				= RulesInfo[0][i].mPoint > 0 ? "+" + RulesInfo[0][i].mPoint : RulesInfo[0][i].mPoint+"";
+				= RulesInfo[0][i].mPoint;
+//				> 0f ? "+ " + RulesInfo[0][i].mPoint
+//				: "- " + Math.Abs(RulesInfo[0][i].mPoint);
 		}
 		go = Instantiate(mItemRulesHeader);
 		go.transform.parent = tf.FindChild("Scroll View");
@@ -216,7 +237,7 @@ public class ContestDetails : MonoBehaviour {
 		go.transform.localPosition = new Vector3(0, stackedHeight);
 		stackedHeight -= 30f;
 		go.transform.localScale = new Vector3(1f, 1f, 1f);
-		go.transform.FindChild("LblLeft").GetComponent<UILabel>().text = UtilMgr.GetLocalText("StrPitcher");
+		go.transform.FindChild("LblLeft").GetComponent<UILabel>().text = UtilMgr.GetLocalText("StrPitcher2");
 		for(int i = 0; i < RulesInfo[1].Length; i++){
 			go = Instantiate(mItemRulesDetail);
 			go.transform.parent = tf.FindChild("Scroll View");
@@ -226,7 +247,9 @@ public class ContestDetails : MonoBehaviour {
 			go.transform.localScale = new Vector3(1f, 1f, 1f);
 			go.transform.FindChild("LblLeft").GetComponent<UILabel>().text = RulesInfo[1][i].mName;
 			go.transform.FindChild("LblRight").GetComponent<UILabel>().text
-				= RulesInfo[0][i].mPoint > 0 ? "+" + RulesInfo[1][i].mPoint : RulesInfo[1][i].mPoint+"";
+				= RulesInfo[1][i].mPoint;	
+//				> 0f ? "+ " + RulesInfo[1][i].mPoint
+//				: "- " + Math.Abs(RulesInfo[1][i].mPoint);
 		}
 
 		tf.FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();

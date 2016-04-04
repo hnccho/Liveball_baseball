@@ -87,9 +87,13 @@ public class RTLobby : MonoBehaviour {
 					.GetComponent<UISprite>().color = new Color(0f, 0f, 0f, 0f);
 			}
 
-			item.FindChild("Top").FindChild("LblStadium").GetComponent<UILabel>().text = data.stadiumName;
+			if(Localization.language.Equals("English"))
+				item.FindChild("Top").FindChild("LblStadium").GetComponent<UILabel>().text = data.stadiumName;
+			else
+				item.FindChild("Top").FindChild("LblStadium").GetComponent<UILabel>().text = data.korStadiumName;
+			
 			item.FindChild("Top").FindChild("LblStadium").FindChild("Sprite").localPosition = new Vector3(
-				-((((float)item.FindChild("Top").FindChild("LblStadium").GetComponent<UILabel>().width) / 2f) +15f), 1f);
+				-((((float)item.FindChild("Top").FindChild("LblStadium").GetComponent<UILabel>().width) / 2f) +25f), 1f);
 
 			item.FindChild("Score").FindChild("Left").FindChild("LblScore").GetComponent<UILabel>().text
 				= data.awayTeamRuns+"";
@@ -108,8 +112,16 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("Score").FindChild("Left").FindChild("SprStar").gameObject.SetActive(true);
 				item.FindChild("Score").FindChild("Right").FindChild("SprStar").gameObject.SetActive(false);
 
-				item.FindChild("Players").GetComponent<UILabel>().text
-				= UtilMgr.GetLocalText("StrTop") + " " + data.inning + UtilMgr.GetRoundString(data.inning);
+				if(data.inning < 1){
+					item.FindChild("Players").GetComponent<UILabel>().text = "";
+				} else{
+					if(Localization.language.Equals("English"))
+						item.FindChild("Players").GetComponent<UILabel>().text
+						= UtilMgr.GetLocalText("StrTop") + " " + data.inning + UtilMgr.GetRoundString(data.inning);
+					else
+						item.FindChild("Players").GetComponent<UILabel>().text
+						= data.inning + UtilMgr.GetRoundString(data.inning) + " " + UtilMgr.GetLocalText("StrTop");
+				}
 
 				item.FindChild("Players").FindChild("Left").FindChild("Frame")
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
@@ -151,8 +163,16 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("Score").FindChild("Right").FindChild("SprStar").gameObject.SetActive(true);
 				item.FindChild("Score").FindChild("Left").FindChild("SprStar").gameObject.SetActive(false);
 
-				item.FindChild("Players").GetComponent<UILabel>().text
-				= UtilMgr.GetLocalText("StrBottom") + " " + data.inning + UtilMgr.GetRoundString(data.inning);
+				if(data.inning < 1){
+					item.FindChild("Players").GetComponent<UILabel>().text = "";
+				} else{
+					if(Localization.language.Equals("English"))
+						item.FindChild("Players").GetComponent<UILabel>().text
+						= UtilMgr.GetLocalText("StrBottom") + " " + data.inning + UtilMgr.GetRoundString(data.inning);
+					else
+						item.FindChild("Players").GetComponent<UILabel>().text
+						= data.inning + UtilMgr.GetRoundString(data.inning) + " " + UtilMgr.GetLocalText("StrBottom");
+				}
 				
 				item.FindChild("Players").FindChild("Left").FindChild("Frame")
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
@@ -193,7 +213,54 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("Players").FindChild("Left")
 					.FindChild("Frame").FindChild("Label").GetComponent<UILabel>().text = data.pitcherName;
 			}
+
+			if(data.status.Equals("Scheduled")){
+				item.FindChild("BtnEnter").FindChild("LblEnter").GetComponent<UILabel>().text =
+					UtilMgr.GetLocalText("StrGameReady");
+				item.FindChild("BtnEnter").FindChild("Background").GetComponent<UISprite>().color
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().defaultColor
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().hover
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().pressed
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("Top").FindChild("SprLive").gameObject.SetActive(false);
+			} else if(data.status.Equals("InProgress")){
+				item.FindChild("BtnEnter").FindChild("LblEnter").GetComponent<UILabel>().text
+					= UtilMgr.GetLocalText("LblEnter");
+				item.FindChild("BtnEnter").FindChild("Background").GetComponent<UISprite>().color
+					= new Color(0 / 255f, 106f / 255f, 216f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().defaultColor
+					= new Color(0 / 255f, 106f / 255f, 216f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().hover
+					= new Color(0 / 255f, 106f / 255f, 216f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().pressed
+					= new Color(1f, 91f / 255f, 16f / 255f);
+				item.FindChild("Top").FindChild("SprLive").gameObject.SetActive(true);
+			} else{
+				item.FindChild("BtnEnter").FindChild("LblEnter").GetComponent<UILabel>().text
+					= UtilMgr.GetLocalText("StrGameOver");
+				item.FindChild("BtnEnter").FindChild("Background").GetComponent<UISprite>().color
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().defaultColor
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().hover
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().pressed
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("Top").FindChild("SprLive").gameObject.SetActive(false);
+			}
+
+			if(data.joinYN > 0){
+				item.FindChild("Top").FindChild("SprJoined").gameObject.SetActive(true);
+			} else{
+				item.FindChild("Top").FindChild("SprJoined").gameObject.SetActive(false);
+			}
+
 		}
+
+
 
 //		transform.FindChild("ScrollRT").GetComponent<UIScrollView>().ResetPosition();
 		transform.FindChild("ScrollRT").GetComponent<UICenterOnChild>().Recenter();

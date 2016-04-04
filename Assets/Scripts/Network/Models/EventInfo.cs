@@ -107,6 +107,17 @@ public class EventInfo {
 			_stadiumName = value;
 		}
 	}
+
+	string _korStadiumName;
+
+	public string korStadiumName {
+		get {
+			return _korStadiumName;
+		}
+		set {
+			_korStadiumName = value;
+		}
+	}
 //// 경기장이름		
 //inning: 0,			// 이닝			
 	int _inning;
@@ -234,6 +245,17 @@ public class EventInfo {
 		}
 		set {
 			_joinYN = value;
+		}
+	}
+
+	string _status;
+
+	public string status {
+		get {
+			return _status;
+		}
+		set {
+			_status = value;
 		}
 	}
 }

@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 public class UtilMgr : MonoBehaviour {
 
@@ -347,22 +348,42 @@ public class UtilMgr : MonoBehaviour {
 	}
 
 	public static string GetPosition(int positionNo){
-		switch(positionNo)
-		{
-		case 1: return "P";
-		case 2: return "C";
-		case 3: return "1B";
-		case 4: return "2B";
-		case 5: return "3B";
-		case 6: return "SS";
-		case 7: return "LF";
-		case 8: return "CF";
-		case 9: return "RF";
-		case 10:return "DH";
-		case 11:return "OF";
-		case 12:return "IF";
-		default:
-			return "N";
+		if(Localization.language.Equals("English")){
+			switch(positionNo)
+			{
+			case 1: return "P";
+			case 2: return "C";
+			case 3: return "1B";
+			case 4: return "2B";
+			case 5: return "3B";
+			case 6: return "SS";
+			case 7: return "LF";
+			case 8: return "CF";
+			case 9: return "RF";
+			case 10:return "DH";
+			case 11:return "OF";
+			case 12:return "IF";
+			default:
+				return "N";
+			}
+		} else{
+			switch(positionNo)
+			{
+			case 1: return "투수";
+			case 2: return "포수";
+			case 3: return "1루수";
+			case 4: return "2루수";
+			case 5: return "3루수";
+			case 6: return "유격수";
+			case 7: return "좌익수";
+			case 8: return "중견수";
+			case 9: return "우익수";
+			case 10:return "지명타자";
+			case 11:return "외야수";
+			case 12:return "내야수";
+			default:
+				return "N";
+			}
 		}
 	}
 
@@ -473,17 +494,23 @@ public class UtilMgr : MonoBehaviour {
 //	}
 
 	public static string GetRoundString(int round)
-	{
+	{	
+		if(Localization.language.Equals("English"))
+			return GetOrderString(round);
+		else
+			return "회";			
+	}
 
-		if(round == 1)
+	public static string GetOrderString(int order){
+		if(order == 1)
 		{
 			return "ST";
 		}
-		else if(round == 2)
+		else if(order == 2)
 		{
 			return "ND";
 		}
-		else if(round == 3)
+		else if(order == 3)
 		{
 			return "RD";
 		}
@@ -643,20 +670,58 @@ public class UtilMgr : MonoBehaviour {
 	}
 
 	public static void LoadImage(string url, UITexture texture){
-		Instance.StartCoroutine(Instance.LoadingImage (url, texture));
+		if(url == null || url.Length < 1) return;
+
+		int pngIdx = UtilMgr.IsMLB() ? url.IndexOf(".png") : url.IndexOf(".jpg");
+		int slashIdx = url.LastIndexOf("/", pngIdx);
+		int length = pngIdx - slashIdx;
+		string fileName = url.Substring(slashIdx, length);
+//		Debug.Log("pngIdx : "+pngIdx+", slashIdx : "+slashIdx);
+		string filePath = "";
+		if(UtilMgr.IsMLB())
+			filePath = Application.temporaryCachePath + fileName + ".png";
+		else
+			filePath = Application.temporaryCachePath + fileName + ".jpg";
+		
+		if(File.Exists(filePath)){
+//			Debug.Log("have image : " + filePath);
+			FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+			byte[] bytes = new byte[fs.Length];
+			fs.Read(bytes, 0, (int)fs.Length);
+			Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
+			temp.LoadImage(bytes);
+			texture.mainTexture = temp;
+			texture.color = new Color(1f, 1f, 1f, 1f);
+		} else{
+			Instance.StartCoroutine(Instance.LoadingImage (url, texture, filePath));
+		}
 	}
 
-	IEnumerator LoadingImage(string url, UITexture texture){
+		IEnumerator LoadingImage(string url, UITexture texture, string filePath){
 		WWW www = new WWW(url);
 		yield return www;
 
 		if(www.error == null && www.isDone){
+			if(www.size < 1){
+//				Debug.Log("file size is zero");
+				yield break;
+			} 
+
 			Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
 			www.LoadImageIntoTexture(temp);
-			texture.mainTexture = temp;
-	//		texture.width = 130;
+			texture.mainTexture = temp;	
 			texture.color = new Color(1f, 1f, 1f, 1f);
+
 			www.Dispose();
+			byte[] bytes = UtilMgr.IsMLB() ? temp.EncodeToPNG() : temp.EncodeToJPG();
+			try{
+				File.WriteAllBytes(filePath, bytes);
+			} catch{
+				File.Delete(filePath);
+//				Debug.Log("file deleted : "+filePath);
+			}
+
+//			Debug.Log("save image : " + filePath);
 		}
 	}
 }
