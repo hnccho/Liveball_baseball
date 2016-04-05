@@ -258,6 +258,17 @@ public class ContestListInfo {
 		}
 	}
 
+	string _contestNameKor;
+
+	public string contestNameKor {
+		get {
+			return _contestNameKor;
+		}
+		set {
+			_contestNameKor = value;
+		}
+	}
+
 	string _contestName;
 	
 	public string contestName {
@@ -332,6 +343,18 @@ public class ContestListInfo {
 			_gameName = value;
 		}
 	}
+
+	string _korStartTime;
+
+	public string korStartTime {
+		get {
+			return _korStartTime;
+		}
+		set {
+			_korStartTime = value;
+		}
+	}
+
 	string _startTime;
 	
 	public string startTime {

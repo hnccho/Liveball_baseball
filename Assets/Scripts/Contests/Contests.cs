@@ -30,8 +30,13 @@ public class Contests : MonoBehaviour {
 	void InitContestItem(UIListItem item, int index){
 		item.Target.gameObject.transform.FindChild("Button").GetComponent<ItemContestsBtns>()
 			.SetContestSeq(mContestList[index]);
-		item.Target.gameObject.transform.FindChild("LblTitle")
-			.GetComponent<UILabel>().text = mContestList[index].contestName;
+		if(Localization.language.Equals("English")){
+			item.Target.gameObject.transform.FindChild("LblTitle")
+				.GetComponent<UILabel>().text = mContestList[index].contestName;
+		} else{
+			item.Target.gameObject.transform.FindChild("LblTitle")
+				.GetComponent<UILabel>().text = mContestList[index].contestNameKor;
+		}
 		item.Target.gameObject.transform.FindChild("Lbl1stPrize").FindChild("Label")//enties
 			.GetComponent<UILabel>().text = "[fc8535]"+UtilMgr.AddsThousandsSeparator(mContestList[index].firstRewardGold)+"G";
 		item.Target.gameObject.transform.FindChild("LblTickets").FindChild("Label")

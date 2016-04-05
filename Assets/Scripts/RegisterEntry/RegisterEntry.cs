@@ -100,17 +100,24 @@ public class RegisterEntry : MonoBehaviour {
 //		mContestSeq = contestSeq;
 		mContestInfo = contestInfo;
 
-		int year = 0, mon = 0, day = 0, hour = 0, min = 0, sec = 0;
-		if(mContestInfo.startTime == null || mContestInfo.startTime.Length < 13){
-			mContestTime = new DateTime(2016, 1, 1, 1, 1, 1);
+		string startTime = null;
+		if(UtilMgr.IsMLB()){
+			startTime = mContestInfo.startTime;
 		} else{
-			year = int.Parse(mContestInfo.startTime.Substring(0, 4));
-			mon = int.Parse(mContestInfo.startTime.Substring(4, 2));
-			day = int.Parse(mContestInfo.startTime.Substring(6, 2));
-			hour = int.Parse(mContestInfo.startTime.Substring(8, 2));
-			min = int.Parse(mContestInfo.startTime.Substring(10, 2));
-			sec = int.Parse(mContestInfo.startTime.Substring(12, 2));
+			startTime = mContestInfo.korStartTime;
 		}
+
+		int year = 0, mon = 0, day = 0, hour = 0, min = 0, sec = 0;
+//		if(mContestInfo.startTime == null || mContestInfo.startTime.Length < 13){
+//			mContestTime = new DateTime(2016, 1, 1, 1, 1, 1);
+//		} else{
+			year = int.Parse(startTime.Substring(0, 4));
+			mon = int.Parse(startTime.Substring(4, 2));
+			day = int.Parse(startTime.Substring(6, 2));
+			hour = int.Parse(startTime.Substring(8, 2));
+			min = int.Parse(startTime.Substring(10, 2));
+			sec = int.Parse(startTime.Substring(12, 2));
+//		}
 		mContestTime = new DateTime(year, mon, day, hour, min, sec);
 
 

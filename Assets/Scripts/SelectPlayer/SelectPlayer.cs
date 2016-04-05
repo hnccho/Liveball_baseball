@@ -68,11 +68,17 @@ public class SelectPlayer : MonoBehaviour {
 						//get CardInvenInfo then add them
 					}	
 				} else{
-					if(info.positionNo == no){						
-						if(info.lastName.ToLower().IndexOf(mName.ToLower()) >= 0){
-							mPlayerList.Add(info);	
-						} else if(info.firstName.ToLower().IndexOf(mName.ToLower()) >= 0){
-							mPlayerList.Add(info);
+					if(info.positionNo == no){
+						if(Localization.language.Equals("English")){
+							if(info.lastName.ToLower().IndexOf(mName.ToLower()) >= 0){
+								mPlayerList.Add(info);	
+							} else if(info.firstName.ToLower().IndexOf(mName.ToLower()) >= 0){
+								mPlayerList.Add(info);
+							}
+						} else{
+							if(info.korName.IndexOf(mName) >= 0){
+								mPlayerList.Add(info);
+							}
 						}
 					}
 				}

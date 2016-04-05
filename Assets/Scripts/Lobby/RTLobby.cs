@@ -42,6 +42,8 @@ public class RTLobby : MonoBehaviour {
 	IEnumerator ReloadRT(){
 		while(true){
 			yield return new WaitForSeconds(30f);
+			if(mRTEvent.Response == null || mRTEvent.Response.data == null)
+				mMatchCnt = 0;
 
 			mMatchCnt = mRTEvent.Response.data.Count;
 			mRTEvent = new GetEventsEvent(ReceivedRT);
@@ -214,6 +216,20 @@ public class RTLobby : MonoBehaviour {
 					.FindChild("Frame").FindChild("Label").GetComponent<UILabel>().text = data.pitcherName;
 			}
 
+			string dateTime = null;
+			if(UtilMgr.IsMLB()){
+				dateTime = data.dateTime;
+			} else{
+				dateTime = data.korDateTime;
+			}
+			int year = 0, mon = 0, day = 0, hour = 0, min = 0, sec = 0;
+			year = int.Parse(dateTime.Substring(0, 4));
+			mon = int.Parse(dateTime.Substring(4, 2));
+			day = int.Parse(dateTime.Substring(6, 2));
+			hour = int.Parse(dateTime.Substring(8, 2));
+			min = int.Parse(dateTime.Substring(10, 2));
+			sec = int.Parse(dateTime.Substring(12, 2));
+
 			if(data.status.Equals("Scheduled")){
 				item.FindChild("BtnEnter").FindChild("LblEnter").GetComponent<UILabel>().text =
 					UtilMgr.GetLocalText("StrGameReady");
@@ -226,6 +242,20 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("BtnEnter").GetComponent<UIButton>().pressed
 					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
 				item.FindChild("Top").FindChild("SprLive").gameObject.SetActive(false);
+
+				string strMin = min+" ";
+				if(min < 10)
+					strMin = "0"+min+" ";
+
+				if(UtilMgr.IsMLB()){
+					item.FindChild("Players").GetComponent<UILabel>().text = "ET "
+						+ UtilMgr.GetAMPM(hour)[0] + ":" +
+						strMin + UtilMgr.GetAMPM(hour)[1];
+				} else{
+					item.FindChild("Players").GetComponent<UILabel>().text = "KST "
+						+ UtilMgr.GetAMPM(hour)[0] + ":" +
+						strMin + UtilMgr.GetAMPM(hour)[1];
+				}
 			} else if(data.status.Equals("InProgress")){
 				item.FindChild("BtnEnter").FindChild("LblEnter").GetComponent<UILabel>().text
 					= UtilMgr.GetLocalText("LblEnter");
