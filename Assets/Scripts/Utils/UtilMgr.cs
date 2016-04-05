@@ -49,7 +49,8 @@ public class UtilMgr : MonoBehaviour {
 		Lineup,
 		Bingo,
 		Ranking,
-		Settings
+		Settings,
+		PlayerRecords
 	}
 
 	static UtilMgr Instance

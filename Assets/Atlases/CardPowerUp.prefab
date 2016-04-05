@@ -42,8 +42,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 92c9640c80c0d4d2c919bf4288041fe8, type: 2}
   mSprites:
   - name: box_r8_line
-    x: 1684
-    y: 1494
+    x: 1872
+    y: 1686
     width: 60
     height: 60
     borderLeft: 10
@@ -55,8 +55,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_buy
-    x: 1684
-    y: 1557
+    x: 1804
+    y: 1682
     width: 64
     height: 64
     borderLeft: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_cardopen
-    x: 1684
-    y: 1624
+    x: 1728
+    y: 1462
     width: 64
     height: 64
     borderLeft: 0
@@ -81,8 +81,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_cardpackopen
-    x: 1609
-    y: 1457
+    x: 1728
+    y: 1530
     width: 64
     height: 70
     borderLeft: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_move_1
-    x: 1762
-    y: 1770
+    x: 2004
+    y: 2024
     width: 24
     height: 24
     borderLeft: 0
@@ -107,8 +107,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_unlock
-    x: 1733
-    y: 1758
+    x: 1737
+    y: 1756
     width: 26
     height: 36
     borderLeft: 0
@@ -120,8 +120,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: card_icon_injury
-    x: 1761
-    y: 1701
+    x: 1936
+    y: 1700
     width: 50
     height: 46
     borderLeft: 0
@@ -133,8 +133,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: card_top_bg_1
-    x: 0
-    y: 847
+    x: 684
+    y: 1750
     width: 680
     height: 298
     borderLeft: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: card_top_bg_2
     x: 0
-    y: 1148
+    y: 1448
     width: 680
     height: 298
     borderLeft: 0
@@ -159,8 +159,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: card_top_bg_3
-    x: 683
-    y: 1449
+    x: 684
+    y: 1448
     width: 680
     height: 298
     borderLeft: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: card_top_bg_4
     x: 0
-    y: 1449
+    y: 1146
     width: 680
     height: 298
     borderLeft: 0
@@ -185,8 +185,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: card_top_bg_5
-    x: 683
-    y: 1750
+    x: 0
+    y: 844
     width: 680
     height: 298
     borderLeft: 0
@@ -210,9 +210,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: cardpack_bonus
+    x: 1660
+    y: 1638
+    width: 64
+    height: 108
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: cardpack_default
-    x: 1609
-    y: 1677
+    x: 1728
+    y: 1676
     width: 72
     height: 70
     borderLeft: 0
@@ -224,8 +237,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mycard_btn_compt
-    x: 1609
-    y: 1601
+    x: 1660
+    y: 1477
     width: 64
     height: 73
     borderLeft: 0
@@ -237,8 +250,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: mycard_btn_open
-    x: 1366
-    y: 1453
+    x: 1660
+    y: 1554
     width: 64
     height: 80
     borderLeft: 0
@@ -250,8 +263,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mycard_btn_powerup
-    x: 1528
-    y: 1453
+    x: 1578
+    y: 1450
     width: 64
     height: 80
     borderLeft: 0
@@ -263,8 +276,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mycard_btn_upgrade
-    x: 1447
-    y: 1453
+    x: 1496
+    y: 1450
     width: 64
     height: 80
     borderLeft: 0
@@ -276,8 +289,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mycard_icon_inuse
-    x: 1663
-    y: 1766
+    x: 1666
+    y: 1764
     width: 67
     height: 28
     borderLeft: 0
@@ -289,8 +302,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: playercard_bg_grd
-    x: 1761
-    y: 1512
+    x: 1804
+    y: 1492
     width: 10
     height: 186
     borderLeft: 2
@@ -302,7 +315,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: playercard_diagram_1
-    x: 1366
+    x: 1368
     y: 1768
     width: 294
     height: 280
@@ -315,8 +328,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: playercard_line_graph
-    x: 1366
-    y: 1757
+    x: 1368
+    y: 1756
     width: 88
     height: 8
     borderLeft: 0
@@ -328,8 +341,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: powerup_arrow
-    x: 1684
-    y: 1691
+    x: 1922
+    y: 1756
     width: 74
     height: 56
     borderLeft: 0
@@ -341,8 +354,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: starcard_1
-    x: 1528
-    y: 1536
+    x: 1578
+    y: 1534
     width: 78
     height: 104
     borderLeft: 0
@@ -354,8 +367,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: starcard_2
-    x: 1528
-    y: 1643
+    x: 1578
+    y: 1642
     width: 78
     height: 104
     borderLeft: 0
@@ -367,8 +380,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: starcard_3
-    x: 1447
-    y: 1536
+    x: 1496
+    y: 1534
     width: 78
     height: 104
     borderLeft: 0
@@ -380,8 +393,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: starcard_4
-    x: 1447
-    y: 1643
+    x: 1496
+    y: 1642
     width: 78
     height: 104
     borderLeft: 0
@@ -393,8 +406,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: starcard_5
-    x: 1366
-    y: 1536
+    x: 1922
+    y: 1816
     width: 78
     height: 104
     borderLeft: 0
@@ -406,8 +419,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: starcard_6
-    x: 1366
-    y: 1643
+    x: 1922
+    y: 1944
     width: 78
     height: 104
     borderLeft: 0
@@ -419,8 +432,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upgrade_bg_target_1
-    x: 683
-    y: 623
+    x: 0
+    y: 430
     width: 298
     height: 410
     borderLeft: 0
@@ -432,8 +445,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upgrade_bg_target_2
-    x: 683
-    y: 1036
+    x: 302
+    y: 430
     width: 298
     height: 410
     borderLeft: 0
@@ -445,8 +458,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upgrade_bg_target_3
-    x: 301
-    y: 21
+    x: 0
+    y: 16
     width: 298
     height: 410
     borderLeft: 0
@@ -458,8 +471,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upgrade_bg_target_4
-    x: 0
-    y: 21
+    x: 302
+    y: 16
     width: 298
     height: 410
     borderLeft: 0
@@ -471,8 +484,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upgrade_bg_target_5
-    x: 301
-    y: 434
+    x: 684
+    y: 620
     width: 298
     height: 410
     borderLeft: 0
@@ -484,8 +497,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upgrade_bg_target_6
-    x: 0
-    y: 434
+    x: 684
+    y: 1034
     width: 298
     height: 410
     borderLeft: 0
@@ -497,7 +510,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upgrade_frame_feed_1
-    x: 1917
+    x: 1666
     y: 1924
     width: 124
     height: 124
@@ -510,8 +523,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upgrade_frame_feed_2
-    x: 1790
-    y: 1924
+    x: 1666
+    y: 1796
     width: 124
     height: 124
     borderLeft: 0
@@ -523,20 +536,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upgrade_frame_feed_3
-    x: 1790
-    y: 1797
-    width: 124
-    height: 124
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: upgrade_frame_feed_4
-    x: 1663
+    x: 1794
     y: 1924
     width: 124
     height: 124
@@ -548,9 +548,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: upgrade_frame_feed_4
+    x: 1794
+    y: 1796
+    width: 124
+    height: 124
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: upgrade_frame_feed_5
-    x: 1917
-    y: 1797
+    x: 1368
+    y: 1622
     width: 124
     height: 124
     borderLeft: 0
@@ -562,8 +575,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upgrade_frame_feed_6
-    x: 1663
-    y: 1797
+    x: 1368
+    y: 1494
     width: 124
     height: 124
     borderLeft: 0
@@ -575,8 +588,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: upgrade_plus
-    x: 1609
-    y: 1530
+    x: 1728
+    y: 1604
     width: 68
     height: 68
     borderLeft: 0

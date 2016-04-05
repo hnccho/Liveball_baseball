@@ -574,4 +574,6 @@ public class CardInfo {
 		}
 	}
 
+	public Mailinfo mMailinfo;
+
 }

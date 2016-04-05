@@ -208,7 +208,7 @@ GameObject:
   - 114: {fileID: 11419246}
   - 114: {fileID: 11416862}
   m_Layer: 5
-  m_Name: LblTeamRanking
+  m_Name: LblPlayerRecords
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,7 +283,7 @@ GameObject:
   - 114: {fileID: 11426702}
   - 114: {fileID: 11490984}
   m_Layer: 5
-  m_Name: BtnTeamRanking
+  m_Name: BtnPlayerRecords
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2902,7 +2902,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3022
+  startingRenderQueue: 3042
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3

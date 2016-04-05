@@ -244,16 +244,21 @@ public class NetMgr : MonoBehaviour{
 	}
 
 	void webAPIProcessEventForRankingball(BaseRequest request, BaseEvent baseEvent, bool showLoading){
+		if(Localization.language.Equals("English"))
+			mUrl = Constants.RANK_SERVER_HOST_MLB+request.GetQueryId();
+		else
+			mUrl = Constants.RANK_SERVER_HOST_KBO+request.GetQueryId();
+
 		string reqParam = request.ToRequestString();
-		WWW www = new WWW (Constants.RANK_SERVER_HOST+request.GetQueryId(),
+		WWW www = new WWW (mUrl,
 		                   System.Text.Encoding.UTF8.GetBytes(reqParam));
 		
 		
 		mReqParam = null;
-		mUrl = "";
+
 		mForm = null;
 		mReqParam = System.Text.Encoding.UTF8.GetBytes(reqParam);
-		mUrl = Constants.RANK_SERVER_HOST+request.GetQueryId();
+
 		Debug.Log (reqParam);
 		
 		StartCoroutine (webAPIProcess(www, baseEvent, showLoading, false));
@@ -1002,6 +1007,10 @@ public class NetMgr : MonoBehaviour{
 
 	public static void RewardInfo(int contestSeq, BaseEvent baseEvent){
 		Instance.webAPIProcessEvent(new RewardInfoRequest(contestSeq), baseEvent);
+	}
+
+	public static void OpenCardPack(int mailSeq, long itemFK, BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new OpenCardPackRequest(mailSeq, itemFK), baseEvent);
 	}
 
 	public static void Withdraw( BaseEvent baseEvent){

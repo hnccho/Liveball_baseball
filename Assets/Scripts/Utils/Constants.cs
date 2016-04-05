@@ -55,7 +55,8 @@ public class Constants {
 	public static string NANOO_API_KEY					= 	"El1VRQgMG464OF0LRd1vPWGmRadCpfwyITK5ZpuNKLCBTIGSZE";
 	public static string QUERY_SERVER_NANOO				= 	"https://api.nanoo.so";
 
-	public static string RANK_SERVER_HOST			 	= 	"http://scv.rankingball.com/terms/en?";
+	public static string RANK_SERVER_HOST_MLB			 	= 	"http://scv.rankingball.com/terms/en?";
+	public static string RANK_SERVER_HOST_KBO			 	= 	"http://scv.rankingball.com/terms/ko?";
 
 	public static string CS_SERVER_HOST			 		= 	"http://www.crossshock.com:9696/Client/";
 	public static string CS_ICON_HOST			 		= 	"http://www.crossshock.com/Icon/";

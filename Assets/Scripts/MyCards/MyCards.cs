@@ -39,10 +39,12 @@ public class MyCards : MonoBehaviour {
 		foreach(CardInfo cardInfo in mList)
 			cardInfo.mType = CardInfo.INVEN_TYPE.CARD;
 
-		foreach(Mailinfo mailInfo in mailEvent.Response.data){
-			if(mailInfo.mailTitle.Equals("star pack")){
+		for(int i = 0; i < mailEvent.Response.data.Count; i++){
+			Mailinfo mailInfo = mailEvent.Response.data[i];
+			if(mailInfo.mailType == 1){
 				CardInfo item = new CardInfo();
 				item.mType = CardInfo.INVEN_TYPE.PACK;
+				item.mMailinfo = mailInfo;
 				mList.Insert(0, item);
 			}
 		}
@@ -145,6 +147,11 @@ public class MyCards : MonoBehaviour {
 			item.Target.transform.FindChild("ItemCardPack").gameObject.SetActive(true);
 			item.Target.transform.FindChild("ItemCard").gameObject.SetActive(false);
 			item.Target.transform.FindChild("ItemExpand").gameObject.SetActive(false);
+
+			item.Target.transform.FindChild("ItemCardPack").FindChild("LblName").GetComponent<UILabel>().text
+				= item.Target.GetComponent<ItemInvenCard>().mCardInfo.mMailinfo.mail_title;
+			item.Target.transform.FindChild("ItemCardPack").FindChild("LblDesc").GetComponent<UILabel>().text
+				= item.Target.GetComponent<ItemInvenCard>().mCardInfo.mMailinfo.mail_desc;
 		} else if(info.mType == CardInfo.INVEN_TYPE.EXPAND){
 			item.Target.transform.FindChild("ItemCardPack").gameObject.SetActive(false);
 			item.Target.transform.FindChild("ItemCard").gameObject.SetActive(false);

@@ -189,24 +189,24 @@ public class PlayerInfo {
 		}
 	}
 
-	string _BB;
+	string _BB_v;
 	
 	public string BB {
 		get {
-			return _BB;
+			return _BB_v;
 		}
 		set {
-			_BB = value;
+			_BB_v = value;
 		}
 	}
-	string _SO;
+	string _SO_v;
 	
 	public string SO {
 		get {
-			return _SO;
+			return _SO_v;
 		}
 		set {
-			_SO = value;
+			_SO_v = value;
 		}
 	}
 	string _FIP;
@@ -418,25 +418,25 @@ public class PlayerInfo {
 		}
 	}
 
-	string _HR;
+	string V_HR;
 
 	public string HR {
 		get {
-			return _HR;
+			return V_HR;
 		}
 		set {
-			_HR = value;
+			V_HR = value;
 		}
 	}
 
-	string _AVG;
+	string V_AVG;
 
 	public string AVG {
 		get {
-			return _AVG;
+			return V_AVG;
 		}
 		set {
-			_AVG = value;
+			V_AVG = value;
 		}
 	}
 
@@ -590,4 +590,149 @@ public class PlayerInfo {
 			_itemId = value;
 		}
 	}
+
+	int AB;
+
+	public int _AB {
+		get {
+			return AB;
+		}
+		set {
+			AB = value;
+		}
+	}
+
+	int H;
+
+	public int _H {
+		get {
+			return H;
+		}
+		set {
+			H = value;
+		}
+	}
+
+	float OBP;
+
+	public float _OBP {
+		get {
+			return OBP;
+		}
+		set {
+			OBP = value;
+		}
+	}
+
+	int K;
+
+	public int _K {
+		get {
+			return K;
+		}
+		set {
+			K = value;
+		}
+	}
+
+	int hR_V;
+
+	public int _HR {
+		get {
+			return hR_V;
+		}
+		set {
+			hR_V = value;
+		}
+	}
+
+	float avg_v;
+
+	public float _AVG {
+		get {
+			return avg_v;
+		}
+		set {
+			avg_v = value;
+		}
+	}
+
+	float _fppg;
+
+	public float fppg {
+		get {
+			return _fppg;
+		}
+		set {
+			_fppg = value;
+		}
+	}
+
+	float IP;
+
+	public float _IP {
+		get {
+			return IP;
+		}
+		set {
+			IP = value;
+		}
+	}
+
+	int PH;
+
+	public int _PH {
+		get {
+			return PH;
+		}
+		set {
+			PH = value;
+		}
+	}
+
+	int bb_v;
+
+	public int _BB {
+		get {
+			return bb_v;
+		}
+		set {
+			bb_v = value;
+		}
+	}
+
+	int sO_v;
+
+	public int _SO {
+		get {
+			return sO_v;
+		}
+		set {
+			sO_v = value;
+		}
+	}
+
+	float ER;
+
+	public float _ER {
+		get {
+			return ER;
+		}
+		set {
+			ER = value;
+		}
+	}
+
+	int W;
+
+	public int _W {
+		get {
+			return W;
+		}
+		set {
+			W = value;
+		}
+	}
+
+
 }

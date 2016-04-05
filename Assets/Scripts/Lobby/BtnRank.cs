@@ -19,7 +19,7 @@ public class BtnRank : MonoBehaviour {
 		if(name.Equals("BtnRanking")){
 			transform.root.FindChild("Ranking").GetComponent<Ranking>().InitUser();
 		} else{
-
+			transform.root.FindChild("PlayerRecords").GetComponent<PlayerRecords>().Init();
 		}
 	}
 }

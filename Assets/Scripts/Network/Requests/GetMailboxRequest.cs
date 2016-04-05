@@ -7,7 +7,7 @@ public class GetMailboxRequest : BaseRequest {
 	public GetMailboxRequest()
 	{
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
-		Add ("mainType", 0);
+		Add ("mailType", 0);
 
 //		mParams = JsonFx.Json.JsonWriter.Serialize (this);
 		mDic = this;

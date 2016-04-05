@@ -56,13 +56,14 @@ public class PlayerCard : MonoBehaviour {
 		transform.FindChild("SelectionForCard").gameObject.SetActive(false);
 		mPlayerId = playerInfo.playerId;
 
-		GetInfos();
+		CommonInit();
 	}
 
 	public void InitWithCard(CardInfo cardInfo, Texture photo){
 		mPhoto = photo;
 		IsCard = true;
 		mCardInfo = cardInfo;
+
 		if(UtilMgr.IsMLB()){			
 			transform.FindChild("Info").FindChild("KBO").FindChild("Panel").FindChild("Photo")
 				.GetComponent<UITexture>().width = 135;
@@ -78,10 +79,17 @@ public class PlayerCard : MonoBehaviour {
 		transform.FindChild("SelectionForPlayer").gameObject.SetActive(false);
 		transform.FindChild("SelectionForCard").gameObject.SetActive(true);
 		mPlayerId = cardInfo.playerFK;
-		GetInfos();
+		CommonInit();
 	}
 
+	void CommonInit(){
+		if(mCardInfo.injuryYN.Equals("N"))
+			transform.FindChild("Info").FindChild("Injury").gameObject.SetActive(false);
+		else
+			transform.FindChild("Info").FindChild("Injury").gameObject.SetActive(true);
 
+		GetInfos();
+	}
 
 	void InitGameLog(){
 		transform.FindChild("Changeables").FindChild("GameLog").gameObject.SetActive(true);

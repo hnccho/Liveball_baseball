@@ -27,6 +27,16 @@ public class Mailinfo {
 			_itemFK = value;
 		}
 	}
+
+	int _mailType;
+	public int mailType {
+		get {
+			return _mailType;
+		}
+		set {
+			_mailType = value;
+		}
+	}
 	
 	private int _mailSeq;
 	public int mailSeq {
@@ -57,15 +67,6 @@ public class Mailinfo {
 			_senderNo = value;
 		}
 
-	}
-	private string _mailTitle;
-	public string mailTitle {
-		get {
-			return _mailTitle;
-		}
-		set {
-			_mailTitle = value;
-		}
 	}
 
 	private long _sendDate;
