@@ -50,7 +50,8 @@ public class UtilMgr : MonoBehaviour {
 		Bingo,
 		Ranking,
 		Settings,
-		PlayerRecords
+		PlayerRecords,
+		PlayerCard
 	}
 
 	static UtilMgr Instance
@@ -154,6 +155,12 @@ public class UtilMgr : MonoBehaviour {
 	}
 
 	public static void RemoveBackState(STATE state){
+//		for(int i = 0; i < mListBackState.Count; i++){
+//			if(mListBackState[i] == state){
+//				mListBackState.RemoveAt(i);
+//				break;
+//			}
+//		}
 		mListBackState.Remove(state);
 	}
 
@@ -178,7 +185,10 @@ public class UtilMgr : MonoBehaviour {
 		{
 			STATE state = mListBackState[mListBackState.Count-1];
 
-			if(state == STATE.Profile){
+			if(state == STATE.PlayerCard){
+				Instance.mRoot.FindChild("PlayerCard").GetComponent<PlayerCard>().OnClose();
+				return true;
+			} else if(state == STATE.Profile){
 				TweenPosition.Begin(Instance.mRoot.FindChild("Profile").gameObject,
 				                    				                    1f, new Vector3(1600f, 0, 0), false);
 			} else if(mListBackState[mListBackState.Count-2] == STATE.Lobby){

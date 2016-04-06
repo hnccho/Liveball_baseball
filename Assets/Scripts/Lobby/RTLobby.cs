@@ -131,7 +131,7 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("Players").FindChild("Left").FindChild("Frame")
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
 						= new Color(1f, 1f, 1f, 50f/255f);
-				if(!UtilMgr.IsMLB())
+//				if(!UtilMgr.IsMLB())
 				item.FindChild("Players").FindChild("Left").FindChild("Frame")
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().width = 70;
 
@@ -147,7 +147,7 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("Players").FindChild("Right").FindChild("Frame")
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
 					= new Color(1f, 1f, 1f, 50f/255f);
-				if(!UtilMgr.IsMLB())
+//				if(!UtilMgr.IsMLB())
 					item.FindChild("Players").FindChild("Right").FindChild("Frame")
 						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().width = 70;
 
@@ -183,7 +183,7 @@ public class RTLobby : MonoBehaviour {
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
 						= new Color(1f, 1f, 1f, 50f/255f);
 
-				if(!UtilMgr.IsMLB())
+//				if(!UtilMgr.IsMLB())
 					item.FindChild("Players").FindChild("Left").FindChild("Frame")
 						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().width = 70;
 				
@@ -194,7 +194,7 @@ public class RTLobby : MonoBehaviour {
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
 						= new Color(1f, 1f, 1f, 50f/255f);
 
-				if(!UtilMgr.IsMLB())
+//				if(!UtilMgr.IsMLB())
 					item.FindChild("Players").FindChild("Right").FindChild("Frame")
 						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().width = 70;
 

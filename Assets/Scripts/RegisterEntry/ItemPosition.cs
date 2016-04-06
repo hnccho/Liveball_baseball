@@ -15,7 +15,8 @@ public class ItemPosition : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(mNeedPhoto){
-			StartCoroutine(LoadImage(mPlayerInfo.photoUrl, transform.FindChild("Photo").GetComponent<UITexture>()));
+//			StartCoroutine(LoadImage(mPlayerInfo.photoUrl, transform.FindChild("Photo").GetComponent<UITexture>()));
+			UtilMgr.LoadImage(mPlayerInfo.photoUrl, transform.FindChild("Photo").GetComponent<UITexture>());
 			mNeedPhoto = false;
 		}
 	}
@@ -68,16 +69,16 @@ public class ItemPosition : MonoBehaviour {
 		transform.FindChild("Undesignated").gameObject.SetActive(true);
 	}
 
-	IEnumerator LoadImage(string url, UITexture texture){
-		WWW www = new WWW(url);
-		yield return www;
-		
-		Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
-		www.LoadImageIntoTexture(temp);
-		texture.mainTexture = temp;
-		texture.width = 130;
-		www.Dispose();
-	}
+//	IEnumerator LoadImage(string url, UITexture texture){
+//		WWW www = new WWW(url);
+//		yield return www;
+//		
+//		Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
+//		www.LoadImageIntoTexture(temp);
+//		texture.mainTexture = temp;
+//		texture.width = 130;
+//		www.Dispose();
+//	}
 
 	public PlayerInfo GetPlayerInfo(){
 		return mPlayerInfo;

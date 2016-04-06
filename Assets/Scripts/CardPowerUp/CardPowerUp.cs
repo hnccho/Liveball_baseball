@@ -54,7 +54,10 @@ public class CardPowerUp : MonoBehaviour {
 		Transform tf = transform.FindChild("Body").FindChild("Scroll").FindChild("ItemCardPowerUp");
 		tf.FindChild("TargetCard").FindChild("FG").GetComponent<UISprite>().spriteName = "upgrade_bg_target_"
 			+ mTargetCard.cardClass;
-		tf.FindChild("TargetCard").FindChild("LblName").GetComponent<UILabel>().text = mTargetCard.playerName;
+		if(Localization.language.Equals("English"))
+			tf.FindChild("TargetCard").FindChild("LblName").GetComponent<UILabel>().text = mTargetCard.playerName;
+		else
+			tf.FindChild("TargetCard").FindChild("LblName").GetComponent<UILabel>().text = mTargetCard.korName;
 		tf.FindChild("TargetCard").FindChild("Level").FindChild("LvV").
 			GetComponent<UILabel>().text = mTargetCard.cardLevel+"";
 		for(int i = 0; i < 6; i++){
@@ -169,7 +172,7 @@ public class CardPowerUp : MonoBehaviour {
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
 			FindChild("LvlLv").FindChild("Label").GetComponent<UILabel>().text = info.cardLevel+"";
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
-			FindChild("Panel").FindChild("Button").gameObject.SetActive(false);
+			FindChild("Panel2").FindChild("Button").gameObject.SetActive(false);
 		UtilMgr.LoadImage(info.photoUrl,
 		                  tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
 		                  FindChild("Panel").FindChild("Photo").GetComponent<UITexture>());
@@ -187,7 +190,7 @@ public class CardPowerUp : MonoBehaviour {
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
 			FindChild("LvlLv").gameObject.SetActive(false);
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
-			FindChild("Panel").FindChild("Button").gameObject.SetActive(true);
+			FindChild("Panel2").FindChild("Button").gameObject.SetActive(true);
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
 			FindChild("Panel").FindChild("Photo").GetComponent<UITexture>().mainTexture
 				= mDefaultTxt;
@@ -216,7 +219,10 @@ public class CardPowerUp : MonoBehaviour {
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("FG").GetComponent<UISprite>().spriteName
 			= "upgrade_bg_target_"+info.cardClass;
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblName").gameObject.SetActive(true);
-		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblName").GetComponent<UILabel>().text = info.playerName;
+		if(Localization.language.Equals("English"))
+			tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblName").GetComponent<UILabel>().text = info.playerName;
+		else
+			tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblName").GetComponent<UILabel>().text = info.korName;
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Level").gameObject.SetActive(true);
 		for(int i = 0; i < 6; i++){
 			tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Level").FindChild("Star"+(i+1)).GetComponent<UISprite>().color

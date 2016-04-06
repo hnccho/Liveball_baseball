@@ -113,7 +113,11 @@ public class MyContests : MonoBehaviour {
 			stackedHeight -= 276/2f;
 			go.transform.localScale = new Vector3(1f, 1f, 1f);
 
-			go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
+			if(Localization.language.Equals("English"))
+				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
+			else
+				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestNameKor;
+
 			go.transform.FindChild("LblEntries").FindChild("Label").GetComponent<UILabel>().text 
 				= "[333333][b]"+ UtilMgr.AddsThousandsSeparator(info.totalJoin)
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalEntry);
@@ -176,8 +180,11 @@ public class MyContests : MonoBehaviour {
 			go.transform.localPosition = new Vector3(0, stackedHeight);
 			stackedHeight -= 276/2f;
 			go.transform.localScale = new Vector3(1f, 1f, 1f);
-			
-			go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
+
+			if(Localization.language.Equals("English"))
+				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
+			else
+				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestNameKor;
 			go.transform.FindChild("LblPosition").FindChild("Label").GetComponent<UILabel>().text 
 				= "[333333][b]"+ UtilMgr.AddsThousandsSeparator(info.myRank)
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalJoin);
@@ -239,6 +246,7 @@ public class MyContests : MonoBehaviour {
 					.GetComponent<UISprite>().width = width;
 				go.transform.FindChild("Time").FindChild ("SprArrow").FindChild("Panel").FindChild("Sprite")
 					.localPosition = new Vector3(-((124 - width)/2), 0);
+
 			}
 			
 			go = Instantiate(mItemLiveSub);
@@ -248,8 +256,11 @@ public class MyContests : MonoBehaviour {
 			go.transform.localPosition = new Vector3(0, stackedHeight);
 			stackedHeight -= 170f;
 			go.transform.localScale = new Vector3(1f, 1f, 1f);
-			
-			go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
+
+			if(Localization.language.Equals("English"))
+				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
+			else
+				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestNameKor;
 			go.transform.FindChild("LblPosition").FindChild("Label").GetComponent<UILabel>().text 
 				= "[333333][b]"+ UtilMgr.AddsThousandsSeparator(info.myRank)
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalJoin);
@@ -274,6 +285,22 @@ public class MyContests : MonoBehaviour {
 				go.transform.FindChild("Lineup").FindChild("Sprite").gameObject.SetActive(false);
 				go.transform.FindChild("Lineup").FindChild("Label").localPosition = new Vector3(0, -8f, 0);
 			}
+
+			float rewardRatio = 0;
+			if(info.contestType == 1){
+				rewardRatio = 0.5f;
+			} else{
+				rewardRatio = ((float)info.rewardCount) / ((float)info.totalJoin);
+				if(rewardRatio > 1f) rewardRatio = 1f;
+			}
+			
+			float widthf = 672f * rewardRatio;
+			float diff = (672f - widthf) / 2f;
+			
+			go.transform.FindChild("Gauge").FindChild("Panel").GetComponent<UIPanel>().SetRect(widthf, 70f);
+			go.transform.FindChild("Gauge").FindChild("Panel").localPosition = new Vector3(diff, 26f);
+			go.transform.FindChild("Gauge").FindChild("Panel")
+				.FindChild("SprGaugeFront").localPosition = new Vector3(-diff, 0);
 		}
 		
 		transform.FindChild("Body").FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();

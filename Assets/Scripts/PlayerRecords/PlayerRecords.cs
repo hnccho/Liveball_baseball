@@ -94,7 +94,7 @@ public class PlayerRecords : MonoBehaviour {
 
 			if(mType == TYPE.PITCHER){
 				item.Target.transform.FindChild("5").GetComponent<UILabel>()
-					.text = string.Format("{0:F2}", mSortedList[index]._IP);
+					.text = string.Format("{0:F1}", mSortedList[index]._IP);
 				item.Target.transform.FindChild("2").GetComponent<UILabel>()
 					.text = mSortedList[index]._PH+"";
 				item.Target.transform.FindChild("3").GetComponent<UILabel>()
@@ -114,14 +114,14 @@ public class PlayerRecords : MonoBehaviour {
 				item.Target.transform.FindChild("3").GetComponent<UILabel>()
 					.text = mSortedList[index]._HR+"";
 				item.Target.transform.FindChild("5").GetComponent<UILabel>()
-					.text = string.Format("{0:F2}", mSortedList[index]._OBP);
+					.text = string.Format("{0:F3}", mSortedList[index]._OBP);
 				item.Target.transform.FindChild("6").GetComponent<UILabel>()
 					.text = string.Format("{0:F3}", mSortedList[index]._AVG);
 				item.Target.transform.FindChild("4").GetComponent<UILabel>()
 					.text = mSortedList[index]._K+"";
 			}
 			item.Target.transform.FindChild("LblFP").GetComponent<UILabel>()
-				.text = string.Format("{0:F2}", mSortedList[index].fppg);
+				.text = string.Format("{0:F1}", mSortedList[index].fppg);
 		});
 
 		transform.FindChild("Body").FindChild("ScrollPlayer").GetComponent<UIDraggablePanel2>().ResetPosition();

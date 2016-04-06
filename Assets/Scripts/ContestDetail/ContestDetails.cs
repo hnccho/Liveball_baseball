@@ -99,7 +99,10 @@ public class ContestDetails : MonoBehaviour {
 	}
 
 	void ReceivedDetails(){
-		transform.FindChild("InfoTop").FindChild("LblTitle").GetComponent<UILabel>().text = mContest.contestName;
+		if(Localization.language.Equals("English"))
+			transform.FindChild("InfoTop").FindChild("LblTitle").GetComponent<UILabel>().text = mContest.contestName;
+		else
+			transform.FindChild("InfoTop").FindChild("LblTitle").GetComponent<UILabel>().text = mContest.contestNameKor;
 
 		string strMin = ""+mContestTime.Minute;
 		if(mContestTime.Minute < 10)

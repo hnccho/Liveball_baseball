@@ -8,6 +8,7 @@ public class PlayerCard : MonoBehaviour {
 	bool IsCard;
 	string mHand;
 	CardInfo mCardInfo;
+	PlayerInfo mPlayerInfo;
 	Texture mPhoto;
 
 	PlayerSeasonInfoEvent mSeasonEvent;
@@ -19,6 +20,8 @@ public class PlayerCard : MonoBehaviour {
 	public GameObject mItemGameArticlesH;
 	public GameObject mItemGameSubH;
 	public GameObject mItemGameSubP;
+
+	bool IsInactive;
 
 	string[][] DCRate = new string[6][]{
 		new string[]{"0.00%",		"0.20%",		"0.40%",		"0.60%",		"0.80%",		"1.00%"},
@@ -41,9 +44,12 @@ public class PlayerCard : MonoBehaviour {
 
 	public void OnClose(){
 		transform.localPosition = new Vector3(2000f, 2000f);
+		transform.gameObject.SetActive(false);
+		UtilMgr.RemoveBackState(UtilMgr.STATE.PlayerCard);
 	}
 
 	public void Init(PlayerInfo playerInfo, Texture photo){
+		mPlayerInfo = playerInfo;
 		mPhoto = photo;
 		IsCard = false;
 		if(UtilMgr.IsMLB()){
@@ -51,9 +57,17 @@ public class PlayerCard : MonoBehaviour {
 				.GetComponent<UITexture>().width = 135;
 			transform.FindChild("Info").FindChild("KBO").FindChild("Panel").FindChild("Photo")
 				.GetComponent<UITexture>().height = 180;
+
+			transform.FindChild("SelectionForPlayer").gameObject.SetActive(true);
+			transform.FindChild("SelectionForPlayerKBO").gameObject.SetActive(false);
+			transform.FindChild("SelectionForCard").gameObject.SetActive(false);
+			transform.FindChild("SelectionForCardKBO").gameObject.SetActive(false);
+		} else{
+			transform.FindChild("SelectionForPlayer").gameObject.SetActive(false);
+			transform.FindChild("SelectionForPlayerKBO").gameObject.SetActive(true);
+			transform.FindChild("SelectionForCard").gameObject.SetActive(false);
+			transform.FindChild("SelectionForCardKBO").gameObject.SetActive(false);
 		}
-		transform.FindChild("SelectionForPlayer").gameObject.SetActive(true);
-		transform.FindChild("SelectionForCard").gameObject.SetActive(false);
 		mPlayerId = playerInfo.playerId;
 
 		CommonInit();
@@ -69,24 +83,25 @@ public class PlayerCard : MonoBehaviour {
 				.GetComponent<UITexture>().width = 135;
 			transform.FindChild("Info").FindChild("KBO").FindChild("Panel").FindChild("Photo")
 				.GetComponent<UITexture>().height = 180;
-			
-//			transform.FindChild("SelectionForPlayer").gameObject.SetActive(false);
-//			transform.FindChild("SelectionForCard").gameObject.SetActive(true);
+
+			transform.FindChild("SelectionForPlayer").gameObject.SetActive(false);
+			transform.FindChild("SelectionForPlayerKBO").gameObject.SetActive(false);
+			transform.FindChild("SelectionForCard").gameObject.SetActive(true);
+			transform.FindChild("SelectionForCardKBO").gameObject.SetActive(false);
 		} else{
-//			transform.FindChild("SelectionForPlayer").gameObject.SetActive(true);
-//			transform.FindChild("SelectionForCard").gameObject.SetActive(false);
+			transform.FindChild("SelectionForPlayer").gameObject.SetActive(false);
+			transform.FindChild("SelectionForPlayerKBO").gameObject.SetActive(false);
+			transform.FindChild("SelectionForCard").gameObject.SetActive(false);
+			transform.FindChild("SelectionForCardKBO").gameObject.SetActive(true);
 		}
-		transform.FindChild("SelectionForPlayer").gameObject.SetActive(false);
-		transform.FindChild("SelectionForCard").gameObject.SetActive(true);
+
 		mPlayerId = cardInfo.playerFK;
 		CommonInit();
 	}
 
 	void CommonInit(){
-		if(mCardInfo.injuryYN.Equals("N"))
-			transform.FindChild("Info").FindChild("Injury").gameObject.SetActive(false);
-		else
-			transform.FindChild("Info").FindChild("Injury").gameObject.SetActive(true);
+		transform.gameObject.SetActive(true);
+		IsInactive = false;
 
 		GetInfos();
 	}
@@ -254,7 +269,7 @@ public class PlayerCard : MonoBehaviour {
 			transform.FindChild("Info").FindChild ("KBO").FindChild("Panel").FindChild("Photo").GetComponent<UITexture>().mainTexture = mPhoto;
 //		}
 
-		PlayerInfo playerInfo = null;
+		mPlayerInfo = null;
 		foreach(PlayerInfo info in UserMgr.PlayerList){
 			if(info.playerId == mPlayerId){
 				if(info.positionNo == 1){
@@ -276,19 +291,52 @@ public class PlayerCard : MonoBehaviour {
 					else
 						mHand = UtilMgr.GetLocalText("StrRight");
 				}
-				playerInfo = info;
+				mPlayerInfo = info;
 				break;
 			}
 		}
 
-		transform.FindChild("Info").FindChild("LblName").GetComponent<UILabel>().text
-			= playerInfo.firstName.Substring(0, 1) + ". " + playerInfo.lastName;
+		if(mPlayerInfo == null){
+			IsInactive = true;
+			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPlayerInfo"), UtilMgr.GetLocalText("StrPlayerInactive")
+			                         ,DialogueMgr.DIALOGUE_TYPE.Alert, null);
+			return;
+		}
+
+		if(mPlayerInfo.injuryYN.Equals("N"))
+			transform.FindChild("Info").FindChild("Injury").gameObject.SetActive(false);
+		else
+			transform.FindChild("Info").FindChild("Injury").gameObject.SetActive(true);
+
+		if(UtilMgr.IsMLB()){
+			if(mPlayerInfo.firstName.Length < 1){
+				transform.FindChild("Info").FindChild("LblName").GetComponent<UILabel>().text
+					= mPlayerInfo.lastName;
+			} else{
+				transform.FindChild("Info").FindChild("LblName").GetComponent<UILabel>().text
+					= mPlayerInfo.firstName.Substring(0, 1) + ". " + mPlayerInfo.lastName;
+			}
+		} else{
+			if(Localization.language.Equals("English")){
+				if(mPlayerInfo.firstName.Length < 1){
+					transform.FindChild("Info").FindChild("LblName").GetComponent<UILabel>().text
+						= mPlayerInfo.lastName;
+				} else{
+					transform.FindChild("Info").FindChild("LblName").GetComponent<UILabel>().text
+						= mPlayerInfo.firstName.Substring(0, 1) + ". " + mPlayerInfo.lastName;
+				}
+			} else{
+				transform.FindChild("Info").FindChild("LblName").GetComponent<UILabel>().text
+					= mPlayerInfo.korName;
+			}
+		}
+
 		transform.FindChild("Info").FindChild("LblSaraly").GetComponent<UILabel>().text
-			= IsCard ? "[s]$" + playerInfo.salary : "$" + playerInfo.salary;
+			= IsCard ? "[s]$" + mPlayerInfo.salary : "$" + mPlayerInfo.salary;
 		transform.FindChild("Info").FindChild("LblFFPG").FindChild("Label").GetComponent<UILabel>().text
-			= "0" + playerInfo.FFPG;
+			= "0" + mPlayerInfo.FFPG;
 		transform.FindChild("Info").FindChild("LblPlayed").FindChild("Label").GetComponent<UILabel>().text
-			= "" + playerInfo.games;
+			= "" + mPlayerInfo.games;
 
 		if(IsCard){
 			transform.FindChild("SprGrade").GetComponent<UISprite>().spriteName = "card_top_bg_"+mCardInfo.cardClass;
@@ -322,6 +370,8 @@ public class PlayerCard : MonoBehaviour {
 
 	void SetInfos(){		
 		InitPlayerInfo();
+		if(IsInactive) return;
+
 		InitGameLog();
 		InitAnalysis();
 		InitNews();
@@ -335,5 +385,6 @@ public class PlayerCard : MonoBehaviour {
 		}
 		
 		transform.localPosition = Vector3.zero;
+		UtilMgr.AddBackState(UtilMgr.STATE.PlayerCard);
 	}
 }

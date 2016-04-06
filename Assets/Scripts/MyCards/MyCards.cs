@@ -75,15 +75,25 @@ public class MyCards : MonoBehaviour {
 			tf.GetComponent<ItemCard>().mCardInfo = info;
 			tf.FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
 
+
 			if(Localization.language.Equals("English")){
 				tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
 				if(tf.FindChild("LblName").GetComponent<UILabel>().width > 232)
 					tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName.Substring(0, 1) + ". " +info.lastName;
-				tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.city + " " + info.teamName;
+				if(info.teamName.Length < 1){
+					tf.FindChild("LblTeam").GetComponent<UILabel>().text = UtilMgr.GetLocalText("StrInactive");
+				} else
+					tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.city + " " + info.teamName;
 			} else{
 				tf.FindChild("LblName").GetComponent<UILabel>().text = info.korName;
-				tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.korTeamName;
+				if(info.teamName.Length < 1){
+					tf.FindChild("LblTeam").GetComponent<UILabel>().text = UtilMgr.GetLocalText("StrInactive");
+				} else
+					tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.korTeamName;
 			}
+
+
+
 
 			
 			tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$"+info.salary;
