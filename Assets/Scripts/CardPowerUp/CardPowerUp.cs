@@ -209,7 +209,7 @@ public class CardPowerUp : MonoBehaviour {
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Level").gameObject.SetActive(false);
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Pos").gameObject.SetActive(false);
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Button").gameObject.SetActive(true);
-		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblSelectPlayer").gameObject.SetActive(true);
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblSelectPlayer2").gameObject.SetActive(true);
 	}
 
 	void InitsFeedToPlayer(){
@@ -238,7 +238,7 @@ public class CardPowerUp : MonoBehaviour {
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Pos").FindChild("SprPos").FindChild("Label").
 			GetComponent<UILabel>().text = info.posCode;
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Button").gameObject.SetActive(false);
-		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblSelectPlayer").gameObject.SetActive(false);
+		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblSelectPlayer2").gameObject.SetActive(false);
 
 		UtilMgr.LoadImage(info.photoUrl,
 			tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Frame").FindChild("Panel")

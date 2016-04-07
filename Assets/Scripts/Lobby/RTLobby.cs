@@ -110,6 +110,13 @@ public class RTLobby : MonoBehaviour {
 			item.FindChild("Score").FindChild("Right").FindChild("SprEmblem").GetComponent<UISprite>().spriteName
 				= data.homeTeamId+"";
 
+			if(!UtilMgr.IsMLB()){
+				item.FindChild("Score").FindChild("Left").FindChild("SprEmblem").GetComponent<UISprite>().width = 74;
+				item.FindChild("Score").FindChild("Left").FindChild("SprEmblem").GetComponent<UISprite>().height = 60;
+				item.FindChild("Score").FindChild("Right").FindChild("SprEmblem").GetComponent<UISprite>().width = 74;
+				item.FindChild("Score").FindChild("Right").FindChild("SprEmblem").GetComponent<UISprite>().height = 60;
+			}
+
 			if(data.inningHalf.Equals("T")){
 				item.FindChild("Score").FindChild("Left").FindChild("SprStar").gameObject.SetActive(true);
 				item.FindChild("Score").FindChild("Right").FindChild("SprStar").gameObject.SetActive(false);
@@ -268,9 +275,21 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("BtnEnter").GetComponent<UIButton>().pressed
 					= new Color(1f, 91f / 255f, 16f / 255f);
 				item.FindChild("Top").FindChild("SprLive").gameObject.SetActive(true);
-			} else{
+			} else if(data.status.Equals("Final")){
 				item.FindChild("BtnEnter").FindChild("LblEnter").GetComponent<UILabel>().text
 					= UtilMgr.GetLocalText("StrGameOver");
+				item.FindChild("BtnEnter").FindChild("Background").GetComponent<UISprite>().color
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().defaultColor
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().hover
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().pressed
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("Top").FindChild("SprLive").gameObject.SetActive(false);
+			} else{
+				item.FindChild("BtnEnter").FindChild("LblEnter").GetComponent<UILabel>().text
+					= UtilMgr.GetLocalText("StrPostponed");
 				item.FindChild("BtnEnter").FindChild("Background").GetComponent<UISprite>().color
 					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
 				item.FindChild("BtnEnter").GetComponent<UIButton>().defaultColor

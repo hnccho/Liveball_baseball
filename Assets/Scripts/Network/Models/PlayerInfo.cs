@@ -123,6 +123,17 @@ public class PlayerInfo {
 		}
 	}
 
+	int _team;
+
+	public int team {
+		get {
+			return _team;
+		}
+		set {
+			_team = value;
+		}
+	}
+
 	int _teamId;
 
 	public int teamId {

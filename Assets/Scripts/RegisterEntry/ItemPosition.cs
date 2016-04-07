@@ -50,6 +50,24 @@ public class ItemPosition : MonoBehaviour {
 			transform.FindChild("Designated").FindChild("LblName")
 				.GetComponent<UILabel>().text = info.korName;
 		}
+
+		TeamScheduleInfo schedule = null;
+		foreach(TeamScheduleInfo team in UserMgr.ScheduleList){
+			if(info.team == team.awayTeamId
+			   || info.team == team.homeTeamId){
+				if(team.dateTime.Equals(
+					transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mContestInfo.startTime)){
+					schedule = team;
+					break;
+				}
+			}
+		}
+		
+		if(schedule != null){
+			transform.FindChild("Designated").FindChild("LblYear").GetComponent<UILabel>().text			
+				= schedule.awayTeam + "  @  " + schedule.homeTeam;
+		} else
+			transform.FindChild("Designated").FindChild("LblYear").gameObject.SetActive(false);
 	}
 
 	public void SetUndesignated(){

@@ -53,7 +53,7 @@ public class MyCards : MonoBehaviour {
 //		CardInfo expand = new CardInfo();
 //		expand.mType = CardInfo.INVEN_TYPE.EXPAND;
 //		mList.Add(expand);
-
+		transform.FindChild("Body").FindChild("Draggable").GetComponent<UIDraggablePanel2>().RemoveAll();
 		transform.FindChild("Body").FindChild("Draggable").GetComponent<UIDraggablePanel2>()
 			.Init(mList.Count, delegate (UIListItem item, int index){
 				InitInvenItem(item, index);

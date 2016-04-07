@@ -10,6 +10,7 @@ public class LoginRoot : SuperRoot {
 	GetProfileEvent mProfileEvent;
 	GetPlayerListEvent mPlayerEvent;
 	GetCardInvenEvent mCardEvent;
+	TeamScheduleInfoEvent mScheduleEvent;
 
 	bool mMustUpdate;
 	static string mNick = null;
@@ -284,6 +285,12 @@ public class LoginRoot : SuperRoot {
 
 	void ReceivedCards(){
 		UserMgr.CardList = mCardEvent.Response.data;
+		mScheduleEvent = new TeamScheduleInfoEvent(ReceivedSchedule);
+		NetMgr.TeamScheduleInfo(mScheduleEvent);
+	}
+
+	void ReceivedSchedule(){
+		UserMgr.ScheduleList = mScheduleEvent.Response.data;
 		AutoFade.LoadLevel("Landing");
 	}
 

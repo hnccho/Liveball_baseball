@@ -43,16 +43,24 @@ public class RegisterEntry : MonoBehaviour {
 		}
 		PlayerInfo playerInfo = new PlayerInfo();
 		playerInfo.playerId = info.playerId;
-		playerInfo.IsCard = true;
 		playerInfo.firstName = info.firstName;
 		playerInfo.lastName = info.lastName;
+		playerInfo.playerName = info.playerName;
+		playerInfo.korName = info.korName;
+		playerInfo.position = info.position;
+		playerInfo.photoUrl = info.photoUrl;
+		playerInfo.team = info.team;
+		playerInfo.teamCode = info.teamCode;
+		playerInfo.korTeamName = info.korTeamName;
+		playerInfo.teamName = info.teamName;
+
+		playerInfo.IsCard = true;
 		playerInfo.level = cardInfo.cardLevel;
 		playerInfo.grade = cardInfo.cardClass;
 		playerInfo.salary = cardInfo.salary;
 		playerInfo.salary_org = cardInfo.salary_org;
-		playerInfo.position = info.position;
 		playerInfo.itemSeq = cardInfo.itemSeq;
-		playerInfo.photoUrl = info.photoUrl;
+
 		return playerInfo;
 	}
 
@@ -127,10 +135,10 @@ public class RegisterEntry : MonoBehaviour {
 
 		if(UtilMgr.IsMLB())
 			transform.FindChild("InfoTop").FindChild("Time").FindChild("LblLeft").GetComponent<UILabel>().text
-			= "ET " + UtilMgr.GetAMPM(hour)[0] + ":" + strMin + " " + UtilMgr.GetAMPM(hour)[1] + UtilMgr.GetLocalText("StrStart");
+			= "ET " + UtilMgr.GetAMPM(hour)[0] + ":" + strMin + " " + UtilMgr.GetAMPM(hour)[1] + " " + UtilMgr.GetLocalText("StrStart");
 		else
 			transform.FindChild("InfoTop").FindChild("Time").FindChild("LblLeft").GetComponent<UILabel>().text
-			= "KST " + UtilMgr.GetAMPM(hour)[0] + ":" + strMin + " " + UtilMgr.GetAMPM(hour)[1] + UtilMgr.GetLocalText("StrStart");
+			= "KST " + UtilMgr.GetAMPM(hour)[0] + ":" + strMin + " " + UtilMgr.GetAMPM(hour)[1] + " " + UtilMgr.GetLocalText("StrStart");
 
 		Initialize ();
 	}

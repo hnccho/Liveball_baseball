@@ -1013,6 +1013,10 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new OpenCardPackRequest(mailSeq, itemFK), baseEvent);
 	}
 
+	public static void TeamScheduleInfo(BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new TeamScheduleInfoRequest(), baseEvent);
+	}
+
 	public static void Withdraw( BaseEvent baseEvent){
 		Instance.webAPIProcessEventToAuth(new WithdrawRequest(), baseEvent, false, true);
 	}

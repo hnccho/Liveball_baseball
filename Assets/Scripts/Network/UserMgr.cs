@@ -11,6 +11,7 @@ public class UserMgr : MonoBehaviour {
 	UserInfo _userInfo;
 	List<CardInfo> _cardList;
 	List<PlayerInfo> _playerList;
+	List<TeamScheduleInfo> _scheduleList;
 //	CardInvenInfo _cardInvenInfo;
 //	ScheduleInfo _schedule;
 //	LineupInfo _awayLineup;
@@ -94,6 +95,11 @@ public class UserMgr : MonoBehaviour {
 	public static List<PlayerInfo> PlayerList{
 		get{ return Instance._playerList;}
 		set{ Instance._playerList = value;}
+	}
+
+	public static List<TeamScheduleInfo> ScheduleList{
+		get{ return Instance._scheduleList;}
+		set{ Instance._scheduleList = value;}
 	}
 	
 //	public static CardInvenInfo CardInvenInfo

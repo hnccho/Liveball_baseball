@@ -1207,6 +1207,7 @@
      <Compile Include="Assets\Scripts\Network\Events\RemoveContestHistoryEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\RemoveContestPresetEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\RewardInfoEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\TeamScheduleInfoEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\UpdateMemberInfoEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\WithdrawEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\checkRecentMessageEvent.cs" />
@@ -1299,6 +1300,7 @@
      <Compile Include="Assets\Scripts\Network\Models\SposTeamInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\StoreGachaInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\TeamInfo.cs" />
+     <Compile Include="Assets\Scripts\Network\Models\TeamScheduleInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\UserInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\VersionInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\checkRecentMessageInfo.cs" />
@@ -1406,6 +1408,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\RemoveContestPresetRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\RequestIAPRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\RewardInfoRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\TeamScheduleInfoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\UpdateEntryRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\UpdateMemberInfoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\UserDailyRankingRequest.cs" />
@@ -1476,6 +1479,7 @@
      <Compile Include="Assets\Scripts\Network\Responses\RemoveContestHistoryResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\RemoveContestPresetResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\RewardInfoResponse.cs" />
+     <Compile Include="Assets\Scripts\Network\Responses\TeamScheduleInfoResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\checkRecentMessageResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\procStoreGachaResponse.cs" />
      <Compile Include="Assets\Scripts\Network\UserMgr.cs" />

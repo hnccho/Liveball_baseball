@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerCard : MonoBehaviour {
 
@@ -186,6 +187,23 @@ public class PlayerCard : MonoBehaviour {
 		Transform tf = transform.FindChild("Changeables").FindChild("Analysis");
 		tf.gameObject.SetActive(true);
 
+//		List<float> data = new List<float>();
+//		data.Add(20.5f);
+//		data.Add(55.5f);
+//		data.Add(99.5f);
+//		data.Add(2.5f);
+//		data.Add(30.5f);
+//		WMG_Series series = new WMG_Series();
+//		WMG_Series series = tf.FindChild("Radar").FindChild("Canvas").FindChild("RadarGraph").GetComponent<WMG_Radar_Graph>().lineSeries[0].GetComponent<WMG_Series>();
+//		series.pointValues.SetList(
+//			tf.FindChild("Radar").FindChild("Canvas").FindChild("RadarGraph").GetComponent<WMG_Radar_Graph>().GenRadar(data, 
+//			tf.FindChild("Radar").FindChild("Canvas").FindChild("RadarGraph").GetComponent<WMG_Radar_Graph>().offset.x,
+//       		tf.FindChild("Radar").FindChild("Canvas").FindChild("RadarGraph").GetComponent<WMG_Radar_Graph>().offset.y, 
+//			tf.FindChild("Radar").FindChild("Canvas").FindChild("RadarGraph").GetComponent<WMG_Radar_Graph>().degreeOffset));
+
+//		tf.FindChild("Radar").FindChild("Canvas").FindChild("RadarGraph").GetComponent<WMG_Radar_Graph>()
+//			.series();
+
 		string[] names;
 		string[] values;
 
@@ -333,8 +351,8 @@ public class PlayerCard : MonoBehaviour {
 
 		transform.FindChild("Info").FindChild("LblSaraly").GetComponent<UILabel>().text
 			= IsCard ? "[s]$" + mPlayerInfo.salary : "$" + mPlayerInfo.salary;
-		transform.FindChild("Info").FindChild("LblFFPG").FindChild("Label").GetComponent<UILabel>().text
-			= "0" + mPlayerInfo.FFPG;
+		transform.FindChild("Info").FindChild("LblFPPG").FindChild("Label").GetComponent<UILabel>().text
+			= string.Format("{0:F1}", mPlayerInfo.fppg);
 		transform.FindChild("Info").FindChild("LblPlayed").FindChild("Label").GetComponent<UILabel>().text
 			= "" + mPlayerInfo.games;
 
@@ -343,6 +361,42 @@ public class PlayerCard : MonoBehaviour {
 			transform.FindChild("SprGrade").gameObject.SetActive(true);
 		} else
 			transform.FindChild("SprGrade").gameObject.SetActive(false);
+
+		TeamScheduleInfo schedule = null;
+		foreach(TeamScheduleInfo info in UserMgr.ScheduleList){
+			if(mPlayerInfo.team == info.awayTeamId
+			   || mPlayerInfo.team == info.homeTeamId){
+				schedule = info;
+				break;
+			}
+		}
+
+		if(schedule != null){
+			transform.FindChild("Info").FindChild("LblPos").GetComponent<UILabel>().text
+				= schedule.awayTeam + "   @   " + schedule.homeTeam;
+
+			int hour = 1;
+			string min = "";
+			if(UtilMgr.IsMLB()){
+				hour = int.Parse(schedule.dateTime.Substring(8, 2));
+				min = schedule.dateTime.Substring(10, 2);
+				transform.FindChild("Info").FindChild("LblTime").GetComponent<UILabel>().text
+					= schedule.day + " ET " + UtilMgr.GetAMPM(hour)[0] + ":" + min + " " + UtilMgr.GetAMPM(hour)[1];
+			} else{
+				hour = int.Parse(schedule.korDateTime.Substring(8, 2));
+				min = schedule.korDateTime.Substring(10, 2);
+				if(Localization.language.Equals("English")){
+					transform.FindChild("Info").FindChild("LblTime").GetComponent<UILabel>().text
+						= schedule.day + " KST " + UtilMgr.GetAMPM(hour)[0] + ":" + min + " " + UtilMgr.GetAMPM(hour)[1];
+				} else{
+					transform.FindChild("Info").FindChild("LblTime").GetComponent<UILabel>().text
+						= "KST " + UtilMgr.GetAMPM(hour)[0] + ":" + min + " " +
+							UtilMgr.GetAMPM(hour)[1] +  " (" + UtilMgr.DayToKorean(schedule.day) + ")";
+				}
+			}
+
+		}
+
 	}
 
 	void GetInfos(){
