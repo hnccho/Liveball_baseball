@@ -39,4 +39,64 @@ public class ItemRT : MonoBehaviour {
 		UtilMgr.AddBackState(UtilMgr.STATE.Bingo);
 		UtilMgr.AnimatePageToLeft("Lobby", "Bingo");
 	}
+
+	public void LeftClick(){
+		if(mEventInfo.inningHalf.Equals("T")){
+			if(mEventInfo.currentHitterId < 1)
+				return;
+
+			foreach(PlayerInfo info in UserMgr.PlayerList){
+				if(info.playerId == mEventInfo.currentHitterId){
+					transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(
+						info,
+						transform.FindChild("Players").FindChild("Left").FindChild("Frame")
+						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture);	
+					break;
+				}
+			}
+		} else{
+			if(mEventInfo.currentPitcherId < 1)
+				return;
+
+			foreach(PlayerInfo info in UserMgr.PlayerList){
+				if(info.playerId == mEventInfo.currentPitcherId){
+					transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(
+						info,
+						transform.FindChild("Players").FindChild("Left").FindChild("Frame")
+						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture);	
+					break;
+				}
+			}
+		}
+	}
+
+	public void RightClick(){
+		if(mEventInfo.inningHalf.Equals("T")){
+			if(mEventInfo.currentPitcherId < 1)
+				return;
+			
+			foreach(PlayerInfo info in UserMgr.PlayerList){
+				if(info.playerId == mEventInfo.currentPitcherId){
+					transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(
+						info,
+						transform.FindChild("Players").FindChild("Right").FindChild("Frame")
+						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture);	
+					break;
+				}
+			}
+		} else{
+			if(mEventInfo.currentHitterId < 1)
+				return;
+			
+			foreach(PlayerInfo info in UserMgr.PlayerList){
+				if(info.playerId == mEventInfo.currentHitterId){
+					transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(
+						info,
+						transform.FindChild("Players").FindChild("Right").FindChild("Frame")
+						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture);	
+					break;
+				}
+			}
+		}
+	}
 }

@@ -395,6 +395,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 445920}
+  - 114: {fileID: 11439362}
+  - 61: {fileID: 6129234}
   m_Layer: 5
   m_Name: Left
   m_TagString: Untagged
@@ -442,6 +444,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 442692}
+  - 61: {fileID: 6130288}
+  - 114: {fileID: 11476974}
   m_Layer: 5
   m_Name: Right
   m_TagString: Untagged
@@ -1587,6 +1591,34 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 220, y: 80}
+--- !u!61 &6129234
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141874}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 100, y: 100}
+--- !u!61 &6130288
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149726}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 100, y: 100}
 --- !u!61 &6142818
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -2126,7 +2158,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: ea531756e615e4a90b9c3c1591d14903, type: 3}
   mFont: {fileID: 0}
-  mText: Top 5th
+  mText: KST 06:00 PM
   mFontSize: 32
   mFontStyle: 0
   mAlignment: 0
@@ -2248,7 +2280,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3010
+  startingRenderQueue: 3066
   mClipTexture: {fileID: 2800000, guid: 04ad3cb7550244f06b4340d9cb96b02d, type: 3}
   mAlpha: 1
   mClipping: 1
@@ -2702,6 +2734,35 @@ MonoBehaviour:
   mAtlas: {fileID: 11412872, guid: e49943f5dd1a448e99c441f55aebc3c4, type: 2}
   mSpriteName: top_btn_prev_normal
   mFillCenter: 1
+--- !u!114 &11439362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 135954}
+  hover: {r: 0.6156863, g: 0.6156863, b: 0.6156863, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick:
+  - mTarget: {fileID: 11430008}
+    mMethodName: LeftClick
+    mParameters: []
+    oneShot: 0
 --- !u!114 &11440170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3443,7 +3504,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3008
+  startingRenderQueue: 3068
   mClipTexture: {fileID: 2800000, guid: 04ad3cb7550244f06b4340d9cb96b02d, type: 3}
   mAlpha: 1
   mClipping: 1
@@ -3502,6 +3563,35 @@ MonoBehaviour:
   mAtlas: {fileID: 11412872, guid: e49943f5dd1a448e99c441f55aebc3c4, type: 2}
   mSpriteName: box_rl_1
   mFillCenter: 1
+--- !u!114 &11476974
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 184520}
+  hover: {r: 0.6156863, g: 0.6156863, b: 0.6156863, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick:
+  - mTarget: {fileID: 11430008}
+    mMethodName: RightClick
+    mParameters: []
+    oneShot: 0
 --- !u!114 &11477092
 MonoBehaviour:
   m_ObjectHideFlags: 1

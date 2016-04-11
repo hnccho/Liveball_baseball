@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BtnFolding : MonoBehaviour {
 
@@ -52,8 +53,8 @@ public class BtnFolding : MonoBehaviour {
 //			transform.root.FindChild("RegisterEntry").FindChild("Ground").gameObject.SetActive(false);
 			TweenPosition.Begin(transform.root.FindChild("RegisterEntry").FindChild("Ground").gameObject
 			                    , 0.5f, new Vector3(0f, 470f, 0f), false);
-//			TweenPosition.Begin(transform.root.FindChild("RegisterEntry").FindChild("List").GetChild (0).gameObject
-//			                    , 0.5f, new Vector3(0f, -95f, 0f), false);
+			transform.root.FindChild("RegisterEntry").FindChild("Ground").GetComponent<UITweener>()
+				.onFinished = new List<EventDelegate>();
 			transform.root.FindChild("RegisterEntry").FindChild("Ground").GetComponent<UITweener>()
 				.SetOnFinished(TweenFinished);
 			panel.transform.localPosition = new Vector3(0f, -70f, 0f);
@@ -70,8 +71,8 @@ public class BtnFolding : MonoBehaviour {
 			transform.root.FindChild("RegisterEntry").FindChild("Ground").gameObject.SetActive(true);
 			TweenPosition.Begin(transform.root.FindChild("RegisterEntry").FindChild("Ground").gameObject
 			                    , 0.5f, new Vector3(0f, 50f, 0f), false);
-//			TweenPosition.Begin(transform.root.FindChild("RegisterEntry").FindChild("List").GetChild(0).gameObject
-//			                    , 0.5f, new Vector3(0f, -352f, 0f), false);
+			transform.root.FindChild("RegisterEntry").FindChild("Ground").GetComponent<UITweener>()
+				.onFinished = new List<EventDelegate>();
 			transform.root.FindChild("RegisterEntry").FindChild("Ground").GetComponent<UITweener>()
 				.SetOnFinished(TweenFinished);
 			transform.GetComponent<UIButton>().normalSprite = "entry_btn_tolist";
@@ -83,6 +84,8 @@ public class BtnFolding : MonoBehaviour {
 	}
 
 	void TweenFinished(){
+		transform.root.FindChild("RegisterEntry").FindChild("Ground").GetComponent<UITweener>()
+			.onFinished = new List<EventDelegate>();
 		if(mState == State.List){
 			transform.root.FindChild("RegisterEntry").FindChild("Ground").gameObject.SetActive(false);
 		} else{

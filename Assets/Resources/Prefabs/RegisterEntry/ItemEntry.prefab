@@ -329,6 +329,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 475944}
   - 114: {fileID: 11454000}
+  - 114: {fileID: 11430638}
+  - 114: {fileID: 11410178}
+  - 61: {fileID: 6144836}
   m_Layer: 5
   m_Name: Photo
   m_TagString: Untagged
@@ -381,7 +384,6 @@ GameObject:
   - 114: {fileID: 11427622}
   - 114: {fileID: 11491454}
   - 114: {fileID: 11460660}
-  - 114: {fileID: 11471158}
   m_Layer: 5
   m_Name: BtnRight
   m_TagString: Untagged
@@ -567,7 +569,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 819, y: -830, z: 0}
+  m_LocalPosition: {x: 15, y: -814, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 482652}
@@ -836,6 +838,20 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 720, y: 136}
+--- !u!61 &6144836
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187256}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 108, y: 108}
 --- !u!61 &6163956
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -1000,6 +1016,17 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a7530942edd40f5944a6a4a9f48aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11410178
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187256}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57a7530942edd40f5944a6a4a9f48aa0, type: 3}
@@ -1231,6 +1258,31 @@ MonoBehaviour:
   trigger: 0
   volume: 1
   pitch: 1
+--- !u!114 &11430638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 187836}
+  hover: {r: 0.8000001, g: 0.8000001, b: 0.8000001, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick: []
 --- !u!114 &11433518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1878,17 +1930,6 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
---- !u!114 &11471158
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 188548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57a7530942edd40f5944a6a4a9f48aa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11475560
 MonoBehaviour:
   m_ObjectHideFlags: 1

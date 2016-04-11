@@ -174,6 +174,11 @@ public class SelectPlayer : MonoBehaviour {
 				tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.korTeamName;
 			}
 
+			tf.FindChild("LblFPPG").FindChild("LblFPPGV").GetComponent<UILabel>().text
+				= string.Format("{0:F1}", info.fppg);
+			tf.FindChild("LblPlayed").FindChild("LblPlayedV").GetComponent<UILabel>().text
+				= info.games+"";
+
 //			tf.FindChild("LblYear").GetComponent<UILabel>().gameObject.SetActive(false);
 			tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$ "+UtilMgr.AddsThousandsSeparator(info.salary);
 

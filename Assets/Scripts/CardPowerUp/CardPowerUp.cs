@@ -31,6 +31,8 @@ public class CardPowerUp : MonoBehaviour {
 		50, 100, 150, 200, 300
 	};
 
+	public int mFee;
+
 	// Use this for initialization
 	void Start () {
 		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
@@ -69,7 +71,7 @@ public class CardPowerUp : MonoBehaviour {
 				= new Color(252f/255f, 133f/255f, 53f/255f);
 		}
 		tf.FindChild("TargetCard").FindChild("Pos").FindChild("SprPos").FindChild("Label").
-			GetComponent<UILabel>().text = mTargetCard.posCode;
+			GetComponent<UILabel>().text = mTargetCard.position;
 		tf.FindChild("TargetCard").FindChild("Frame").FindChild("Panel").FindChild("Texture").
 			GetComponent<UITexture>().mainTexture = mTargetTxt;
 		if(mType == TYPE.LEVELUP){
@@ -103,7 +105,7 @@ public class CardPowerUp : MonoBehaviour {
 
 	public void LoadFeedsInfo(){
 //		float successRate = 0;
-		int fee = 0;
+		mFee = 0;
 		Transform tf = transform.FindChild("Body").FindChild("Scroll").FindChild("ItemCardPowerUp");
 		if(mType == TYPE.LEVELUP){
 			int i = 0;
@@ -121,13 +123,13 @@ public class CardPowerUp : MonoBehaviour {
 
 				CardInfo info = mCardFeedList[i];
 				successRate += LevelUpRate[mTargetCard.cardClass-1][info.cardClass-1] + " /";
-				fee += LevelUpFee[mTargetCard.cardClass-1];
+				mFee += LevelUpFee[mTargetCard.cardClass-1];
 			}
 			if(mCardFeedList.Count > 0){
 				tf.FindChild("Btm").FindChild("CardPowerUp").FindChild("SprTop").FindChild("Label").GetComponent<UILabel>()
 					.text = successRate.Substring(0, successRate.Length -2);
 				tf.FindChild("Btm").FindChild("CardPowerUp").FindChild("SprMid").FindChild("Label").GetComponent<UILabel>()
-					.text = fee + "G";
+					.text = mFee + "G";
 			} else{
 				tf.FindChild("Btm").FindChild("CardPowerUp").FindChild("SprTop").FindChild("Label").GetComponent<UILabel>()
 					.text = "0%";
@@ -236,7 +238,7 @@ public class CardPowerUp : MonoBehaviour {
 			.text = info.cardLevel+"";
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Pos").gameObject.SetActive(true);
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Pos").FindChild("SprPos").FindChild("Label").
-			GetComponent<UILabel>().text = info.posCode;
+			GetComponent<UILabel>().text = info.position;
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Button").gameObject.SetActive(false);
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblSelectPlayer2").gameObject.SetActive(false);
 

@@ -112,6 +112,7 @@ public class UtilMgr : MonoBehaviour {
 		}
 //		disappear.GetComponent<UITweener>().SetOnFinished(Instance.DisappearFinished);
 //		disappear.GetComponent<UITweener>().method = UITweener.Method.EaseOut;
+		Instance.mRoot.FindChild("Camera").GetComponent<UITweener>().onFinished = new List<EventDelegate>();
 		Instance.mRoot.FindChild("Camera").GetComponent<UITweener>().SetOnFinished(Instance.TweenFinished);
 		Instance.mRoot.FindChild("Camera").GetComponent<UITweener>().method = UITweener.Method.EaseOut;
 
@@ -126,6 +127,7 @@ public class UtilMgr : MonoBehaviour {
 	}
 
 	void TweenFinished(){
+		Instance.mRoot.FindChild("Camera").GetComponent<UITweener>().onFinished = new List<EventDelegate>();
 		Instance.mRoot.GetComponent<SuperRoot>().IsAnimating = false;
 
 		Instance.mDisappear.SetActive(false);
@@ -711,6 +713,12 @@ public class UtilMgr : MonoBehaviour {
 		if(File.Exists(filePath)){
 //			Debug.Log("have image : " + filePath);
 			FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+
+			if(fs.Length < 10){
+				File.Delete(filePath);
+				Instance.StartCoroutine(Instance.LoadingImage (url, texture, filePath));
+			}
+
 			byte[] bytes = new byte[fs.Length];
 			fs.Read(bytes, 0, (int)fs.Length);
 			Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
@@ -727,11 +735,6 @@ public class UtilMgr : MonoBehaviour {
 		yield return www;
 
 		if(www.error == null && www.isDone){
-			if(www.size < 1){
-//				Debug.Log("file size is zero");
-				yield break;
-			} 
-
 			Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
 			www.LoadImageIntoTexture(temp);
 			texture.mainTexture = temp;	
@@ -739,8 +742,10 @@ public class UtilMgr : MonoBehaviour {
 
 			www.Dispose();
 			byte[] bytes = UtilMgr.IsMLB() ? temp.EncodeToPNG() : temp.EncodeToJPG();
+
 			try{
 				File.WriteAllBytes(filePath, bytes);
+				if(bytes.Length < 10) throw new Exception("file size is zero");
 			} catch{
 				File.Delete(filePath);
 //				Debug.Log("file deleted : "+filePath);
@@ -749,4 +754,29 @@ public class UtilMgr : MonoBehaviour {
 //			Debug.Log("save image : " + filePath);
 		}
 	}
+
+	public static void NotEnoughGold(){
+		DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("LblAddGold"), UtilMgr.GetLocalText("StrNotEnoughGold")
+		                         , DialogueMgr.DIALOGUE_TYPE.YesNo, Instance.GoldHandler);
+	}
+
+	void GoldHandler(DialogueMgr.BTNS btn){
+		if(btn == DialogueMgr.BTNS.Btn1){
+			mRoot.FindChild("Profile").FindChild("Scroll View").FindChild("Btns")
+				.FindChild("BtnGold").GetComponent<BtnsShop>().OnClick();
+		}
+	}
+
+	public static void NotEnoughTicket(){
+		DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("LblAddTicket"), UtilMgr.GetLocalText("StrNotEnoughTickets")
+		                         , DialogueMgr.DIALOGUE_TYPE.YesNo, Instance.TicketHandler);
+	}
+	
+	void TicketHandler(DialogueMgr.BTNS btn){
+		if(btn == DialogueMgr.BTNS.Btn1){
+			mRoot.FindChild("Profile").FindChild("Scroll View").FindChild("Btns")
+				.FindChild("BtnTicket").GetComponent<BtnsShop>().OnClick();
+		}
+	}
+
 }

@@ -275,16 +275,16 @@ public class PlayerInfo {
 		}
 	}
 
-	int _played;
-
-	public int played {
-		get {
-			return _played;
-		}
-		set {
-			_played = value;
-		}
-	}
+//	int _played;
+//
+//	public int played {
+//		get {
+//			return _played;
+//		}
+//		set {
+//			_played = value;
+//		}
+//	}
 
 	long _playerId;
 

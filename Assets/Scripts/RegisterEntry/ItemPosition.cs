@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ItemPosition : MonoBehaviour {
 
-	PlayerInfo mPlayerInfo;
+	public PlayerInfo mPlayerInfo;
 	public BtnPosition.STATE mState;
 	bool mNeedPhoto;
 
