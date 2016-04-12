@@ -191,6 +191,10 @@ public class ContestDetails : MonoBehaviour {
 				.width = width;
 			item.Target.transform.FindChild("Panel").FindChild("SprGaugeFront").localPosition
 				= new Vector3(-((152 - width)/2), 0);
+
+			UtilMgr.LoadUserImage(mEntryEvent.Response.data[index].photoUrl,
+				item.Target.transform.FindChild("SprPhotoBG")
+                      .FindChild("Photo").FindChild("Texture").GetComponent<UITexture>());
 		});
 		tf.FindChild("Draggable").GetComponent<UIDraggablePanel2>().ResetPosition();
 	}

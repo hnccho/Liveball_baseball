@@ -696,19 +696,90 @@ public class UtilMgr : MonoBehaviour {
 		Instance.StopAllCoroutines();
 	}
 
+	public static void LoadUserImage(string url, UITexture texture){
+		if(url == null || url.Length < 1) return;
+
+		int idxDot2 = url.LastIndexOf(".");
+		int idxDot1 = url.LastIndexOf(".", idxDot2-1);
+//		Debug.Log("idxDot1+1 is "+(idxDot1+1));
+//		Debug.Log("idxDot2-idxDot1 is "+(idxDot2-idxDot1));
+		int cnt = int.Parse(url.Substring(idxDot1+1, (idxDot2-idxDot1)-1));
+//		Debug.Log("cnt is "+cnt);
+
+		for(int i = 0; i < 2; i++){
+			string sub1 = url.Substring(0, idxDot1+1);
+			string sub2 = Application.temporaryCachePath + "/" + sub1 + (--cnt) + ".png";
+			Debug.Log("sub2 is "+sub2);
+			if(File.Exists(sub2)){
+				Debug.Log("Deleted "+sub2);
+				File.Delete(sub2);
+			}
+		}
+		
+		int pngIdx = url.LastIndexOf(".");
+		int slashIdx = url.LastIndexOf("/", pngIdx);
+		int length = pngIdx - slashIdx;
+		string fileName = url.Substring(slashIdx, length);
+		string filePath = Application.temporaryCachePath + "/" + fileName + ".png";
+		
+		if(File.Exists(filePath)){
+			FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+			
+			if(fs.Length < 10){
+				File.Delete(filePath);
+				Instance.StartCoroutine(Instance.LoadingUserImage (url, texture, filePath));
+			}
+			
+			byte[] bytes = new byte[fs.Length];
+			fs.Read(bytes, 0, (int)fs.Length);
+			Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
+			temp.LoadImage(bytes);
+			texture.mainTexture = temp;
+			texture.color = new Color(1f, 1f, 1f, 1f);
+			texture.width = temp.width/2;
+			texture.height = temp.height/2;
+		} else{
+			Instance.StartCoroutine(Instance.LoadingUserImage (url, texture, filePath));
+		}
+	}
+
+	IEnumerator LoadingUserImage(string url, UITexture texture, string filePath){
+		WWW www = new WWW(url);
+		yield return www;
+		
+		if(www.error == null && www.isDone){
+			Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
+			www.LoadImageIntoTexture(temp);
+			texture.mainTexture = temp;	
+			texture.color = new Color(1f, 1f, 1f, 1f);
+			texture.width = temp.width/2;
+			texture.height = temp.height/2;
+			
+			www.Dispose();
+			byte[] bytes = temp.EncodeToPNG();
+			
+			try{
+				File.WriteAllBytes(filePath, bytes);
+				if(bytes.Length < 10) throw new Exception("file size is zero");
+			} catch{
+				File.Delete(filePath);
+			}
+		}
+	}
+
 	public static void LoadImage(string url, UITexture texture){
 		if(url == null || url.Length < 1) return;
 
-		int pngIdx = UtilMgr.IsMLB() ? url.IndexOf(".png") : url.IndexOf(".jpg");
+		int pngIdx = url.LastIndexOf(".");
 		int slashIdx = url.LastIndexOf("/", pngIdx);
 		int length = pngIdx - slashIdx;
 		string fileName = url.Substring(slashIdx, length);
 //		Debug.Log("pngIdx : "+pngIdx+", slashIdx : "+slashIdx);
 		string filePath = "";
 		if(UtilMgr.IsMLB())
-			filePath = Application.temporaryCachePath + fileName + ".png";
+			filePath = Application.temporaryCachePath + "/" + fileName + ".png";
 		else
-			filePath = Application.temporaryCachePath + fileName + ".jpg";
+			filePath = Application.temporaryCachePath + "/" + fileName + ".jpg";
 		
 		if(File.Exists(filePath)){
 //			Debug.Log("have image : " + filePath);
@@ -730,7 +801,7 @@ public class UtilMgr : MonoBehaviour {
 		}
 	}
 
-		IEnumerator LoadingImage(string url, UITexture texture, string filePath){
+	IEnumerator LoadingImage(string url, UITexture texture, string filePath){
 		WWW www = new WWW(url);
 		yield return www;
 

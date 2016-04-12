@@ -42,6 +42,8 @@ public class Profile : MonoBehaviour {
 		infoTop.FindChild("LblRankingPoint").FindChild("Label").FindChild("Label").localPosition
 			= new Vector3(-(infoTop.FindChild("LblRankingPoint").FindChild("Label").GetComponent<UILabel>().width+10),0);
 
-
+		UtilMgr.LoadUserImage(mProfileEvent.Response.data.photoUrl, infoTop.FindChild("Frame").FindChild("Photo")
+		                      .FindChild("Texture").GetComponent<UITexture>());
+		
 	}
 }

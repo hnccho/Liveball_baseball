@@ -6,9 +6,9 @@ public class PlayerCard : MonoBehaviour {
 
 	long mPlayerId;
 	bool IsPitcher;
-	bool IsCard;
+	public bool IsCard;
 	string mHand;
-	CardInfo mCardInfo;
+	public CardInfo mCardInfo;
 	PlayerInfo mPlayerInfo;
 	Texture mPhoto;
 
@@ -25,9 +25,9 @@ public class PlayerCard : MonoBehaviour {
 	List<float> mPlayerGraphData;
 	List<float> mAvgGraphData;
 
-	bool IsInactive;
+//	bool IsInactive;
 	const float GraphRatioValue = 645.25148676696743f;
-	bool CanOpen;
+	PlayerCardAnimation mPlayerCardAnimation;
 
 	string[][] DCRate = new string[6][]{
 		new string[]{"0.00%",		"0.20%",		"0.40%",		"0.60%",		"0.80%",		"1.00%"},
@@ -40,7 +40,7 @@ public class PlayerCard : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		mPlayerCardAnimation = transform.GetComponent<PlayerCardAnimation>();
 	}
 	
 	// Update is called once per frame
@@ -128,7 +128,7 @@ public class PlayerCard : MonoBehaviour {
 			.FindChild("Radar").FindChild("Canvas").gameObject.SetActive(false);
 		mPlayerGraphData = null;
 
-		AnimateDisappear();
+		mPlayerCardAnimation.AnimateDisappear();
 
 		UtilMgr.RemoveBackState(UtilMgr.STATE.PlayerCard);
 	}
@@ -185,10 +185,71 @@ public class PlayerCard : MonoBehaviour {
 	}
 
 	void CommonInit(){
-		IsInactive = false;
+//		IsInactive = false;
+		mSeasonEvent = null;
+		mNewsEvent = null;
+		mGameEvent = null;
 
-		AppearBack();
-		GetInfos();
+		mPlayerCardAnimation.AppearBack();
+//		GetInfos();
+		if(InitPlayerInfo()) return;
+
+		InitNewType();
+	}
+
+	void InitNewType(){
+
+		if(IsCard){
+			if(UtilMgr.IsMLB()){
+				transform.FindChild("Body").FindChild("SelectionForCard").FindChild("BtnCard")
+					.GetComponent<PlayerCardSelectionBtns>().SetCard();				
+			} else
+				transform.FindChild("Body").FindChild("SelectionForCardKBO").FindChild("BtnCard")
+					.GetComponent<PlayerCardSelectionBtns>().SetCard();				
+		} else{
+			if(UtilMgr.IsMLB()){
+				transform.FindChild("Body").FindChild("SelectionForPlayer").FindChild("BtnGameLog")
+					.GetComponent<PlayerCardSelectionBtns>().SetGameLog();
+			} else
+				transform.FindChild("Body").FindChild("SelectionForPlayerKBO").FindChild("BtnGameLog")
+					.GetComponent<PlayerCardSelectionBtns>().SetGameLog();
+		}
+	}
+
+	public void SetGameLog(){
+		if(mGameEvent == null){
+			mGameEvent = new PlayerGameInfoEvent(InitGameLog);
+			NetMgr.PlayerGameInfo(mPlayerId, mGameEvent);
+		} else{
+			InitGameLog();
+		}
+	}
+
+	public void SetAnalysis(){
+		if(mSeasonEvent == null){
+			mSeasonEvent = new PlayerSeasonInfoEvent(ReceivedSeason2);
+			NetMgr.PlayerSeasonInfo(mPlayerId, mSeasonEvent);
+		} else{
+			InitAnalysis();
+		}
+	}
+
+	void ReceivedSeason2(){
+		if(mGameEvent == null){
+			mGameEvent = new PlayerGameInfoEvent(InitAnalysis);
+			NetMgr.PlayerGameInfo(mPlayerId, mGameEvent);
+		} else{
+			InitAnalysis();
+		}
+	}
+	
+	public void SetNews(){
+		if(mNewsEvent == null){
+			mNewsEvent = new PlayerNewsInfoEvent(InitNews);
+			NetMgr.PlayerNewsInfo(mPlayerId, mNewsEvent);
+		} else{
+			InitNews();
+		}
 	}
 
 	void InitGameLog(){
@@ -391,11 +452,7 @@ public class PlayerCard : MonoBehaviour {
 
 	}
 	
-	void InitNews(){
-		
-	}
-	
-	void InitCardInfo(){
+	public void InitCardInfo(){
 		Transform tf = transform.FindChild("Body").FindChild("Changeables").FindChild("Card");
 		tf.gameObject.SetActive(true);
 		for(int i = 0; i < 6; i++){
@@ -420,7 +477,7 @@ public class PlayerCard : MonoBehaviour {
 		tf.FindChild("Btm").FindChild("Upgrade").gameObject.SetActive(true);
 	}
 
-	void InitPlayerInfo(){
+	bool InitPlayerInfo(){
 //		if(UtilMgr.IsMLB()){
 //			transform.FindChild("Info").FindChild ("MLB").gameObject.SetActive(true);
 //			transform.FindChild("Info").FindChild ("KBO").gameObject.SetActive(false);
@@ -461,10 +518,10 @@ public class PlayerCard : MonoBehaviour {
 		}
 
 		if(mPlayerInfo == null){
-			IsInactive = true;
+//			IsInactive = true;
 			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPlayerInfo"), UtilMgr.GetLocalText("StrPlayerInactive")
 			                         ,DialogueMgr.DIALOGUE_TYPE.Alert, null);
-			return;
+			return true;
 		}
 
 		if(mPlayerInfo.injuryYN.Equals("N"))
@@ -545,6 +602,11 @@ public class PlayerCard : MonoBehaviour {
 
 		}
 
+		return false;
+	}
+
+	void InitNews(){
+
 	}
 
 	void GetInfos(){		
@@ -569,7 +631,7 @@ public class PlayerCard : MonoBehaviour {
 
 	void SetInfos(){		
 		InitPlayerInfo();
-		if(IsInactive) return;
+//		if(IsInactive) return;
 
 		InitGameLog();
 		InitAnalysis();
@@ -592,7 +654,7 @@ public class PlayerCard : MonoBehaviour {
 		}
 
 //		DisappearBack();
-		CanOpen = true;
+		transform.GetComponent<PlayerCardAnimation>().CanOpen = true;
 	}
 
 	List<float> GetGraphData(PlayerInfo player, PlayerSeasonInfo.GraphInfo graphInfo){
@@ -658,93 +720,4 @@ public class PlayerCard : MonoBehaviour {
 		return data;
 	}
 
-	//---Animation Start---//
-
-	EventDelegate delegateAppearBackFinish;// = new EventDelegate(AppearBackFinish);
-	void AppearBack(){
-		delegateAppearBackFinish = new EventDelegate(AppearBackFinish);
-		Debug.Log("1");
-		UtilMgr.AddBackState(UtilMgr.STATE.PlayerCard);
-		transform.gameObject.SetActive(true);
-		transform.FindChild("Back").gameObject.SetActive(true);
-
-		string strImg = "";
-		if(IsCard){
-			strImg = "images/card_back_"+mCardInfo.cardClass;
-		} else{
-			//default
-			strImg = "images/card_back_default";
-		}
-
-		transform.FindChild("Back").FindChild("Texture").GetComponent<UITexture>()
-			.mainTexture = Resources.Load<Texture2D>(strImg);
-
-		transform.FindChild("Back").localScale = new Vector3(0f, 0f, 1f);
-		transform.localPosition = Vector3.zero;
-		transform.FindChild("Body").localScale = new Vector3(0, 1f, 1f);
-		TweenScale.Begin(transform.FindChild("Back").gameObject, 0.5f, new Vector3(1f, 1f, 1f));
-		CanOpen = false;
-		transform.FindChild("Back").GetComponent<UITweener>().SetOnFinished(delegateAppearBackFinish);
-	}
-
-	void AppearBackFinish(){
-		Debug.Log("2");
-//		transform.FindChild("Back").GetComponent<UITweener>().onFinished = new List<EventDelegate>();
-		transform.FindChild("Back").GetComponent<UITweener>().RemoveOnFinished(delegateAppearBackFinish);
-		StartCoroutine(WaitForLoading());
-//		DisappearBack();
-	}
-
-	EventDelegate delegateAnimateAppear;// = new EventDelegate(AnimateAppear);
-	void DisappearBack(){
-		delegateAnimateAppear = new EventDelegate(AnimateAppear);
-		Debug.Log("3");
-		TweenScale.Begin(transform.FindChild("Back").gameObject, 0.2f, new Vector3(0f, 1f, 1f));
-		transform.FindChild("Back").GetComponent<UITweener>().SetOnFinished(delegateAnimateAppear);
-	}
-
-	IEnumerator WaitForLoading(){
-		Debug.Log("4");
-		if(!CanOpen)
-			yield return 0;
-
-		DisappearBack();
-	}
-
-	EventDelegate delegateAppearFinish;// = new EventDelegate(AppearFinish);
-	void AnimateAppear(){
-		delegateAppearFinish = new EventDelegate(AppearFinish);
-		Debug.Log("5");
-//		transform.FindChild("Back").GetComponent<UITweener>().onFinished = new List<EventDelegate>();
-		transform.FindChild("Back").GetComponent<UITweener>().RemoveOnFinished(delegateAnimateAppear);
-		transform.FindChild("Body").localScale = new Vector3(0, 0.659f, 1f);
-		TweenScale.Begin(transform.FindChild("Body").gameObject, 0.2f, new Vector3(1f, 1f, 1f));
-		transform.FindChild("Body").GetComponent<UITweener>().SetOnFinished(delegateAppearFinish);
-	}
-
-	void AnimateDisappear(){
-		Debug.Log("6");
-		TweenScale.Begin(transform.FindChild("Body").gameObject, 0.2f, new Vector3(0f, 0f, 1f));
-		transform.FindChild("Body").GetComponent<UITweener>().SetOnFinished(DisappearFinish);
-	}
-
-	EventDelegate delegateAppearFinish2;
-	void AppearFinish(){
-		delegateAppearFinish2 = new EventDelegate(AppearFinish2);
-//		transform.FindChild("Body").GetComponent<UITweener>().RemoveOnFinished(delegateAppearFinish);
-//		TweenScale.Begin(transform.FindChild("Body").gameObject, 0.2f, new Vector3(1f, 1f, 1f));
-//		transform.FindChild("Body").GetComponent<UITweener>().SetOnFinished(delegateAppearFinish2);
-	}
-
-	void AppearFinish2(){
-		transform.FindChild("Body").GetComponent<UITweener>().RemoveOnFinished(delegateAppearFinish2);
-	}
-
-	void DisappearFinish(){
-		transform.FindChild("Body").GetComponent<UITweener>().onFinished = new List<EventDelegate>();
-		transform.localPosition = new Vector3(2000f, 2000f);
-		transform.gameObject.SetActive(false);
-	}
-
-	//---Animation End---//
 }

@@ -107,6 +107,9 @@ public class Ranking : MonoBehaviour {
 				.text = mUserEvent.Response.data[index].name;
 			item.Target.transform.FindChild("LblPtLeft").GetComponent<UILabel>()
 				.text = mUserEvent.Response.data[index].rankPoint+"";
+			UtilMgr.LoadUserImage(mUserEvent.Response.data[index].photoUrl,
+				item.Target.transform.FindChild("SprPhotoBG").FindChild("Photo").FindChild("Texture")
+					.GetComponent<UITexture>());
 		});
 		transform.FindChild("Body").FindChild("ScrollUser").GetComponent<UIDraggablePanel2>().ResetPosition();
 

@@ -396,13 +396,13 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	void purchaseSucceededEvent( GooglePurchase purchase )
 	{		
 		mIAPEvent = new InAppPurchaseEvent(FinishIAP);
-		
+
 		byte[] bytes = System.Text.Encoding.UTF8.GetBytes(purchase.originalJson);
 		string basedJson = System.Convert.ToBase64String(bytes);
 		bytes = System.Text.Encoding.UTF8.GetBytes(purchase.signature);
 		string basedSign = System.Convert.ToBase64String(bytes);
 //		NetMgr.InAppPurchase(false, purchase.productId, basedJson, basedSign, mIAPEvent);
-		NetMgr.InAppPurchase(false, purchase.productId, "", basedJson, mIAPEvent);
+		NetMgr.InAppPurchase(false, purchase.productId, basedSign, basedJson, mIAPEvent);
 		
 		Debug.Log( "purchaseSucceededEvent: " + purchase );
 	}
