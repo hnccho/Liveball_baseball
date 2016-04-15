@@ -285,12 +285,20 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	}
 	
 	public void RequestIAP(string itemcode, string itemname){
+		UtilMgr.ShowLoading();
 		mItemname = itemname;
 		mItemcode = itemcode;
+		StartCoroutine(WaitingForPurchase());
+
+	}
+
+	IEnumerator WaitingForPurchase(){
+		yield return new WaitForSeconds(0.5f);
+
 		#if(UNITY_ANDROID)
-		GoogleIAB.purchaseProduct(itemcode);
+		GoogleIAB.purchaseProduct(mItemcode);
 		#else
-		IOSMgr.BuyItem(itemcode);
+		IOSMgr.BuyItem(mItemcode);
 		#endif
 	}
 
@@ -384,17 +392,20 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	
 	void queryInventoryFailedEvent( string error )
 	{
+		UtilMgr.DismissLoading();
 		Debug.Log( "queryInventoryFailedEvent: " + error );
 	}
 	
 	
 	void purchaseCompleteAwaitingVerificationEvent( string purchaseData, string signature )
 	{
+		UtilMgr.DismissLoading();
 		Debug.Log( "purchaseCompleteAwaitingVerificationEvent. purchaseData: " + purchaseData + ", signature: " + signature );
 	}
 	
 	void purchaseSucceededEvent( GooglePurchase purchase )
-	{		
+	{	
+		UtilMgr.DismissLoading();
 		mIAPEvent = new InAppPurchaseEvent(FinishIAP);
 
 		byte[] bytes = System.Text.Encoding.UTF8.GetBytes(purchase.originalJson);
@@ -409,6 +420,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	
 	void purchaseFailedEvent( string error, int response )
 	{
+		UtilMgr.DismissLoading();
 		Debug.Log( "purchaseFailedEvent: " + error + ", response: " + response );
 	}
 	
@@ -421,12 +433,14 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	
 	void consumePurchaseSucceededEvent( GooglePurchase purchase )
 	{
+		UtilMgr.DismissLoading();
 		mDoneIAP();
 	}
 	
 	
 	void consumePurchaseFailedEvent( string error )
 	{
+		UtilMgr.DismissLoading();
 		DialogueMgr.ShowDialogue("Consume Failed", mItemname + " Consume Failed", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 //		Debug.Log ("FailedConsume");
 	}
@@ -434,6 +448,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	#else	
 	void purchaseSucceededEvent(string receipt)
 	{	
+		UtilMgr.DismissLoading();
 		byte[] bytes = System.Text.Encoding.UTF8.GetBytes(receipt);
 		mIAPEvent = new InAppPurchaseEvent(FinishIAP);
 		NetMgr.InAppPurchase(false, mItemcode, System.Convert.ToBase64String(bytes), "", mIAPEvent);
@@ -441,9 +456,11 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	
 	void purchaseFailedEvent(string receipt)
 	{		
+		UtilMgr.DismissLoading();
 	}
 	
 	void mCancelIAP(){
+		UtilMgr.DismissLoading();
 		DialogueMgr.ShowDialogue("구매 실패", mItemname + " 구매를 실패 했습니다.", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 		Debug.Log ("FailedEvent");
 	}
@@ -451,6 +468,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	#endif
 	
 	public void mDoneIAP(){
+		UtilMgr.DismissLoading();
 		DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPurchaseSuccess"),
 			string.Format(UtilMgr.GetLocalText("StrPurchaseSuccess2"), mItemname), DialogueMgr.DIALOGUE_TYPE.Alert, null);
 		
@@ -459,6 +477,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	}
 	
 	public void FinishIAP(){
+		UtilMgr.DismissLoading();
 		if(mIAPEvent.Response.code == 0){
 			#if(UNITY_ANDROID)
 			GoogleIAB.consumeProduct (mItemcode);
@@ -533,6 +552,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 //
 //	public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) 
 //	{
+//		UtilMgr.DismissLoading();
 //		// A consumable product has been purchased by this user.
 //		if (string.Equals(args.purchasedProduct.definition.id, kProductIDConsumable, StringComparison.Ordinal))
 //		{
@@ -566,6 +586,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 //
 //	public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
 //	{
+//		UtilMgr.DismissLoading();
 //		// A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing this reason with the user.
 //		Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}",product.definition.storeSpecificId, failureReason));
 //	}

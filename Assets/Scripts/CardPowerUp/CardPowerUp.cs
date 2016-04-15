@@ -13,7 +13,7 @@ public class CardPowerUp : MonoBehaviour {
 	Texture mTargetTxt;
 //	CardInfo[] mCardsFeed;
 	public List<CardInfo> mCardFeedList;
-	Texture2D mDefaultTxt;
+//	Texture2D mDefaultTxt;
 	string[][] LevelUpRate = new string[6][]{
 		new string[]{"100%", "100%", "100%", "100%", "100%", "100%"},
 		new string[]{"50%", "100%", "100%", "100%", "100%", "100%"},
@@ -35,7 +35,7 @@ public class CardPowerUp : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
+//		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
 	}
 	
 	// Update is called once per frame
@@ -195,7 +195,7 @@ public class CardPowerUp : MonoBehaviour {
 			FindChild("Panel2").FindChild("Button").gameObject.SetActive(true);
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
 			FindChild("Panel").FindChild("Photo").GetComponent<UITexture>().mainTexture
-				= mDefaultTxt;
+				= UtilMgr.GetTextureDefault();
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
 			FindChild("Panel").FindChild("Photo").GetComponent<UITexture>().color
 				= new Color(1f, 1f, 1f, 50f/255f);

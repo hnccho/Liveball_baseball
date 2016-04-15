@@ -35,7 +35,7 @@ public class IOSMgr : MonoBehaviour
 	public static void CallIOSFunc( string strFuncName, string str)
 	{
 	}
-	#else
+	#elif(UNITY_IOS)
 	public void NotiReceived()
 	{
 		Debug.Log("AlertBody : "+UnityEngine.iOS.NotificationServices.remoteNotifications[0].alertBody);
@@ -102,7 +102,10 @@ public class IOSMgr : MonoBehaviour
 //		else
 //			Debug.Log("token is null");
 	}
-
+	#else
+	public static void CallIOSFunc( string strFuncName, string str)
+	{
+	}
 	#endif
 	private static IOSMgr Instance
 	{
@@ -194,8 +197,7 @@ public class IOSMgr : MonoBehaviour
 	public static void RegistAPNS(EventDelegate eventDelegate){
 		Instance.gotToken = false;
 		Instance.mEventDelegate = eventDelegate;
-		#if(UNITY_ANDROID)
-		#else
+		#if(UNITY_IOS)
 		UnityEngine.iOS.NotificationServices.RegisterForNotifications(
 			UnityEngine.iOS.NotificationType.Alert |
 			UnityEngine.iOS.NotificationType.Badge |

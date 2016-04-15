@@ -8,11 +8,10 @@ public class MyCards : MonoBehaviour {
 	GetMailEvent mMailEvent;
 
 	List<CardInfo> mList;
-	Texture2D mDefaultTxt;
 	
 	// Use this for initialization
 	void Start () {
-		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");		
+			
 	}
 	
 	// Update is called once per frame
@@ -25,6 +24,7 @@ public class MyCards : MonoBehaviour {
 	}
 
 	public void Init(GetCardInvenEvent cardEvent, GetMailEvent mailEvent){
+		transform.gameObject.SetActive(true);
 		transform.FindChild("Top").FindChild("Cards").FindChild("LblCardsV").GetComponent<UILabel>().text
 			= cardEvent.Response.data.Count+"";
 		//need total inven
@@ -101,31 +101,36 @@ public class MyCards : MonoBehaviour {
 			tf.FindChild("Level").FindChild("LblLevel").FindChild("LevelV").GetComponent<UILabel>().text = info.cardLevel+"";
 			tf.FindChild("LblFPPG").FindChild("LblFPPGV").GetComponent<UILabel>().text = info.fppg;
 			tf.FindChild("LblSkill").FindChild("LblSkillV").GetComponent<UILabel>().text = "1";
-			if(UtilMgr.IsMLB()){
-				tf.FindChild("MLB").gameObject.SetActive(true);
-				tf.FindChild("KBO").gameObject.SetActive(false);
-
-				tf = item.Target.transform.FindChild("ItemCard").FindChild("MLB");
-				
-				if((info.injuryYN != null) && (info.injuryYN.Equals("Y"))){
-					tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(true);
-				} else
-					tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
-
-				if(info.useYn > 0){
-					tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Inuse").gameObject.SetActive(true);
-					tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
-						= new Vector4(0, 0, 156f, 130f);
-				} else{
-					tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Inuse").gameObject.SetActive(false);
-					tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
-						= new Vector4(0, 0, 152f, 108f);
-				}
-			} else{
+//			if(UtilMgr.IsMLB()){
+//				tf.FindChild("MLB").gameObject.SetActive(true);
+//				tf.FindChild("KBO").gameObject.SetActive(false);
+//
+//				tf = item.Target.transform.FindChild("ItemCard").FindChild("MLB");
+//				
+//				if((info.injuryYN != null) && (info.injuryYN.Equals("Y"))){
+//					tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(true);
+//				} else
+//					tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
+//
+//				if(info.useYn > 0){
+//					tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Inuse").gameObject.SetActive(true);
+//					tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
+//						= new Vector4(0, 0, 156f, 130f);
+//				} else{
+//					tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Inuse").gameObject.SetActive(false);
+//					tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
+//						= new Vector4(0, 0, 152f, 108f);
+//				}
+//			} else{
 				tf.FindChild("MLB").gameObject.SetActive(false);
 				tf.FindChild("KBO").gameObject.SetActive(true);
 
 				tf = item.Target.transform.FindChild("ItemCard").FindChild("KBO");
+
+				if((info.injuryYN != null) && (info.injuryYN.Equals("Y"))){
+					tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("SprInjury").gameObject.SetActive(true);
+				} else
+					tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("SprInjury").gameObject.SetActive(false);
 
 				tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Inuse").gameObject.SetActive(false);
 				tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
@@ -140,11 +145,12 @@ public class MyCards : MonoBehaviour {
 					tf.FindChild("BtnPhoto").FindChild("Panel").GetComponent<UIPanel>().baseClipRegion
 					= new Vector4(0, 0, 152f, 108f);
 				}
-			}
+//			}
 
 
 
-			tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture = mDefaultTxt;
+			tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture
+				= UtilMgr.GetTextureDefault();
 			
 			tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().color
 				= new Color(1f, 1f, 1f, 50f/255f);

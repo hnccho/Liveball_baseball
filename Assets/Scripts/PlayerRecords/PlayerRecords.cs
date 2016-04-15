@@ -83,7 +83,7 @@ public class PlayerRecords : MonoBehaviour {
 //				return y.totalPreset.CompareTo(x.totalPreset);
 //			});
 
-
+		transform.FindChild("Body").FindChild("ScrollPlayer").GetComponent<UIDraggablePanel2>().SetDragAmount(0, 99f, false);
 		transform.FindChild("Body").FindChild("ScrollPlayer").GetComponent<UIDraggablePanel2>().RemoveAll();
 		transform.FindChild("Body").FindChild("ScrollPlayer").GetComponent<UIDraggablePanel2>().Init(
 			mSortedList.Count, delegate(UIListItem item, int index) {
@@ -91,6 +91,9 @@ public class PlayerRecords : MonoBehaviour {
 				.text = Localization.language.Equals("English")
 					? mSortedList[index].firstName.Substring(0, 1) + ". " + mSortedList[index].lastName
 					: mSortedList[index].korName;
+
+			item.Target.transform.FindChild("LblName").GetComponent<BtnPlayerName>().mPlayerInfo
+				= mSortedList[index];
 
 			if(mType == TYPE.PITCHER){
 				item.Target.transform.FindChild("5").GetComponent<UILabel>()

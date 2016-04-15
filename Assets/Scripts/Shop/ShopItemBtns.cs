@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ShopItemBtns : MonoBehaviour {
 
@@ -37,9 +38,11 @@ public class ShopItemBtns : MonoBehaviour {
 
 	void ReceivedPurchase(){
 		if(mItemInfo.category == Shop.CARD){
-			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPurchaseSuccess"),
-			                         string.Format(UtilMgr.GetLocalText("StrPurchaseSuccess2"), mItemInfo.productName)
-			                         , DialogueMgr.DIALOGUE_TYPE.Alert, CardPurchasedHandler);
+//			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPurchaseSuccess"),
+//			                         string.Format(UtilMgr.GetLocalText("StrPurchaseSuccess2"), mItemInfo.productName)
+//			                         , DialogueMgr.DIALOGUE_TYPE.Alert, CardPurchasedHandler);
+			mCardEvent = new GetCardInvenEvent(ReceivedCards);
+			NetMgr.GetCardInven(mCardEvent);
 		} else if(mItemInfo.category == Shop.TICKET){
 			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPurchaseSuccess"),
 			                         string.Format(UtilMgr.GetLocalText("StrPurchaseSuccess2"), mItemInfo.productName)
@@ -48,14 +51,34 @@ public class ShopItemBtns : MonoBehaviour {
 		UserMgr.UserInfo.gold -= mItemInfo.price;
 	}
 
-	void CardPurchasedHandler(DialogueMgr.BTNS btn){
-		mCardEvent = new GetCardInvenEvent(ReceivedCards);
-		NetMgr.GetCardInven(mCardEvent);
-	}
+//	void CardPurchasedHandler(DialogueMgr.BTNS btn){
+//		mCardEvent = new GetCardInvenEvent(ReceivedCards);
+//		NetMgr.GetCardInven(mCardEvent);
+//	}
 
 	void ReceivedCards(){
+		UtilMgr.ShowLoading();
+		StartCoroutine(WaitingForAnimation());
+
+	}
+
+	IEnumerator WaitingForAnimation(){
+		yield return new WaitForSeconds(0.5f);
+
 		UserMgr.CardList = mCardEvent.Response.data;
+		transform.root.FindChild("MyCards").localPosition = new Vector3(2000f, 0, 0);
 		transform.root.FindChild("MyCards").GetComponent<MyCards>().Init(mCardEvent,
-     		transform.root.FindChild("MyCards").GetComponent<MyCards>().GetMailEvent());
+		                                                                 transform.root.FindChild("MyCards").GetComponent<MyCards>().GetMailEvent());
+		List<CardInfo> cardList = new List<CardInfo>();
+		foreach(CardInfo info in mGoldEvent.Response.data.item){
+			foreach(CardInfo tmp in UserMgr.CardList){
+				if(info.itemSeq == tmp.itemSeq){
+					cardList.Add(tmp);
+					break;
+				}
+			}
+		}
+		transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init (cardList, mItemInfo.productCode);
+		UtilMgr.DismissLoading();
 	}
 }

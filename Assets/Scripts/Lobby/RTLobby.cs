@@ -5,17 +5,25 @@ public class RTLobby : MonoBehaviour {
 
 	GetEventsEvent mRTEvent;
 	public GameObject mItemRT;
-	Texture2D mDefaultTxt;
+//	Texture2D mDefaultTxt;
 
 	int mMatchCnt;
 
 	// Use this for initialization
 	void Start () {
-		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
+//		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
+		mNow = System.DateTime.Now;
 	}
-	
+
+	System.DateTime mNow;
 	// Update is called once per frame
 	void Update () {
+		System.TimeSpan ts = System.DateTime.Now - mNow;
+		transform.root.FindChild("Lobby").FindChild("Top").FindChild("Label").GetComponent<UILabel>()
+			.text = ts.Seconds+"";
+
+
+
 		GameObject go = transform.FindChild("ScrollRT").GetComponent<UICenterOnChild>().centeredObject;
 		if((mRTEvent == null) || (mRTEvent.Response == null) ||(mRTEvent.Response.data == null) || (go == null)) return;
 //		Debug.Log("centered : "+go.transform.FindChild("Label").GetComponent<UILabel>().text);
@@ -39,17 +47,29 @@ public class RTLobby : MonoBehaviour {
 		NetMgr.GetEvents(mRTEvent);
 	}
 
+	bool mStop;
 	IEnumerator ReloadRT(){
 		while(true){
 			yield return new WaitForSeconds(30f);
 			if(mRTEvent.Response == null || mRTEvent.Response.data == null)
 				mMatchCnt = 0;
-
-			mMatchCnt = mRTEvent.Response.data.Count;
+			else
+				mMatchCnt = mRTEvent.Response.data.Count;
 			mRTEvent = new GetEventsEvent(ReceivedRT);
 			NetMgr.GetEventsBack(mRTEvent);
+			mStop = false;
+			Debug.Log("Refresh"); mNow = System.DateTime.Now;
 		}
 	}
+
+//	IEnumerator WriteTimer(){
+//		System.DateTime now = System.DateTime.Now;
+//		while(mStop){
+//
+//		}
+//
+//		yield return 0;
+//	}
 
 	void ReceivedRT(){
 		bool DonotDelete = false;
@@ -133,7 +153,8 @@ public class RTLobby : MonoBehaviour {
 				}
 
 				item.FindChild("Players").FindChild("Left").FindChild("Frame")
-					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture
+						= UtilMgr.GetTextureDefault();
 
 				item.FindChild("Players").FindChild("Left").FindChild("Frame")
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
@@ -149,7 +170,8 @@ public class RTLobby : MonoBehaviour {
 					.FindChild("Frame").FindChild("SprPos").FindChild("Label").GetComponent<UILabel>().text = "B";
 
 				item.FindChild("Players").FindChild("Right").FindChild("Frame")
-					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture
+						= UtilMgr.GetTextureDefault();
 
 				item.FindChild("Players").FindChild("Right").FindChild("Frame")
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
@@ -184,7 +206,8 @@ public class RTLobby : MonoBehaviour {
 				}
 				
 				item.FindChild("Players").FindChild("Left").FindChild("Frame")
-					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture
+						= UtilMgr.GetTextureDefault();
 				
 				item.FindChild("Players").FindChild("Left").FindChild("Frame")
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color
@@ -195,7 +218,8 @@ public class RTLobby : MonoBehaviour {
 						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().width = 70;
 				
 				item.FindChild("Players").FindChild("Right").FindChild("Frame")
-					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture = mDefaultTxt;
+					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture
+						= UtilMgr.GetTextureDefault();
 				
 				item.FindChild("Players").FindChild("Right").FindChild("Frame")
 					.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().color

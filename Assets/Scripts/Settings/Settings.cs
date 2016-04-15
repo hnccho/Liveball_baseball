@@ -21,6 +21,8 @@ public class Settings : MonoBehaviour {
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("User").FindChild("LblName")
 			.FindChild("BtnEdit").localPosition = new Vector3(width + 40, 0);
 		transform.FindChild("Body").FindChild("Rename").gameObject.SetActive(false);
+		transform.FindChild ("Body").FindChild("Rename").FindChild("Box").FindChild("Input")
+			.GetComponent<UIInput>().value = UserMgr.UserInfo.nick;
 		UtilMgr.LoadUserImage(UserMgr.UserInfo.photoUrl,
 		                  transform.FindChild("Body").FindChild("Scroll View").FindChild("User").FindChild("Photo")
 		                  .FindChild("Panel").FindChild("Texture").GetComponent<UITexture>());

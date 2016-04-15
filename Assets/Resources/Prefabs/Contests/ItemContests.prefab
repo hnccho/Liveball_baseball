@@ -111,7 +111,7 @@ GameObject:
   - 114: {fileID: 11478756}
   - 114: {fileID: 11413692}
   m_Layer: 5
-  m_Name: LblBasicRP
+  m_Name: Lbl1stPrize
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ GameObject:
   - 114: {fileID: 11453258}
   - 114: {fileID: 11432150}
   m_Layer: 5
-  m_Name: Lbl1stPrize
+  m_Name: LblTotalPrize
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1054,7 +1054,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: ea531756e615e4a90b9c3c1591d14903, type: 3}
   mFont: {fileID: 0}
-  mText: '[333333]1G'
+  mText: 1G
   mFontSize: 24
   mFontStyle: 1
   mAlignment: 0
@@ -1168,7 +1168,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  mColor: {r: 0.9882353, g: 0.52156866, b: 0.20784314, a: 1}
   mPivot: 3
   mWidth: 150
   mHeight: 24
@@ -1180,7 +1180,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: ea531756e615e4a90b9c3c1591d14903, type: 3}
   mFont: {fileID: 0}
-  mText: '[999999]0G'
+  mText: 0G
   mFontSize: 24
   mFontStyle: 1
   mAlignment: 0
@@ -1413,7 +1413,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   mPivot: 3
   mWidth: 160
   mHeight: 24
@@ -1425,7 +1425,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: ea531756e615e4a90b9c3c1591d14903, type: 3}
   mFont: {fileID: 0}
-  mText: '[fc8535]3,000,000G'
+  mText: 3,000,000G
   mFontSize: 24
   mFontStyle: 1
   mAlignment: 0

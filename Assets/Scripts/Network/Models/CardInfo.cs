@@ -222,6 +222,17 @@ public class CardInfo {
 		}
 	}
 
+	long _player;
+
+	public long player {
+		get {
+			return _player;
+		}
+		set {
+			_player = value;
+		}
+	}
+
 	long _itemSeq;
 
 	public long itemSeq {

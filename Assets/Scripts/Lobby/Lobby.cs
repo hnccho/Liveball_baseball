@@ -72,4 +72,17 @@ public class Lobby : MonoBehaviour {
 
 //		transform.FindChild("Body").FindChild("ScrollBody").GetComponent<UIScrollView>().ResetPosition();
 	}
+
+	int mTimerClickCnt = 0;
+	bool mTimerShow = false;
+	public void TimerTestClick(){
+		if(++mTimerClickCnt % 10 == 0){
+			mTimerShow = (!mTimerShow);
+			if(!mTimerShow)
+				transform.FindChild("Top").FindChild("Label").GetComponent<UILabel>().color = new Color(51f/ 255f, 51f/ 255f, 51f/ 255f);
+			else
+				transform.FindChild("Top").FindChild("Label").GetComponent<UILabel>().color = Color.white;
+
+		}
+	}
 }

@@ -5,13 +5,11 @@ public class EditNick : MonoBehaviour {
 
 	CheckNickEvent mCheckEvent;
 	UpdateMemberInfoEvent mUpdateEvent;
-	string mNick;
+	string mNick = "";
 
 	// Use this for initialization
 	void Start () {
-		transform.FindChild("Box").FindChild("Input").GetComponent<UIInput>().value
-			= UserMgr.UserInfo.nick;
-		mNick = "";
+
 	}
 	
 	// Update is called once per frame
@@ -24,7 +22,10 @@ public class EditNick : MonoBehaviour {
 	}
 
 	public void Submit(){
+		transform.FindChild("Box").FindChild("Input").GetComponent<UIInput>().value
+			= transform.FindChild("Box").FindChild("Input").GetComponent<UIInput>().value.Trim();
 		mNick = transform.FindChild("Box").FindChild("Input").GetComponent<UIInput>().value;
+
 		if(mNick.Equals(UserMgr.UserInfo.nick)){
 			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrError"), UtilMgr.GetLocalText("StrSameNick"),
 			                         DialogueMgr.DIALOGUE_TYPE.Alert, null);
@@ -51,6 +52,7 @@ public class EditNick : MonoBehaviour {
 	}
 
 	void ReceivedUpdate(){
+		mNick = mUpdateEvent.Response.data.nick;
 		Cancel();
 		UserMgr.UserInfo.nick = mNick;
 		transform.FindChild("Box").FindChild("Input").GetComponent<UIInput>().value

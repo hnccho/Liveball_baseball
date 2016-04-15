@@ -6,12 +6,12 @@ public class SelectPlayer : MonoBehaviour {
 
 	List<PlayerInfo> mPlayerList;
 	public int mSelectedNo;
-	static Texture2D mDefaultTxt;
+//	static Texture2D mDefaultTxt;
 	string mName;
 
 	// Use this for initialization
 	void Start () {
-		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
+//		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
 	}
 	
 	// Update is called once per frame
@@ -182,20 +182,15 @@ public class SelectPlayer : MonoBehaviour {
 //			tf.FindChild("LblYear").GetComponent<UILabel>().gameObject.SetActive(false);
 			tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$ "+UtilMgr.AddsThousandsSeparator(info.salary);
 
-			//					if(UtilMgr.IsMLB()){
-			//						item.Target.transform.FindChild("Main").FindChild("MLB").gameObject.SetActive(true);
-			//						item.Target.transform.FindChild("Main").FindChild("KBO").gameObject.SetActive(false);
-			//						tf = item.Target.transform.FindChild("Main").FindChild("MLB");
-			//
-			//						if((info.injuryYN != null) && (info.injuryYN.Equals("Y")))
-			//							tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(true);
-			//						else
-			//							tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
-			//					} else{
+
 			item.Target.transform.FindChild("Main").FindChild("MLB").gameObject.SetActive(false);
 			item.Target.transform.FindChild("Main").FindChild("KBO").gameObject.SetActive(true);
 			tf = item.Target.transform.FindChild("Main").FindChild("KBO");
-			//					}
+
+			if((info.injuryYN != null) && (info.injuryYN.Equals("Y")))
+				tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("SprInjury").gameObject.SetActive(true);
+			else
+				tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("SprInjury").gameObject.SetActive(false);
 
 			TeamScheduleInfo schedule = null;
 			foreach(TeamScheduleInfo team in UserMgr.ScheduleList){
@@ -217,7 +212,7 @@ public class SelectPlayer : MonoBehaviour {
 
 			tf.FindChild("BtnPhoto")
 				.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture
-				= mDefaultTxt;
+					= UtilMgr.GetTextureDefault();
 			tf.FindChild("BtnPhoto")
 				.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().color
 				= new Color(1f, 1f, 1f, 50f/255f);

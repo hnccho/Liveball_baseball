@@ -29,6 +29,9 @@ public class LandingRoot : SuperRoot {
 
 	void ReceivedProfile(){
 		UtilMgr.AddBackState(UtilMgr.STATE.Profile);
+		transform.FindChild("Profile").FindChild("BtnBGBack").GetComponent<UIButton>().defaultColor = new Color(0,0,0,200f/255f);
+		transform.FindChild("Profile").FindChild("BtnBGBack").GetComponent<UIButton>().hover = new Color(0,0,0,200f/255f);
+		transform.FindChild("Profile").FindChild("BtnBGBack").GetComponent<UIButton>().pressed = new Color(0,0,0,200f/255f);
 		transform.FindChild("Profile").gameObject.SetActive(true);
 		transform.FindChild("Profile").localPosition = new Vector3(720f, 0, 0);
 		TweenPosition.Begin(transform.FindChild("Profile").gameObject, 0.5f, new Vector3(132f, 0, 0), false);

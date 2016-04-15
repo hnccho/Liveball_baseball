@@ -25,6 +25,7 @@ public class UtilMgr : MonoBehaviour {
 	Transform mRoot;
 
 	EventDelegate mEventTweenFinish;
+	static Texture2D mTextureMan;
 
 	public enum DIRECTION{
 		ToLeft,
@@ -191,6 +192,12 @@ public class UtilMgr : MonoBehaviour {
 				Instance.mRoot.FindChild("PlayerCard").GetComponent<PlayerCard>().OnClose();
 				return true;
 			} else if(state == STATE.Profile){
+				Instance.mRoot.FindChild("Profile").FindChild("BtnBGBack").GetComponent<UIButton>()
+					.defaultColor = new Color(0,0,0,0);
+				Instance.mRoot.FindChild("Profile").FindChild("BtnBGBack").GetComponent<UIButton>()
+					.hover = new Color(0,0,0,0);
+				Instance.mRoot.FindChild("Profile").FindChild("BtnBGBack").GetComponent<UIButton>()
+					.pressed = new Color(0,0,0,0);
 				TweenPosition.Begin(Instance.mRoot.FindChild("Profile").gameObject,
 				                    				                    1f, new Vector3(1600f, 0, 0), false);
 			} else if(mListBackState[mListBackState.Count-2] == STATE.Lobby){
@@ -601,6 +608,7 @@ public class UtilMgr : MonoBehaviour {
 
 	public static void DismissLoading()
 	{
+		Debug.Log("DismissLoading");
 		if(Instance.mProgressCircle != null)
 			Instance.mProgressCircle.SetActive (false);
 
@@ -848,6 +856,12 @@ public class UtilMgr : MonoBehaviour {
 			mRoot.FindChild("Profile").FindChild("Scroll View").FindChild("Btns")
 				.FindChild("BtnTicket").GetComponent<BtnsShop>().OnClick();
 		}
+	}
+
+	public static Texture2D GetTextureDefault(){
+		if(mTextureMan == null)
+			mTextureMan = Resources.Load<Texture2D>("images/man_default_b");	
+		return mTextureMan;
 	}
 
 }

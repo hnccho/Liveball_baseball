@@ -181,9 +181,9 @@ public class Jiver : MonoBehaviour {
 			Debug.Log("JIVER on Android.");
 			instance = new JiverAndroidImpl();
 #else
-			Debug.Log("JIVER on unknown platform.");
-			instance = new JiverDummyImpl();
-			dummyValue = 0;
+//			Debug.Log("JIVER on unknown platform.");
+//			instance = new JiverDummyImpl();
+//			dummyValue = 0;
 #endif
 		}
 

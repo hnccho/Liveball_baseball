@@ -10,15 +10,15 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: RankingBall.Inc
-  productName: RankingBall K
+  productName: RankingBall
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
   m_VirtualRealitySplashScreen: {fileID: 0}
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
-  defaultScreenWidthWeb: 960
-  defaultScreenHeightWeb: 600
+  defaultScreenWidthWeb: 720
+  defaultScreenHeightWeb: 1280
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   m_ActiveColorSpace: 0
@@ -89,15 +89,15 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.rankingball,k
-  bundleVersion: 1.1.0
+  bundleIdentifier: com.rankingball
+  bundleVersion: 1.1.1
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
   productGUID: 1a7e78f455b4f47dc850580f998be560
-  AndroidBundleVersionCode: 110
+  AndroidBundleVersionCode: 111
   AndroidMinSdkVersion: 16
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -187,19 +187,19 @@ PlayerSettings:
       m_Width: 144
       m_Height: 144
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 4c74f583c4aa94b179f63252c2fb22d1, type: 3}
+      m_Icon: {fileID: 2800000, guid: 876f05700b16d455c9c7346c41b9a98c, type: 3}
       m_Width: 96
       m_Height: 96
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: c9ff30d2187224d1d978bb51fd5ee9a2, type: 3}
+      m_Icon: {fileID: 2800000, guid: 967c93167536a4a939e801833dcd702f, type: 3}
       m_Width: 72
       m_Height: 72
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 22fa3b9d0a58345bc896cc622972ae02, type: 3}
+      m_Icon: {fileID: 2800000, guid: 7c9d16947bc6047ff83b40d6970f65f0, type: 3}
       m_Width: 48
       m_Height: 48
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 1f2ae1fcde43a4966b5c1c955cf46c80, type: 3}
+      m_Icon: {fileID: 2800000, guid: 1faf8a1de8dac459a87314438f8ffb20, type: 3}
       m_Width: 36
       m_Height: 36
   m_BuildTargetBatching: []
@@ -361,6 +361,7 @@ PlayerSettings:
     2: CROSS_PLATFORM_INPUT
     4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
     7: CROSS_PLATFORM_INPUT;MOBILE_INPUT
+    13: 
     14: MOBILE_INPUT
     15: CROSS_PLATFORM_INPUT;MOBILE_INPUT
     16: CROSS_PLATFORM_INPUT;MOBILE_INPUT
@@ -471,9 +472,11 @@ PlayerSettings:
   boolPropertyNames:
   - WebGL::analyzeBuildSize
   - WebGL::dataCaching
+  - WebGL::useEmbeddedResources
   - XboxOne::enus
   WebGL::analyzeBuildSize: 0
   WebGL::dataCaching: 0
+  WebGL::useEmbeddedResources: 0
   XboxOne::enus: 1
   stringPropertyNames:
   - Build_ServiceEnabled::Build_ServiceEnabled
@@ -482,12 +485,14 @@ PlayerSettings:
   - UNet_ServiceEnabled::UNet_ServiceEnabled
   - WebGL::emscriptenArgs
   - WebGL::template
+  - additionalIl2CppArgs::additionalIl2CppArgs
   Build_ServiceEnabled::Build_ServiceEnabled: True
   ErrorHub_ServiceEnabled::ErrorHub_ServiceEnabled: False
   Hub_ServiceEnabled::Hub_ServiceEnabled: False
   UNet_ServiceEnabled::UNet_ServiceEnabled: True
   WebGL::emscriptenArgs: 
   WebGL::template: APPLICATION:Default
+  additionalIl2CppArgs::additionalIl2CppArgs: 
   cloudProjectId: 6b49ef98-a0aa-4892-aac0-7d5821a4e3ac
   projectName: RankingBall K
   organizationId: aden1

@@ -5,12 +5,12 @@ using System.Collections.Generic;
 public class SelectFeeding : MonoBehaviour {
 
 	GetCardInvenEvent mCardEvent;
-	Texture2D mDefaultTxt;
+//	Texture2D mDefaultTxt;
 	List<CardInfo> mSortedList;
 	CardInfo mTargetCard;
 	// Use this for initialization
 	void Start () {
-		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
+//		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
 	}
 	
 	// Update is called once per frame
@@ -123,7 +123,8 @@ public class SelectFeeding : MonoBehaviour {
 		} else
 			tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
 		
-		tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture = mDefaultTxt;
+		tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture
+			= UtilMgr.GetTextureDefault();
 		
 		tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().color
 			= new Color(1f, 1f, 1f, 50f/255f);

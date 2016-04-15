@@ -7,10 +7,14 @@ public class PlayerCard : MonoBehaviour {
 	long mPlayerId;
 	bool IsPitcher;
 	public bool IsCard;
+	public bool IsPack;
+	public bool IsFirstPack;
 	string mHand;
 	public CardInfo mCardInfo;
 	PlayerInfo mPlayerInfo;
 	Texture mPhoto;
+	public List<CardInfo> mCardList;
+	public int mListCnt;
 
 	PlayerSeasonInfoEvent mSeasonEvent;
 	PlayerNewsInfoEvent mNewsEvent;
@@ -27,7 +31,13 @@ public class PlayerCard : MonoBehaviour {
 
 //	bool IsInactive;
 	const float GraphRatioValue = 645.25148676696743f;
-	PlayerCardAnimation mPlayerCardAnimation;
+	string mProductCode;
+
+	enum PAGE_STATE{
+		PREV,
+		NEXT
+	}
+	PAGE_STATE mPageState;
 
 	string[][] DCRate = new string[6][]{
 		new string[]{"0.00%",		"0.20%",		"0.40%",		"0.60%",		"0.80%",		"1.00%"},
@@ -40,7 +50,7 @@ public class PlayerCard : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		mPlayerCardAnimation = transform.GetComponent<PlayerCardAnimation>();
+
 	}
 	
 	// Update is called once per frame
@@ -76,13 +86,12 @@ public class PlayerCard : MonoBehaviour {
 
 		if(mPlayerGraphData == null || mPlayerGraphData.Count < 5){
 			tf.FindChild("Radar").FindChild("Canvas").gameObject.SetActive(false);
-			return;
 		} else{
 			tf.FindChild("Radar").FindChild("Canvas").gameObject.SetActive(true);
 		}
 
 		if(tf.gameObject.activeSelf){
-			if(radar.lineSeries.Count > 0){
+			if(mPlayerGraphData != null && radar.lineSeries.Count > 0){
 				WMG_Series series = radar.lineSeries[0].GetComponent<WMG_Series>();
 				series.pointValues.SetList(radar.GenRadar(mAvgGraphData, radar.offset.x, radar.offset.y, radar.degreeOffset));
 				series.lineScale = radar.dataSeriesLineWidth;
@@ -118,6 +127,12 @@ public class PlayerCard : MonoBehaviour {
 //				           +"m y : " +
 //				           radar.GenRadar(mAvgGraphData, radar.offset.x, radar.offset.y, radar.degreeOffset)[4].y);
 			}
+		} else if(transform.FindChild("Body").FindChild("Changeables").FindChild("Card").gameObject.activeSelf){
+			if(!IsPack) return;
+
+			transform.FindChild("Body").FindChild("Changeables").FindChild("Card").FindChild("Btm").FindChild("Pack")
+				.FindChild("Label").GetComponent<UILabel>().text
+					= mListCnt + " [999999]/ " + mCardList.Count;
 		}
 
 
@@ -127,16 +142,50 @@ public class PlayerCard : MonoBehaviour {
 		transform.FindChild("Body").FindChild("Changeables").FindChild("Analysis")
 			.FindChild("Radar").FindChild("Canvas").gameObject.SetActive(false);
 		mPlayerGraphData = null;
+		mCardList = null;
+		IsCard = false;
+		IsPack = false;
+		IsFirstPack = false;
 
-		mPlayerCardAnimation.AnimateDisappear();
+		transform.GetComponent<PlayerCardAnimation>().AnimateDisappear();
 
 		UtilMgr.RemoveBackState(UtilMgr.STATE.PlayerCard);
+	}
+
+	public void PrevPage(){
+		if(mListCnt <= 1) return;
+
+		IsFirstPack = false;
+		mPageState = PAGE_STATE.PREV;
+		mListCnt--;
+//		InitWithCard(mCardList[mListCnt-1], null);
+		mCardInfo = mCardList[mListCnt-1];
+		transform.GetComponent<PlayerCardAnimation>().PrevPage();
+	}
+
+	public void NextPage(){	
+		if(mListCnt >= mCardList.Count) return;
+
+		IsFirstPack = false;
+		mPageState = PAGE_STATE.NEXT;
+		mListCnt++;
+//		InitWithCard(mCardList[mListCnt-1], null);
+		mCardInfo = mCardList[mListCnt-1];
+		transform.GetComponent<PlayerCardAnimation>().NextPage();
+	}
+
+	public void Init(List<CardInfo> cardList, string productCode){
+		mProductCode = productCode;
+		mCardList = cardList;
+		IsPack = true;
+		IsFirstPack = true;
+		mListCnt = 1;
+		InitWithCard(mCardList[0], null);
 	}
 
 	public void Init(PlayerInfo playerInfo, Texture photo){
 		mPlayerInfo = playerInfo;
 		mPhoto = photo;
-		IsCard = false;
 		if(UtilMgr.IsMLB()){
 			transform.FindChild("Body").FindChild("Info").FindChild("KBO").FindChild("Panel").FindChild("Photo")
 				.GetComponent<UITexture>().width = 135;
@@ -190,9 +239,20 @@ public class PlayerCard : MonoBehaviour {
 		mNewsEvent = null;
 		mGameEvent = null;
 
-		mPlayerCardAnimation.AppearBack();
 //		GetInfos();
 		if(InitPlayerInfo()) return;
+
+		if(IsPack){
+			if(IsFirstPack){
+				transform.GetComponent<PlayerCardAnimation>().AppearPack(mProductCode);
+			} else{
+//				if(mPageState == PAGE_STATE.PREV)
+//					transform.GetComponent<PlayerCardAnimation>().PrevPage();
+//				else
+//					transform.GetComponent<PlayerCardAnimation>().NextPage();
+			}
+		} else
+			transform.GetComponent<PlayerCardAnimation>().AppearBack();
 
 		InitNewType();
 	}
@@ -473,8 +533,14 @@ public class PlayerCard : MonoBehaviour {
 
 		tf.FindChild("Skillset").FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();
 
-		tf.FindChild("Btm").FindChild("Pack").gameObject.SetActive(false);
-		tf.FindChild("Btm").FindChild("Upgrade").gameObject.SetActive(true);
+		if(IsPack){
+			tf.FindChild("Btm").FindChild("Pack").gameObject.SetActive(true);
+			tf.FindChild("Btm").FindChild("Upgrade").gameObject.SetActive(false);
+		} else{
+			tf.FindChild("Btm").FindChild("Pack").gameObject.SetActive(false);
+			tf.FindChild("Btm").FindChild("Upgrade").gameObject.SetActive(true);
+		}
+
 	}
 
 	bool InitPlayerInfo(){
@@ -486,8 +552,6 @@ public class PlayerCard : MonoBehaviour {
 //		} else{
 			transform.FindChild("Body").FindChild("Info").FindChild ("MLB").gameObject.SetActive(false);
 			transform.FindChild("Body").FindChild("Info").FindChild ("KBO").gameObject.SetActive(true);
-
-			transform.FindChild("Body").FindChild("Info").FindChild ("KBO").FindChild("Panel").FindChild("Photo").GetComponent<UITexture>().mainTexture = mPhoto;
 //		}
 
 		mPlayerInfo = null;
@@ -553,7 +617,7 @@ public class PlayerCard : MonoBehaviour {
 		}
 
 		transform.FindChild("Body").FindChild("Info").FindChild("LblSaraly").GetComponent<UILabel>().text
-			= IsCard ? "[s]$" + mPlayerInfo.salary : "$" + mPlayerInfo.salary;
+			= "$" + mPlayerInfo.salary;
 		transform.FindChild("Body").FindChild("Info").FindChild("LblFPPG").FindChild("Label").GetComponent<UILabel>().text
 			= string.Format("{0:F1}", mPlayerInfo.fppg);
 		transform.FindChild("Body").FindChild("Info").FindChild("LblPlayed").FindChild("Label").GetComponent<UILabel>().text
@@ -601,6 +665,14 @@ public class PlayerCard : MonoBehaviour {
 			}
 
 		}
+
+		if(mPhoto == null){
+			UtilMgr.LoadImage(mPlayerInfo.photoUrl,
+			                  transform.FindChild("Body").FindChild("Info").FindChild ("KBO").FindChild("Panel")
+			                  .FindChild("Photo").GetComponent<UITexture>());
+		} else
+			transform.FindChild("Body").FindChild("Info").FindChild ("KBO").FindChild("Panel").FindChild("Photo")
+				.GetComponent<UITexture>().mainTexture = mPhoto;
 
 		return false;
 	}
@@ -667,6 +739,11 @@ public class PlayerCard : MonoBehaviour {
 			myArr[2] = float.Parse(graphInfo.ballPower);
 			myArr[3] = float.Parse(graphInfo.control);
 			myArr[4] = float.Parse(graphInfo.gameMng);
+
+			if(player.games < 1){
+				myArr[1] = 10f;
+				myArr[4] = 10f;
+			}
 
 			graphArr = new float[5][]{
 				new float[]{0.6f, 1.1f, 1.6f, 2.1f, 3.1f, 4.1f, 5.1f, 5.6f, 6.1f, float.MinValue},

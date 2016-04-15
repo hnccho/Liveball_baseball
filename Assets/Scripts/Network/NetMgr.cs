@@ -64,7 +64,7 @@ public class NetMgr : MonoBehaviour{
 			yield return 0; 
 		} 
 		
-		
+		UtilMgr.DismissLoading ();
 		if(www.error == null && www.isDone)
 		{
 			Debug.Log(www.text);
@@ -83,8 +83,6 @@ public class NetMgr : MonoBehaviour{
 			//            mIsUpload = isUpload;
 			//            mIsLoading = showLoading;
 		}
-		
-		UtilMgr.DismissLoading ();
 	}
 
 	IEnumerator webAPIProcessInBackground(WWW www, BaseEvent baseEvent)
@@ -133,7 +131,8 @@ public class NetMgr : MonoBehaviour{
 			} 
 		}
 		//Debug.Log("www.text : " + www.url);
-;
+
+		UtilMgr.DismissLoading ();
 		if(www.error == null && www.isDone)
 		{
 			Debug.Log(www.text);
@@ -172,8 +171,6 @@ public class NetMgr : MonoBehaviour{
 
 			}
 		}
-		
-		UtilMgr.DismissLoading ();
 	}
 	
 	void ConnectHandlerForHttp(DialogueMgr.BTNS btn){
