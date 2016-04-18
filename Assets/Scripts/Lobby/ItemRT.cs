@@ -36,8 +36,9 @@ public class ItemRT : MonoBehaviour {
 	}
 
 	public void EnterClick(){
-		UtilMgr.AddBackState(UtilMgr.STATE.Bingo);
-		UtilMgr.AnimatePageToLeft("Lobby", "Bingo");
+//		UtilMgr.AddBackState(UtilMgr.STATE.Bingo);
+//		UtilMgr.AnimatePageToLeft("Lobby", "Bingo");
+		transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().Init(mEventInfo.gameId);
 	}
 
 	public void LeftClick(){

@@ -52,7 +52,8 @@ public class UtilMgr : MonoBehaviour {
 		Ranking,
 		Settings,
 		PlayerRecords,
-		PlayerCard
+		PlayerCard,
+		LiveBingo
 	}
 
 	static UtilMgr Instance

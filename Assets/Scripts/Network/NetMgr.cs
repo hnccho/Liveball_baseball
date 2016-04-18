@@ -1013,8 +1013,12 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new TeamScheduleInfoRequest(), baseEvent);
 	}
 
-	public static void Withdraw( BaseEvent baseEvent){
+	public static void Withdraw(BaseEvent baseEvent){
 		Instance.webAPIProcessEventToAuth(new WithdrawRequest(), baseEvent, false, true);
+	}
+
+	public static void GetBingo(int gameId, BaseEvent baseEvent){
+		Instance.webAPIProcessEventToAuth(new GetBingoRequest(gameId), baseEvent, false, true);
 	}
 
 	public static void SendSocketMsg(String msg) {

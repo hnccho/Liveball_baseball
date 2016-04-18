@@ -762,7 +762,7 @@ public class PlayerCard : MonoBehaviour {
 			graphArr = new float[5][]{
 				new float[]{0.101f, 0.151f, 0.201f, 0.241f, 0.261f, 0.281f, 0.291f, 0.301f, 0.311f, float.MinValue},
 				new float[]{0.03f, 0.05f, 0.07f, 0.09f, 0.11f, 0.13f, 0.15f, 0.17f, 0.19f, float.MinValue},
-				new float[]{0.06f, 0.11f, 0.16f, 0.21f, 0.26f, 0.31f, 0.41f, 0.46f, 0.51f, float.MinValue},
+				new float[]{0.05f, 0.09f, 0.13f, 0.17f, 0.21f, 0.25f, 0.29f, 0.33f, 0.37f, float.MinValue},
 				new float[]{0.101f, 0.151f, 0.201f, 0.241f, 0.281f, 0.321f, 0.351f, 0.381f, 0.401f, float.MinValue},
 				new float[]{0.101f, 0.201f, 0.301f, 0.351f, 0.401f, 0.451f, 0.501f, 0.551f, 0.601f, float.MinValue}
 			};

@@ -555,7 +555,6 @@
      <Compile Include="Assets\ProLoading\Example\Script\bl_Test.cs" />
      <Compile Include="Assets\ProLoading\Script\Internal\PlaceEnum.cs" />
      <Compile Include="Assets\ProLoading\Script\bl_Loading.cs" />
-     <Compile Include="Assets\Scripts\Bingo\Bingo.cs" />
      <Compile Include="Assets\Scripts\CardPowerUp\BtnFeedingCard.cs" />
      <Compile Include="Assets\Scripts\CardPowerUp\BtnPowerUp.cs" />
      <Compile Include="Assets\Scripts\CardPowerUp\CardPowerUp.cs" />
@@ -566,6 +565,9 @@
      <Compile Include="Assets\Scripts\Lineup\BtnEditList.cs" />
      <Compile Include="Assets\Scripts\Lineup\ItemLineup.cs" />
      <Compile Include="Assets\Scripts\Lineup\MyLineup.cs" />
+     <Compile Include="Assets\Scripts\LiveBingo\Bingo.cs" />
+     <Compile Include="Assets\Scripts\LiveBingo\ItemBingo.cs" />
+     <Compile Include="Assets\Scripts\LiveBingo\LiveBingo.cs" />
      <Compile Include="Assets\Scripts\Lobby\BtnRank.cs" />
      <Compile Include="Assets\Scripts\Lobby\BtnWhat.cs" />
      <Compile Include="Assets\Scripts\Lobby\DFSBtns.cs" />
@@ -612,6 +614,7 @@
      <Compile Include="Assets\Scripts\Network\Events\ExitGameEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GameJoinNEntryFeeEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GameSposGameEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\GetBingoEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetCardInvenEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetCheckMailEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetDoneMailEvent.cs" />
@@ -666,6 +669,7 @@
      <Compile Include="Assets\Scripts\Network\Events\checkRecentMessageEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\procStoreGachaEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Models\AccusationInfo.cs" />
+     <Compile Include="Assets\Scripts\Network\Models\BingoInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\CardClassInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\CardInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\CardInvenInfo.cs" />
@@ -795,6 +799,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\ExitGameRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GameJoinNEntryFee.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GameSposGameRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\GetBingoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetCardInvenRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetCheckMailboxRequset.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetDoneInvenItemRequest.cs" />
@@ -887,6 +892,7 @@
      <Compile Include="Assets\Scripts\Network\Responses\EntryListResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GameJoinNEntryFeeResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GameSposGameResponse.cs" />
+     <Compile Include="Assets\Scripts\Network\Responses\GetBingoResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetCardInvenResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetCheckMailResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetDeleteResponse.cs" />
