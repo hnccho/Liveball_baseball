@@ -69,7 +69,6 @@ public class ItemBingo : MonoBehaviour {
 
 	public void Correct(){
 		transform.GetComponent<Animator>().SetTrigger("Correct");
-		Debug.Log("Correct");
 	}
 
 	public void SetCorrected(){
@@ -82,15 +81,19 @@ public class ItemBingo : MonoBehaviour {
 	}
 
 	public void CorrectFinish(){
-		transform.GetComponent<Animator>().SetTrigger("Idle");
-		transform.FindChild("StarBlueBlast").gameObject.SetActive(false);
+		Debug.Log("CorrectFinish");
+//		transform.GetComponent<Animator>().SetTrigger("Idle");
+//		transform.FindChild("StarBlueBlast").gameObject.SetActive(false);
 //		transform.localScale = new Vector3(1f, 1f, 1f);
+		transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().CheckBingo();
 	}
 
 	public void OnClick(){
 		IsCorrected = false;
 		Correct ();
 	}
+
+
 
 
 }
