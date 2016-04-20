@@ -6,6 +6,7 @@ public class ItemBingo : MonoBehaviour {
 //	public Color BGColor = Color.white;
 	public BingoInfo.BingoBoard mBingoBoard;
 	public bool IsCorrected;
+	public bool IsAnimate;
 
 	// Use this for initialization
 	void Start () {
@@ -14,17 +15,17 @@ public class ItemBingo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(IsCorrected){
-			transform.FindChild("Background").GetComponent<UISprite>().color = new Color(28f/255f, 150f/255f, 212f/255f);
-			transform.GetComponent<UIButton>().defaultColor = new Color(28f/255f, 150f/255f, 212f/255f);
-			transform.GetComponent<UIButton>().hover = new Color(28f/255f, 150f/255f, 212f/255f);
-			transform.GetComponent<UIButton>().pressed = new Color(28f/255f, 150f/255f, 212f/255f);
-			if(mBingoBoard.playerId > 0){
-				transform.FindChild("Player").FindChild("LblGuess").GetComponent<UILabel>().color = Color.white;
-			} else{
-				transform.FindChild("Team").FindChild("LblGuess").GetComponent<UILabel>().color = Color.white;
-			}
-		}
+//		if(IsCorrected && !IsAnimate){
+//			transform.FindChild("Background").GetComponent<UISprite>().color = new Color(28f/255f, 150f/255f, 212f/255f);
+//			transform.GetComponent<UIButton>().defaultColor = new Color(28f/255f, 150f/255f, 212f/255f);
+//			transform.GetComponent<UIButton>().hover = new Color(28f/255f, 150f/255f, 212f/255f);
+//			transform.GetComponent<UIButton>().pressed = new Color(28f/255f, 150f/255f, 212f/255f);
+//			if(mBingoBoard.playerId > 0){
+//				transform.FindChild("Player").FindChild("LblGuess").GetComponent<UILabel>().color = Color.white;
+//			} else{
+//				transform.FindChild("Team").FindChild("LblGuess").GetComponent<UILabel>().color = Color.white;
+//			}
+//		}
 
 	}
 
@@ -47,7 +48,8 @@ public class ItemBingo : MonoBehaviour {
 		transform.FindChild("Player").FindChild("LblName").GetComponent<UILabel>().text
 			= Localization.language.Equals("English") ? mBingoBoard.playerName : mBingoBoard.playerKorName;
 
-
+		transform.FindChild("Player").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().width = 65;
+		transform.FindChild("Player").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().height = 90;
 		UtilMgr.LoadImage(mBingoBoard.photoUrl,
 		                  transform.FindChild("Player").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>());
 	}
@@ -67,12 +69,29 @@ public class ItemBingo : MonoBehaviour {
 			= mBingoBoard.quizCondition;
 	}
 
+	public void Bingo(){
+		transform.GetComponent<Animator>().SetTrigger("Bingo");
+	}
+
+	public void BingoFinish(){
+
+	}
+
 	public void Correct(){
 		transform.GetComponent<Animator>().SetTrigger("Correct");
 	}
 
 	public void SetCorrected(){
 		IsCorrected = true;
+		transform.FindChild("Background").GetComponent<UISprite>().color = new Color(28f/255f, 150f/255f, 212f/255f);
+		transform.GetComponent<UIButton>().defaultColor = new Color(28f/255f, 150f/255f, 212f/255f);
+		transform.GetComponent<UIButton>().hover = new Color(28f/255f, 150f/255f, 212f/255f);
+		transform.GetComponent<UIButton>().pressed = new Color(28f/255f, 150f/255f, 212f/255f);
+		if(mBingoBoard.playerId > 0){
+			transform.FindChild("Player").FindChild("LblGuess").GetComponent<UILabel>().color = Color.white;
+		} else{
+			transform.FindChild("Team").FindChild("LblGuess").GetComponent<UILabel>().color = Color.white;
+		}
 	}
 
 	public void BlastStar(){

@@ -668,7 +668,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 1
-  startingRenderQueue: 1500
+  startingRenderQueue: 2100
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -931,7 +931,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 1
-  startingRenderQueue: 1700
+  startingRenderQueue: 2200
   mClipTexture: {fileID: 2800000, guid: cdc2935b73f3d4a3786a4cb4df067615, type: 3}
   mAlpha: 1
   mClipping: 1
@@ -1075,6 +1075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsCorrected: 0
+  IsAnimate: 0
 --- !u!114 &11498878
 MonoBehaviour:
   m_ObjectHideFlags: 1

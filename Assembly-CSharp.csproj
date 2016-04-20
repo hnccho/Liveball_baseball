@@ -621,6 +621,7 @@
      <Compile Include="Assets\Scripts\Network\Events\GetBingoEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetCardInvenEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetCheckMailEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\GetCurrentLineupEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetDoneMailEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetEventsEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetGameParticipantRankingEvent.cs" />
@@ -687,6 +688,7 @@
      <Compile Include="Assets\Scripts\Network\Models\ContestMyTeamListInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\ContestPresetChangeInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\ContestRankingInfo.cs" />
+     <Compile Include="Assets\Scripts\Network\Models\CurrentLineupInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\DeleteInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\DoneInvenItemInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\DoneMailinfo.cs" />
@@ -806,6 +808,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\GetBingoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetCardInvenRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetCheckMailboxRequset.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\GetCurrentLineupRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetDoneInvenItemRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetDoneMailboxRequset.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetEventsRequest.cs" />
@@ -899,6 +902,7 @@
      <Compile Include="Assets\Scripts\Network\Responses\GetBingoResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetCardInvenResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetCheckMailResponse.cs" />
+     <Compile Include="Assets\Scripts\Network\Responses\GetCurrentLineupResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetDeleteResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetDoneInvenItemResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetDoneMailResponse.cs" />

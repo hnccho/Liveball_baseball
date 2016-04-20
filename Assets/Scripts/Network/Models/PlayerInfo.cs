@@ -745,5 +745,14 @@ public class PlayerInfo {
 		}
 	}
 
+	int _lastBatter;
 
+	public int lastBatter {
+		get {
+			return _lastBatter;
+		}
+		set {
+			_lastBatter = value;
+		}
+	}
 }

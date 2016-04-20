@@ -7,15 +7,14 @@ public class JoinQuizRequest : BaseRequest {
 
 	public JoinQuizRequest(JoinQuizInfo joinInfo)
 	{
-		Add ("memSeq", joinInfo.MemSeq);
-		Add ("gameSeq", joinInfo.GameSeq);
-		Add ("quizListSeq", joinInfo.QuizListSeq);
-		Add ("qzType", joinInfo.QzType);
-		Add ("useCardNo", joinInfo.UseCardNo);
-		Add ("betPoint", joinInfo.BetPoint);
-		Add ("item", joinInfo.Item);
-		Add ("selectValue", joinInfo.SelectValue);
-		Add ("extendValue", joinInfo.ExtendValue);
+		Add ("memSeq", UserMgr.UserInfo.memSeq);
+		Add ("gameId", joinInfo.gameId);
+		Add ("bingoId", joinInfo.bingoId);
+		Add ("inningNumber", joinInfo.inningNumber);
+		Add ("inningHalf", joinInfo.inningHalf);
+		Add ("battingOrder", joinInfo.battingOrder);
+		Add ("playerId", joinInfo.playerId);
+		Add ("checkValue", joinInfo.checkValue);
 
 //		mParams = JsonFx.Json.JsonWriter.Serialize (this);
 		mDic = this;
@@ -23,12 +22,12 @@ public class JoinQuizRequest : BaseRequest {
 
 	public override string GetType ()
 	{
-		return "spos";
+		return "apps.rtime";
 	}
 
 	public override string GetQueryId()
 	{
-		return "gameSposQuizJoin";
+		return "answerIncidentForecast";
 	}
 
 }

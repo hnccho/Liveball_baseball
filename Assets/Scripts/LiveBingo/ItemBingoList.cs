@@ -11,10 +11,12 @@ public class ItemBingoList : MonoBehaviour {
 
 	Choice mChoice = Choice.None;
 	bool IsChosen;
+	JoinQuizEvent mJoinEvent;
+	JoinQuizInfo mJoinInfo;
 
 	// Use this for initialization
 	void Start () {
-		Init ();
+
 	}
 	
 	// Update is called once per frame
@@ -24,7 +26,8 @@ public class ItemBingoList : MonoBehaviour {
 		else if(x > 100) mChoice = Choice.Out;
 	}
 
-	public void Init(){
+	public void Init(JoinQuizInfo joinInfo){
+		mJoinInfo = joinInfo;
 		transform.FindChild("BG").FindChild("Left").gameObject.SetActive(false);
 		transform.FindChild("BG").FindChild("Right").gameObject.SetActive(false);
 		Choice mChoice = Choice.None;
@@ -37,21 +40,22 @@ public class ItemBingoList : MonoBehaviour {
 			: obj.GetComponentInParent<UIScrollView>().transform.localPosition.x < -100f ? Choice.Base : Choice.None;
 
 		if(mChoice != Choice.None && !IsChosen){
-			DialogueMgr.ShowDialogue("IsChosen", ""+mChoice, DialogueMgr.DIALOGUE_TYPE.Alert, null);
 			IsChosen = true;
-//			Event
-//			NetMgr
-			if(mChoice == Choice.Base)
-				SetToBase();
-			else
-				SetToOut();
 
-			obj.GetComponent<UIDragScrollView>().enabled = false;
+			mJoinInfo.checkValue = mChoice == Choice.Base ? 0 : 1;
+
+			mJoinEvent = new JoinQuizEvent(ReceivedChoice);
+			NetMgr.JoinQuiz(mJoinInfo, mJoinEvent);
+
+//			obj.GetComponent<UIDragScrollView>().enabled = false;
 		}
 	}
 
 	void ReceivedChoice(){
-
+		if(mChoice == Choice.Base)
+			SetToBase();
+		else
+			SetToOut();
 	}
 
 	void SetToBase(){

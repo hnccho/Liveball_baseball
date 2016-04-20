@@ -100,4 +100,81 @@ public class JoinQuizInfo {
 			extendValue = value;
 		}
 	}
+
+	int _gameId;
+
+	public int gameId {
+		get {
+			return _gameId;
+		}
+		set {
+			_gameId = value;
+		}
+	}
+
+	int _bingoId;
+
+	public int bingoId {
+		get {
+			return _bingoId;
+		}
+		set {
+			_bingoId = value;
+		}
+	}
+
+	int _inningNumber;
+
+	public int inningNumber {
+		get {
+			return _inningNumber;
+		}
+		set {
+			_inningNumber = value;
+		}
+	}
+
+	string _inningHalf;
+
+	public string inningHalf {
+		get {
+			return _inningHalf;
+		}
+		set {
+			_inningHalf = value;
+		}
+	}
+
+	int _battingOrder;
+
+	public int battingOrder {
+		get {
+			return _battingOrder;
+		}
+		set {
+			_battingOrder = value;
+		}
+	}
+
+	long _playerId;
+
+	public long playerId {
+		get {
+			return _playerId;
+		}
+		set {
+			_playerId = value;
+		}
+	}
+
+	int _checkValue;
+
+	public int checkValue {
+		get {
+			return _checkValue;
+		}
+		set {
+			_checkValue = value;
+		}
+	}
 }

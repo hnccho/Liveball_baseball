@@ -58,16 +58,16 @@ public class LiveBingoAnimation : MonoBehaviour {
 
 	IEnumerator Show12to42(){
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Items").FindChild("12")
-			.GetComponent<Animator>().SetTrigger("");
+			.GetComponent<ItemBingo>().Bingo();
 		yield return new WaitForSeconds(1f);
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Items").FindChild("22")
-			.GetComponent<Animator>().SetTrigger("");
+			.GetComponent<ItemBingo>().Bingo();
 		yield return new WaitForSeconds(1f);
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Items").FindChild("32")
-			.GetComponent<Animator>().SetTrigger("");
+			.GetComponent<ItemBingo>().Bingo();
 		yield return new WaitForSeconds(1f);
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Items").FindChild("42")
-			.GetComponent<Animator>().SetTrigger("");
+			.GetComponent<ItemBingo>().Bingo();
 		yield return new WaitForSeconds(1f);
 		ShowLineRow(2);
 	}

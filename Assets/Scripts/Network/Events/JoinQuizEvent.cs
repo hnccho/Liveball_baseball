@@ -3,17 +3,16 @@ using System.Collections;
 
 public class JoinQuizEvent : BaseEvent {
 
-	public JoinQuizEvent(EventDelegate eventDelegate)
+	public JoinQuizEvent(EventDelegate.Callback callback)
 	{
-		base.eventDelegate = eventDelegate;
+		base.eventDelegate = new EventDelegate(callback);
 
 		InitEvent += InitResponse;
 	}
 
 	public void InitResponse(string data)
 	{
-		Debug.Log ("JoinQuizResponse : " + data);
-		response = Newtonsoft.Json.JsonConvert.DeserializeObject<GetProfileResponse>(data);
+		response = Newtonsoft.Json.JsonConvert.DeserializeObject<BaseResponse>(data);
 
 		if (checkError ())
 			return;
@@ -21,9 +20,9 @@ public class JoinQuizEvent : BaseEvent {
 		eventDelegate.Execute ();
 	}
 
-	public GetProfileResponse Response
+	public BaseResponse Response
 	{
-		get{ return response as GetProfileResponse;}
+		get{ return response as BaseResponse;}
 	}
 
 }
