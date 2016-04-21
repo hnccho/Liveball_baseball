@@ -29,7 +29,7 @@ public class RTLobby : MonoBehaviour {
 //		Debug.Log("centered : "+go.transform.FindChild("Label").GetComponent<UILabel>().text);
 		int page = int.Parse(go.transform.FindChild("Label").GetComponent<UILabel>().text)+1;
 		transform.FindChild("SprRT").FindChild("LblRTRight").GetComponent<UILabel>().text
-			= page + " / " + mRTEvent.Response.data.Count + "Games";
+			= page + " / " + mRTEvent.Response.data.Count + " " + UtilMgr.GetLocalText("LblGames");
 	}
 
 	void OnEnable(){

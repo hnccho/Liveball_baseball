@@ -10,9 +10,7 @@ public class LiveBingo : MonoBehaviour {
 	const int RowFixed = 4;
 	GetBingoEvent mBingoEvent;
 	GetCurrentLineupEvent mLineupEvent;
-	int mGameId;
 	int mBingoId;
-	EventInfo mEventInfo;
 
 	public Dictionary<int, ItemBingo> mItemDic;
 	List<PlayerInfo> mSortedLineup;
@@ -28,16 +26,17 @@ public class LiveBingo : MonoBehaviour {
 	
 	}
 
-	public void Init(EventInfo eventInfo){
-		mEventInfo = eventInfo;
-		mGameId = eventInfo.gameId;
+	public void Init(){
+		ClearBoard();
+
+		NetMgr.JoinGame();
 		mLineupEvent = new GetCurrentLineupEvent(ReceivedLineup);
-		NetMgr.GetCurrentLineup(mGameId, mLineupEvent);
+		NetMgr.GetCurrentLineup(UserMgr.eventJoined.gameId, mLineupEvent);
 	}
 
 	void ReceivedLineup(){
 		mBingoEvent = new GetBingoEvent(ReceivedBingo);
-		NetMgr.GetBingo(mGameId, mBingoEvent);
+		NetMgr.GetBingo(UserMgr.eventJoined.gameId, mBingoEvent);
 		
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 			.FindChild("BG").FindChild("Sprite").gameObject.SetActive(false);
@@ -104,33 +103,33 @@ public class LiveBingo : MonoBehaviour {
 		}
 		
 		if(mItemDic[11].IsCorrected && mItemDic[21].IsCorrected && mItemDic[31].IsCorrected && mItemDic[41].IsCorrected)
-			transform.GetComponent<LiveBingoAnimation>().ShowBingo("11to41");
+			transform.GetComponent<LiveBingoAnimation>().ShowBingoAni("11to41");
 		if(mItemDic[12].IsCorrected && mItemDic[22].IsCorrected && mItemDic[32].IsCorrected && mItemDic[42].IsCorrected)
-			transform.GetComponent<LiveBingoAnimation>().ShowBingo("12to42");
+			transform.GetComponent<LiveBingoAnimation>().ShowBingoAni("12to42");
 		if(mItemDic[13].IsCorrected && mItemDic[23].IsCorrected && mItemDic[33].IsCorrected && mItemDic[43].IsCorrected)
-			transform.GetComponent<LiveBingoAnimation>().ShowBingo("13to43");
+			transform.GetComponent<LiveBingoAnimation>().ShowBingoAni("13to43");
 		if(mItemDic[14].IsCorrected && mItemDic[24].IsCorrected && mItemDic[34].IsCorrected && mItemDic[44].IsCorrected)
-			transform.GetComponent<LiveBingoAnimation>().ShowBingo("14to44");
+			transform.GetComponent<LiveBingoAnimation>().ShowBingoAni("14to44");
 		if(mItemDic[11].IsCorrected && mItemDic[12].IsCorrected && mItemDic[13].IsCorrected && mItemDic[14].IsCorrected)
-			transform.GetComponent<LiveBingoAnimation>().ShowBingo("11to14");
+			transform.GetComponent<LiveBingoAnimation>().ShowBingoAni("11to14");
 		if(mItemDic[21].IsCorrected && mItemDic[22].IsCorrected && mItemDic[23].IsCorrected && mItemDic[24].IsCorrected)
-			transform.GetComponent<LiveBingoAnimation>().ShowBingo("21to24");
+			transform.GetComponent<LiveBingoAnimation>().ShowBingoAni("21to24");
 		if(mItemDic[31].IsCorrected && mItemDic[32].IsCorrected && mItemDic[33].IsCorrected && mItemDic[34].IsCorrected)
-			transform.GetComponent<LiveBingoAnimation>().ShowBingo("31to34");
+			transform.GetComponent<LiveBingoAnimation>().ShowBingoAni("31to34");
 		if(mItemDic[41].IsCorrected && mItemDic[42].IsCorrected && mItemDic[43].IsCorrected && mItemDic[44].IsCorrected)
-			transform.GetComponent<LiveBingoAnimation>().ShowBingo("41to44");
+			transform.GetComponent<LiveBingoAnimation>().ShowBingoAni("41to44");
 		if(mItemDic[11].IsCorrected && mItemDic[22].IsCorrected && mItemDic[33].IsCorrected && mItemDic[44].IsCorrected)
-			transform.GetComponent<LiveBingoAnimation>().ShowBingo("11to44");
+			transform.GetComponent<LiveBingoAnimation>().ShowBingoAni("11to44");
 		if(mItemDic[14].IsCorrected && mItemDic[23].IsCorrected && mItemDic[32].IsCorrected && mItemDic[41].IsCorrected)
-			transform.GetComponent<LiveBingoAnimation>().ShowBingo("14to41");
+			transform.GetComponent<LiveBingoAnimation>().ShowBingoAni("14to41");
 	}
 
 	void InitTop(){
 		Transform score = transform.FindChild("Top").FindChild("Score");
 		score.FindChild("AwayScore").GetComponent<UILabel>().text = mLineupEvent.Response.data.awayTeamRuns+"";
 		score.FindChild("HomeScore").GetComponent<UILabel>().text = mLineupEvent.Response.data.homeTeamRuns+"";
-		score.FindChild("AwayName").GetComponent<UILabel>().text = mEventInfo.awayTeam;
-		score.FindChild("HomeName").GetComponent<UILabel>().text = mEventInfo.homeTeam;
+		score.FindChild("AwayName").GetComponent<UILabel>().text = UserMgr.eventJoined.awayTeam;
+		score.FindChild("HomeName").GetComponent<UILabel>().text = UserMgr.eventJoined.homeTeam;
 		if(mLineupEvent.Response.data.inningHalf.Equals("T")){
 			score.FindChild("AwayName").FindChild("Sprite").gameObject.SetActive(true);
 			score.FindChild("HomeName").FindChild("Sprite").gameObject.SetActive(false);
@@ -177,10 +176,14 @@ public class LiveBingo : MonoBehaviour {
 			string roundStr = mLineupEvent.Response.data.inningHalf.Equals("T") ? "Top" : "Bot";
 			roundStr += " "+mLineupEvent.Response.data.inningNumber + UtilMgr.GetRoundString(mLineupEvent.Response.data.inningNumber);
 			btm.FindChild("Info").FindChild("BG").FindChild("LblRound").GetComponent<UILabel>().text = roundStr;
-
-			btm.FindChild("Info").FindChild("BG").FindChild("LblName").GetComponent<UILabel>().text = mPitcher.playerName;
+			btm.FindChild("Info").FindChild("BG").FindChild("LblName").GetComponent<UILabel>().text
+				= mPitcher.playerName;
 		} else{
-
+			string roundStr = mLineupEvent.Response.data.inningNumber
+					+ (mLineupEvent.Response.data.inningHalf.Equals("T") ? "회초" : "회말");
+			btm.FindChild("Info").FindChild("BG").FindChild("LblRound").GetComponent<UILabel>().text = roundStr;			
+			btm.FindChild("Info").FindChild("BG").FindChild("LblName").GetComponent<UILabel>().text
+				= mPitcher.korName;
 		}
 
 		int width = btm.FindChild("Info").FindChild("BG").FindChild("LblName").GetComponent<UILabel>().width;
@@ -190,7 +193,7 @@ public class LiveBingo : MonoBehaviour {
 		btm.FindChild("Info").FindChild("SprCircle").FindChild("Hand").FindChild("Label").GetComponent<UILabel>()
 			.text = mPitcher.throwHand;
 		btm.FindChild("Info").FindChild("SprCircle").FindChild("Photo").FindChild("Panel")
-			.FindChild("Texture").GetComponent<UITexture>().width = 65;
+			.FindChild("Texture").GetComponent<UITexture>().width = 72;
 		btm.FindChild("Info").FindChild("SprCircle").FindChild("Photo").FindChild("Panel")
 			.FindChild("Texture").GetComponent<UITexture>().height = 90;
 				UtilMgr.LoadImage(mPitcher.photoUrl,
@@ -198,6 +201,9 @@ public class LiveBingo : MonoBehaviour {
 		                  .FindChild("Texture").GetComponent<UITexture>());
 				
 		btm.FindChild("Draggable").GetComponent<UIDraggablePanel2>().RemoveAll();
+//		UtilMgr.ClearList(btm.FindChild("Draggable"));
+		btm.FindChild("Draggable").GetComponent<UIPanel>().clipOffset = new Vector2(0, 50f);
+		btm.FindChild("Draggable").localPosition = new Vector3(0, -283f);
 		btm.FindChild("Draggable").GetComponent<UIDraggablePanel2>().Init (mSortedLineup.Count, delegate(UIListItem item, int index) {
 			Transform button = item.Target.transform.FindChild("Scroll View").FindChild("Button");
 			button.FindChild("Photo").FindChild("Hand").FindChild("Label").GetComponent<UILabel>()
@@ -214,13 +220,13 @@ public class LiveBingo : MonoBehaviour {
 			}
 			button.FindChild("Photo").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture
 				= UtilMgr.GetTextureDefault();
-			button.FindChild("Photo").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().width = 65;
+			button.FindChild("Photo").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().width = 72;
 			button.FindChild("Photo").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().height = 90;
 			UtilMgr.LoadImage(mSortedLineup[index].photoUrl,
 			                  button.FindChild("Photo").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>());
 
 			JoinQuizInfo joinInfo = new JoinQuizInfo();
-			joinInfo.gameId = mGameId;
+			joinInfo.gameId = UserMgr.eventJoined.gameId;
 			joinInfo.bingoId = mBingoId;
 			joinInfo.inningNumber = mLineupEvent.Response.data.inningNumber;
 			joinInfo.inningHalf = mLineupEvent.Response.data.inningHalf;
@@ -230,6 +236,19 @@ public class LiveBingo : MonoBehaviour {
 
 		});
 		btm.FindChild("Draggable").GetComponent<UIDraggablePanel2>().ResetPosition();
+	}
+
+	void ClearBoard(){
+		Transform tf = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Items");
+		GameObject[] gos = new GameObject[tf.childCount];
+		for(int i = 0; i < gos.Length; i++){
+			gos[i] = tf.GetChild(i).gameObject;
+		}
+		tf.DetachChildren();
+		for(int i = 0; i < gos.Length; i++){
+			Destroy(gos[i]);
+			//			DestroyImmediate(gos[i]);
+		}
 	}
 
 }

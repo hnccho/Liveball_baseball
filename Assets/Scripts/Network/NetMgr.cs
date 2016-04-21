@@ -483,7 +483,7 @@ public class NetMgr : MonoBehaviour{
 		mSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 		
 		try{
-			mSocket.BeginConnect(Constants.APPS_SERVER_HOST, Constants.EXTR_SERVER_PORT,
+			mSocket.BeginConnect(Constants.EXTR_SERVER_HOST, Constants.EXTR_SERVER_PORT,
 			                     mConnectionCallback, null);
 		} catch(Exception e){
 			Debug.Log ("beginConnect : "+e.Message);

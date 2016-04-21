@@ -15,8 +15,12 @@ public class ItemAniCorrect : StateMachineBehaviour {
 
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-		Debug.Log("stateInfo.tagHash is "+stateInfo.tagHash+", stateInfo.shortNameHash is "+stateInfo.shortNameHash);
-		animator.transform.GetComponent<ItemBingo>().CorrectFinish();	
+		Debug.Log(animator.transform.name);
+		if(animator.transform.name.Equals("DotBingo(Clone)")){
+			animator.transform.root.FindChild("LiveBingo").GetComponent<LiveBingoAnimation>().DotFinish();	
+
+		} else
+			animator.transform.GetComponent<ItemBingo>().CorrectFinish();	
 	}
 
 	// OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here

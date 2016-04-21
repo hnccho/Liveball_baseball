@@ -95,6 +95,17 @@ public class BingoInfo {
 	}
 
 	public class BingoBoard{
+		string _successYn;
+
+		public string successYn {
+			get {
+				return _successYn;
+			}
+			set {
+				_successYn = value;
+			}
+		}
+
 		int _tailSn;
 		public int tailSn {
 			get {

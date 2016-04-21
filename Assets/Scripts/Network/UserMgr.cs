@@ -12,6 +12,17 @@ public class UserMgr : MonoBehaviour {
 	List<CardInfo> _cardList;
 	List<PlayerInfo> _playerList;
 	List<TeamScheduleInfo> _scheduleList;
+	EventInfo _eventJoined;
+
+	public static EventInfo eventJoined {
+		get {
+			return Instance._eventJoined;
+		}
+		set {
+			Instance._eventJoined = value;
+		}
+	}
+
 //	CardInvenInfo _cardInvenInfo;
 //	ScheduleInfo _schedule;
 //	LineupInfo _awayLineup;
