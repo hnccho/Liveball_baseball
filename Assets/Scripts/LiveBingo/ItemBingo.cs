@@ -5,6 +5,7 @@ public class ItemBingo : MonoBehaviour {
 
 //	public Color BGColor = Color.white;
 	public BingoInfo.BingoBoard mBingoBoard;
+	public BingoInfo.BingoBoard mNewBingoBoard;
 	public bool IsCorrected;
 	public bool IsAnimate;
 
@@ -29,16 +30,27 @@ public class ItemBingo : MonoBehaviour {
 
 	}
 
-	public void Init(){
+	public void Init(bool isReload){
+		if(mNewBingoBoard.successYn.Equals("Y")){
+			if(isReload && mBingoBoard.successYn.Equals("N")){
+				mBingoBoard = mNewBingoBoard;
+				Correct();
+			} else{
+				mBingoBoard = mNewBingoBoard;
+				SetCorrected();
+			}
+		}
+		mBingoBoard = mNewBingoBoard;
 		if(mBingoBoard.playerId > 0){
 			SetTilePlayer();
 		} else{
 			SetTileTeam();
 		}
 
-		if(mBingoBoard.successYn.Equals("Y")){
-			SetCorrected();
-		}
+		if(mBingoBoard.walkYn.Equals("Y"))
+			SetGuess(0);
+		if(mBingoBoard.outYn.Equals("Y"))
+			SetGuess(1);
 	}
 
 	void SetTilePlayer(){
@@ -79,6 +91,7 @@ public class ItemBingo : MonoBehaviour {
 
 	public void Correct(){
 		transform.GetComponent<Animator>().SetTrigger("Correct");
+		transform.parent.parent.FindChild("Result").GetComponent<BingoResult>().Correct();
 	}
 
 	public void SetCorrected(){
@@ -92,6 +105,15 @@ public class ItemBingo : MonoBehaviour {
 		} else{
 			transform.FindChild("Team").FindChild("LblGuess").GetComponent<UILabel>().color = Color.white;
 		}
+	}
+
+	public void SetGuess(int checkValue){
+		if(checkValue == 0)
+			transform.FindChild("Player").FindChild("LblGuess").GetComponent<UILabel>().text
+				= UtilMgr.GetLocalText("StrGetOnBase");
+		else
+			transform.FindChild("Player").FindChild("LblGuess").GetComponent<UILabel>().text
+				= UtilMgr.GetLocalText("StrOut");
 	}
 
 	public void BlastStar(){
@@ -109,8 +131,11 @@ public class ItemBingo : MonoBehaviour {
 	}
 
 	public void OnClick(){
-		IsCorrected = false;
-		Correct ();
+//		IsCorrected = false;
+//		Correct ();
+//		transform.parent.parent.FindChild("Result").GetComponent<Animator>().SetTrigger("Result");
+//		SetCorrected();
+//		CorrectFinish();
 	}
 
 

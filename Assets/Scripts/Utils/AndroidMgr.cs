@@ -93,9 +93,9 @@ public class AndroidMgr : MonoBehaviour
 
 	public void NotiReceived(string msg)
 	{
-		Debug.Log("NotiReceived : "+UtilMgr.OnPause);
-		if(!UtilMgr.OnPause)
-			QuizMgr.NotiReceived (msg);
+//		Debug.Log("NotiReceived : "+UtilMgr.OnPause);
+//		if(!UtilMgr.OnPause)
+//			QuizMgr.NotiReceived (msg);
 	}
 
 	public static void OpenCamera(EventDelegate eventDelegate){

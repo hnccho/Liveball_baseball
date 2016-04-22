@@ -10,6 +10,7 @@ public class LiveBingoAnimation : MonoBehaviour {
 		,m11to14, m21to24, m31to34, m41to44
 			,m11to44, m14to41, mBlack;
 	public GameObject mDot;
+	bool IsReload;
 
 	// Use this for initialization
 	void Start () {
@@ -27,36 +28,53 @@ public class LiveBingoAnimation : MonoBehaviour {
 		m21to24 = false; m31to34 = false; m41to44 = false; m11to44 = false; m14to41 = false; mBlack = false;
 	}
 
+	public void SetGauge(int gauge, bool isReload){
+		IsReload = isReload;
+		if(IsReload){
+			if(mGaugeCnt < gauge){
+				GaugeUp(gauge, 1f);
+			}
+		} else if(gauge > 0){
+			GaugeUp(gauge, 0);
+		}
+	}
+
 	EventDelegate delegateGauge;
-	public void GaugeUp(){
+	public void GaugeUp(int gauge, float time){
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 			.FindChild("BG").FindChild("Sprite").gameObject.SetActive(true);
 		
 		delegateGauge = new EventDelegate(FinishGaugeUp);
-		mGaugeCnt++;
-		int height = (int)(GAUGE_HEIGHT * ((float)mGaugeCnt / (float)MAX_GAUGE));
+		int height = (int)(GAUGE_HEIGHT * ((float)gauge / (float)MAX_GAUGE));
 		TweenHeight.Begin(transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-		                  .FindChild("BG").FindChild("Sprite").GetComponent<UISprite>(), 1f, height);
+		                  .FindChild("BG").FindChild("Sprite").GetComponent<UISprite>(), time, height);
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 			.FindChild("BG").FindChild("Sprite").GetComponent<TweenHeight>().SetOnFinished(delegateGauge);
+		mGaugeCnt = gauge;
 	}
 	
 	void FinishGaugeUp(){
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 			.FindChild("BG").FindChild("Sprite").GetComponent<TweenHeight>().RemoveOnFinished(delegateGauge);
 		if(mGaugeCnt >= MAX_GAUGE){
-			GaugeMax();
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("Sprite").GetComponent<Animator>().SetTrigger("Blink");
+		if(IsReload)
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Result")
+				.GetComponent<BingoResult>().PowerTime();
 		} else{
 			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 				.FindChild("BG").FindChild("Sprite").GetComponent<Animator>().SetTrigger("Alpha");
 		}
 	}
 
-	void GaugeMax(){
-		DialogueMgr.ShowDialogue("max", "max", DialogueMgr.DIALOGUE_TYPE.Alert, null);
+	public void PowerUsed(){
+		GaugeUp(0, 1f);
 	}
 
 	IEnumerator ShowBingoAni(string[] items, EventDelegate eventDelegate){
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Result")
+			.GetComponent<BingoResult>().Bingo();
 		for(int i = 0; i < items.Length; i++){
 			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Items").FindChild(items[i])
 				.GetComponent<ItemBingo>().Bingo();

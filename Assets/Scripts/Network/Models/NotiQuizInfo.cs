@@ -100,4 +100,48 @@ public class NotiQuizInfo {
 			_result = value;
 		}
 	}
+	
+	string _half;
+	
+	public string half {
+		get {
+			return _half;
+		}
+		set {
+			_half = value;
+		}
+	}
+	
+	long _playerId;
+	
+	public long playerId {
+		get {
+			return _playerId;
+		}
+		set {
+			_playerId = value;
+		}
+	}
+	
+	int _gameId;
+	
+	public int gameId {
+		get {
+			return _gameId;
+		}
+		set {
+			_gameId = value;
+		}
+	}
+
+	int _value;
+
+	public int value {
+		get {
+			return _value;
+		}
+		set {
+			_value = value;
+		}
+	}
 }

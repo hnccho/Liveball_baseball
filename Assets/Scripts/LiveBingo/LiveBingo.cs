@@ -9,8 +9,9 @@ public class LiveBingo : MonoBehaviour {
 	const float WidthFixed = 146.6f;
 	const int RowFixed = 4;
 	GetBingoEvent mBingoEvent;
-	GetCurrentLineupEvent mLineupEvent;
+	public GetCurrentLineupEvent mLineupEvent;
 	int mBingoId;
+	bool IsReload;
 
 	public Dictionary<int, ItemBingo> mItemDic;
 	List<PlayerInfo> mSortedLineup;
@@ -27,60 +28,81 @@ public class LiveBingo : MonoBehaviour {
 	}
 
 	public void Init(){
+		IsReload = false;
 		ClearBoard();
+		mItemDic = new Dictionary<int, ItemBingo>();
+		transform.GetComponent<LiveBingoAnimation>().Init();
 
 		NetMgr.JoinGame();
-		mLineupEvent = new GetCurrentLineupEvent(ReceivedLineup);
-		NetMgr.GetCurrentLineup(UserMgr.eventJoined.gameId, mLineupEvent);
-	}
 
-	void ReceivedLineup(){
 		mBingoEvent = new GetBingoEvent(ReceivedBingo);
 		NetMgr.GetBingo(UserMgr.eventJoined.gameId, mBingoEvent);
-		
-		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-			.FindChild("BG").FindChild("Sprite").gameObject.SetActive(false);
-		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-			.FindChild("BG").FindChild("Sprite").GetComponent<UISprite>().height = 0;
-		
-		transform.GetComponent<LiveBingoAnimation>().Init();
 	}
 
 	void ReceivedBingo(){
+		mLineupEvent = new GetCurrentLineupEvent(ReceivedLineup);
+		NetMgr.GetCurrentLineup(UserMgr.eventJoined.gameId, UserMgr.eventJoined.inning,
+		                        mBingoEvent.Response.data.bingo.bingoId, mLineupEvent);
+	}
+
+	void ReceivedLineup(){
+		if(!IsReload){
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("Sprite").gameObject.SetActive(false);
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("Sprite").GetComponent<UISprite>().height = 0;
+		}
+
+		transform.GetComponent<LiveBingoAnimation>().SetGauge(mLineupEvent.Response.data.powerGauge, IsReload);
+
 		if(mBingoEvent.Response.data.bingoBoard.Count < 16){
 			DialogueMgr.ShowDialogue("Sorry", "Sorry", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 			return;
 		}
 
 		mBingoId = mBingoEvent.Response.data.bingoBoard[0].bingoId;
-		mItemDic = new Dictionary<int, ItemBingo>();
+
 		int row = 0, col = -1;
 		for(int i = 0; i < 16; i++){
+			//row col swapped
+			if(i % 4 == 0){
+				col++; row = -1;
+			}
+			row++;
+
+			if(IsReload){
+				ItemBingo tile = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+					.FindChild("Items").GetChild(i).GetComponent<ItemBingo>();
+				tile.mNewBingoBoard = mBingoEvent.Response.data.bingoBoard[i];
+				tile.Init(IsReload);
+				continue;
+			}
+
 			GameObject item = Instantiate(mItemBingo);
 			item.transform.parent = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Items");
 			item.transform.localScale = new Vector3(1f, 1f, 1f);
 			item.name = mBingoEvent.Response.data.bingoBoard[i].tailId+"";
-			if(i % 4 == 0){
-				col++; row = 0;
-			}
-			//row col swapped
-			item.transform.localPosition = new Vector3(StartPos.x + (WidthFixed * col), StartPos.y - (WidthFixed * row++));
+
+			item.transform.localPosition = new Vector3(StartPos.x + (WidthFixed * col), StartPos.y - (WidthFixed * row));
 
 			ItemBingo itemBingo = item.GetComponent<ItemBingo>();
-			itemBingo.mBingoBoard = mBingoEvent.Response.data.bingoBoard[i];
-			itemBingo.Init();
+			itemBingo.mNewBingoBoard = mBingoEvent.Response.data.bingoBoard[i];
+			itemBingo.Init(IsReload);
 
-			mItemDic.Add(mBingoEvent.Response.data.bingoBoard[i].tailId, item.GetComponent<ItemBingo>());
+//			if(!IsReload)
+				mItemDic.Add(mBingoEvent.Response.data.bingoBoard[i].tailId, item.GetComponent<ItemBingo>());
 		}
 		InitTop();
 		InitBtm();
 
-		UtilMgr.AddBackState(UtilMgr.STATE.LiveBingo);
-		UtilMgr.AnimatePageToLeft("Lobby", "LiveBingo");
+		if(!IsReload){
+			UtilMgr.AddBackState(UtilMgr.STATE.LiveBingo);
+			UtilMgr.AnimatePageToLeft("Lobby", "LiveBingo");
+		}
 	}
 
 	public void BingoClick(){
-		transform.GetComponent<LiveBingoAnimation>().GaugeUp();
+//		transform.GetComponent<LiveBingoAnimation>().SetGauge(10, IsReload);
 	}
 
 	public void ResetClick(){
@@ -148,26 +170,41 @@ public class LiveBingo : MonoBehaviour {
 		Transform btm = transform.FindChild("Body").FindChild("Scroll View").FindChild("Btm");
 
 		mSortedLineup = new List<PlayerInfo>();
+		bool foundLast = false;
 		if(mLineupEvent.Response.data.inningHalf.Equals("T")){
 			mPitcher = mLineupEvent.Response.data.home.pit;
 			for(int i = 0; i < mLineupEvent.Response.data.away.hit.Count; i++){
 				if(mLineupEvent.Response.data.away.hit[i].lastBatter > 0){
+					foundLast = true;
 					for(int j = 0; j < mLineupEvent.Response.data.away.hit.Count; j++){
-						if(++i >= mLineupEvent.Response.data.away.hit.Count) i = 0;
-						mSortedLineup.Add(mLineupEvent.Response.data.away.hit[i]);
+//						if(++i >= mLineupEvent.Response.data.away.hit.Count) i = 0;
+						if(i >= mLineupEvent.Response.data.away.hit.Count) i = 0;
+						mSortedLineup.Add(mLineupEvent.Response.data.away.hit[i]);i++;
 					}
 					break;
+				}
+			}
+			if(!foundLast){
+				for(int j = 0; j < mLineupEvent.Response.data.away.hit.Count; j++){
+					mSortedLineup.Add(mLineupEvent.Response.data.away.hit[j]);
 				}
 			}
 		} else{
 			mPitcher = mLineupEvent.Response.data.away.pit;
 			for(int i = 0; i < mLineupEvent.Response.data.home.hit.Count; i++){
 				if(mLineupEvent.Response.data.home.hit[i].lastBatter > 0){
+					foundLast = true;
 					for(int j = 0; j < mLineupEvent.Response.data.home.hit.Count; j++){
-						if(++i >= mLineupEvent.Response.data.home.hit.Count) i = 0;
-						mSortedLineup.Add(mLineupEvent.Response.data.home.hit[i]);
+//						if(++i >= mLineupEvent.Response.data.home.hit.Count) i = 0;
+						if(i >= mLineupEvent.Response.data.home.hit.Count) i = 0;
+						mSortedLineup.Add(mLineupEvent.Response.data.home.hit[i]);i++;
 					}
 					break;
+				}
+			}
+			if(!foundLast){
+				for(int j = 0; j < mLineupEvent.Response.data.home.hit.Count; j++){
+					mSortedLineup.Add(mLineupEvent.Response.data.home.hit[j]);
 				}
 			}
 		}
@@ -232,8 +269,19 @@ public class LiveBingo : MonoBehaviour {
 			joinInfo.inningHalf = mLineupEvent.Response.data.inningHalf;
 			joinInfo.battingOrder = mSortedLineup[index].battingOrder;
 			joinInfo.playerId = mSortedLineup[index].playerId;
+			//
+//			joinInfo.checkValue = -1;
+//			foreach(CurrentLineupInfo.ForecastInfo forecast in mLineupEvent.Response.data.forecast){
+//				if(forecast.battingOrder == joinInfo.battingOrder){
+//					joinInfo.checkValue = forecast.myValue;
+//					break;
+//				}
+//			}
+			//
 			item.Target.GetComponent<ItemBingoList>().Init(joinInfo);
 
+			if(index == 0)
+				item.Target.GetComponent<ItemBingoList>().SetToLocking();
 		});
 		btm.FindChild("Draggable").GetComponent<UIDraggablePanel2>().ResetPosition();
 	}
@@ -243,12 +291,30 @@ public class LiveBingo : MonoBehaviour {
 		GameObject[] gos = new GameObject[tf.childCount];
 		for(int i = 0; i < gos.Length; i++){
 			gos[i] = tf.GetChild(i).gameObject;
+			gos[i].SetActive(false);
 		}
-		tf.DetachChildren();
+//		tf.DetachChildren();
 		for(int i = 0; i < gos.Length; i++){
 			Destroy(gos[i]);
 			//			DestroyImmediate(gos[i]);
 		}
 	}
 
+	public void ReceivedResult(SocketMsgInfo info){
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Result")
+			.GetComponent<BingoResult>().Result(info);
+	}
+
+	public void Reload(){
+		IsReload = true;
+		mBingoEvent = new GetBingoEvent(ReceivedBingo);
+		NetMgr.GetBingo(UserMgr.eventJoined.gameId, mBingoEvent);
+	}
+
+	public void ChangeInning(SocketMsgInfo info){
+		IsReload = true;
+		mLineupEvent = new GetCurrentLineupEvent(ReceivedLineup);
+		NetMgr.GetCurrentLineup(UserMgr.eventJoined.gameId, int.Parse(info.data.inning),
+		                        mBingoEvent.Response.data.bingo.bingoId, mLineupEvent);
+	}
 }

@@ -18,8 +18,10 @@ public class ItemAniCorrect : StateMachineBehaviour {
 		Debug.Log(animator.transform.name);
 		if(animator.transform.name.Equals("DotBingo(Clone)")){
 			animator.transform.root.FindChild("LiveBingo").GetComponent<LiveBingoAnimation>().DotFinish();	
-
-		} else
+//		} else if(animator.transform.name.Equals("Result")){
+//			animator.transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().Reload();
+		}
+		else
 			animator.transform.GetComponent<ItemBingo>().CorrectFinish();	
 	}
 

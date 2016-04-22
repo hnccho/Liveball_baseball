@@ -40,6 +40,7 @@ public class Lobby : MonoBehaviour {
 	}
 
 	public void Init(){
+		UserMgr.eventJoined = null;
 		UtilMgr.AddBackState(UtilMgr.STATE.Lobby);
 
 		mLobbyEvent = new GetLobbyInfoEvent(ReceivedLobbyInfo);

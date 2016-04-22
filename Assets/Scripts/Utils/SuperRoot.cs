@@ -52,19 +52,12 @@ public class SuperRoot : MonoBehaviour {
 		if(mPopup != null){
 			mPopup.SetActive(false);
 			mPopup = null;
-		} else
-		if (DialogueMgr.IsShown) {
+		} else if (DialogueMgr.IsShown) {
 			DialogueMgr.Instance.BtnCancelClicked();
 		} else if(IsAnimating){
 			return;
 		} else {
 			UtilMgr.OnBackPressed ();
-//			if(Application.loadedLevelName.Equals("SceneMain")){
-//				
-//				if(transform.FindChild("TF_Livetalk").gameObject.activeSelf){
-//					transform.FindChild("TF_Livetalk").FindChild("Panel").FindChild("Input").GetComponent<UIInput>().OpenKeboard();
-//				}
-//			}
 		}
 	}
 

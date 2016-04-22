@@ -566,6 +566,7 @@
      <Compile Include="Assets\Scripts\Lineup\ItemLineup.cs" />
      <Compile Include="Assets\Scripts\Lineup\MyLineup.cs" />
      <Compile Include="Assets\Scripts\LiveBingo\Bingo.cs" />
+     <Compile Include="Assets\Scripts\LiveBingo\BingoResult.cs" />
      <Compile Include="Assets\Scripts\LiveBingo\ItemAniCorrect.cs" />
      <Compile Include="Assets\Scripts\LiveBingo\ItemBingo.cs" />
      <Compile Include="Assets\Scripts\LiveBingo\ItemBingoList.cs" />
@@ -771,7 +772,7 @@
      <Compile Include="Assets\Scripts\Network\Models\procStoreGachaInfo.cs" />
      <Compile Include="Assets\Scripts\Network\NetMgr.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\AccuseContentRequest.cs" />
-     <Compile Include="Assets\Scripts\Network\Requests\AliveRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\AliveSocketRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\BaseNanooRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\BaseRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\BaseSocketRequest.cs" />

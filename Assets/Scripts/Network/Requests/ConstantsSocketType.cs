@@ -15,7 +15,7 @@ namespace ConstantsSocketType{
 		public const int TYPE_START = 5021;
 		public const int TYPE_CLOSE = 5022;
 
-		public const int RESULT_BATTING = 5041;
+		public const int RESULT_HIT = 5041;
 		public const int CHANGE_INNING = 5042;
 		public const int CHANGE_PLAYER = 5043;
 		public const int RESTORE_BINGO = 5044;

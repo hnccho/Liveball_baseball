@@ -22,7 +22,7 @@ public class UtilMgr : MonoBehaviour {
 	public static bool OnPause;
 	public static bool OnFocus;
 	public static string PreLoadedLevelName;
-	Transform mRoot;
+	public Transform mRoot;
 
 	EventDelegate mEventTweenFinish;
 	static Texture2D mTextureMan;
@@ -56,7 +56,7 @@ public class UtilMgr : MonoBehaviour {
 		LiveBingo
 	}
 
-	static UtilMgr Instance
+	public static UtilMgr Instance
 	{
 		get
 		{

@@ -4,11 +4,12 @@ using System.Text;
 
 public class GetCurrentLineupRequest : BaseRequest {
 	
-	public GetCurrentLineupRequest(int gameId)
+	public GetCurrentLineupRequest(int gameId, int inning, int bingoId)
 	{
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
 		Add ("gameId", gameId);
-		Add ("home", 0);
+		Add ("inning", inning);
+		Add ("bingoId", bingoId);
 		//		mParams = JsonFx.Json.JsonWriter.Serialize (this);
 		mDic = this;
 		

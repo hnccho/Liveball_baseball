@@ -744,9 +744,12 @@ public class NetMgr : MonoBehaviour{
 
 	public static void JoinGame()
 	{
-		//        Instance.webAPIProcessEvent (new JoinGameRequest (), baseEvent);
-		//        Instance.tcpAPIProcessEvent(new JoinGameSocketRequest(), baseEvent, true);
 		Instance.socketJoinEvent();
+	}
+
+	public static void Alive()
+	{
+		SendSocketMsg(new AliveSocketRequest().ToRequestString());
 	}
 	
 	public static void JoinQuiz(JoinQuizInfo joinInfo, BaseEvent baseEvent)
@@ -1021,8 +1024,8 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEventToAuth(new GetBingoRequest(gameId), baseEvent, false, true);
 	}
 
-	public static void GetCurrentLineup(int gameId, BaseEvent baseEvent){
-		Instance.webAPIProcessEventToAuth(new GetCurrentLineupRequest(gameId), baseEvent, false, true);
+	public static void GetCurrentLineup(int gameId, int inning, int bingoId, BaseEvent baseEvent){
+		Instance.webAPIProcessEventToAuth(new GetCurrentLineupRequest(gameId, inning, bingoId), baseEvent, false, true);
 	}
 
 	public static void SendSocketMsg(String msg) {

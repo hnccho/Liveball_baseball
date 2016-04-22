@@ -95,6 +95,28 @@ public class BingoInfo {
 	}
 
 	public class BingoBoard{
+		string _walkYn;
+
+		public string walkYn {
+			get {
+				return _walkYn;
+			}
+			set {
+				_walkYn = value;
+			}
+		}
+
+		string _outYn;
+
+		public string outYn {
+			get {
+				return _outYn;
+			}
+			set {
+				_outYn = value;
+			}
+		}
+
 		string _successYn;
 
 		public string successYn {
