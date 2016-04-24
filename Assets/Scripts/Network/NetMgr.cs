@@ -976,6 +976,11 @@ public class NetMgr : MonoBehaviour{
 	{
 		Instance.webAPIProcessEvent(new AccuseContentRequest(accuInfo), baseEvent);
 	}
+
+	public static void CallBingo(int gameId, int bingoId, int inningNumber, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new CallBingoRequest(gameId, bingoId, inningNumber), baseEvent);
+	}
 	
 	public static void GetEvents(BaseEvent baseEvent)
 	{
@@ -990,6 +995,11 @@ public class NetMgr : MonoBehaviour{
 	public static void GetTerms(BaseEvent baseEvent)
 	{
 		Instance.webAPIProcessEventForRankingball(new GetTermsRequest(), baseEvent, true);
+	}
+
+	public static void UsePower(int gameId, int bingoId, int tailId, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new UsePowerRequest(gameId, bingoId, tailId), baseEvent, true);
 	}
 	
 	public static void CSGetList(BaseCSEvent baseEvent){

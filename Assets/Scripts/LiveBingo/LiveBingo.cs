@@ -10,8 +10,10 @@ public class LiveBingo : MonoBehaviour {
 	const int RowFixed = 4;
 	GetBingoEvent mBingoEvent;
 	public GetCurrentLineupEvent mLineupEvent;
+	CallBingoEvent mCallEvent;
 	int mBingoId;
 	bool IsReload;
+	int mCanGet;
 
 	public Dictionary<int, ItemBingo> mItemDic;
 	List<PlayerInfo> mSortedLineup;
@@ -40,12 +42,20 @@ public class LiveBingo : MonoBehaviour {
 	}
 
 	void ReceivedBingo(){
+		mCanGet = mBingoEvent.Response.data.bingo.bingos - mBingoEvent.Response.data.bingo.rewardedCount;
+
 		mLineupEvent = new GetCurrentLineupEvent(ReceivedLineup);
 		NetMgr.GetCurrentLineup(UserMgr.eventJoined.gameId, UserMgr.eventJoined.inning,
 		                        mBingoEvent.Response.data.bingo.bingoId, mLineupEvent);
 	}
 
 	void ReceivedLineup(){
+
+		mLineupEvent.Response.data.forecast.Sort(
+			delegate(CurrentLineupInfo.ForecastInfo x, CurrentLineupInfo.ForecastInfo y) {
+			return x.inningNumber.CompareTo(y.inningNumber);
+		});
+
 		if(!IsReload){
 			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 				.FindChild("BG").FindChild("Sprite").gameObject.SetActive(false);
@@ -94,6 +104,7 @@ public class LiveBingo : MonoBehaviour {
 		}
 		InitTop();
 		InitBtm();
+		InitBingoBtn();
 
 		if(!IsReload){
 			UtilMgr.AddBackState(UtilMgr.STATE.LiveBingo);
@@ -102,11 +113,20 @@ public class LiveBingo : MonoBehaviour {
 	}
 
 	public void BingoClick(){
-//		transform.GetComponent<LiveBingoAnimation>().SetGauge(10, IsReload);
+		mCallEvent = new CallBingoEvent(ReceivedCall);
+		NetMgr.CallBingo(UserMgr.eventJoined.gameId, mBingoEvent.Response.data.bingo.bingoId
+		                 ,mLineupEvent.Response.data.inningNumber, mCallEvent);
+	}
+
+	void ReceivedCall(){
+		int total = mCallEvent.Response.data.totalRewardGold + mCallEvent.Response.data.userBlackBingoReward;
+		DialogueMgr.ShowDialogue("Bingo", "You received compensation of "+total+"gold!"
+		                         , DialogueMgr.DIALOGUE_TYPE.Alert, null);
+		Reload();
 	}
 
 	public void ResetClick(){
-
+		Reload();
 	}
 
 	public void CheckBingo(){
@@ -179,7 +199,8 @@ public class LiveBingo : MonoBehaviour {
 					for(int j = 0; j < mLineupEvent.Response.data.away.hit.Count; j++){
 //						if(++i >= mLineupEvent.Response.data.away.hit.Count) i = 0;
 						if(i >= mLineupEvent.Response.data.away.hit.Count) i = 0;
-						mSortedLineup.Add(mLineupEvent.Response.data.away.hit[i]);i++;
+						mSortedLineup.Add(mLineupEvent.Response.data.away.hit[i]);
+						i++;
 					}
 					break;
 				}
@@ -197,7 +218,8 @@ public class LiveBingo : MonoBehaviour {
 					for(int j = 0; j < mLineupEvent.Response.data.home.hit.Count; j++){
 //						if(++i >= mLineupEvent.Response.data.home.hit.Count) i = 0;
 						if(i >= mLineupEvent.Response.data.home.hit.Count) i = 0;
-						mSortedLineup.Add(mLineupEvent.Response.data.home.hit[i]);i++;
+						mSortedLineup.Add(mLineupEvent.Response.data.home.hit[i]);
+						i++;
 					}
 					break;
 				}
@@ -280,7 +302,7 @@ public class LiveBingo : MonoBehaviour {
 			//
 			item.Target.GetComponent<ItemBingoList>().Init(joinInfo);
 
-			if(index == 0)
+			if(index == 0 || index == 1)
 				item.Target.GetComponent<ItemBingoList>().SetToLocking();
 		});
 		btm.FindChild("Draggable").GetComponent<UIDraggablePanel2>().ResetPosition();
@@ -316,5 +338,27 @@ public class LiveBingo : MonoBehaviour {
 		mLineupEvent = new GetCurrentLineupEvent(ReceivedLineup);
 		NetMgr.GetCurrentLineup(UserMgr.eventJoined.gameId, int.Parse(info.data.inning),
 		                        mBingoEvent.Response.data.bingo.bingoId, mLineupEvent);
+	}
+
+	public void InitBingoBtn(){
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnBingo").FindChild("Sprite")
+			.gameObject.SetActive(false);
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnBingo")
+			.GetComponent<UIButton>().isEnabled = false;
+		if(mCanGet > 0){
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnBingo")
+				.GetComponent<UIButton>().isEnabled = true;
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnBingo").FindChild("Sprite")
+				.gameObject.SetActive(true);
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnBingo").FindChild("Sprite")
+				.FindChild("Label").GetComponent<UILabel>().text = mCanGet+"";
+		}
+
+//		if(IsReload){
+//
+//		} else{
+//
+//		}
+
 	}
 }

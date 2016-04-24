@@ -13,9 +13,10 @@ public class GetBingoRequest : BaseRequest {
 
 		mDic = this;
 	}
+
 	public override string GetType ()
 	{
-		return "apps.ginfo";
+		return "apps.rtime";
 	}
 
 	public override string GetQueryId()

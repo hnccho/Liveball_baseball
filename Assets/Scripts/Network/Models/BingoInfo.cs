@@ -27,6 +27,17 @@ public class BingoInfo {
 	}
 
 	public class Bingo{
+		int _rewardedCount;
+
+		public int rewardedCount {
+			get {
+				return _rewardedCount;
+			}
+			set {
+				_rewardedCount = value;
+			}
+		}
+
 		int _bingoId;
 		public int bingoId {
 			get {
@@ -190,6 +201,17 @@ public class BingoInfo {
 			}
 			set {
 				_playerKorName = value;
+			}
+		}
+
+		int _powerCheck;
+
+		public int powerCheck {
+			get {
+				return _powerCheck;
+			}
+			set {
+				_powerCheck = value;
 			}
 		}
 

@@ -59,9 +59,10 @@ public class LiveBingoAnimation : MonoBehaviour {
 		if(mGaugeCnt >= MAX_GAUGE){
 			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 				.FindChild("BG").FindChild("Sprite").GetComponent<Animator>().SetTrigger("Blink");
-		if(IsReload)
-			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Result")
-				.GetComponent<BingoResult>().PowerTime();
+			if(IsReload){
+				transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Result")
+					.GetComponent<BingoResult>().PowerTime();
+			}
 		} else{
 			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 				.FindChild("BG").FindChild("Sprite").GetComponent<Animator>().SetTrigger("Alpha");
@@ -69,7 +70,12 @@ public class LiveBingoAnimation : MonoBehaviour {
 	}
 
 	public void PowerUsed(){
-		GaugeUp(0, 1f);
+//		GaugeUp(0, 1f);
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+			.FindChild("BG").FindChild("Sprite").gameObject.SetActive(false);
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+			.FindChild("BG").FindChild("Sprite").GetComponent<UISprite>().height = 0;
+		mGaugeCnt = 0;
 	}
 
 	IEnumerator ShowBingoAni(string[] items, EventDelegate eventDelegate){

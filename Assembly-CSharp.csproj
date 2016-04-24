@@ -598,6 +598,7 @@
      <Compile Include="Assets\Scripts\Network\Events\BaseSocketEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\CS\BaseCSEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\CS\CSGetListEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\CallBingoEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\CardUpEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\ChangeGestEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\CheckMemberDeviceEvent.cs" />
@@ -675,6 +676,7 @@
      <Compile Include="Assets\Scripts\Network\Events\procStoreGachaEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Models\AccusationInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\BingoInfo.cs" />
+     <Compile Include="Assets\Scripts\Network\Models\BingoRewardInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\CardClassInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\CardInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\CardInvenInfo.cs" />
@@ -780,6 +782,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\CS\BaseCSRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\CS\CSGetListRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\CS\CSParamItem.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\CallBingoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\CancelIAPRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\CardLevelUpRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\CardRankUpRequest.cs" />
@@ -876,6 +879,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\TeamScheduleInfoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\UpdateEntryRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\UpdateMemberInfoRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\UsePowerRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\UserDailyRankingRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\UserMonthlyRankingRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\UserWeeklyRankingRequest.cs" />
@@ -886,6 +890,7 @@
      <Compile Include="Assets\Scripts\Network\Responses\BaseResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\CS\BaseCSResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\CS\CSGetListResponse.cs" />
+     <Compile Include="Assets\Scripts\Network\Responses\CallBingoResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\CardUpResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\CheckMemberDeviceResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\CheckMemberPincodeResponse.cs" />
