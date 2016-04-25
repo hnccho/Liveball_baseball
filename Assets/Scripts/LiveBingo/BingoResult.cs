@@ -44,7 +44,7 @@ public class BingoResult : MonoBehaviour {
 		transform.GetComponent<Animator>().SetTrigger("Result");
 	}
 
-	public void Result(SocketMsgInfo info){
+	public void SocketResult(SocketMsgInfo info){
 		transform.FindChild("Label").gameObject.SetActive(true);
 		transform.FindChild("SprTxt").gameObject.SetActive(false);
 		if(info.data.value > 0){ //Out
@@ -54,7 +54,6 @@ public class BingoResult : MonoBehaviour {
 		}
 
 		if(transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().mLineupEvent.Response.data.inningHalf.Equals("T")){
-
 			foreach(PlayerInfo player in 
 			        transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().mLineupEvent.Response.data.away.hit){
 //				Debug.Log("T info id : "+info.playerId+", player id : "+player.playerId);

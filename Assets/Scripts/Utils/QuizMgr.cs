@@ -48,6 +48,9 @@ public class QuizMgr : MonoBehaviour {
 		case ConstantsSocketType.RES.CHANGE_INNING:
 			bingo.ChangeInning(msgInfo);
 			break;
+		case ConstantsSocketType.RES.RELOAD_BINGO:
+			bingo.Reload();
+			break;
 
 		}
 	}

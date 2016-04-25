@@ -18,6 +18,7 @@ namespace ConstantsSocketType{
 		public const int RESULT_HIT = 5041;
 		public const int CHANGE_INNING = 5042;
 		public const int CHANGE_PLAYER = 5043;
-		public const int RESTORE_BINGO = 5044;
+		public const int RENEW_BINGO = 5044;
+		public const int RELOAD_BINGO = 5045;
 	}
 }

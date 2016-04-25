@@ -34,6 +34,8 @@ public class LiveBingo : MonoBehaviour {
 		ClearBoard();
 		mItemDic = new Dictionary<int, ItemBingo>();
 		transform.GetComponent<LiveBingoAnimation>().Init();
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Sprite")
+			.FindChild("NotReady").gameObject.SetActive(false);
 
 		NetMgr.JoinGame();
 
@@ -42,6 +44,10 @@ public class LiveBingo : MonoBehaviour {
 	}
 
 	void ReceivedBingo(){
+		if(mBingoEvent.Response.data.bingo == null){
+			SetNotReady();
+			return;
+		}
 		mCanGet = mBingoEvent.Response.data.bingo.bingos - mBingoEvent.Response.data.bingo.rewardedCount;
 
 		mLineupEvent = new GetCurrentLineupEvent(ReceivedLineup);
@@ -66,7 +72,7 @@ public class LiveBingo : MonoBehaviour {
 		transform.GetComponent<LiveBingoAnimation>().SetGauge(mLineupEvent.Response.data.powerGauge, IsReload);
 
 		if(mBingoEvent.Response.data.bingoBoard.Count < 16){
-			DialogueMgr.ShowDialogue("Sorry", "Sorry", DialogueMgr.DIALOGUE_TYPE.Alert, null);
+			DialogueMgr.ShowDialogue("Error", "Bingo has less than 16 tiles", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 			return;
 		}
 
@@ -105,11 +111,9 @@ public class LiveBingo : MonoBehaviour {
 		InitTop();
 		InitBtm();
 		InitBingoBtn();
+		InitResetBtn();
 
-		if(!IsReload){
-			UtilMgr.AddBackState(UtilMgr.STATE.LiveBingo);
-			UtilMgr.AnimatePageToLeft("Lobby", "LiveBingo");
-		}
+		ShowNext();
 	}
 
 	public void BingoClick(){
@@ -324,7 +328,7 @@ public class LiveBingo : MonoBehaviour {
 
 	public void ReceivedResult(SocketMsgInfo info){
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Result")
-			.GetComponent<BingoResult>().Result(info);
+			.GetComponent<BingoResult>().SocketResult(info);
 	}
 
 	public void Reload(){
@@ -360,5 +364,76 @@ public class LiveBingo : MonoBehaviour {
 //
 //		}
 
+	}
+
+	void InitResetBtn(){
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnReset").
+			GetComponent<UIButton>().isEnabled = true;
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnReset").FindChild("Sprite2")
+			.GetComponent<UISprite>().color = new Color(0, 106f/255f, 216f/255f);
+	}
+
+	void SetNotReady(){
+//	dateTime: "20160426053000",
+		string dateTime = UtilMgr.IsMLB() ? UserMgr.eventJoined.dateTime : UserMgr.eventJoined.korDateTime;
+		string timeZone = UtilMgr.IsMLB() ? "ET" : "KST";
+		int month = int.Parse(dateTime.Substring(4, 2));
+		int date = int.Parse(dateTime.Substring(6, 2));
+		int hour = int.Parse(dateTime.Substring(8, 2));
+		string min = dateTime.Substring(10, 2);
+		string strTime = Localization.language.Equals("English") ?
+			UtilMgr.GetMonthString(month) + " " + date + ", " + timeZone + " " 
+				+ UtilMgr.GetAMPM(hour)[0] + ":" + min + " " + UtilMgr.GetAMPM(hour)[1] :
+				month + "월 " + date +"일, " + timeZone + " "
+				+ UtilMgr.GetAMPM(hour)[0] + ":" + min + " " + UtilMgr.GetAMPM(hour)[1] ;
+
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Sprite")
+			.FindChild("NotReady").FindChild("Label1").GetComponent<UILabel>().text
+				= string.Format(UtilMgr.GetLocalText("StrBingoSub1"), strTime);
+
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Sprite")
+			.FindChild("NotReady").FindChild("Label2").GetComponent<UILabel>().text
+				= UtilMgr.GetLocalText("StrBingoSub2");
+
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Sprite")
+			.FindChild("NotReady").gameObject.SetActive(true);
+
+		Transform score = transform.FindChild("Top").FindChild("Score");
+		score.FindChild("AwayScore").GetComponent<UILabel>().text = "0";
+		score.FindChild("HomeScore").GetComponent<UILabel>().text = "0";
+		score.FindChild("AwayName").GetComponent<UILabel>().text = UserMgr.eventJoined.awayTeam;
+		score.FindChild("HomeName").GetComponent<UILabel>().text = UserMgr.eventJoined.homeTeam;
+		score.FindChild("AwayName").FindChild("Sprite").gameObject.SetActive(false);
+		score.FindChild("HomeName").FindChild("Sprite").gameObject.SetActive(false);
+
+		Transform btm = transform.FindChild("Body").FindChild("Scroll View").FindChild("Btm");
+
+		btm.FindChild("Info").FindChild("BG").FindChild("LblRound").GetComponent<UILabel>()
+			.text = "";
+		btm.FindChild("Info").FindChild("BG").FindChild("LblName").FindChild("Label").GetComponent<UILabel>()
+			.text = "";
+		btm.FindChild("Info").FindChild("BG").FindChild("LblName").GetComponent<UILabel>()
+			.text = "";
+		btm.FindChild("Info").FindChild("SprCircle").FindChild("Hand").FindChild("Label").GetComponent<UILabel>()
+			.text = "";
+
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnBingo").FindChild("Sprite")
+			.gameObject.SetActive(false);
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnBingo")
+			.GetComponent<UIButton>().isEnabled = false;
+
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnReset").
+			GetComponent<UIButton>().isEnabled = false;
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnReset").FindChild("Sprite2")
+			.GetComponent<UISprite>().color = new Color(128f/255f, 128f/255f, 128f/255f);
+
+		ShowNext();
+	}
+
+	void ShowNext(){
+		if(!IsReload){
+			UtilMgr.AddBackState(UtilMgr.STATE.LiveBingo);
+			UtilMgr.AnimatePageToLeft("Lobby", "LiveBingo");
+		}
 	}
 }

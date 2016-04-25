@@ -1515,8 +1515,20 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 11432862, guid: abefc2a88d26a4d5c857b4be786cf079, type: 2}
-      propertyPath: mFontStyle
+    - target: {fileID: 11453368, guid: abefc2a88d26a4d5c857b4be786cf079, type: 2}
+      propertyPath: mColor.r
+      value: 0.46666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453368, guid: abefc2a88d26a4d5c857b4be786cf079, type: 2}
+      propertyPath: mColor.g
+      value: 0.38431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453368, guid: abefc2a88d26a4d5c857b4be786cf079, type: 2}
+      propertyPath: mColor.b
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11453368, guid: abefc2a88d26a4d5c857b4be786cf079, type: 2}
+      propertyPath: mColor.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

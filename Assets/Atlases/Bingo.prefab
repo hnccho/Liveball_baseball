@@ -43,7 +43,7 @@ MonoBehaviour:
   mSprites:
   - name: bg_rt_bingo
     x: 0
-    y: 336
+    y: 119
     width: 180
     height: 176
     borderLeft: 0
@@ -55,8 +55,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: box_r10_bingo_basic
-    x: 393
-    y: 174
+    x: 463
+    y: 170
     width: 100
     height: 100
     borderLeft: 5
@@ -68,8 +68,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: rt_bg_button
-    x: 229
-    y: 174
+    x: 0
+    y: 15
     width: 160
     height: 100
     borderLeft: 50
@@ -81,8 +81,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: rt_bingo_gradient
-    x: 184
-    y: 337
+    x: 917
+    y: 490
     width: 20
     height: 22
     borderLeft: 2
@@ -93,9 +93,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: rt_bingo_title
+    x: 0
+    y: 299
+    width: 459
+    height: 213
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 1
+    paddingTop: 0
+    paddingBottom: 1
   - name: rt_bingo_txt_bingo
     x: 184
-    y: 443
+    y: 226
     width: 269
     height: 69
     borderLeft: 0
@@ -107,8 +120,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: rt_bingo_txt_great
-    x: 229
-    y: 114
+    x: 184
+    y: 6
     width: 215
     height: 56
     borderLeft: 0
@@ -120,8 +133,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: rt_bingo_txt_powertime
-    x: 0
-    y: 278
+    x: 463
+    y: 458
     width: 370
     height: 54
     borderLeft: 0
@@ -133,8 +146,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: rt_box_count_bingo
-    x: 457
-    y: 466
+    x: 403
+    y: 16
     width: 49
     height: 46
     borderLeft: 0
@@ -146,8 +159,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: rt_btn_bingo_hit
-    x: 0
-    y: 118
+    x: 463
+    y: 378
     width: 225
     height: 76
     borderLeft: 0
@@ -159,8 +172,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: rt_btn_bingo_off
-    x: 0
-    y: 198
+    x: 184
+    y: 66
     width: 225
     height: 76
     borderLeft: 0
@@ -173,7 +186,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: rt_btn_bingo_on
     x: 184
-    y: 363
+    y: 146
     width: 225
     height: 76
     borderLeft: 0
@@ -185,8 +198,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: rt_btn_select
-    x: 0
-    y: 14
+    x: 463
+    y: 274
     width: 160
     height: 100
     borderLeft: 50
@@ -198,8 +211,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: rt_icon_reset
-    x: 447
-    y: 401
+    x: 413
+    y: 104
     width: 44
     height: 38
     borderLeft: 0
@@ -212,7 +225,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: rt_tri_inning
     x: 413
-    y: 373
+    y: 156
     width: 30
     height: 66
     borderLeft: 0
@@ -224,8 +237,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: star_bronze
-    x: 447
-    y: 363
+    x: 413
+    y: 66
     width: 36
     height: 34
     borderLeft: 0
@@ -237,8 +250,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: star_gold
-    x: 374
-    y: 298
+    x: 837
+    y: 478
     width: 36
     height: 34
     borderLeft: 0
@@ -250,8 +263,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: star_silver
-    x: 414
-    y: 298
+    x: 877
+    y: 478
     width: 36
     height: 34
     borderLeft: 0

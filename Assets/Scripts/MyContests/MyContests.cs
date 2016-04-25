@@ -118,6 +118,8 @@ public class MyContests : MonoBehaviour {
 			else
 				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestNameKor;
 
+			SetContestType(info, go.transform.FindChild("LblTitle").gameObject);
+
 			go.transform.FindChild("LblEntries").FindChild("Label").GetComponent<UILabel>().text 
 				= "[333333][b]"+ UtilMgr.AddsThousandsSeparator(info.totalJoin)
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalEntry);
@@ -185,6 +187,9 @@ public class MyContests : MonoBehaviour {
 				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
 			else
 				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestNameKor;
+
+			SetContestType(info, go.transform.FindChild("LblTitle").gameObject);
+
 			go.transform.FindChild("LblPosition").FindChild("Label").GetComponent<UILabel>().text 
 				= "[333333][b]"+ UtilMgr.AddsThousandsSeparator(info.myRank)
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalJoin);
@@ -261,6 +266,9 @@ public class MyContests : MonoBehaviour {
 				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
 			else
 				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestNameKor;
+
+			SetContestType(info, go.transform.FindChild("LblTitle").gameObject);
+
 			go.transform.FindChild("LblPosition").FindChild("Label").GetComponent<UILabel>().text 
 				= "[333333][b]"+ UtilMgr.AddsThousandsSeparator(info.myRank)
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalJoin);
@@ -304,5 +312,18 @@ public class MyContests : MonoBehaviour {
 		}
 		
 		transform.FindChild("Body").FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();
+	}
+
+	void SetContestType(ContestListInfo info, GameObject go){
+		if(info.featured == 1){//special
+			go.transform.FindChild("Sprite").GetComponent<UISprite>().color = new Color(1f, 193f/255f, 48f/255f);
+			go.transform.FindChild("Sprite").FindChild("Label").GetComponent<UILabel>().text = "S";
+		} else if(info.contestType == 1){//50
+			go.transform.FindChild("Sprite").GetComponent<UISprite>().color = new Color(147f/255f, 212f/255f, 91f/255f);
+			go.transform.FindChild("Sprite").FindChild("Label").GetComponent<UILabel>().text = "50";
+		} else{
+			go.transform.FindChild("Sprite").GetComponent<UISprite>().color = new Color(119f/255f, 98f/255f, 204f/255f);
+			go.transform.FindChild("Sprite").FindChild("Label").GetComponent<UILabel>().text = "R";
+		}
 	}
 }
