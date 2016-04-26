@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class LiveBingo : MonoBehaviour {
 
 	public GameObject mItemBingo;
+	public GameObject mItemBingoList;
 	Vector3 StartPos = new Vector3(-220f, 220f);
 	const float WidthFixed = 146.6f;
 	const int RowFixed = 4;
@@ -130,7 +131,7 @@ public class LiveBingo : MonoBehaviour {
 	}
 
 	public void ResetClick(){
-		Reload();
+//		Reload();
 	}
 
 	public void CheckBingo(){
@@ -235,6 +236,8 @@ public class LiveBingo : MonoBehaviour {
 			}
 		}
 
+		btm.FindChild("Info").FindChild("BG").FindChild("LblRound").gameObject.SetActive(true);
+		btm.FindChild("Info").FindChild("BG").FindChild("LblName").gameObject.SetActive(true);
 		if(Localization.language.Equals("English")){
 			string roundStr = mLineupEvent.Response.data.inningHalf.Equals("T") ? "Top" : "Bot";
 			roundStr += " "+mLineupEvent.Response.data.inningNumber + UtilMgr.GetRoundString(mLineupEvent.Response.data.inningNumber);
@@ -306,10 +309,52 @@ public class LiveBingo : MonoBehaviour {
 			//
 			item.Target.GetComponent<ItemBingoList>().Init(joinInfo);
 
-			if(index == 0 || index == 1)
+			if(index < 2)
 				item.Target.GetComponent<ItemBingoList>().SetToLocking();
 		});
 		btm.FindChild("Draggable").GetComponent<UIDraggablePanel2>().ResetPosition();
+
+//		UtilMgr.ClearList(btm.FindChild("Draggable"));
+//		float height = 90f;
+//		for(int index = 0; index < mSortedLineup.Count; index++){
+//			GameObject go = Instantiate(mItemBingoList);
+//			go.transform.parent = btm.FindChild("Draggable");
+//			go.transform.localScale = new Vector3(1f, 1f, 1f);
+//			go.transform.localPosition = new Vector3(0, height);
+//			height -= 120f;
+//			Transform button = go.transform.FindChild("Scroll View").FindChild("Button");
+//			button.FindChild("Photo").FindChild("Hand").FindChild("Label").GetComponent<UILabel>()
+//				.text = mSortedLineup[index].batHand;
+//			button.FindChild("Label").GetComponent<UILabel>()
+//				.text = "#" + mSortedLineup[index].backNumber + " AVG " + mSortedLineup[index].AVG;
+//			
+//			if(Localization.language.Equals("English")){
+//				button.FindChild("LblName").GetComponent<UILabel>()
+//					.text = mSortedLineup[index].playerName;
+//			} else{
+//				button.FindChild("LblName").GetComponent<UILabel>()
+//					.text = mSortedLineup[index].korName;
+//			}
+//			button.FindChild("Photo").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture
+//				= UtilMgr.GetTextureDefault();
+//			button.FindChild("Photo").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().width = 72;
+//			button.FindChild("Photo").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().height = 90;
+//			UtilMgr.LoadImage(mSortedLineup[index].photoUrl,
+//			                  button.FindChild("Photo").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>());
+//			
+//			JoinQuizInfo joinInfo = new JoinQuizInfo();
+//			joinInfo.gameId = UserMgr.eventJoined.gameId;
+//			joinInfo.bingoId = mBingoId;
+//			joinInfo.inningNumber = mLineupEvent.Response.data.inningNumber;
+//			joinInfo.inningHalf = mLineupEvent.Response.data.inningHalf;
+//			joinInfo.battingOrder = mSortedLineup[index].battingOrder;
+//			joinInfo.playerId = mSortedLineup[index].playerId;
+//			go.GetComponent<ItemBingoList>().Init(joinInfo);
+//
+//			if(index < 2)
+//				go.GetComponent<ItemBingoList>().SetToLocking();
+//		}
+//		btm.FindChild("Draggable").GetComponent<UIScrollView>().ResetPosition();
 	}
 
 	void ClearBoard(){

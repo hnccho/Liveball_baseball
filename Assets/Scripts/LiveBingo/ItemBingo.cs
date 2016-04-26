@@ -100,7 +100,7 @@ public class ItemBingo : MonoBehaviour {
 		transform.FindChild("Team").FindChild("LblName").GetComponent<UILabel>().text
 			= Localization.language.Equals("English") ? mBingoBoard.teamName : mBingoBoard.teamKorName;
 		transform.FindChild("Team").FindChild("LblGuess").GetComponent<UILabel>().text
-			= mBingoBoard.quizCondition;
+			= Localization.language.Equals("English") ? mBingoBoard.quizCondition : mBingoBoard.quizConditionKor;
 	}
 
 	public void Bingo(){

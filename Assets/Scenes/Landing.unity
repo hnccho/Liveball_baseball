@@ -10526,7 +10526,7 @@ Transform:
   m_GameObject: {fileID: 196957681}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0015600624, y: 0.0015600624, z: 0.0015600624}
+  m_LocalScale: {x: 0.0015637217, y: 0.0015637217, z: 0.0015637217}
   m_Children:
   - {fileID: 524845925}
   - {fileID: 1834120907}
@@ -12007,7 +12007,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3019
+  startingRenderQueue: 3020
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -12870,7 +12870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &231593480
 Transform:
   m_ObjectHideFlags: 0
@@ -22108,8 +22108,8 @@ Transform:
   - {fileID: 831480315}
   - {fileID: 1174973804}
   - {fileID: 1929473045}
-  - {fileID: 410418675}
   - {fileID: 1841217427}
+  - {fileID: 410418675}
   m_Father: {fileID: 196957682}
   m_RootOrder: 18
 --- !u!114 &431740534
@@ -22124,6 +22124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mItemBingo: {fileID: 133350, guid: b59ce2c272f46400e81ec38fc5f8aa2d, type: 2}
+  mItemBingoList: {fileID: 132656, guid: 230ad5e0efe0c4420a0ee3bd59293f73, type: 2}
 --- !u!114 &431740535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22657,7 +22658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &443554097
 Transform:
   m_ObjectHideFlags: 0
@@ -23884,7 +23885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d81807633ea807d4c8e3fff7e10c6000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: 2
+  movement: 1
   dragEffect: 1
   restrictWithinPanel: 1
   disableDragIfFits: 1
@@ -42198,10 +42199,6 @@ MonoBehaviour:
   mDepth: 0
   mSortingOrder: 0
   mClipOffset: {x: 0, y: 0}
---- !u!1 &831892660 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 132656, guid: 230ad5e0efe0c4420a0ee3bd59293f73, type: 2}
-  m_PrefabInternal: {fileID: 1705315134}
 --- !u!1 &832390056
 GameObject:
   m_ObjectHideFlags: 0
@@ -46198,7 +46195,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: ea531756e615e4a90b9c3c1591d14903, type: 3}
   mFont: {fileID: 0}
-  mText: 
+  mText: Unknown
   mFontSize: 60
   mFontStyle: 3
   mAlignment: 0
@@ -84754,7 +84751,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 466354, guid: a95b8439c328146038dced771bcc4221, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a95b8439c328146038dced771bcc4221, type: 2}
@@ -84863,11 +84860,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 476018, guid: 230ad5e0efe0c4420a0ee3bd59293f73, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 476018, guid: 230ad5e0efe0c4420a0ee3bd59293f73, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -759
+      value: -776
       objectReference: {fileID: 0}
     - target: {fileID: 476018, guid: 230ad5e0efe0c4420a0ee3bd59293f73, type: 2}
       propertyPath: m_LocalPosition.z
@@ -84891,7 +84888,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 476018, guid: 230ad5e0efe0c4420a0ee3bd59293f73, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11498148, guid: 230ad5e0efe0c4420a0ee3bd59293f73, type: 2}
       propertyPath: mColor.r
@@ -88132,7 +88129,7 @@ MonoBehaviour:
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: ea531756e615e4a90b9c3c1591d14903, type: 3}
   mFont: {fileID: 0}
-  mText: 
+  mText: Unknown
   mFontSize: 40
   mFontStyle: 2
   mAlignment: 0
@@ -92407,9 +92404,9 @@ MonoBehaviour:
   centerOnChild: {fileID: 0}
   Arrangement: 0
   CellWidth: 720
-  CellHeight: 120
+  CellHeight: 130
   LineCount: 1
-  TemplatePrefab: {fileID: 831892660}
+  TemplatePrefab: {fileID: 132656, guid: 230ad5e0efe0c4420a0ee3bd59293f73, type: 2}
 --- !u!114 &1843996709
 MonoBehaviour:
   m_ObjectHideFlags: 0

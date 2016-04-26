@@ -43,7 +43,13 @@ public class SuperRoot : MonoBehaviour {
 	void OnApplicationPause(bool pause){
 //		UtilMgr.OnPause = pause;
 //		Debug.Log("Application pause : "+pause);
-//		if(!pause)
+		if(!pause){
+			if(UtilMgr.GetLastBackState() == UtilMgr.STATE.LiveBingo
+			   && UserMgr.eventJoined != null){
+				NetMgr.JoinGame();
+				transform.FindChild("LiveBingo").GetComponent<LiveBingo>().Reload();
+			}
+		}
 //			UtilMgr.DismissLoading();
 	}
 	

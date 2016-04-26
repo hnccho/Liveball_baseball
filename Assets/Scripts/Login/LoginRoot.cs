@@ -279,6 +279,10 @@ public class LoginRoot : SuperRoot {
 
 	void ReceivedPlayers(){
 		UserMgr.PlayerList = mPlayerEvent.Response.data;
+		UserMgr.PlayerDic = new System.Collections.Generic.Dictionary<long, PlayerInfo>();
+		foreach(PlayerInfo info in UserMgr.PlayerList)
+			UserMgr.PlayerDic.Add(info.playerId, info);
+
 		mCardEvent = new GetCardInvenEvent(ReceivedCards);
 		NetMgr.GetCardInven(mCardEvent);
 	}

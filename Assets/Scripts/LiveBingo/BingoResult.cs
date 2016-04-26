@@ -53,28 +53,36 @@ public class BingoResult : MonoBehaviour {
 			transform.FindChild("Label").GetComponent<UILabel>().text = UtilMgr.GetLocalText("StrGetOnBase")+"!";
 		}
 
-		if(transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().mLineupEvent.Response.data.inningHalf.Equals("T")){
-			foreach(PlayerInfo player in 
-			        transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().mLineupEvent.Response.data.away.hit){
+//		if(transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().mLineupEvent.Response.data.inningHalf.Equals("T")){
+//			foreach(PlayerInfo player in 
+//			        transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().mLineupEvent.Response.data.away.hit){
 //				Debug.Log("T info id : "+info.playerId+", player id : "+player.playerId);
-				if(player.playerId == info.data.playerId){
-					transform.FindChild("Label").FindChild("LblPlayer").GetComponent<UILabel>().text
-						= Localization.language.Equals("English") ? player.playerName : player.korName;
-					break;
-				}
-			}
-		} else{
-			foreach(PlayerInfo player in 
-			        transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().mLineupEvent.Response.data.home.hit){
+//				if(player.playerId == info.data.playerId){
+//					transform.FindChild("Label").FindChild("LblPlayer").GetComponent<UILabel>().text
+//						= Localization.language.Equals("English") ? player.playerName : player.korName;
+//					break;
+//				}
+//			}
+//		} else{
+//			foreach(PlayerInfo player in 
+//			        transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().mLineupEvent.Response.data.home.hit){
 //				Debug.Log("B info id : "+info.playerId+", player id : "+player.playerId);
-				if(player.playerId == info.data.playerId){
-					transform.FindChild("Label").FindChild("LblPlayer").GetComponent<UILabel>().text
-						= Localization.language.Equals("English") ? player.playerName : player.korName;
-					break;
-				}
-			}
-		}
+//				if(player.playerId == info.data.playerId){
+//					transform.FindChild("Label").FindChild("LblPlayer").GetComponent<UILabel>().text
+//						= Localization.language.Equals("English") ? player.playerName : player.korName;
+//					break;
+//				}
+//			}
+//		}
+		try{
+		PlayerInfo player = UserMgr.PlayerDic[info.data.playerId];
+		transform.FindChild("Label").FindChild("LblPlayer").GetComponent<UILabel>().text
+			= Localization.language.Equals("English") ? player.firstName.Substring(0, 1) + ". " + player.lastName
+				: player.korName;
 
 		transform.GetComponent<Animator>().SetTrigger("Result");
+		} catch{
+			Debug.Log("Not found player : "+info.data.playerId);
+		}
 	}
 }

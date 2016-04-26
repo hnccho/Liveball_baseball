@@ -292,5 +292,16 @@ public class BingoInfo {
 				_quizCondition = value;
 			}
 		}
+
+		string _quizConditionKor;
+		
+		public string quizConditionKor {
+			get {
+				return _quizConditionKor;
+			}
+			set {
+				_quizConditionKor = value;
+			}
+		}
 	}
 }

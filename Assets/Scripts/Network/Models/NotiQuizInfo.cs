@@ -144,4 +144,26 @@ public class NotiQuizInfo {
 			_value = value;
 		}
 	}
+
+	string _status;
+
+	public string status {
+		get {
+			return _status;
+		}
+		set {
+			_status = value;
+		}
+	}
+
+	string _inningState;
+
+	public string inningState {
+		get {
+			return _inningState;
+		}
+		set {
+			_inningState = value;
+		}
+	}
 }

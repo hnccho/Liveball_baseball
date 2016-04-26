@@ -78,13 +78,13 @@ public class RegisterEntry : MonoBehaviour {
 		};
 
 		for(int i = 0; i < lineupArr[0].Length; i++){
-			PlayerInfo playerInfo = null;
-			foreach(PlayerInfo info in UserMgr.PlayerList){
-				if(info.playerId == lineupArr[0][i]){
-					playerInfo = info;
-					break;
-				}
-			}
+			PlayerInfo playerInfo = UserMgr.PlayerDic[lineupArr[0][i]];
+//			foreach(PlayerInfo info in UserMgr.PlayerList){
+//				if(info.playerId == ){
+//					playerInfo = info;
+//					break;
+//				}
+//			}
 
 			if(lineupArr[1][i] > 0){
 				playerInfo = MakePlayerCard(playerInfo);

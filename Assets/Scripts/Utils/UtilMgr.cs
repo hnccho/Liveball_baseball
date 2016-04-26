@@ -48,7 +48,7 @@ public class UtilMgr : MonoBehaviour {
 		SelectFeeding,
 		ContestDetails,
 		Lineup,
-		Bingo,
+//		Bingo,
 		Ranking,
 		Settings,
 		PlayerRecords,

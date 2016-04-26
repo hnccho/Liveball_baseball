@@ -47,28 +47,30 @@ public class ItemRT : MonoBehaviour {
 			if(mEventInfo.currentHitterId < 1)
 				return;
 
-			foreach(PlayerInfo info in UserMgr.PlayerList){
-				if(info.playerId == mEventInfo.currentHitterId){
+			PlayerInfo info = UserMgr.PlayerDic[mEventInfo.currentHitterId];
+//			foreach( in UserMgr.PlayerList){
+//				if(info.playerId == ){
 					transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(
 						info,
 						transform.FindChild("Players").FindChild("Left").FindChild("Frame")
 						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture);	
-					break;
-				}
-			}
+//					break;
+//				}
+//			}
 		} else{
 			if(mEventInfo.currentPitcherId < 1)
 				return;
 
-			foreach(PlayerInfo info in UserMgr.PlayerList){
-				if(info.playerId == mEventInfo.currentPitcherId){
+			PlayerInfo info = UserMgr.PlayerDic[mEventInfo.currentPitcherId];
+//			foreach( in List){
+//				if(info.playerId == ){
 					transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(
 						info,
 						transform.FindChild("Players").FindChild("Left").FindChild("Frame")
 						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture);	
-					break;
-				}
-			}
+//					break;
+//				}
+//			}
 		}
 	}
 
@@ -76,29 +78,30 @@ public class ItemRT : MonoBehaviour {
 		if(mEventInfo.inningHalf.Equals("T")){
 			if(mEventInfo.currentPitcherId < 1)
 				return;
-			
-			foreach(PlayerInfo info in UserMgr.PlayerList){
-				if(info.playerId == mEventInfo.currentPitcherId){
+
+			PlayerInfo info = UserMgr.PlayerDic[mEventInfo.currentPitcherId];
+//			foreach( in List){
+//				if(info.playerId == ){
 					transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(
 						info,
 						transform.FindChild("Players").FindChild("Right").FindChild("Frame")
 						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture);	
-					break;
-				}
-			}
+//					break;
+//				}
+//			}
 		} else{
 			if(mEventInfo.currentHitterId < 1)
 				return;
-			
-			foreach(PlayerInfo info in UserMgr.PlayerList){
-				if(info.playerId == mEventInfo.currentHitterId){
+			PlayerInfo info = UserMgr.PlayerDic[mEventInfo.currentHitterId];
+//			foreach( in List){
+//				if(info.playerId == ){
 					transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(
 						info,
 						transform.FindChild("Players").FindChild("Right").FindChild("Frame")
 						.FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture);	
-					break;
-				}
-			}
+//					break;
+//				}
+//			}
 		}
 	}
 }

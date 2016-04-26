@@ -554,38 +554,40 @@ public class PlayerCard : MonoBehaviour {
 			transform.FindChild("Body").FindChild("Info").FindChild ("KBO").gameObject.SetActive(true);
 //		}
 
-		mPlayerInfo = null;
-		foreach(PlayerInfo info in UserMgr.PlayerList){
-			if(info.playerId == mPlayerId){
-				if(info.positionNo == 1){
-					IsPitcher = true;
-//					mHand = info.throwHand.Equals("L") ? UtilMgr.GetLocalText("StrLeft") : UtilMgr.GetLocalText("StrRight");
-					if(info.throwHand.Equals("S"))
-						mHand = UtilMgr.GetLocalText("StrSwitch");
-					else if(info.throwHand.Equals("L"))
-						mHand = UtilMgr.GetLocalText("StrLeft");
-					else
-						mHand = UtilMgr.GetLocalText("StrRight");
-				} else{
-					IsPitcher = false;
-//					mHand = info.batHand.Equals("L") ? UtilMgr.GetLocalText("StrLeft") : UtilMgr.GetLocalText("StrRight");
-					if(info.batHand.Equals("S"))
-						mHand = UtilMgr.GetLocalText("StrSwitch");
-					else if(info.batHand.Equals("L"))
-						mHand = UtilMgr.GetLocalText("StrLeft");
-					else
-						mHand = UtilMgr.GetLocalText("StrRight");
-				}
-				mPlayerInfo = info;
-				break;
-			}
-		}
+		mPlayerInfo = UserMgr.PlayerDic[mPlayerId];
+//		foreach( in UserMgr.PlayerList){
+//			if(info.playerId == ){
+				
+//				mPlayerInfo = info;
+//				break;
+//			}
+//		}
 
 		if(mPlayerInfo == null){
 //			IsInactive = true;
 			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPlayerInfo"), UtilMgr.GetLocalText("StrPlayerInactive")
 			                         ,DialogueMgr.DIALOGUE_TYPE.Alert, null);
 			return true;
+		}
+
+		if(mPlayerInfo.positionNo == 1){
+			IsPitcher = true;
+			//					mHand = info.throwHand.Equals("L") ? UtilMgr.GetLocalText("StrLeft") : UtilMgr.GetLocalText("StrRight");
+			if(mPlayerInfo.throwHand.Equals("S"))
+				mHand = UtilMgr.GetLocalText("StrSwitch");
+			else if(mPlayerInfo.throwHand.Equals("L"))
+				mHand = UtilMgr.GetLocalText("StrLeft");
+			else
+				mHand = UtilMgr.GetLocalText("StrRight");
+		} else{
+			IsPitcher = false;
+			//					mHand = info.batHand.Equals("L") ? UtilMgr.GetLocalText("StrLeft") : UtilMgr.GetLocalText("StrRight");
+			if(mPlayerInfo.batHand.Equals("S"))
+				mHand = UtilMgr.GetLocalText("StrSwitch");
+			else if(mPlayerInfo.batHand.Equals("L"))
+				mHand = UtilMgr.GetLocalText("StrLeft");
+			else
+				mHand = UtilMgr.GetLocalText("StrRight");
 		}
 
 		if(mPlayerInfo.injuryYN.Equals("N"))

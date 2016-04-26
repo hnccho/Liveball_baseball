@@ -65,6 +65,7 @@ public class ItemBingoList : MonoBehaviour {
 	}
 
 	public void ReceivedChoice(){
+		IsChosen = false;
 		CurrentLineupInfo.ForecastInfo forecastInfo = new CurrentLineupInfo.ForecastInfo();
 //		forecastInfo.battingOrder = mJoinInfo.battingOrder;
 		forecastInfo.myValue = mChoice == Choice.Base ? 0 : 1;
