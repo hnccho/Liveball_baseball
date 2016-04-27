@@ -42,8 +42,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: dfd0f9f0b3df143dabd1c0605bb16011, type: 2}
   mSprites:
   - name: cardpack_star_1
-    x: 65
-    y: 545
+    x: 444
+    y: 916
     width: 63
     height: 108
     borderLeft: 0
@@ -55,8 +55,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: cardpack_star_2
-    x: 325
-    y: 545
+    x: 444
+    y: 804
     width: 63
     height: 108
     borderLeft: 0
@@ -68,8 +68,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: cardpack_star_3
-    x: 130
-    y: 545
+    x: 0
+    y: 471
     width: 63
     height: 108
     borderLeft: 0
@@ -81,8 +81,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: cardpack_star_4
-    x: 0
-    y: 435
+    x: 67
+    y: 471
     width: 63
     height: 108
     borderLeft: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: cardpack_star_5
-    x: 390
-    y: 545
+    x: 134
+    y: 471
     width: 63
     height: 108
     borderLeft: 0
@@ -107,8 +107,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: cardpack_star_6
-    x: 442
-    y: 806
+    x: 0
+    y: 359
     width: 63
     height: 108
     borderLeft: 0
@@ -121,9 +121,9 @@ MonoBehaviour:
     paddingBottom: 0
   - name: logo_title_w
     x: 0
-    y: 763
+    y: 786
     width: 440
-    height: 261
+    height: 238
     borderLeft: 0
     borderRight: 0
     borderTop: 0
@@ -131,10 +131,10 @@ MonoBehaviour:
     paddingLeft: 0
     paddingRight: 0
     paddingTop: 0
-    paddingBottom: 1
+    paddingBottom: 0
   - name: shop_card_pack_bronze
-    x: 442
-    y: 916
+    x: 402
+    y: 471
     width: 63
     height: 108
     borderLeft: 0
@@ -146,8 +146,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shop_card_pack_gold
-    x: 0
-    y: 545
+    x: 335
+    y: 471
     width: 63
     height: 108
     borderLeft: 0
@@ -159,8 +159,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shop_card_pack_silver
-    x: 195
-    y: 545
+    x: 268
+    y: 471
     width: 63
     height: 108
     borderLeft: 0
@@ -172,8 +172,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shop_card_pack_vip
-    x: 260
-    y: 545
+    x: 201
+    y: 471
     width: 63
     height: 108
     borderLeft: 0
@@ -185,8 +185,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shop_gold_number_1
-    x: 424
-    y: 672
+    x: 0
+    y: 583
     width: 86
     height: 89
     borderLeft: 0
@@ -198,8 +198,8 @@ MonoBehaviour:
     paddingTop: 18
     paddingBottom: 1
   - name: shop_gold_number_2
-    x: 324
-    y: 660
+    x: 330
+    y: 681
     width: 98
     height: 101
     borderLeft: 0
@@ -211,8 +211,8 @@ MonoBehaviour:
     paddingTop: 6
     paddingBottom: 1
   - name: shop_gold_number_3
-    x: 216
-    y: 656
+    x: 220
+    y: 677
     width: 106
     height: 105
     borderLeft: 0
@@ -224,8 +224,8 @@ MonoBehaviour:
     paddingTop: 2
     paddingBottom: 1
   - name: shop_gold_number_4
-    x: 108
-    y: 655
+    x: 110
+    y: 676
     width: 106
     height: 106
     borderLeft: 0
@@ -238,7 +238,7 @@ MonoBehaviour:
     paddingBottom: 1
   - name: shop_gold_number_5
     x: 0
-    y: 655
+    y: 676
     width: 106
     height: 106
     borderLeft: 0
@@ -250,8 +250,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: shop_icon_bonus
-    x: 155
-    y: 475
+    x: 432
+    y: 714
     width: 68
     height: 68
     borderLeft: 0
@@ -263,8 +263,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: shop_tc_number_1
-    x: 426
-    y: 506
+    x: 387
+    y: 635
     width: 84
     height: 37
     borderLeft: 0
@@ -276,8 +276,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: shop_tc_number_2
-    x: 160
-    y: 431
+    x: 290
+    y: 594
     width: 92
     height: 37
     borderLeft: 0
@@ -289,8 +289,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: shop_tc_number_3
-    x: 331
-    y: 506
+    x: 182
+    y: 594
     width: 93
     height: 37
     borderLeft: 0
@@ -302,8 +302,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: shop_tc_number_4
-    x: 65
-    y: 431
+    x: 290
+    y: 635
     width: 93
     height: 37
     borderLeft: 0
@@ -315,8 +315,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: shop_tc_number_5
-    x: 225
-    y: 506
+    x: 182
+    y: 635
     width: 104
     height: 37
     borderLeft: 0
@@ -328,8 +328,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 1
   - name: shop_tc_ticket
-    x: 65
-    y: 470
+    x: 90
+    y: 599
     width: 88
     height: 73
     borderLeft: 0
