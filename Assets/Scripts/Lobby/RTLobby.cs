@@ -299,6 +299,14 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("BtnEnter").GetComponent<UIButton>().pressed
 					= new Color(1f, 91f / 255f, 16f / 255f);
 				item.FindChild("Top").FindChild("SprLive").gameObject.SetActive(true);
+
+				if(!UtilMgr.IsMLB()){
+					if(data.inningState.Equals("END")){
+						item.FindChild("BtnEnter").FindChild("LblEnter").GetComponent<UILabel>().text
+							= "공수 교대 중";
+					}
+				}
+
 			} else if(data.status.Equals("Final")){
 				item.FindChild("BtnEnter").FindChild("LblEnter").GetComponent<UILabel>().text
 					= UtilMgr.GetLocalText("StrGameOver");

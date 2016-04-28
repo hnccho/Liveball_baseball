@@ -14,7 +14,7 @@ public class BingoResult : MonoBehaviour {
 	}
 
 	public void Result(){
-		transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().Reload();
+//		transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().Reload();
 	}
 
 	public void Bingo(){

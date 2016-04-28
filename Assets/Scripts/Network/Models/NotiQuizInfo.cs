@@ -156,6 +156,17 @@ public class NotiQuizInfo {
 		}
 	}
 
+	string _inningHalf;
+
+	public string inningHalf {
+		get {
+			return _inningHalf;
+		}
+		set {
+			_inningHalf = value;
+		}
+	}
+
 	string _inningState;
 
 	public string inningState {

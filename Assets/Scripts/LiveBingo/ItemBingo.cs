@@ -161,7 +161,7 @@ public class ItemBingo : MonoBehaviour {
 
 	void ReceivedPower(){
 		transform.root.FindChild("LiveBingo").GetComponent<LiveBingoAnimation>().PowerUsed();
-		transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().Reload();
+		transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().ReloadBoard();
 	}
 
 }

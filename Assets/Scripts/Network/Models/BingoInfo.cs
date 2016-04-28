@@ -59,6 +59,17 @@ public class BingoInfo {
 			}
 		}
 
+		int _powerGauge;
+
+		public int powerGauge {
+			get {
+				return _powerGauge;
+			}
+			set {
+				_powerGauge = value;
+			}
+		}
+
 //10001,
 		int _bingos;
 		public int bingos {

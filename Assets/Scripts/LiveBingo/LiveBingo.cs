@@ -14,6 +14,7 @@ public class LiveBingo : MonoBehaviour {
 	CallBingoEvent mCallEvent;
 	int mBingoId;
 	bool IsReload;
+	bool BoardOnly;
 	int mCanGet;
 
 	public Dictionary<int, ItemBingo> mItemDic;
@@ -24,14 +25,23 @@ public class LiveBingo : MonoBehaviour {
 	void Start () {
 
 	}
-	
+
 	// Update is called once per frame
+	public int mUpdateCnt;
 	void Update () {
-	
+		if(mUpdateCnt++ >= 600){
+			mUpdateCnt = 0;
+			NetMgr.Alive();
+		}
+//		NetMgr.UpdateSocket();
 	}
 
 	public void Init(){
+		transform.root.FindChild("LiveBingo").gameObject.SetActive(true);
+		mUpdateCnt = 0;
 		IsReload = false;
+		BoardOnly = false;
+
 		ClearBoard();
 		mItemDic = new Dictionary<int, ItemBingo>();
 		transform.GetComponent<LiveBingoAnimation>().Init();
@@ -45,11 +55,14 @@ public class LiveBingo : MonoBehaviour {
 	}
 
 	void ReceivedBingo(){
-		if(mBingoEvent.Response.data.bingo == null){
-			SetNotReady();
+		InitBingoBoard();
+		InitBingoBtn();
+		InitResetBtn();
+
+		if(BoardOnly){
+			BoardOnly = false;
 			return;
 		}
-		mCanGet = mBingoEvent.Response.data.bingo.bingos - mBingoEvent.Response.data.bingo.rewardedCount;
 
 		mLineupEvent = new GetCurrentLineupEvent(ReceivedLineup);
 		NetMgr.GetCurrentLineup(UserMgr.eventJoined.gameId, UserMgr.eventJoined.inning,
@@ -57,63 +70,13 @@ public class LiveBingo : MonoBehaviour {
 	}
 
 	void ReceivedLineup(){
-
 		mLineupEvent.Response.data.forecast.Sort(
 			delegate(CurrentLineupInfo.ForecastInfo x, CurrentLineupInfo.ForecastInfo y) {
 			return x.inningNumber.CompareTo(y.inningNumber);
 		});
 
-		if(!IsReload){
-			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-				.FindChild("BG").FindChild("Sprite").gameObject.SetActive(false);
-			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-				.FindChild("BG").FindChild("Sprite").GetComponent<UISprite>().height = 0;
-		}
-
-		transform.GetComponent<LiveBingoAnimation>().SetGauge(mLineupEvent.Response.data.powerGauge, IsReload);
-
-		if(mBingoEvent.Response.data.bingoBoard.Count < 16){
-			DialogueMgr.ShowDialogue("Error", "Bingo has less than 16 tiles", DialogueMgr.DIALOGUE_TYPE.Alert, null);
-			return;
-		}
-
-		mBingoId = mBingoEvent.Response.data.bingoBoard[0].bingoId;
-
-		int row = 0, col = -1;
-		for(int i = 0; i < 16; i++){
-			//row col swapped
-			if(i % 4 == 0){
-				col++; row = -1;
-			}
-			row++;
-
-			if(IsReload){
-				ItemBingo tile = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-					.FindChild("Items").GetChild(i).GetComponent<ItemBingo>();
-				tile.mNewBingoBoard = mBingoEvent.Response.data.bingoBoard[i];
-				tile.Init(IsReload);
-				continue;
-			}
-
-			GameObject item = Instantiate(mItemBingo);
-			item.transform.parent = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Items");
-			item.transform.localScale = new Vector3(1f, 1f, 1f);
-			item.name = mBingoEvent.Response.data.bingoBoard[i].tailId+"";
-
-			item.transform.localPosition = new Vector3(StartPos.x + (WidthFixed * col), StartPos.y - (WidthFixed * row));
-
-			ItemBingo itemBingo = item.GetComponent<ItemBingo>();
-			itemBingo.mNewBingoBoard = mBingoEvent.Response.data.bingoBoard[i];
-			itemBingo.Init(IsReload);
-
-//			if(!IsReload)
-				mItemDic.Add(mBingoEvent.Response.data.bingoBoard[i].tailId, item.GetComponent<ItemBingo>());
-		}
 		InitTop();
 		InitBtm();
-		InitBingoBtn();
-		InitResetBtn();
-
 		ShowNext();
 	}
 
@@ -127,7 +90,7 @@ public class LiveBingo : MonoBehaviour {
 		int total = mCallEvent.Response.data.totalRewardGold + mCallEvent.Response.data.userBlackBingoReward;
 		DialogueMgr.ShowDialogue("Bingo", "You received compensation of "+total+"gold!"
 		                         , DialogueMgr.DIALOGUE_TYPE.Alert, null);
-		Reload();
+		ReloadBoard();
 	}
 
 	public void ResetClick(){
@@ -171,6 +134,63 @@ public class LiveBingo : MonoBehaviour {
 			transform.GetComponent<LiveBingoAnimation>().ShowBingoAni("14to41");
 	}
 
+	void InitBingoBoard(){
+		if(mBingoEvent.Response.data.bingo == null){
+			SetNotReady();
+			return;
+		}
+		mCanGet = mBingoEvent.Response.data.bingo.bingos - mBingoEvent.Response.data.bingo.rewardedCount;
+		
+		if(!IsReload){
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("Sprite").gameObject.SetActive(false);
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("Sprite").GetComponent<UISprite>().height = 0;
+		}
+		
+		transform.GetComponent<LiveBingoAnimation>().SetGauge(mBingoEvent.Response.data.bingo.powerGauge, IsReload);
+		
+		if(mBingoEvent.Response.data.bingoBoard.Count < 16){
+			DialogueMgr.ShowDialogue("Error", "Bingo has less than 16 tiles", DialogueMgr.DIALOGUE_TYPE.Alert, null);
+			return;
+		}
+		
+		mBingoId = mBingoEvent.Response.data.bingo.bingoId;
+
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+			.FindChild("Items").gameObject.SetActive(true);
+		int row = 0, col = -1;
+		for(int i = 0; i < 16; i++){
+			//row col swapped
+			if(i % 4 == 0){
+				col++; row = -1;
+			}
+			row++;
+			
+			if(IsReload){
+				ItemBingo tile = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+					.FindChild("Items").GetChild(i).GetComponent<ItemBingo>();
+				tile.mNewBingoBoard = mBingoEvent.Response.data.bingoBoard[i];
+				tile.Init(IsReload);
+				continue;
+			}
+			
+			GameObject item = Instantiate(mItemBingo);
+			item.transform.parent = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Items");
+			item.transform.localScale = new Vector3(1f, 1f, 1f);
+			item.name = mBingoEvent.Response.data.bingoBoard[i].tailId+"";
+			
+			item.transform.localPosition = new Vector3(StartPos.x + (WidthFixed * col), StartPos.y - (WidthFixed * row));
+			
+			ItemBingo itemBingo = item.GetComponent<ItemBingo>();
+			itemBingo.mNewBingoBoard = mBingoEvent.Response.data.bingoBoard[i];
+			itemBingo.Init(IsReload);
+			
+			//			if(!IsReload)
+			mItemDic.Add(mBingoEvent.Response.data.bingoBoard[i].tailId, item.GetComponent<ItemBingo>());
+		}
+	}
+
 	void InitTop(){
 		Transform score = transform.FindChild("Top").FindChild("Score");
 		score.FindChild("AwayScore").GetComponent<UILabel>().text = mLineupEvent.Response.data.awayTeamRuns+"";
@@ -196,7 +216,10 @@ public class LiveBingo : MonoBehaviour {
 
 		mSortedLineup = new List<PlayerInfo>();
 		bool foundLast = false;
-		if(mLineupEvent.Response.data.inningHalf.Equals("T")){
+		if((mLineupEvent.Response.data.inningHalf.Equals("T")
+		   && UserMgr.eventJoined.inningState.Equals("ING"))
+		   || (mLineupEvent.Response.data.inningHalf.Equals("B")
+		 && UserMgr.eventJoined.inningState.Equals("END"))){
 			mPitcher = mLineupEvent.Response.data.home.pit;
 			for(int i = 0; i < mLineupEvent.Response.data.away.hit.Count; i++){
 				if(mLineupEvent.Response.data.away.hit[i].lastBatter > 0){
@@ -374,19 +397,40 @@ public class LiveBingo : MonoBehaviour {
 	public void ReceivedResult(SocketMsgInfo info){
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Result")
 			.GetComponent<BingoResult>().SocketResult(info);
+		ReloadLineup();
 	}
 
-	public void Reload(){
+	public void ReloadBoard(){
+		IsReload = true;
+		BoardOnly = true;
+		mBingoEvent = new GetBingoEvent(ReceivedBingo);
+		NetMgr.GetBingo(UserMgr.eventJoined.gameId, mBingoEvent);
+	}
+
+	public void ReloadLineup(){
+		IsReload = true;
+//		int inning = mLineupEvent.Response.data.inningNumber;
+		int inning = 0;
+		mLineupEvent = new GetCurrentLineupEvent(ReceivedLineup);
+		NetMgr.GetCurrentLineup(UserMgr.eventJoined.gameId, inning,
+		                        mBingoId, mLineupEvent);
+	}
+
+	public void ReloadAll(){
 		IsReload = true;
 		mBingoEvent = new GetBingoEvent(ReceivedBingo);
 		NetMgr.GetBingo(UserMgr.eventJoined.gameId, mBingoEvent);
 	}
 
 	public void ChangeInning(SocketMsgInfo info){
-		IsReload = true;
-		mLineupEvent = new GetCurrentLineupEvent(ReceivedLineup);
-		NetMgr.GetCurrentLineup(UserMgr.eventJoined.gameId, int.Parse(info.data.inning),
-		                        mBingoEvent.Response.data.bingo.bingoId, mLineupEvent);
+		UserMgr.eventJoined.inningState = info.data.inningState;
+		mLineupEvent.Response.data.inningHalf = info.data.inningHalf;
+		mLineupEvent.Response.data.inningNumber = int.Parse(info.data.inning);
+		InitBtm();
+//		IsReload = true;
+//		mLineupEvent = new GetCurrentLineupEvent(ReceivedLineup);
+//		NetMgr.GetCurrentLineup(UserMgr.eventJoined.gameId, int.Parse(info.data.inning),
+//		                        mBingoEvent.Response.data.bingo.bingoId, mLineupEvent);
 	}
 
 	public void InitBingoBtn(){

@@ -39,6 +39,7 @@ public class QuizMgr : MonoBehaviour {
 		if(UtilMgr.GetLastBackState() != UtilMgr.STATE.LiveBingo) return;
 
 		LiveBingo bingo = UtilMgr.Instance.mRoot.FindChild("LiveBingo").GetComponent<LiveBingo>();
+		bingo.mUpdateCnt = 0;
 
 		switch(msgInfo.type){
 		case ConstantsSocketType.RES.TYPE_ALIVE:
@@ -48,11 +49,10 @@ public class QuizMgr : MonoBehaviour {
 			bingo.ReceivedResult(msgInfo);
 			break;
 		case ConstantsSocketType.RES.CHANGE_INNING:
-//			bingo.ChangeInning(msgInfo);
-			bingo.Reload();
+			bingo.ChangeInning(msgInfo);
 			break;
 		case ConstantsSocketType.RES.RELOAD_BINGO:
-			bingo.Reload();
+			bingo.ReloadBoard();
 			break;
 
 		}

@@ -508,6 +508,27 @@ public class NetMgr : MonoBehaviour{
 		}
 		mSocket = null;
 	}
+
+//	public static void UpdateSocket(){
+//		if(mSocket != null){
+//			try{
+//				mSocket.BeginSend(new byte[1], 0, 1, SocketFlags.None,
+//				                  mSendingCallback, null);
+//			} catch(SocketException e){
+//				Debug.Log(e.Message);
+//				JoinGame();
+//			}
+////			bool part1 = mSocket.Poll(1000, SelectMode.SelectRead);
+////			bool part2 = (mSocket.Available == 0 );
+////			Debug.Log("part1 : "+part1+", part2 : "+part2);
+////			if(part1 && part2){
+////				JoinGame();
+////			}
+////			if(!mSocket.Connected){
+//				
+////			}
+//		}
+//	}
 	
 	//    public static void DoLogin(LoginInfo loginInfo, BaseEvent baseEvent, bool isTest, bool showLoading)
 	//    {

@@ -47,7 +47,7 @@ public class SuperRoot : MonoBehaviour {
 			if(UtilMgr.GetLastBackState() == UtilMgr.STATE.LiveBingo
 			   && UserMgr.eventJoined != null){
 				NetMgr.JoinGame();
-				transform.FindChild("LiveBingo").GetComponent<LiveBingo>().Reload();
+				transform.FindChild("LiveBingo").GetComponent<LiveBingo>().ReloadAll();
 			}
 		}
 //			UtilMgr.DismissLoading();
