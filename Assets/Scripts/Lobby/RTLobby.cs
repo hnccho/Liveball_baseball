@@ -331,6 +331,18 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("BtnEnter").GetComponent<UIButton>().pressed
 					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
 				item.FindChild("Top").FindChild("SprLive").gameObject.SetActive(false);
+			} else if(data.status.Equals("Cancel")){
+				item.FindChild("BtnEnter").FindChild("LblEnter").GetComponent<UILabel>().text
+					= UtilMgr.GetLocalText("StrGameCanceled");
+				item.FindChild("BtnEnter").FindChild("Background").GetComponent<UISprite>().color
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().defaultColor
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().hover
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("BtnEnter").GetComponent<UIButton>().pressed
+					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+				item.FindChild("Top").FindChild("SprLive").gameObject.SetActive(false);
 			} else{
 				item.FindChild("BtnEnter").FindChild("LblEnter").GetComponent<UILabel>().text
 					= UtilMgr.GetLocalText("StrGameOver");

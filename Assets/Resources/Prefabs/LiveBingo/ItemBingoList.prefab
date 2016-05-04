@@ -402,6 +402,8 @@ GameObject:
   - 114: {fileID: 11435284}
   - 114: {fileID: 11477718}
   - 114: {fileID: 11462002}
+  - 114: {fileID: 11481196}
+  - 114: {fileID: 11411068}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -616,7 +618,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -759, z: 0}
+  m_LocalPosition: {x: 4, y: -776, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 478584}
@@ -887,6 +889,46 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &11411068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e862f287df53bb64db191162f851a296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHoverOver: []
+  onHoverOut: []
+  onPress:
+  - mTarget: {fileID: 11401794}
+    mMethodName: OnPress
+    mParameters: []
+    oneShot: 0
+  onRelease: []
+  onSelect:
+  - mTarget: {fileID: 11401794}
+    mMethodName: OnSelect
+    mParameters: []
+    oneShot: 0
+  onDeselect: []
+  onClick: []
+  onDoubleClick: []
+  onDragStart: []
+  onDragEnd: []
+  onDragOver:
+  - mTarget: {fileID: 11401794}
+    mMethodName: OnDragOver
+    mParameters: []
+    oneShot: 0
+  onDragOut:
+  - mTarget: {fileID: 11401794}
+    mMethodName: OnDragOut
+    mParameters: []
+    oneShot: 0
+  onDrag: []
 --- !u!114 &11411928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1077,7 +1119,7 @@ MonoBehaviour:
   tweenTarget: {fileID: 129838}
   hover: {r: 1, g: 1, b: 1, a: 1}
   pressed: {r: 1, g: 1, b: 1, a: 1}
-  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: 1}
   duration: 0.2
   dragHighlight: 0
   hoverSprite: 
@@ -1700,6 +1742,19 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &11481196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02842fa4878db54f9587ff4de7d9f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollView: {fileID: 0}
+  draggablePanel: {fileID: 0}
 --- !u!114 &11481260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2140,7 +2195,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
+  mColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
   mPivot: 4
   mWidth: 688
   mHeight: 104

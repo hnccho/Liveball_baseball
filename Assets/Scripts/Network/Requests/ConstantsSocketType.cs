@@ -10,6 +10,7 @@ namespace ConstantsSocketType{
 
 	public class RES{
 		public const int TYPE_JOIN = 5001;
+		public const int TYPE_ALIVE_OK = 7001;
 		public const int TYPE_ALIVE = 7000;
 		public const int TYPE_STATUS = 5011;
 		public const int TYPE_START = 5021;

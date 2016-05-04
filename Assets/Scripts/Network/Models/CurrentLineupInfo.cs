@@ -14,6 +14,17 @@ public class CurrentLineupInfo {
 		}
 	}
 
+	int _msgCount;
+
+	public int msgCount {
+		get {
+			return _msgCount;
+		}
+		set {
+			_msgCount = value;
+		}
+	}
+
 	int _powerGauge;
 
 	public int powerGauge {

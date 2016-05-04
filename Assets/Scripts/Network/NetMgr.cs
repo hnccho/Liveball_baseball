@@ -24,6 +24,7 @@ public class NetMgr : MonoBehaviour{
 	private static byte[] mSendBuffer = new byte[8142];
 	private static List<SocketMsgInfo> mSocketMsgList = new List<SocketMsgInfo>();
 	private static bool mRecvSemaphore;
+
 	//    BaseEvent mSocketEvent;
 	
 	private static NetMgr _instance = null;
@@ -1095,6 +1096,7 @@ public class NetMgr : MonoBehaviour{
 			recvBytes = mSocket.EndReceive(ar);
 		} catch{
 			Debug.Log("recv error");
+//			Alive();
 			return;
 		}
 		
@@ -1108,9 +1110,17 @@ public class NetMgr : MonoBehaviour{
 			
 			// 받은 메세지를 출력
 			Debug.Log("Received : "+ msg);
-			
-			SocketMsgInfo msgInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<SocketMsgInfo>(msg);
-			mSocketMsgList.Add(msgInfo);
+//			msg += msg;
+			string[] msgArr = msg.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+//			if(msgArr.Length > 1){
+//				DialogueMgr.ShowDialogue("adasd", UtilMgr.GetDateTimeNow("HH:mm:ss"), DialogueMgr.DIALOGUE_TYPE.Alert
+//				                         ,null);
+//			}
+			for(int i = 0; i < msgArr.Length; i++){
+//				Debug.Log("Received(" + i + ") : " + msgArr[i]);
+				SocketMsgInfo msgInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<SocketMsgInfo>(msgArr[i]);
+				mSocketMsgList.Add(msgInfo);
+			}
 			mRecvSemaphore = false;
 		}
 		

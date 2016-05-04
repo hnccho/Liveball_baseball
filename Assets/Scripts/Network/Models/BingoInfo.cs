@@ -27,6 +27,39 @@ public class BingoInfo {
 	}
 
 	public class Bingo{
+		int _msgCount;
+
+		public int msgCount {
+			get {
+				return _msgCount;
+			}
+			set {
+				_msgCount = value;
+			}
+		}
+
+		int _totalRewarded;
+
+		public int totalRewarded {
+			get {
+				return _totalRewarded;
+			}
+			set {
+				_totalRewarded = value;
+			}
+		}
+
+		int _rewardCount;//can get reward max
+
+		public int rewardCount {
+			get {
+				return _rewardCount;
+			}
+			set {
+				_rewardCount = value;
+			}
+		}
+
 		int _rewardedCount;
 
 		public int rewardedCount {

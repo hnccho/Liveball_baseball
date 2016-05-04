@@ -8,6 +8,7 @@ public class AliveSocketRequest : BaseSocketRequest {
 	{
 		Add ("type", ConstantsSocketType.REQ.TYPE_ALIVE);
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
+		Add ("gameId", UserMgr.eventJoined.gameId);
 		mDic = this;
 	}
 }

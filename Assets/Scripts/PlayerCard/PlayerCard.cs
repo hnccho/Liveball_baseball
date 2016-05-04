@@ -573,7 +573,9 @@ public class PlayerCard : MonoBehaviour {
 		if(mPlayerInfo.positionNo == 1){
 			IsPitcher = true;
 			//					mHand = info.throwHand.Equals("L") ? UtilMgr.GetLocalText("StrLeft") : UtilMgr.GetLocalText("StrRight");
-			if(mPlayerInfo.throwHand.Equals("S"))
+			if(mPlayerInfo.batHand == null){
+				mHand = "";
+			} else if(mPlayerInfo.throwHand.Equals("S"))
 				mHand = UtilMgr.GetLocalText("StrSwitch");
 			else if(mPlayerInfo.throwHand.Equals("L"))
 				mHand = UtilMgr.GetLocalText("StrLeft");
@@ -582,7 +584,9 @@ public class PlayerCard : MonoBehaviour {
 		} else{
 			IsPitcher = false;
 			//					mHand = info.batHand.Equals("L") ? UtilMgr.GetLocalText("StrLeft") : UtilMgr.GetLocalText("StrRight");
-			if(mPlayerInfo.batHand.Equals("S"))
+			if(mPlayerInfo.batHand == null){
+				mHand = "";
+			} else if(mPlayerInfo.batHand.Equals("S"))
 				mHand = UtilMgr.GetLocalText("StrSwitch");
 			else if(mPlayerInfo.batHand.Equals("L"))
 				mHand = UtilMgr.GetLocalText("StrLeft");

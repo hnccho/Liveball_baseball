@@ -2,6 +2,17 @@
 using System.Collections;
 
 public class NotiQuizInfo {
+	int _msgCount;
+	
+	public int msgCount {
+		get {
+			return _msgCount;
+		}
+		set {
+			_msgCount = value;
+		}
+	}
+
 	string _gameSeq;
 	
 	public string gameSeq {
@@ -175,6 +186,17 @@ public class NotiQuizInfo {
 		}
 		set {
 			_inningState = value;
+		}
+	}
+
+	int _changeBingo;
+
+	public int changeBingo {
+		get {
+			return _changeBingo;
+		}
+		set {
+			_changeBingo = value;
 		}
 	}
 }

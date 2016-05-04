@@ -46,28 +46,32 @@ public class ItemBingo : MonoBehaviour {
 			SetTilePower();
 		} else if(mBingoBoard.playerId > 0){
 			SetTilePlayer();
+			if(mBingoBoard.walkYn.Equals("Y"))
+				SetGuess(0);
+			if(mBingoBoard.outYn.Equals("Y"))
+				SetGuess(1);
 		} else{
 			SetTileTeam();
 		}
 
-		if(mBingoBoard.walkYn.Equals("Y"))
-			SetGuess(0);
-		if(mBingoBoard.outYn.Equals("Y"))
-			SetGuess(1);
+
 	}
 
 	void SetTilePower(){
-		transform.FindChild("Player").gameObject.SetActive(true);
-		transform.FindChild("Team").gameObject.SetActive(false);
+		transform.FindChild("Player").gameObject.SetActive(false);
+		transform.FindChild("Team").gameObject.SetActive(true);
 		
-		transform.FindChild("Player").FindChild("LblName").GetComponent<UILabel>().text
+		transform.FindChild("Team").FindChild("LblName").GetComponent<UILabel>().text
 			= "FREE";//Localization.language.Equals("English") ? mBingoBoard.playerName : mBingoBoard.playerKorName;
-		transform.FindChild("Player").FindChild("LblName").GetComponent<UILabel>().color = new Color(1f, 91f/255f, 16f/255f);
-		
-		transform.FindChild("Player").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().width = 72;
-		transform.FindChild("Player").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().height = 72;
-		transform.FindChild("Player").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>()
-			.mainTexture = UtilMgr.GetTextureDefault();
+		transform.FindChild("Team").FindChild("LblName").GetComponent<UILabel>().color = new Color(1f, 91f/255f, 16f/255f);
+
+		transform.FindChild("Team").FindChild("SprEmblem").GetComponent<UISprite>().spriteName = "logo_title_bingo_power";
+		transform.FindChild("Team").FindChild("SprEmblem").GetComponent<UISprite>().width = 126;
+		transform.FindChild("Team").FindChild("SprEmblem").GetComponent<UISprite>().height = 72;
+//		transform.FindChild("Player").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().width = 72;
+//		transform.FindChild("Player").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().height = 72;
+//		transform.FindChild("Player").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>()
+//			.mainTexture = UtilMgr.GetTextureDefault();
 //		UtilMgr.LoadImage(mBingoBoard.photoUrl,
 //		                  transform.FindChild("Player").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>());
 		transform.FindChild("Team").FindChild("LblGuess").gameObject.SetActive(false);
@@ -130,6 +134,9 @@ public class ItemBingo : MonoBehaviour {
 	}
 
 	public void SetGuess(int checkValue){
+		if(transform.FindChild("Player").FindChild("LblGuess").GetComponent<UILabel>().text.Length > 0
+			&& mBingoBoard.successYn.Equals("Y")) return;
+
 		if(checkValue == 0)
 			transform.FindChild("Player").FindChild("LblGuess").GetComponent<UILabel>().text
 				= UtilMgr.GetLocalText("StrGetOnBase");

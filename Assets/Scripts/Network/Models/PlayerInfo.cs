@@ -755,4 +755,15 @@ public class PlayerInfo {
 			_lastBatter = value;
 		}
 	}
+
+	int _currentBatter;
+
+	public int currentBatter {
+		get {
+			return _currentBatter;
+		}
+		set {
+			_currentBatter = value;
+		}
+	}
 }

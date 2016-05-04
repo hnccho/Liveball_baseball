@@ -14,7 +14,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &109756
 GameObject:
   m_ObjectHideFlags: 0
@@ -29,7 +29,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &121262
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,13 +105,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 490250}
+  - 114: {fileID: 11430692}
   - 114: {fileID: 11496222}
   - 61: {fileID: 6147480}
   - 114: {fileID: 11446670}
   - 114: {fileID: 11447430}
   - 114: {fileID: 11446678}
   - 95: {fileID: 9570096}
-  - 114: {fileID: 11430692}
   m_Layer: 5
   m_Name: ItemBingo
   m_TagString: Untagged
@@ -983,7 +983,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11442964, guid: aed1f29c3e57b40ff962f62260905aab, type: 2}
-  mSpriteName: 9001
+  mSpriteName: logo_title_bingo_power
   mFillCenter: 1
 --- !u!114 &11456558
 MonoBehaviour:
@@ -5855,11 +5855,11 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minColor:
         serializedVersion: 2
-        rgba: 4278245375
+        rgba: 2835349503
       maxColor:
         serializedVersion: 2
-        rgba: 4278255615
-      minMaxState: 2
+        rgba: 4294967295
+      minMaxState: 0
     startSize:
       scalar: 0.1
       maxCurve:
