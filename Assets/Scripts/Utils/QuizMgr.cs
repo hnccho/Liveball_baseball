@@ -80,7 +80,7 @@ public class QuizMgr : MonoBehaviour {
 			break;
 		case ConstantsSocketType.RES.CHANGE_INNING:
 //			Instance.StartCoroutine(Instance.IWaitProcess());
-			bingo.ChangeInning(msgInfo);
+//			bingo.ChangeInning(msgInfo);
 			break;
 		case ConstantsSocketType.RES.RELOAD_BINGO:
 //			Instance.StartCoroutine(Instance.IWaitProcess());
