@@ -683,20 +683,23 @@ public class UtilMgr : MonoBehaviour {
 		string[] values = new string[2];
 		if(hour == 12){
 			values[0] = hour+"";
-			values[1] = "p.m";
+//			values[1] = "p.m";
+			values[1] = "PM";
 		} else if(hour > 12){
 			hour = hour - 12;
 			if(hour < 10)
 				values[0] = "0"+hour;
 			else
 				values[0] = hour+"";
-			values[1] = "p.m";
+//			values[1] = "p.m";
+			values[1] = "PM";
 		} else{
 			if(hour < 10)
 				values[0] = "0"+hour;
 			else
 				values[0] = hour+"";
-			values[1] = "a.m";
+//			values[1] = "a.m";
+			values[1] = "AM";
 		}
 		return values;
 	}

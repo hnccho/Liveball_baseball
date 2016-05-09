@@ -145,7 +145,8 @@ public class ItemBingoList : MonoBehaviour {
 		transform.FindChild("BG").FindChild("Left").FindChild("Sprite").GetComponent<UISprite>().color = new Color(153f/255f, 153f/255f, 153f/255f);
 		transform.FindChild("BG").FindChild("Right").GetComponent<UISprite>().color = new Color(153f/255f, 153f/255f, 153f/255f);
 		transform.FindChild("BG").FindChild("Right").FindChild("Sprite").GetComponent<UISprite>().color = new Color(153f/255f, 153f/255f, 153f/255f);
-		transform.FindChild("Scroll View").FindChild("Button").GetComponent<UIButton>().isEnabled = true;
+//		transform.FindChild("Scroll View").FindChild("Button").GetComponent<UIButton>().isEnabled = true;
+		transform.FindChild("Scroll View").GetComponent<UIScrollView>().enabled = true;
 	}
 
 	void SetBoardGuess(int checkValue){
@@ -174,7 +175,23 @@ public class ItemBingoList : MonoBehaviour {
 		transform.FindChild("BG").FindChild("Left").FindChild("Sprite").GetComponent<UISprite>().color = new Color(0, 106f/255f, 126f/255f);
 		transform.FindChild("BG").FindChild("Right").GetComponent<UISprite>().color = new Color(0, 106f/255f, 126f/255f);
 		transform.FindChild("BG").FindChild("Right").FindChild("Sprite").GetComponent<UISprite>().color = new Color(0, 106f/255f, 126f/255f);
-		transform.FindChild("Scroll View").FindChild("Button").GetComponent<UIButton>().isEnabled = false;
+//		transform.FindChild("Scroll View").FindChild("Button").GetComponent<UIButton>().isEnabled = false;
+		transform.FindChild("Scroll View").GetComponent<UIScrollView>().enabled = false;
+
+		transform.root.FindChild("LiveBingo").GetComponent<LiveBingoAnimation>().SetItemBlink(mJoinInfo);
+	}
+
+	public void OnClick(){
+		PlayerInfo player = null;
+		try{
+			player = UserMgr.PlayerDic[mJoinInfo.playerId];
+		} catch{
+			DialogueMgr.ShowDialogue("Error", "Failed to find the information of that player."
+			                         , DialogueMgr.DIALOGUE_TYPE.Alert, null);
+		}
+
+		if(player == null) return;
+		transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(player, null);
 	}
 
 	public void OnDragOut(){

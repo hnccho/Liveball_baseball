@@ -42,6 +42,8 @@ public class BingoResult : MonoBehaviour {
 		transform.FindChild("SprTxt").GetComponent<UISprite>().height = 54;
 		transform.FindChild("SprTxt").GetComponent<UISprite>().spriteName = "rt_bingo_txt_powertime";
 		transform.GetComponent<Animator>().SetTrigger("Result");
+
+		transform.root.FindChild("LiveBingo").GetComponent<LiveBingoAnimation>().SetItemPower();
 	}
 
 	public void SocketResult(SocketMsgInfo info){

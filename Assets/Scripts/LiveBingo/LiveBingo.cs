@@ -150,6 +150,29 @@ public class LiveBingo : MonoBehaviour {
 //		Reload();
 	}
 
+	void MarkBingo(){
+		if(mItemDic[11].IsCorrected && mItemDic[21].IsCorrected && mItemDic[31].IsCorrected && mItemDic[41].IsCorrected)
+			transform.GetComponent<LiveBingoAnimation>().MarkBingo("11to41");
+		if(mItemDic[12].IsCorrected && mItemDic[22].IsCorrected && mItemDic[32].IsCorrected && mItemDic[42].IsCorrected)
+			transform.GetComponent<LiveBingoAnimation>().MarkBingo("12to42");
+		if(mItemDic[13].IsCorrected && mItemDic[23].IsCorrected && mItemDic[33].IsCorrected && mItemDic[43].IsCorrected)
+			transform.GetComponent<LiveBingoAnimation>().MarkBingo("13to43");
+		if(mItemDic[14].IsCorrected && mItemDic[24].IsCorrected && mItemDic[34].IsCorrected && mItemDic[44].IsCorrected)
+			transform.GetComponent<LiveBingoAnimation>().MarkBingo("14to44");
+		if(mItemDic[11].IsCorrected && mItemDic[12].IsCorrected && mItemDic[13].IsCorrected && mItemDic[14].IsCorrected)
+			transform.GetComponent<LiveBingoAnimation>().MarkBingo("11to14");
+		if(mItemDic[21].IsCorrected && mItemDic[22].IsCorrected && mItemDic[23].IsCorrected && mItemDic[24].IsCorrected)
+			transform.GetComponent<LiveBingoAnimation>().MarkBingo("21to24");
+		if(mItemDic[31].IsCorrected && mItemDic[32].IsCorrected && mItemDic[33].IsCorrected && mItemDic[34].IsCorrected)
+			transform.GetComponent<LiveBingoAnimation>().MarkBingo("31to34");
+		if(mItemDic[41].IsCorrected && mItemDic[42].IsCorrected && mItemDic[43].IsCorrected && mItemDic[44].IsCorrected)
+			transform.GetComponent<LiveBingoAnimation>().MarkBingo("41to44");
+		if(mItemDic[11].IsCorrected && mItemDic[22].IsCorrected && mItemDic[33].IsCorrected && mItemDic[44].IsCorrected)
+			transform.GetComponent<LiveBingoAnimation>().MarkBingo("11to44");
+		if(mItemDic[14].IsCorrected && mItemDic[23].IsCorrected && mItemDic[32].IsCorrected && mItemDic[41].IsCorrected)
+			transform.GetComponent<LiveBingoAnimation>().MarkBingo("14to41");
+	}
+
 	public void CheckBingo(){
 		bool isBlack = true;
 		
@@ -198,15 +221,6 @@ public class LiveBingo : MonoBehaviour {
 		}
 		mCanGet = mBingoResponse.data.bingo.bingos - mBingoResponse.data.bingo.rewardedCount;
 		
-		if(!IsReload){
-			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-				.FindChild("BG").FindChild("Sprite").gameObject.SetActive(false);
-			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-				.FindChild("BG").FindChild("Sprite").GetComponent<UISprite>().height = 0;
-		}
-		
-		transform.GetComponent<LiveBingoAnimation>().SetGauge(mBingoResponse.data.bingo.powerGauge, IsReload);
-		
 		if(mBingoResponse.data.bingoBoard.Count < 16){
 			DialogueMgr.ShowDialogue("Error", "Bingo has less than 16 tiles", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 			return;
@@ -246,6 +260,16 @@ public class LiveBingo : MonoBehaviour {
 			//			if(!IsReload)
 			mItemDic.Add(mBingoResponse.data.bingoBoard[i].tailId, item.GetComponent<ItemBingo>());
 		}
+
+		if(!IsReload){
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("Sprite").gameObject.SetActive(false);
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("Sprite").GetComponent<UISprite>().height = 0;
+			MarkBingo();
+		}
+
+		transform.GetComponent<LiveBingoAnimation>().SetGauge(mBingoResponse.data.bingo.powerGauge, IsReload);
 	}
 
 	void InitTop(){
@@ -488,8 +512,12 @@ public class LiveBingo : MonoBehaviour {
 	IEnumerator IReloadBoard(SocketMsgInfo info){
 		yield return new WaitForSeconds(3f);
 //		ReloadBoard();
-		if(info.data.inningState.Equals("END"))
+		if(info.data.inningState.Equals("END")){
+			UserMgr.eventJoined.inningState = "END";
+			UserMgr.eventJoined.status = "Scheduled";
+			InitBtm();
 			ReloadBoard();
+		}
 		else
 			ReloadAll();
 	}
@@ -502,9 +530,15 @@ public class LiveBingo : MonoBehaviour {
 	}
 
 	public void ReloadLineup(SocketMsgInfo info){
+		UserMgr.eventJoined.inningState = "ING";
 		UserMgr.eventJoined.status = "InProgress";
+
+		if(info.data.changeBingo > 0){
+			Init ();
+			return;
+		}
 //		IsReload = true;
-//		int inning = mLineupEvent.Response.data.inningNumber;
+//		int inning = mLineupResponse.data.inningNumber;
 		int inning = 0;
 		UserMgr.eventJoined.inningState = info.data.inningState;
 		mLineupEvent = new GetCurrentLineupEvent(ReceivedLineup);
@@ -647,5 +681,18 @@ public class LiveBingo : MonoBehaviour {
 		transform.FindChild("Body").gameObject.SetActive(true);
 		UtilMgr.AddBackState(UtilMgr.STATE.LiveBingo);
 		UtilMgr.AnimatePageToLeft("Lobby", "LiveBingo");
+	}
+
+	public void OnPitcherClick(){
+		PlayerInfo player = null;
+		try{
+			player = UserMgr.PlayerDic[mPitcher.playerId];
+		} catch{
+			DialogueMgr.ShowDialogue("Error", "Failed to find the information of that player."
+			                         , DialogueMgr.DIALOGUE_TYPE.Alert, null);
+		}
+
+		if(player == null) return;
+		transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(player, null);
 	}
 }

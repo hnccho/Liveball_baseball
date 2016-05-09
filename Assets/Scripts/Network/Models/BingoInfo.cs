@@ -260,8 +260,8 @@ public class BingoInfo {
 		}
 
 //"",
-		int _playerId;
-		public int playerId {
+		long _playerId;
+		public long playerId {
 			get {
 				return _playerId;
 			}

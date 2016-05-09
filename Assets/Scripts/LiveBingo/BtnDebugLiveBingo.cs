@@ -28,7 +28,7 @@ public class BtnDebugLiveBingo : MonoBehaviour {
 		transform.parent.FindChild("Log").FindChild("Scroll View").FindChild("Label").GetComponent<UILabel>().text = mStrLog;
 		int height = transform.parent.FindChild("Log").FindChild("Scroll View").FindChild("Label").GetComponent<UILabel>().height;
 		transform.parent.FindChild("Log").FindChild("Scroll View").FindChild("Label").GetComponent<BoxCollider2D>()
-			.size = new Vector2(720f, (float)height);
+			.size = new Vector2(600f, (float)height);
 		transform.parent.FindChild("Log").FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();
 	}
 	

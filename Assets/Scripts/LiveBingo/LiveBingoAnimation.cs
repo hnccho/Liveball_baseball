@@ -19,7 +19,7 @@ public class LiveBingoAnimation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	public void Init(){
@@ -29,13 +29,15 @@ public class LiveBingoAnimation : MonoBehaviour {
 	}
 
 	public void SetGauge(int gauge, bool isReload){
+//		gauge = 10;
+//		isReload = true;
 		IsReload = isReload;
 		if(IsReload){
 			if(mGaugeCnt < gauge){
 				GaugeUp(gauge, 1f);
 			}
 		} else if(gauge > 0){
-			GaugeUp(gauge, 0);
+			GaugeUp(gauge, 1f);
 		}
 	}
 
@@ -57,11 +59,13 @@ public class LiveBingoAnimation : MonoBehaviour {
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 			.FindChild("BG").FindChild("Sprite").GetComponent<TweenHeight>().RemoveOnFinished(delegateGauge);
 		if(mGaugeCnt >= MAX_GAUGE){
-			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-				.FindChild("BG").FindChild("Sprite").GetComponent<Animator>().SetTrigger("Blink");
+			Debug.Log("PowerTime!," + IsReload);
 			if(IsReload){
 				transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Result")
 					.GetComponent<BingoResult>().PowerTime();
+			} else{
+				transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+					.FindChild("BG").FindChild("Sprite").GetComponent<Animator>().SetTrigger("Blink");
 			}
 		} else{
 			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
@@ -87,6 +91,32 @@ public class LiveBingoAnimation : MonoBehaviour {
 			yield return new WaitForSeconds(0.2f);
 		}
 		eventDelegate.Execute();
+	}
+
+	public void MarkBingo(string name){
+		if(name.Equals("11to41")){
+			m11to41 = true;
+		} else if(name.Equals("12to42")){
+			m12to42 = true;
+		} else if(name.Equals("13to43")){
+			m13to43 = true;
+		} else if(name.Equals("14to44")){
+			m14to44 = true;
+		} else if(name.Equals("11to14")){
+			m11to14 = true;
+		} else if(name.Equals("21to24")){
+			m21to24 = true;
+		} else if(name.Equals("31to34")){
+			m31to34 = true;
+		} else if(name.Equals("41to44")){
+			m41to44 = true;
+		} else if(name.Equals("11to41")){
+			m11to41 = true;
+		} else if(name.Equals("11to44")){
+			m11to44 = true;
+		} else if(name.Equals("14to41")){
+			m14to41 = true;
+		}
 	}
 	
 	public void ShowBingoAni(string name){
@@ -276,5 +306,33 @@ public class LiveBingoAnimation : MonoBehaviour {
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineCol").gameObject.SetActive(false);
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineLBtoRT").gameObject.SetActive(false);
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineLTtoRB").gameObject.SetActive(false);
+	}
+
+	public void SetItemBlink(JoinQuizInfo info){
+		int cnt = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+			.FindChild("Items").childCount;
+		for(int i = 0; i < cnt; i++){
+			ItemBingo tile = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("Items").GetChild(i).GetComponent<ItemBingo>();
+			if(info.playerId == tile.mBingoBoard.playerId){
+				if(tile.mBingoBoard.successYn.Equals("N")){
+					tile.IsBlink = true;
+				} else{
+					tile.IsIdle = true;
+				}
+			}
+		}
+	}
+
+	public void SetItemPower(){
+		int cnt = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+			.FindChild("Items").childCount;
+		for(int i = 0; i < cnt; i++){
+			ItemBingo tile = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("Items").GetChild(i).GetComponent<ItemBingo>();
+			if(tile.mBingoBoard.successYn.Equals("N")){
+				tile.IsPower = true;
+			}
+		}
 	}
 }

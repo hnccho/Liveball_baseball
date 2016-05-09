@@ -89,7 +89,7 @@ public class PlayerCardAnimation : MonoBehaviour {
 
 	EventDelegate delegateJumpBackFinish;
 	void JumpBack(){
-		Debug.Log("11");
+//		Debug.Log("11");
 		delegateJumpBackFinish = new EventDelegate(FallBack);
 		transform.FindChild("Back").gameObject.SetActive(true);
 		
@@ -101,12 +101,12 @@ public class PlayerCardAnimation : MonoBehaviour {
 		transform.localPosition = Vector3.zero;
 		TweenPosition.Begin(transform.FindChild("Back").gameObject, 0.2f, new Vector3(0, 150f, 0));
 		transform.FindChild("Back").GetComponent<TweenPosition>().SetOnFinished(delegateJumpBackFinish);
-		Debug.Log("11.5");
+//		Debug.Log("11.5");
 	}
 
 	EventDelegate delegateFallBackFinish;
 	void FallBack(){
-		Debug.Log("12");
+//		Debug.Log("12");
 		transform.FindChild("Back").GetComponent<TweenPosition>().RemoveOnFinished(delegateJumpBackFinish);
 		delegateFallBackFinish = new EventDelegate(FallBack2);
 		TweenPosition.Begin(transform.FindChild("Back").gameObject, 0.2f, new Vector3(0, 0, 0));
@@ -114,7 +114,7 @@ public class PlayerCardAnimation : MonoBehaviour {
 	}
 
 	void FallBack2(){
-		Debug.Log("13");
+//		Debug.Log("13");
 		transform.FindChild("Back").GetComponent<TweenPosition>().RemoveOnFinished(delegateFallBackFinish);
 		delegateFallBackFinish = new EventDelegate(FallBack3);
 		TweenPosition.Begin(transform.FindChild("Back").gameObject, 0.1f, new Vector3(0, 10f, 0));
@@ -122,7 +122,7 @@ public class PlayerCardAnimation : MonoBehaviour {
 	}
 
 	void FallBack3(){
-		Debug.Log("14");
+//		Debug.Log("14");
 		transform.FindChild("Back").GetComponent<TweenPosition>().RemoveOnFinished(delegateFallBackFinish);
 //		delegateFallBackFinish = new EventDelegate(FallBackFinish);
 		TweenPosition.Begin(transform.FindChild("Back").gameObject, 0.1f, new Vector3(0, 0, 0));
@@ -203,7 +203,7 @@ public class PlayerCardAnimation : MonoBehaviour {
 	EventDelegate delegateAppearBackFinish;// = new EventDelegate(AppearBackFinish);
 	public void AppearBack(){
 		delegateAppearBackFinish = new EventDelegate(AppearBackFinish);
-		Debug.Log("1");
+//		Debug.Log("1");
 		UtilMgr.AddBackState(UtilMgr.STATE.PlayerCard);
 		transform.gameObject.SetActive(true);
 		transform.FindChild("Back").gameObject.SetActive(true);
@@ -222,7 +222,7 @@ public class PlayerCardAnimation : MonoBehaviour {
 	}
 	
 	void AppearBackFinish(){
-		Debug.Log("2");
+//		Debug.Log("2");
 		//		transform.FindChild("Back").GetComponent<UITweener>().onFinished = new List<EventDelegate>();
 		transform.FindChild("Back").GetComponent<TweenScale>().RemoveOnFinished(delegateAppearBackFinish);
 		StartCoroutine(WaitForLoading());
@@ -234,13 +234,13 @@ public class PlayerCardAnimation : MonoBehaviour {
 		RestoreRenderQ();
 
 		delegateAnimateAppear = new EventDelegate(AnimateAppear);
-		Debug.Log("3");
+//		Debug.Log("3");
 		TweenScale.Begin(transform.FindChild("Back").gameObject, 0.2f, new Vector3(0f, 1f, 1f));
 		transform.FindChild("Back").GetComponent<TweenScale>().SetOnFinished(delegateAnimateAppear);
 	}
 	
 	IEnumerator WaitForLoading(){
-		Debug.Log("4");
+//		Debug.Log("4");
 		if(!CanOpen)
 			yield return 0;
 		
@@ -250,7 +250,7 @@ public class PlayerCardAnimation : MonoBehaviour {
 	EventDelegate delegateAppearFinish;// = new EventDelegate(AppearFinish);
 	void AnimateAppear(){
 		delegateAppearFinish = new EventDelegate(AppearFinish);
-		Debug.Log("5");
+//		Debug.Log("5");
 		//		transform.FindChild("Back").GetComponent<UITweener>().onFinished = new List<EventDelegate>();
 		transform.FindChild("Back").GetComponent<TweenScale>().RemoveOnFinished(delegateAnimateAppear);
 		transform.FindChild("Body").localScale = new Vector3(0, 0.659f, 1f);

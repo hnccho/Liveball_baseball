@@ -8,6 +8,9 @@ public class ItemBingo : MonoBehaviour {
 	public BingoInfo.BingoBoard mNewBingoBoard;
 	public bool IsCorrected;
 	public bool IsAnimate;
+	public bool IsBlink;
+	public bool IsIdle;
+	public bool IsPower;
 	GetBingoEvent mPowerEvent;
 
 	// Use this for initialization
@@ -17,6 +20,16 @@ public class ItemBingo : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(IsBlink){
+			IsBlink = false;
+			transform.FindChild("Sprite").GetComponent<Animator>().SetTrigger("Blink");
+		} else if(IsIdle){
+			IsIdle = false;
+			transform.FindChild("Sprite").GetComponent<Animator>().SetTrigger("Idle");
+		} else if(IsPower){
+			IsPower = false;
+			transform.FindChild("Sprite").GetComponent<Animator>().SetTrigger("Power");
+		}
 //		if(IsCorrected && !IsAnimate){
 //			transform.FindChild("Background").GetComponent<UISprite>().color = new Color(28f/255f, 150f/255f, 212f/255f);
 //			transform.GetComponent<UIButton>().defaultColor = new Color(28f/255f, 150f/255f, 212f/255f);
@@ -32,6 +45,8 @@ public class ItemBingo : MonoBehaviour {
 	}
 
 	public void Init(bool isReload){
+		transform.GetComponent<Animator>().SetTrigger("Idle");
+
 		if(mNewBingoBoard.successYn.Equals("Y")){
 			if(isReload && mBingoBoard.successYn.Equals("N")){
 				mBingoBoard = mNewBingoBoard;
