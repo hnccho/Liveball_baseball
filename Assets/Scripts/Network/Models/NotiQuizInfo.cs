@@ -122,6 +122,17 @@ public class NotiQuizInfo {
 			_half = value;
 		}
 	}
+
+	long _pitcherId;
+
+	public long pitcherId {
+		get {
+			return _pitcherId;
+		}
+		set {
+			_pitcherId = value;
+		}
+	}
 	
 	long _playerId;
 	

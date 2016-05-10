@@ -24,9 +24,13 @@ public class ItemBingoList : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float x = transform.FindChild("Scroll View").FindChild("Button").localPosition.x;
-		if(x < -100) mChoice = Choice.Base;
-		else if(x > 100) mChoice = Choice.Out;
+//		if(Input.touchCount < 1){
+//			if(!IsLock)
+//				transform.FindChild("Scroll View").GetComponent<UIScrollView>().enabled = true;
+//		}
+//		float x = transform.FindChild("Scroll View").FindChild("Button").localPosition.x;
+//		if(x < -100) mChoice = Choice.Base;
+//		else if(x > 100) mChoice = Choice.Out;
 	}
 
 	public void Init(JoinQuizInfo joinInfo){
@@ -40,10 +44,11 @@ public class ItemBingoList : MonoBehaviour {
 		IsLock = false;
 		IsChosen = false;
 		mJoinInfo = joinInfo;
+		mJoinInfo.checkValue = -1;
 		SetToNone();
 		Choice mChoice = Choice.None;
 
-		transform.FindChild("Scroll View").GetComponent<UICenterOnChild>().onCenter = Oncenter;
+		transform.FindChild("Scroll View").GetComponent<UICenterOnChild>().onCenter = OnCenter;
 
 		foreach(CurrentLineupInfo.ForecastInfo forecast in 
 		        transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().mLineupResponse.data.forecast){
@@ -54,30 +59,32 @@ public class ItemBingoList : MonoBehaviour {
 				} else if(forecast.myValue == 1){
 					mJoinInfo.checkValue = 1;
 					SetToOut();
-				} else
-					mJoinInfo.checkValue = -1;
+				}
 				break;
 			}
 		}
 
 	}
 
-	void Oncenter(GameObject obj){
-		if(IsLock) return;
+	void OnCenter(GameObject obj){
+		if(IsLock || IsChosen) return;
 
-		mChoice = obj.GetComponentInParent<UIScrollView>().transform.localPosition.x > 100f ? Choice.Out
-			: obj.GetComponentInParent<UIScrollView>().transform.localPosition.x < -100f ? Choice.Base : Choice.None;
+		mChoice = obj.GetComponentInParent<UIScrollView>().transform.localPosition.x > 150f ? Choice.Out
+			: obj.GetComponentInParent<UIScrollView>().transform.localPosition.x < -150f ? Choice.Base : Choice.None;
 
-		if(mChoice != Choice.None && !IsChosen){
-			IsChosen = true;
+		if(mChoice == Choice.None) return;
 
-			mJoinInfo.checkValue = mChoice == Choice.Base ? 0 : 1;
-
-			mJoinEvent = new JoinQuizEvent(ReceivedChoice);
-			NetMgr.JoinQuiz(mJoinInfo, mJoinEvent);
-
-//			obj.GetComponent<UIDragScrollView>().enabled = false;
+		if(mJoinInfo.checkValue == 0){
+			if(mChoice == Choice.Base) return;
+		} else if(mJoinInfo.checkValue == 1){
+			if(mChoice == Choice.Out) return;
 		}
+
+		IsChosen = true;
+		mJoinInfo.checkValue = mChoice == Choice.Base ? 0 : 1;
+
+		mJoinEvent = new JoinQuizEvent(ReceivedChoice);
+		NetMgr.JoinQuiz(mJoinInfo, mJoinEvent);
 	}
 
 	public void ReceivedChoice(){
@@ -89,26 +96,7 @@ public class ItemBingoList : MonoBehaviour {
 		forecastInfo.inningNumber = mJoinInfo.inningNumber;
 		transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().mLineupResponse.data.forecast.Insert
 			(0, forecastInfo);
-//		foreach(CurrentLineupInfo.ForecastInfo forecast in 
-//		        transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().mLineupEvent.Response.data.forecast){
-//			Debug.Log("mJoinInfo.battingOrder : "+mJoinInfo.battingOrder+", forecast.battingOrder : "+forecast.battingOrder);
-//			if(forecast.battingOrder == mJoinInfo.battingOrder){
-//				if(mChoice == Choice.Base){
-//					forecast.myValue = 0;
-//				} else{
-//					forecast.myValue = 1;
-//				}
-//				Debug.Log("forecast.myValue : "+forecast.myValue);
-//				break;
-//			}
-
-//		}
 		Init (mJoinInfo);
-
-//		if(mChoice == Choice.Base)
-		//			SetToBase();battingO
-//		else
-//			SetToOut();
 
 		mChoice = Choice.None;
 
@@ -145,8 +133,8 @@ public class ItemBingoList : MonoBehaviour {
 		transform.FindChild("BG").FindChild("Left").FindChild("Sprite").GetComponent<UISprite>().color = new Color(153f/255f, 153f/255f, 153f/255f);
 		transform.FindChild("BG").FindChild("Right").GetComponent<UISprite>().color = new Color(153f/255f, 153f/255f, 153f/255f);
 		transform.FindChild("BG").FindChild("Right").FindChild("Sprite").GetComponent<UISprite>().color = new Color(153f/255f, 153f/255f, 153f/255f);
-//		transform.FindChild("Scroll View").FindChild("Button").GetComponent<UIButton>().isEnabled = true;
 		transform.FindChild("Scroll View").GetComponent<UIScrollView>().enabled = true;
+//		transform.FindChild("Scroll View").GetComponent<UICenterOnChild>().CenterOn(transform);
 	}
 
 	void SetBoardGuess(int checkValue){
@@ -166,16 +154,12 @@ public class ItemBingoList : MonoBehaviour {
 			.gameObject.SetActive(true);
 		transform.FindChild("Scroll View").FindChild("Button").FindChild("Photo").FindChild("Panel").FindChild("Texture")
 			.gameObject.SetActive(false);
-//		if(mJoinInfo.checkValue == 0)
-			transform.FindChild("BG").FindChild("Sprite").GetComponent<UISprite>().color = new Color(0, 160f/255f, 233f/255f);
-//		else if(mJoinInfo.checkValue == 1)
-//			transform.FindChild("BG").FindChild("Sprite").GetComponent<UISprite>().color = new Color(220f/255f, 75f/255f, 63f/255f);
+		transform.FindChild("BG").FindChild("Sprite").GetComponent<UISprite>().color = new Color(0, 160f/255f, 233f/255f);
 
 		transform.FindChild("BG").FindChild("Left").GetComponent<UISprite>().color = new Color(0, 106f/255f, 126f/255f);
 		transform.FindChild("BG").FindChild("Left").FindChild("Sprite").GetComponent<UISprite>().color = new Color(0, 106f/255f, 126f/255f);
 		transform.FindChild("BG").FindChild("Right").GetComponent<UISprite>().color = new Color(0, 106f/255f, 126f/255f);
 		transform.FindChild("BG").FindChild("Right").FindChild("Sprite").GetComponent<UISprite>().color = new Color(0, 106f/255f, 126f/255f);
-//		transform.FindChild("Scroll View").FindChild("Button").GetComponent<UIButton>().isEnabled = false;
 		transform.FindChild("Scroll View").GetComponent<UIScrollView>().enabled = false;
 
 		transform.root.FindChild("LiveBingo").GetComponent<LiveBingoAnimation>().SetItemBlink(mJoinInfo);
@@ -196,6 +180,8 @@ public class ItemBingoList : MonoBehaviour {
 
 	public void OnDragOut(){
 //		Debug.Log("OnDragOut");
+//		transform.FindChild("Scroll View").FindChild("Button").GetComponent<BoxCollider2D>().enabled = false;
+//		transform.FindChild("Scroll View").GetComponent<UIScrollView>().enabled = false;
 	}
 
 	public void OnDragOver(){
@@ -210,5 +196,9 @@ public class ItemBingoList : MonoBehaviour {
 //		Debug.Log("OnPress");
 //		UIDragScrollView[] drag = transform.FindChild("Scroll View").FindChild("Button").GetComponents<UIDragScrollView>();
 //		drag[1].scrollView = transform.FindChild("Scroll View").GetComponent<UIScrollView>();
+	}
+
+	public void OnRelease(){
+//		Debug.Log("OnRelease");
 	}
 }

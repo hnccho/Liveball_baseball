@@ -12789,7 +12789,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3028
+  startingRenderQueue: 3027
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -44591,7 +44591,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3033
+  startingRenderQueue: 3032
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -60583,11 +60583,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 478940, guid: c780fbd8e7529491b9c4ecb58897cc5b, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -13.1000004
+      value: -13.1
       objectReference: {fileID: 0}
     - target: {fileID: 478940, guid: c780fbd8e7529491b9c4ecb58897cc5b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 151.100006
+      value: 151.1
       objectReference: {fileID: 0}
     - target: {fileID: 478940, guid: c780fbd8e7529491b9c4ecb58897cc5b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -60611,10 +60611,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 478940, guid: c780fbd8e7529491b9c4ecb58897cc5b, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 184994, guid: c780fbd8e7529491b9c4ecb58897cc5b, type: 2}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11473988, guid: c780fbd8e7529491b9c4ecb58897cc5b, type: 2}
+      propertyPath: renderQueue
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -60877,7 +60881,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 401866, guid: 04eb155c119e444eba2cd2832ccc36d6, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 167926, guid: 04eb155c119e444eba2cd2832ccc36d6, type: 2}
       propertyPath: m_IsActive

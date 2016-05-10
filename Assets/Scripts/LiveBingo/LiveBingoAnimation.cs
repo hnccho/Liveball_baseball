@@ -320,6 +320,8 @@ public class LiveBingoAnimation : MonoBehaviour {
 				} else{
 					tile.IsIdle = true;
 				}
+			} else{
+				tile.IsIdle = true;
 			}
 		}
 	}

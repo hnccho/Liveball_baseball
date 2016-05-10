@@ -45,8 +45,6 @@ public class ItemBingo : MonoBehaviour {
 	}
 
 	public void Init(bool isReload){
-		transform.GetComponent<Animator>().SetTrigger("Idle");
-
 		if(mNewBingoBoard.successYn.Equals("Y")){
 			if(isReload && mBingoBoard.successYn.Equals("N")){
 				mBingoBoard = mNewBingoBoard;
@@ -135,9 +133,13 @@ public class ItemBingo : MonoBehaviour {
 		transform.parent.parent.FindChild("Result").GetComponent<BingoResult>().Correct();
 	}
 
+	EventDelegate mCorrectDelegate;
 	public void SetCorrected(){
 		IsCorrected = true;
 		transform.FindChild("Background").GetComponent<UISprite>().color = new Color(28f/255f, 150f/255f, 212f/255f);
+		TweenColor.Begin(transform.FindChild("Background").gameObject, 0.5f, Color.white);
+		mCorrectDelegate = new EventDelegate(CorrectBright);
+		transform.FindChild("Background").GetComponent<TweenColor>().SetOnFinished(mCorrectDelegate);
 //		transform.GetComponent<UIButton>().defaultColor = new Color(28f/255f, 150f/255f, 212f/255f);
 //		transform.GetComponent<UIButton>().hover = new Color(28f/255f, 150f/255f, 212f/255f);
 //		transform.GetComponent<UIButton>().pressed = new Color(28f/255f, 150f/255f, 212f/255f);
@@ -146,6 +148,18 @@ public class ItemBingo : MonoBehaviour {
 		} else{
 			transform.FindChild("Team").FindChild("LblGuess").GetComponent<UILabel>().color = Color.white;
 		}
+	}
+
+	void CorrectBright(){
+		transform.FindChild("Background").GetComponent<TweenColor>().RemoveOnFinished(mCorrectDelegate);
+		TweenColor.Begin(transform.FindChild("Background").gameObject, 0.5f, new Color(28f/255f, 150f/255f, 212f/255f));
+		mCorrectDelegate = new EventDelegate(CorrectDarkness);
+		transform.FindChild("Background").GetComponent<TweenColor>().SetOnFinished(mCorrectDelegate);
+	}
+
+	void CorrectDarkness(){
+		transform.FindChild("Background").GetComponent<TweenColor>().RemoveOnFinished(mCorrectDelegate);
+		transform.FindChild("Background").GetComponent<UISprite>().color = new Color(28f/255f, 150f/255f, 212f/255f);
 	}
 
 	public void SetGuess(int checkValue){
@@ -168,6 +182,9 @@ public class ItemBingo : MonoBehaviour {
 	public void BlastCoin(){
 		transform.FindChild("CoinBlastCopper").gameObject.SetActive(true);
 		transform.FindChild("CoinBlastCopper").GetComponent<ParticleSystem>().Play();
+		TweenColor.Begin(transform.FindChild("Background").gameObject, 0.5f, Color.white);
+		mCorrectDelegate = new EventDelegate(CorrectBright);
+		transform.FindChild("Background").GetComponent<TweenColor>().SetOnFinished(mCorrectDelegate);
 	}
 
 	public void CorrectFinish(){
@@ -184,6 +201,7 @@ public class ItemBingo : MonoBehaviour {
 	void ReceivedPower(){
 		transform.root.FindChild("LiveBingo").GetComponent<LiveBingoAnimation>().PowerUsed();
 		transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().ReloadBoard();
+		transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().InitBtm();
 	}
 
 }

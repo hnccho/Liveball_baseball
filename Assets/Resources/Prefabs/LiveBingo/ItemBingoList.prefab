@@ -907,7 +907,11 @@ MonoBehaviour:
     mMethodName: OnPress
     mParameters: []
     oneShot: 0
-  onRelease: []
+  onRelease:
+  - mTarget: {fileID: 11401794}
+    mMethodName: OnRelease
+    mParameters: []
+    oneShot: 0
   onSelect:
   - mTarget: {fileID: 11401794}
     mMethodName: OnSelect
@@ -1149,7 +1153,7 @@ MonoBehaviour:
   dragEffect: 1
   restrictWithinPanel: 1
   disableDragIfFits: 0
-  smoothDragStart: 1
+  smoothDragStart: 0
   iOSDragEmulation: 1
   CoverFlow: 0
   CoverFlowItem: {fileID: 0}

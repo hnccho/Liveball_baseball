@@ -88,7 +88,8 @@ public class QuizMgr : MonoBehaviour {
 			break;
 		case ConstantsSocketType.RES.CHANGE_PLAYER:
 //			Instance.StartCoroutine(Instance.IWaitProcess());
-			bingo.ReloadLineup(msgInfo);
+			bingo.ChangePlayer(msgInfo);
+//			bingo.ReloadLineup(msgInfo);
 			break;
 
 		}

@@ -292,7 +292,7 @@ public class LiveBingo : MonoBehaviour {
 
 	}
 
-	void InitBtm(){
+	public void InitBtm(){
 		Transform btm = transform.FindChild("Body").FindChild("Scroll View").FindChild("Btm");
 
 		mSortedLineup = new List<PlayerInfo>();
@@ -529,14 +529,35 @@ public class LiveBingo : MonoBehaviour {
 		NetMgr.GetBingo(UserMgr.eventJoined.gameId, mBingoEvent);
 	}
 
-	public void ReloadLineup(SocketMsgInfo info){
+	public void ChangePlayer(SocketMsgInfo info){
 		UserMgr.eventJoined.inningState = "ING";
 		UserMgr.eventJoined.status = "InProgress";
-
+		
 		if(info.data.changeBingo > 0){
 			Init ();
 			return;
 		}
+
+//		try{
+//			if(info.data.pitcherId != mPitcher.playerId
+//			   || info.data.playerId != mSortedLineup[0].playerId){
+//				Debug.Log ("Lineup Changed");
+//				throw new UnassignedReferenceException();
+//			}
+//
+//		} catch{
+			ReloadLineup (info);
+//		}
+	}
+
+	public void ReloadLineup(SocketMsgInfo info){
+//		UserMgr.eventJoined.inningState = "ING";
+//		UserMgr.eventJoined.status = "InProgress";
+//
+//		if(info.data.changeBingo > 0){
+//			Init ();
+//			return;
+//		}
 //		IsReload = true;
 //		int inning = mLineupResponse.data.inningNumber;
 		int inning = 0;
