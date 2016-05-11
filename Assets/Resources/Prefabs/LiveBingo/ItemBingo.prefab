@@ -851,7 +851,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 142
   mHeight: 20
-  mDepth: 12
+  mDepth: 15
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -916,7 +916,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 142
   mHeight: 20
-  mDepth: 11
+  mDepth: 15
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -1079,7 +1079,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 142
   mHeight: 20
-  mDepth: 12
+  mDepth: 15
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -1347,7 +1347,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 142
   mHeight: 20
-  mDepth: 11
+  mDepth: 15
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -1408,11 +1408,11 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 0, g: 0, b: 0, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
   mWidth: 142
   mHeight: 142
-  mDepth: 21
+  mDepth: 11
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -1427,8 +1427,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11412872, guid: e49943f5dd1a448e99c441f55aebc3c4, type: 2}
-  mSpriteName: box_r4_line
+  mAtlas: {fileID: 11418724, guid: 5e103e19575c7491da5443cd736dceac, type: 2}
+  mSpriteName: box_r10_bingo_basic
   mFillCenter: 1
 --- !u!114 &11496222
 MonoBehaviour:

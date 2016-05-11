@@ -24,6 +24,10 @@ public class ItemBingoList : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+//		if(!transform.root.FindChild("LiveBingo").GetComponent<LiveBingo>().IsMouseDown){
+//			if(!IsLock)
+//				transform.FindChild("Scroll View").GetComponent<UIScrollView>().enabled = true;
+//		}
 //		if(Input.touchCount < 1){
 //			if(!IsLock)
 //				transform.FindChild("Scroll View").GetComponent<UIScrollView>().enabled = true;
@@ -134,7 +138,6 @@ public class ItemBingoList : MonoBehaviour {
 		transform.FindChild("BG").FindChild("Right").GetComponent<UISprite>().color = new Color(153f/255f, 153f/255f, 153f/255f);
 		transform.FindChild("BG").FindChild("Right").FindChild("Sprite").GetComponent<UISprite>().color = new Color(153f/255f, 153f/255f, 153f/255f);
 		transform.FindChild("Scroll View").GetComponent<UIScrollView>().enabled = true;
-//		transform.FindChild("Scroll View").GetComponent<UICenterOnChild>().CenterOn(transform);
 	}
 
 	void SetBoardGuess(int checkValue){
@@ -162,7 +165,7 @@ public class ItemBingoList : MonoBehaviour {
 		transform.FindChild("BG").FindChild("Right").FindChild("Sprite").GetComponent<UISprite>().color = new Color(0, 106f/255f, 126f/255f);
 		transform.FindChild("Scroll View").GetComponent<UIScrollView>().enabled = false;
 
-		transform.root.FindChild("LiveBingo").GetComponent<LiveBingoAnimation>().SetItemBlink(mJoinInfo);
+
 	}
 
 	public void OnClick(){

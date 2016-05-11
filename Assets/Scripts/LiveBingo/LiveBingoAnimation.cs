@@ -4,7 +4,7 @@ using System.Collections;
 public class LiveBingoAnimation : MonoBehaviour {
 
 	const int MAX_GAUGE = 10;
-	const float GAUGE_HEIGHT = 640f;
+	const float GAUGE_HEIGHT = 644f;
 	public int mGaugeCnt;
 	bool m11to41, m12to42, m13to43, m14to44
 		,m11to14, m21to24, m31to34, m41to44
@@ -29,22 +29,41 @@ public class LiveBingoAnimation : MonoBehaviour {
 	}
 
 	public void SetGauge(int gauge, bool isReload){
+
 //		gauge = 10;
 //		isReload = true;
 		IsReload = isReload;
+
 		if(IsReload){
 			if(mGaugeCnt < gauge){
 				GaugeUp(gauge, 1f);
 			}
-		} else if(gauge > 0){
-			GaugeUp(gauge, 1f);
+		} else{
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("Sprite").gameObject.SetActive(false);
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("Sprite").GetComponent<UISprite>().height = 0;
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("PtcFlames").gameObject.SetActive(false);
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("PtcFlames").localPosition = new Vector3(0, -245f);
+			if(gauge > 0){
+				GaugeUp(gauge, 1f);
+			}
 		}
 	}
 
 	EventDelegate delegateGauge;
+//	EventDelegate delegateFlame;
 	public void GaugeUp(int gauge, float time){
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 			.FindChild("BG").FindChild("Sprite").gameObject.SetActive(true);
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+			.FindChild("BG").FindChild("PtcFlames").gameObject.SetActive(true);
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+			.FindChild("BG").FindChild("PtcFlames").FindChild("PtcFlameLeft").GetComponent<ParticleSystem>().Play();
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+			.FindChild("BG").FindChild("PtcFlames").FindChild("PtcFlameRight").GetComponent<ParticleSystem>().Play();
 		
 		delegateGauge = new EventDelegate(FinishGaugeUp);
 		int height = (int)(GAUGE_HEIGHT * ((float)gauge / (float)MAX_GAUGE));
@@ -53,6 +72,9 @@ public class LiveBingoAnimation : MonoBehaviour {
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 			.FindChild("BG").FindChild("Sprite").GetComponent<TweenHeight>().SetOnFinished(delegateGauge);
 		mGaugeCnt = gauge;
+		TweenPosition.Begin (transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+		                     .FindChild("BG").FindChild("PtcFlames").gameObject, time,
+		                     new Vector3(0, (-280f +height)));
 	}
 	
 	void FinishGaugeUp(){
@@ -308,13 +330,13 @@ public class LiveBingoAnimation : MonoBehaviour {
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineLTtoRB").gameObject.SetActive(false);
 	}
 
-	public void SetItemBlink(JoinQuizInfo info){
+	public void SetItemBlink(long playerId){
 		int cnt = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 			.FindChild("Items").childCount;
 		for(int i = 0; i < cnt; i++){
 			ItemBingo tile = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 				.FindChild("Items").GetChild(i).GetComponent<ItemBingo>();
-			if(info.playerId == tile.mBingoBoard.playerId){
+			if(playerId == tile.mBingoBoard.playerId){
 				if(tile.mBingoBoard.successYn.Equals("N")){
 					tile.IsBlink = true;
 				} else{

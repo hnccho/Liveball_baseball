@@ -26,6 +26,16 @@ public class LiveBingo : MonoBehaviour {
 	List<PlayerInfo> mSortedLineup;
 	PlayerInfo mPitcher;
 
+	public bool IsMouseDown;
+
+	void OnMouseDown(){
+		IsMouseDown = true;
+	}
+
+	void OnMouseUp(){
+		IsMouseDown = false;
+	}
+
 	// Use this for initialization
 	void Start () {
 
@@ -112,21 +122,10 @@ public class LiveBingo : MonoBehaviour {
 	}
 
 	void ReceivedCall(){
-//	{"message":"","data":{"powerGauge":0,"userRewardGold":5,"rewardValue":5,"myTotalBingos":10,
-//		"gameId":20160133,"myRewarded":10,"outCode":0,"totalUser":3,"blackBingoReward":50,"bingoId":565,
-//		"league":"kbo","rewardType":1,"rewardCount":20,"useYn":"Y","userBlackBingoReward":50,
-//		"outMessage":"굉장하네요!!!55골드를 받았습니다.(12\/20)","totalRewarded":12,"userId":10001,"bingos":10,"rewardedCount":10}
-//	,"code":0,"query_type":"apps.rtime","query_id":"callBingo"}
-//		int total = mCallEvent.Response.data.totalRewardGold + mCallEvent.Response.data.userBlackBingoReward;
 		if(mCallEvent.Response == null) return;
 		mCallResponse = mCallEvent.Response;
 		if(mCallResponse.data.userRewardGold > 0)
-			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("LblBingo"),
-			                         string.Format(UtilMgr.GetLocalText("StrRewardBingo")
-			              , mCallResponse.data.userRewardGold
-			              , mCallResponse.data.totalRewarded
-			              , mCallResponse.data.rewardCount)
-			                         , DialogueMgr.DIALOGUE_TYPE.Alert, BingoDialogue);
+			StartCoroutine(ShowBingoResult());
 		else
 			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("LblBingo"),
 			                         string.Format(UtilMgr.GetLocalText("StrFailBingo")
@@ -135,6 +134,20 @@ public class LiveBingo : MonoBehaviour {
 			                         , DialogueMgr.DIALOGUE_TYPE.Alert, null);
 
 		ReloadBoard();
+	}
+
+	IEnumerator ShowBingoResult(){
+		transform.FindChild("PtcBingo").gameObject.SetActive(true);
+		transform.FindChild("PtcBingo").GetComponent<ParticleSystem>().Play ();
+
+		yield return new WaitForSeconds(2f);
+
+		DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("LblBingo"),
+		                         string.Format(UtilMgr.GetLocalText("StrRewardBingo")
+		              , mCallResponse.data.userRewardGold
+		              , mCallResponse.data.totalRewarded
+		              , mCallResponse.data.rewardCount)
+		                         , DialogueMgr.DIALOGUE_TYPE.Alert, BingoDialogue);
 	}
 
 	void BingoDialogue(DialogueMgr.BTNS btn){
@@ -146,8 +159,13 @@ public class LiveBingo : MonoBehaviour {
 		}
 	}
 
+//	int tmp;
 	public void ResetClick(){
+//		DialogueMgr.ShowDialogue("bingo", "bingo", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 //		Reload();
+//		if(tmp++ > 10)
+//			tmp = 1;
+//		transform.GetComponent<LiveBingoAnimation>().SetGauge(tmp, true);
 	}
 
 	void MarkBingo(){
@@ -261,15 +279,9 @@ public class LiveBingo : MonoBehaviour {
 			mItemDic.Add(mBingoResponse.data.bingoBoard[i].tailId, item.GetComponent<ItemBingo>());
 		}
 
-		if(!IsReload){
-			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-				.FindChild("BG").FindChild("Sprite").gameObject.SetActive(false);
-			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-				.FindChild("BG").FindChild("Sprite").GetComponent<UISprite>().height = 0;
-			MarkBingo();
-		}
-
 		transform.GetComponent<LiveBingoAnimation>().SetGauge(mBingoResponse.data.bingo.powerGauge, IsReload);
+		if(!IsReload)
+			MarkBingo();
 	}
 
 	void InitTop(){
@@ -289,7 +301,6 @@ public class LiveBingo : MonoBehaviour {
 			int width = score.FindChild("HomeName").GetComponent<UILabel>().width;
 			score.FindChild("HomeName").FindChild("Sprite").localPosition = new Vector3((width+20), 0, 0);
 		}
-
 	}
 
 	public void InitBtm(){
@@ -439,10 +450,19 @@ public class LiveBingo : MonoBehaviour {
 			item.Target.GetComponent<ItemBingoList>().Init(joinInfo);
 
 			if(!UserMgr.eventJoined.status.Equals("Scheduled")){
-				if(index < 1)
+				if(index < 1){
 					item.Target.GetComponent<ItemBingoList>().SetToLocking();
+				}
 			}
 		});
+
+		if(UserMgr.eventJoined.status.Equals("Scheduled")){
+			transform.root.FindChild("LiveBingo").GetComponent<LiveBingoAnimation>().SetItemBlink(-1);
+		} else
+			transform.root.FindChild("LiveBingo").GetComponent<LiveBingoAnimation>()
+				.SetItemBlink(mSortedLineup[0].playerId);
+
+
 		btm.FindChild("Draggable").GetComponent<UIDraggablePanel2>().ResetPosition();
 
 //		UtilMgr.ClearList(btm.FindChild("Draggable"));
