@@ -21,6 +21,8 @@ public class UtilMgr : MonoBehaviour {
 	public static string SelectTeamSeq = "";
 	public static bool OnPause;
 	public static bool OnFocus;
+	public static DateTime PauseTime;
+
 	public static string PreLoadedLevelName;
 	public Transform mRoot;
 

@@ -1119,7 +1119,8 @@ public class NetMgr : MonoBehaviour{
 			for(int i = 0; i < msgArr.Length; i++){
 //				Debug.Log("Received(" + i + ") : " + msgArr[i]);
 				SocketMsgInfo msgInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<SocketMsgInfo>(msgArr[i]);
-				mSocketMsgList.Add(msgInfo);
+				if(!UtilMgr.OnPause)
+					mSocketMsgList.Add(msgInfo);
 			}
 			mRecvSemaphore = false;
 		}

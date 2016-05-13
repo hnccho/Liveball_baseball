@@ -15,9 +15,41 @@ public class RegisterEntry : MonoBehaviour {
 	void Start () {
 
 	}
-	
+
+	void SetScrollViewBody(){
+		for(int i = 0; i < transform.FindChild("Body").FindChild("List").FindChild("Scroll View").childCount; i++){
+			UIDragScrollView[] children = transform.FindChild("Body").FindChild("List")
+				.FindChild("Scroll View").GetChild(i).FindChild("BG").GetComponents<UIDragScrollView>();
+			children[1].enabled = true;
+//			children[0].enabled = false;
+		}
+	}
+
+	void SetScrollViewList(){
+		for(int i = 0; i < transform.FindChild("Body").FindChild("List").FindChild("Scroll View").childCount; i++){
+			UIDragScrollView[] children = transform.FindChild("Body").FindChild("List")
+				.FindChild("Scroll View").GetChild(i).FindChild("BG").GetComponents<UIDragScrollView>();
+			children[1].enabled = false;
+//			children[0].enabled = true;
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
+//		float listPos = transform.FindChild("Body").FindChild("List").FindChild("Scroll View").localPosition.y;
+//		if(listPos < -1296f){
+//			SetScrollViewBody();
+////			transform.FindChild("Body").FindChild("List").FindChild("Scroll View").localPosition = new Vector3(0, -1296f);
+//		} else if(listPos > -446f){
+//			SetScrollViewBody();
+////			transform.FindChild("Body").FindChild("List").FindChild("Scroll View").localPosition = new Vector3(0, -446);
+//		} else{
+//			SetScrollViewList();
+//		}
+
+
+
+		//
 		if(mContestTime.Year < 2016)
 			return;
 
@@ -144,72 +176,79 @@ public class RegisterEntry : MonoBehaviour {
 	}
 
 	public void Initialize(){
-		UtilMgr.ClearList(transform.FindChild("List").FindChild("Scroll View"));
+		UtilMgr.ClearList(transform.FindChild("Body").FindChild("List").FindChild("Scroll View"));
 		
 		float height = 136f*8f;
-		for(int i = 0; i < transform.FindChild("Ground").FindChild("BtnPosition").childCount; i++){
-			transform.FindChild("Ground").FindChild("BtnPosition")
+		for(int i = 0; i < transform.FindChild("Body").FindChild("Ground").FindChild("BtnPosition").childCount; i++){
+			transform.FindChild("Body").FindChild("Ground").FindChild("BtnPosition")
 				.GetChild(i).GetComponent<BtnPosition>().SetUndesignated();
 			
 			GameObject go = Instantiate(mRegItem);
-			go.transform.parent = transform.FindChild("List").FindChild("Scroll View");
+			go.transform.parent = transform.FindChild("Body").FindChild("List").FindChild("Scroll View");
 			go.transform.localPosition = new Vector3(0, height - (136f * i), 0);
 			go.transform.localScale = new Vector3(1f, 1f, 1f);
 			go.transform.FindChild("Label").GetComponent<UILabel>().text = (i+1)+"";
 			go.transform.GetComponent<ItemPosition>().SetUndesignated();
-		}
-		transform.FindChild("List").FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();
 
-		transform.FindChild("Btm").GetComponent<BtmInfo>()
-			.SetBtmInfo(transform.FindChild("List").FindChild("Scroll View"));
+			go.transform.FindChild("BG").GetComponents<UIDragScrollView>()[0].scrollView
+				= transform.FindChild("Body").FindChild("List").FindChild("Scroll View").GetComponent<UIScrollView>();
+			go.transform.FindChild("BG").GetComponents<UIDragScrollView>()[1].scrollView
+				= transform.FindChild("Body").GetComponent<UIScrollView>();
+		}
+		transform.FindChild("Body").FindChild("List").FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();
+
+		transform.FindChild("Body").FindChild("Btm").GetComponent<BtmInfo>()
+			.SetBtmInfo(transform.FindChild("Body").FindChild("List").FindChild("Scroll View"));
 
 		transform.FindChild("InfoTop").FindChild("NewEntry").FindChild("Input").GetComponent<UIInput>().value = 
 			transform.FindChild("InfoTop").FindChild("NewEntry").FindChild("Input").GetComponent<UIInput>().defaultText;
+
+		transform.FindChild("Body").GetComponent<UIScrollView>().ResetPosition();
 	}
 
 	public void SetDesignated(PlayerInfo info){
 		switch(transform.root.FindChild("SelectPlayer").GetComponent<SelectPlayer>().mSelectedNo){
-		case 1: transform.FindChild("Ground").FindChild("BtnPosition")
+		case 1: transform.FindChild("Body").FindChild("Ground").FindChild("BtnPosition")
 			.FindChild("BtnP").GetComponent<BtnPosition>().SetDesignated(info);	break;
-		case 2: transform.FindChild("Ground").FindChild("BtnPosition")
+		case 2: transform.FindChild("Body").FindChild("Ground").FindChild("BtnPosition")
 			.FindChild("BtnC").GetComponent<BtnPosition>().SetDesignated(info);	break;
-		case 3: transform.FindChild("Ground").FindChild("BtnPosition")
+		case 3: transform.FindChild("Body").FindChild("Ground").FindChild("BtnPosition")
 			.FindChild("Btn1B").GetComponent<BtnPosition>().SetDesignated(info);	break;
-		case 4: transform.FindChild("Ground").FindChild("BtnPosition")
+		case 4: transform.FindChild("Body").FindChild("Ground").FindChild("BtnPosition")
 			.FindChild("Btn2B").GetComponent<BtnPosition>().SetDesignated(info);	break;
-		case 5: transform.FindChild("Ground").FindChild("BtnPosition")
+		case 5: transform.FindChild("Body").FindChild("Ground").FindChild("BtnPosition")
 			.FindChild("Btn3B").GetComponent<BtnPosition>().SetDesignated(info);	break;
-		case 6: transform.FindChild("Ground").FindChild("BtnPosition")
+		case 6: transform.FindChild("Body").FindChild("Ground").FindChild("BtnPosition")
 			.FindChild("BtnSS").GetComponent<BtnPosition>().SetDesignated(info);	break;
-		case 7: transform.FindChild("Ground").FindChild("BtnPosition")
+		case 7: transform.FindChild("Body").FindChild("Ground").FindChild("BtnPosition")
 			.FindChild("BtnLF").GetComponent<BtnPosition>().SetDesignated(info);	break;
-		case 8: transform.FindChild("Ground").FindChild("BtnPosition")
+		case 8: transform.FindChild("Body").FindChild("Ground").FindChild("BtnPosition")
 			.FindChild("BtnCF").GetComponent<BtnPosition>().SetDesignated(info);	break;
-		case 9: transform.FindChild("Ground").FindChild("BtnPosition")
+		case 9: transform.FindChild("Body").FindChild("Ground").FindChild("BtnPosition")
 			.FindChild("BtnRF").GetComponent<BtnPosition>().SetDesignated(info);	break;
 		}
 
-		for(int i = 0; i < transform.FindChild("List").FindChild("Scroll View").childCount; i++){
-			int pos = int.Parse(transform.FindChild("List").FindChild("Scroll View")
+		for(int i = 0; i < transform.FindChild("Body").FindChild("List").FindChild("Scroll View").childCount; i++){
+			int pos = int.Parse(transform.FindChild("Body").FindChild("List").FindChild("Scroll View")
 			                    .GetChild(i).FindChild("Label").GetComponent<UILabel>().text);
 			if(pos == transform.root.FindChild("SelectPlayer").GetComponent<SelectPlayer>().mSelectedNo){
-				transform.FindChild("List").FindChild("Scroll View")
+				transform.FindChild("Body").FindChild("List").FindChild("Scroll View")
 					.GetChild(i).GetComponent<ItemPosition>().SetDesignated(info);
 				break;
 			}
 		}
 
 		transform.FindChild("Btm").GetComponent<BtmInfo>()
-			.SetBtmInfo(transform.FindChild("List").FindChild("Scroll View"));
+			.SetBtmInfo(transform.FindChild("Body").FindChild("List").FindChild("Scroll View"));
 
 		mLineup = null;
 	}
 
 	public long[][] GetSlots(){
 		long[][] slots = new long[9][];
-		for(int i = 0; i < transform.FindChild("List").FindChild("Scroll View").childCount; i++){
+		for(int i = 0; i < transform.FindChild("Body").FindChild("List").FindChild("Scroll View").childCount; i++){
 			slots[i] = new long[9];
-			PlayerInfo info = transform.FindChild("List").FindChild("Scroll View")
+			PlayerInfo info = transform.FindChild("Body").FindChild("List").FindChild("Scroll View")
 				.GetChild(i).GetComponent<ItemPosition>().GetPlayerInfo();
 			slots[i][0] = info.playerId;
 			slots[i][1] = info.itemSeq;
