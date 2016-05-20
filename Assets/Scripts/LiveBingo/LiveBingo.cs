@@ -15,6 +15,7 @@ public class LiveBingo : MonoBehaviour {
 	public GetCurrentLineupResponse mLineupResponse;
 	CallBingoEvent mCallEvent;
 	public CallBingoResponse mCallResponse;
+	CallBingoEvent mPowerEvent;
 	int mBingoId;
 	bool IsReload;
 	bool BoardOnly;
@@ -124,9 +125,10 @@ public class LiveBingo : MonoBehaviour {
 	void ReceivedCall(){
 		if(mCallEvent.Response == null) return;
 		mCallResponse = mCallEvent.Response;
-		if(mCallResponse.data.userRewardGold > 0)
+		if(mCallResponse.data.userRewardGold > 0){
+			UserMgr.UserInfo.gold += mCallResponse.data.userRewardGold;
 			StartCoroutine(ShowBingoResult());
-		else
+		} else
 			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("LblBingo"),
 			                         string.Format(UtilMgr.GetLocalText("StrFailBingo")
 			              , mCallResponse.data.totalRewarded
@@ -152,6 +154,7 @@ public class LiveBingo : MonoBehaviour {
 
 	void BingoDialogue(DialogueMgr.BTNS btn){
 		if(mCallResponse.data.userBlackBingoReward > 0){
+			UserMgr.UserInfo.gold += mCallResponse.data.userBlackBingoReward;
 			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("LblBingo"),
 			                         string.Format(UtilMgr.GetLocalText("StrRewardBlackBingo")
 			              , mCallResponse.data.userBlackBingoReward)
@@ -161,11 +164,34 @@ public class LiveBingo : MonoBehaviour {
 
 //	int tmp;
 	public void ResetClick(){
+		DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPowerChance1"),
+		                         string.Format(UtilMgr.GetLocalText("StrPowerChance2"), mBingoResponse.data.bingo.powerTimePrice,
+		              mBingoResponse.data.bingo.maxPowerTime,
+		              mBingoResponse.data.bingo.maxPowerTime-mBingoResponse.data.bingo.powerTimeCount)
+		                         , DialogueMgr.DIALOGUE_TYPE.YesNo, DialogPower);
+//		transform.GetComponent<LiveBingoAnimation>().ShowBlackBingo();
 //		DialogueMgr.ShowDialogue("bingo", "bingo", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 //		Reload();
 //		if(tmp++ > 10)
 //			tmp = 1;
 //		transform.GetComponent<LiveBingoAnimation>().SetGauge(tmp, true);
+	}
+
+	void DialogPower(DialogueMgr.BTNS btn){
+		if(btn == DialogueMgr.BTNS.Btn1){
+			if(UserMgr.UserInfo.gold < mBingoResponse.data.bingo.powerTimePrice){
+				DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPowerChance1"), UtilMgr.GetLocalText("StrNotEnoughGold2")					
+				              , DialogueMgr.DIALOGUE_TYPE.Alert, null);
+			} else{
+				mPowerEvent = new CallBingoEvent(ReceivedPower);
+				NetMgr.PowerMax(UserMgr.eventJoined.gameId, mBingoResponse.data.bingo.bingoId, mPowerEvent);
+			}
+		}
+	}
+
+	void ReceivedPower(){
+		UserMgr.UserInfo.gold -= mBingoResponse.data.bingo.powerTimePrice;
+		ReloadBoard();
 	}
 
 	void MarkBingo(){
@@ -189,6 +215,8 @@ public class LiveBingo : MonoBehaviour {
 			transform.GetComponent<LiveBingoAnimation>().MarkBingo("11to44");
 		if(mItemDic[14].IsCorrected && mItemDic[23].IsCorrected && mItemDic[32].IsCorrected && mItemDic[41].IsCorrected)
 			transform.GetComponent<LiveBingoAnimation>().MarkBingo("14to41");
+
+		transform.GetComponent<LiveBingoAnimation>().MarkBlackBingo();
 	}
 
 	public void CheckBingo(){

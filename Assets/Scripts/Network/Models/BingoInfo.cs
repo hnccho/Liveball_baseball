@@ -27,6 +27,50 @@ public class BingoInfo {
 	}
 
 	public class Bingo{
+		int _maxPowerTime;
+
+		public int maxPowerTime {
+			get {
+				return _maxPowerTime;
+			}
+			set {
+				_maxPowerTime = value;
+			}
+		}
+
+		int _powerTimePrice;
+
+		public int powerTimePrice {
+			get {
+				return _powerTimePrice;
+			}
+			set {
+				_powerTimePrice = value;
+			}
+		}
+
+		int _powerTimeCount;
+
+		public int powerTimeCount {
+			get {
+				return _powerTimeCount;
+			}
+			set {
+				_powerTimeCount = value;
+			}
+		}
+
+		int _powerTimeUse;
+
+		public int powerTimeUse {
+			get {
+				return _powerTimeUse;
+			}
+			set {
+				_powerTimeUse = value;
+			}
+		}
+
 		int _msgCount;
 
 		public int msgCount {

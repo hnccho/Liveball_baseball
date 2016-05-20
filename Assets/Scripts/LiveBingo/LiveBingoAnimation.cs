@@ -48,7 +48,7 @@ public class LiveBingoAnimation : MonoBehaviour {
 			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 				.FindChild("BG").FindChild("PtcFlames").localPosition = new Vector3(0, -245f);
 			if(gauge > 0){
-				GaugeUp(gauge, 1f);
+				GaugeUp(gauge, 0);
 			}
 		}
 	}
@@ -58,12 +58,14 @@ public class LiveBingoAnimation : MonoBehaviour {
 	public void GaugeUp(int gauge, float time){
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 			.FindChild("BG").FindChild("Sprite").gameObject.SetActive(true);
-		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-			.FindChild("BG").FindChild("PtcFlames").gameObject.SetActive(true);
-		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-			.FindChild("BG").FindChild("PtcFlames").FindChild("PtcFlameLeft").GetComponent<ParticleSystem>().Play();
-		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
-			.FindChild("BG").FindChild("PtcFlames").FindChild("PtcFlameRight").GetComponent<ParticleSystem>().Play();
+		if(time > 0){
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("PtcFlames").gameObject.SetActive(true);
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("PtcFlames").FindChild("PtcFlameLeft").GetComponent<ParticleSystem>().Play();
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+				.FindChild("BG").FindChild("PtcFlames").FindChild("PtcFlameRight").GetComponent<ParticleSystem>().Play();
+		}
 		
 		delegateGauge = new EventDelegate(FinishGaugeUp);
 		int height = (int)(GAUGE_HEIGHT * ((float)gauge / (float)MAX_GAUGE));
@@ -102,17 +104,33 @@ public class LiveBingoAnimation : MonoBehaviour {
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
 			.FindChild("BG").FindChild("Sprite").GetComponent<UISprite>().height = 0;
 		mGaugeCnt = 0;
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board")
+		                     .FindChild("BG").FindChild("PtcFlames").localPosition = 
+		                     new Vector3(0, (-280f));
 	}
 
 	IEnumerator ShowBingoAni(string[] items, EventDelegate eventDelegate){
-		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Result")
-			.GetComponent<BingoResult>().Bingo();
 		for(int i = 0; i < items.Length; i++){
 			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Items").FindChild(items[i])
 				.GetComponent<ItemBingo>().Bingo();
 			yield return new WaitForSeconds(0.2f);
 		}
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("Result")
+			.GetComponent<BingoResult>().Bingo();
 		eventDelegate.Execute();
+	}
+
+	public void MarkBlackBingo(){
+		if(m11to41 &&
+			m12to42 &&
+			m13to43 &&
+			m14to44 &&
+			m11to14 &&
+			m21to24 &&
+			m31to34 &&
+			m41to44 &&
+			m11to44 &&
+		   m14to41) mBlack = true;
 	}
 
 	public void MarkBingo(string name){
@@ -132,8 +150,6 @@ public class LiveBingoAnimation : MonoBehaviour {
 			m31to34 = true;
 		} else if(name.Equals("41to44")){
 			m41to44 = true;
-		} else if(name.Equals("11to41")){
-			m11to41 = true;
 		} else if(name.Equals("11to44")){
 			m11to44 = true;
 		} else if(name.Equals("14to41")){
@@ -215,8 +231,13 @@ public class LiveBingoAnimation : MonoBehaviour {
 	}
 	
 	public void ShowBlackBingo(){
-		if(!mBlack){
+		if(mBlack) return;
+		else {
 			mBlack = true;
+			StartCoroutine(ShowLineBlack());
+			EventDelegate eventDelegate = new EventDelegate(ShowLineBlack2);
+			StartCoroutine(ShowBingoAni(new string[]{"11", "21", "31", "41", "42", "32", "22", "12"
+				, "13", "23", "33", "43", "44", "34", "24", "14"}, eventDelegate));
 		}
 	}
 	
@@ -323,11 +344,61 @@ public class LiveBingoAnimation : MonoBehaviour {
 		}
 	}
 
+	IEnumerator ShowLineBlack(){
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineBlack").gameObject.SetActive(true);
+		int childCnt = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineBlack").childCount;
+		GameObject[] gos = new GameObject[childCnt];
+		for(int i = 0; i < gos.Length; i++){
+			gos[i] = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineBlack").GetChild(i).gameObject;
+		}
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineBlack").DetachChildren();
+		for(int i = 0; i < gos.Length; i++){
+			Destroy(gos[i]);
+		}
+
+		childCnt = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineBlack").childCount;
+		if(childCnt < 1){
+			for(float i = -295f; i < 296f; i += 14.75f){
+				GameObject obj = Instantiate(mDot);
+				obj.transform.parent = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineBlack");
+				obj.transform.localScale = new Vector3(1f, 1f, 1f);
+				obj.transform.localPosition = new Vector3(i, 295f);
+			}
+			yield return new WaitForSeconds(0.04f);
+			for(float j = 280.25f; j > -295f; j -= 14.75f){
+				GameObject obj = Instantiate(mDot);
+				obj.transform.parent = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineBlack");
+				obj.transform.localScale = new Vector3(1f, 1f, 1f);
+				obj.transform.localPosition = new Vector3(-295f, j);
+				obj = Instantiate(mDot);
+				obj.transform.parent = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineBlack");
+				obj.transform.localScale = new Vector3(1f, 1f, 1f);
+				obj.transform.localPosition = new Vector3(295f, j);
+				yield return new WaitForSeconds(0.04f);
+			}
+			for(float i = -295f; i < 296f; i += 14.75f){
+				GameObject obj = Instantiate(mDot);
+				obj.transform.parent = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineBlack");
+				obj.transform.localScale = new Vector3(1f, 1f, 1f);
+				obj.transform.localPosition = new Vector3(i, -295f);
+			}
+		}
+	}
+
+	public void ShowLineBlack2(){
+		int childCnt = transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineBlack").childCount;
+		for(int i = 0; i < childCnt; i++){
+			transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineBlack").GetChild(i)
+				.GetComponent<Animator>().SetTrigger("Blink");
+		}
+	}
+
 	public void DotFinish(){
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineRow").gameObject.SetActive(false);
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineCol").gameObject.SetActive(false);
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineLBtoRT").gameObject.SetActive(false);
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineLTtoRB").gameObject.SetActive(false);
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("LineBlack").gameObject.SetActive(false);
 	}
 
 	public void SetItemBlink(long playerId){

@@ -14,7 +14,8 @@ public class DialogueMgr : MonoBehaviour {
 		EventAlert_NonBg,
 		EventAlert,
 		Attendance,
-		Welcome
+		Welcome,
+		Notice
 	}
 
 	public enum BTNS
@@ -68,6 +69,10 @@ public class DialogueMgr : MonoBehaviour {
 	void Awake()
 	{
 		DontDestroyOnLoad (this);
+	}
+
+	public static void ShowNotice(){
+
 	}
 
 	public static void ShowExitDialogue(DialogClickHandler handler){

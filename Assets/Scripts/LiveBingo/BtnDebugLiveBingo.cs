@@ -51,11 +51,18 @@ public class BtnDebugLiveBingo : MonoBehaviour {
 				player = UserMgr.PlayerDic[info.data.playerId];
 			} catch{
 				player = new PlayerInfo();
-				player.korName = "선수정보없음:"+info.data.playerId;
+				if(UtilMgr.IsMLB())
+					player.lastName = "Unknown:"+info.data.playerId;
+				else
+					player.korName = "선수정보없음:"+info.data.playerId;
 			}
 
-			value += player.korName + "," + info.data.result + ","
-				+ info.data.value + ")"; break;
+			if(UtilMgr.IsMLB()){
+				value += player.lastName + "," + info.data.result + ","
+					+ info.data.value + ")"; break;}
+			else {
+				value += player.korName + "," + info.data.result + ","
+					+ info.data.value + ")"; break;}
 		case ConstantsSocketType.RES.CHANGE_PLAYER: value += "[ff00ff]Received:ChangePlayer(";
 			PlayerInfo hitter = null;
 			PlayerInfo pitcher = null;
@@ -63,15 +70,24 @@ public class BtnDebugLiveBingo : MonoBehaviour {
 				hitter = UserMgr.PlayerDic[info.data.playerId];
 			} catch{
 				hitter = new PlayerInfo();
-				hitter.korName = "선수정보없음:"+info.data.playerId;
+				if(UtilMgr.IsMLB())
+					hitter.lastName = "Unknown:"+info.data.playerId;
+				else
+					hitter.korName = "선수정보없음:"+info.data.playerId;
 			}
 			try{
 				pitcher = UserMgr.PlayerDic[info.data.pitcherId];
 			} catch{
 				pitcher = new PlayerInfo();
-				pitcher.korName = "선수정보없음:"+info.data.pitcherId;
+				if(UtilMgr.IsMLB())
+					pitcher.lastName = "Unknown:"+info.data.playerId;
+				else
+					pitcher.korName = "선수정보없음:"+info.data.pitcherId;
 			}
-			value += "hit:" + hitter.korName + ",pit:" + pitcher.korName + ")";			break;
+			if(UtilMgr.IsMLB()){
+				value += "hit:" + hitter.lastName + ",pit:" + pitcher.lastName + ")";			break;}
+			else{
+				value += "hit:" + hitter.korName + ",pit:" + pitcher.korName + ")";			break;}
 		case ConstantsSocketType.RES.RELOAD_BINGO: value += "[ffff00]Received:UpdateBingo"; break;
 		case ConstantsSocketType.RES.CHANGE_INNING: value += "[00ffff]Received:ChangeInning(";
 			value += info.data.inning + "," + info.data.inningHalf + "," + info.data.inningState + ")"; break;

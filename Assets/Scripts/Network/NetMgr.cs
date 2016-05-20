@@ -1019,6 +1019,11 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEventForRankingball(new GetTermsRequest(), baseEvent, true);
 	}
 
+	public static void PowerMax(int gameId, int bingoId, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new PowerMaxRequest(gameId, bingoId), baseEvent, true);
+	}
+
 	public static void UsePower(int gameId, int bingoId, int tailId, BaseEvent baseEvent)
 	{
 		Instance.webAPIProcessEvent(new UsePowerRequest(gameId, bingoId, tailId), baseEvent, true);

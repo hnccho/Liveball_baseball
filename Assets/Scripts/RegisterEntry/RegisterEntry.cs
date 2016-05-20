@@ -190,10 +190,10 @@ public class RegisterEntry : MonoBehaviour {
 			go.transform.FindChild("Label").GetComponent<UILabel>().text = (i+1)+"";
 			go.transform.GetComponent<ItemPosition>().SetUndesignated();
 
-			go.transform.FindChild("BG").GetComponents<UIDragScrollView>()[0].scrollView
-				= transform.FindChild("Body").FindChild("List").FindChild("Scroll View").GetComponent<UIScrollView>();
-			go.transform.FindChild("BG").GetComponents<UIDragScrollView>()[1].scrollView
-				= transform.FindChild("Body").GetComponent<UIScrollView>();
+//			go.transform.FindChild("BG").GetComponents<UIDragScrollView>()[0].scrollView
+//				= transform.FindChild("Body").FindChild("List").FindChild("Scroll View").GetComponent<UIScrollView>();
+//			go.transform.FindChild("BG").GetComponents<UIDragScrollView>()[1].scrollView
+//				= transform.FindChild("Body").GetComponent<UIScrollView>();
 		}
 		transform.FindChild("Body").FindChild("List").FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();
 
@@ -238,7 +238,7 @@ public class RegisterEntry : MonoBehaviour {
 			}
 		}
 
-		transform.FindChild("Btm").GetComponent<BtmInfo>()
+		transform.FindChild("Body").FindChild("Btm").GetComponent<BtmInfo>()
 			.SetBtmInfo(transform.FindChild("Body").FindChild("List").FindChild("Scroll View"));
 
 		mLineup = null;
