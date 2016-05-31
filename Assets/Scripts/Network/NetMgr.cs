@@ -1124,8 +1124,10 @@ public class NetMgr : MonoBehaviour{
 			for(int i = 0; i < msgArr.Length; i++){
 //				Debug.Log("Received(" + i + ") : " + msgArr[i]);
 				SocketMsgInfo msgInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<SocketMsgInfo>(msgArr[i]);
-				if(!UtilMgr.OnPause)
+				if(!UtilMgr.OnPause
+				   && UtilMgr.GetLastBackState() == UtilMgr.STATE.LiveBingo){
 					mSocketMsgList.Add(msgInfo);
+				}
 			}
 			mRecvSemaphore = false;
 		}

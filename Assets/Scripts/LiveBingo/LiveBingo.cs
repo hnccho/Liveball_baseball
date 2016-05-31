@@ -478,9 +478,15 @@ public class LiveBingo : MonoBehaviour {
 			item.Target.GetComponent<ItemBingoList>().Init(joinInfo);
 
 			if(!UserMgr.eventJoined.status.Equals("Scheduled")){
-				if(index < 1){
+				int lockCnt = 1;
+				if(UtilMgr.IsMLB()){
+					lockCnt = 2;
+				}
+
+				if(index < lockCnt){
 					item.Target.GetComponent<ItemBingoList>().SetToLocking();
 				}
+
 			}
 		});
 

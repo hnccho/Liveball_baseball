@@ -26,6 +26,8 @@ public class MyContests : MonoBehaviour {
 
 	public void Init(string title, ContestDataEvent contestEvent){
 		mList = contestEvent.Response.data;
+		transform.gameObject.SetActive(true);
+		transform.localPosition = new Vector3(1000f, 0);
 		transform.FindChild("Top").FindChild("LblTitle").GetComponent<UILabel>().text = title;
 
 		int totalTickets = 0;
@@ -80,7 +82,12 @@ public class MyContests : MonoBehaviour {
 			InitRecentList();
 		}
 
+		InitEnded();
+	}
 
+	void InitEnded(){
+		UtilMgr.AddBackState(UtilMgr.STATE.MyContests);
+		UtilMgr.AnimatePageToLeft("Lobby", "MyContests");
 	}
 
 	void InitUpcomingList(){

@@ -7,6 +7,7 @@ public class ContestDataRequest : BaseRequest {
 	public ContestDataRequest(int status)
 	{
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
+//		Add ("memSeq", 10004);
 		Add ("status", status);
 
 //		mParams = JsonFx.Json.JsonWriter.Serialize (this);

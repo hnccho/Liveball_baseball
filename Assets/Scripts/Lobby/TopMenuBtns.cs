@@ -50,33 +50,23 @@ public class TopMenuBtns : MonoBehaviour {
 	}
 
 	void ReceivedUpcoming(){
-		UtilMgr.AddBackState(UtilMgr.STATE.MyContests);
-//		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
-//		                    transform.root.FindChild("Lobby").gameObject,
-//		                    transform.root.FindChild("MyContests").gameObject);
-		UtilMgr.AnimatePageToLeft("Lobby", "MyContests");
-
+//		UtilMgr.AddBackState(UtilMgr.STATE.MyContests);
+//		UtilMgr.AnimatePageToLeft("Lobby", "MyContests");
 		transform.root.FindChild("MyContests").GetComponent<MyContests>().Init(
 			UtilMgr.GetLocalText("LblUpcomingContests"), mContestEvent);
 	}
 
 	void ReceivedLive(){
-		UtilMgr.AddBackState(UtilMgr.STATE.MyContests);
-//		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
-//		                    transform.root.FindChild("Lobby").gameObject,
-//		                    transform.root.FindChild("MyContests").gameObject);
-		UtilMgr.AnimatePageToLeft("Lobby", "MyContests");
+//		UtilMgr.AddBackState(UtilMgr.STATE.MyContests);
+//		UtilMgr.AnimatePageToLeft("Lobby", "MyContests");
 
 		transform.root.FindChild("MyContests").GetComponent<MyContests>().Init(
 			UtilMgr.GetLocalText("LblLive"), mContestEvent);
 	}
 
 	void ReceivedRecent(){
-		UtilMgr.AddBackState(UtilMgr.STATE.MyContests);
-//		UtilMgr.AnimatePage(UtilMgr.DIRECTION.ToLeft,
-//		                    transform.root.FindChild("Lobby").gameObject,
-//		                    transform.root.FindChild("MyContests").gameObject);
-		UtilMgr.AnimatePageToLeft("Lobby", "MyContests");
+//		UtilMgr.AddBackState(UtilMgr.STATE.MyContests);
+//		UtilMgr.AnimatePageToLeft("Lobby", "MyContests");
 
 		transform.root.FindChild("MyContests").GetComponent<MyContests>().Init(
 			UtilMgr.GetLocalText("LblSettledEntries"), mContestEvent);

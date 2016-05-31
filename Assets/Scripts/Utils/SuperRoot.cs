@@ -47,7 +47,7 @@ public class SuperRoot : MonoBehaviour {
 			UtilMgr.PauseTime = System.DateTime.Now;
 		} else{
 			System.TimeSpan timeDiff = System.DateTime.Now - UtilMgr.PauseTime;
-			Debug.Log("hours : "+timeDiff.Hours+", minutes : "+timeDiff.Minutes+", secs : "+timeDiff.Seconds);
+//			Debug.Log("hours : "+timeDiff.Hours+", minutes : "+timeDiff.Minutes+", secs : "+timeDiff.Seconds);
 
 			if(timeDiff.Minutes > 29){
 				AutoFade.LoadLevel("Login"); return;
