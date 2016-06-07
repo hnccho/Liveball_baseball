@@ -21,5 +21,6 @@ namespace ConstantsSocketType{
 		public const int CHANGE_PLAYER = 5043;
 		public const int RENEW_BINGO = 5044;
 		public const int RELOAD_BINGO = 5045;
+		public const int GAME_ENDED = 5046;
 	}
 }

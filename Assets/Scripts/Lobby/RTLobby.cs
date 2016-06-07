@@ -265,13 +265,13 @@ public class RTLobby : MonoBehaviour {
 				item.FindChild("BtnEnter").FindChild("LblEnter").GetComponent<UILabel>().text =
 					UtilMgr.GetLocalText("StrGameReady");
 				item.FindChild("BtnEnter").FindChild("Background").GetComponent<UISprite>().color
-					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+					= new Color(255f / 255f, 91f / 255f, 16f / 255f);
 				item.FindChild("BtnEnter").GetComponent<UIButton>().defaultColor
-					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+					= new Color(255f / 255f, 91f / 255f, 16f / 255f);
 				item.FindChild("BtnEnter").GetComponent<UIButton>().hover
-					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+					= new Color(255f / 255f, 91f / 255f, 16f / 255f);
 				item.FindChild("BtnEnter").GetComponent<UIButton>().pressed
-					= new Color(102f / 255f, 102f / 255f, 102f / 255f);
+					= new Color(255f / 255f, 91f / 255f, 16f / 255f);
 				item.FindChild("Top").FindChild("SprLive").gameObject.SetActive(false);
 
 				string strMin = min+" ";

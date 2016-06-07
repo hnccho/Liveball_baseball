@@ -91,7 +91,9 @@ public class QuizMgr : MonoBehaviour {
 			bingo.ChangePlayer(msgInfo);
 //			bingo.ReloadLineup(msgInfo);
 			break;
-
+		case ConstantsSocketType.RES.GAME_ENDED:
+			bingo.ShowGameEnded();
+			break;
 		}
 
 

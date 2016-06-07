@@ -56,6 +56,7 @@ public class LiveBingo : MonoBehaviour {
 	}
 
 	public void Init(){
+		mCanGet = 0;
 		if(UtilMgr.GetLastBackState() != UtilMgr.STATE.LiveBingo){
 			transform.root.FindChild("LiveBingo").gameObject.SetActive(true);
 			transform.root.FindChild("LiveBingo").localPosition = new Vector3(2000f, 0);
@@ -756,6 +757,15 @@ public class LiveBingo : MonoBehaviour {
 		transform.FindChild("Body").gameObject.SetActive(true);
 		UtilMgr.AddBackState(UtilMgr.STATE.LiveBingo);
 		UtilMgr.AnimatePageToLeft("Lobby", "LiveBingo");
+
+		if(UserMgr.eventJoined.status.Equals("Final")){
+			ShowGameEnded();
+		}
+	}
+
+	public void ShowGameEnded(){
+		DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("LblLiveBingo"),
+		                         UtilMgr.GetLocalText("StrBingoEnded"), DialogueMgr.DIALOGUE_TYPE.Alert, null);
 	}
 
 	public void OnPitcherClick(){
@@ -769,5 +779,13 @@ public class LiveBingo : MonoBehaviour {
 
 		if(player == null) return;
 		transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>().Init(player, null);
+	}
+
+	public void OnBackClick(){
+		if(mCanGet > 0){
+			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("LblLiveBingo"), 
+			                         UtilMgr.GetLocalText("StrBingoRemained"), DialogueMgr.DIALOGUE_TYPE.Alert, null);
+		} else
+			transform.root.GetComponent<SuperRoot>().OnBackPressed();
 	}
 }
