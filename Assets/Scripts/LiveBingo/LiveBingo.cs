@@ -21,6 +21,7 @@ public class LiveBingo : MonoBehaviour {
 	bool BoardOnly;
 	int mCanGet;
 	bool IsNotReady;
+	bool IsEnded;
 	public int mMsgCount;
 
 	public Dictionary<int, ItemBingo> mItemDic;
@@ -70,6 +71,7 @@ public class LiveBingo : MonoBehaviour {
 		IsReload = false;
 		BoardOnly = false;
 		IsNotReady = false;
+		IsEnded = UserMgr.eventJoined.status.Equals("Final") ? true : false;
 
 		ClearBoard();
 		mItemDic = new Dictionary<int, ItemBingo>();
@@ -90,7 +92,11 @@ public class LiveBingo : MonoBehaviour {
 		if(IsNotReady) return;
 
 		InitBingoBtn();
-		InitResetBtn();
+		if(IsEnded){
+			DisableResetBtn();
+		} else{
+			InitResetBtn();
+		}
 
 		if(BoardOnly){
 			BoardOnly = false;
@@ -430,6 +436,10 @@ public class LiveBingo : MonoBehaviour {
 		                  .FindChild("Texture").GetComponent<UITexture>());
 				
 		btm.FindChild("Draggable").GetComponent<UIDraggablePanel2>().RemoveAll();
+		if(IsEnded){
+			ShowGameEnded();
+			return;
+		}
 //		UtilMgr.ClearList(btm.FindChild("Draggable"));
 		btm.FindChild("Draggable").GetComponent<UIPanel>().clipOffset = new Vector2(0, 50f);
 		btm.FindChild("Draggable").localPosition = new Vector3(0, -283f);
@@ -681,6 +691,17 @@ public class LiveBingo : MonoBehaviour {
 			GetComponent<UIButton>().isEnabled = true;
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnReset").FindChild("Sprite2")
 			.GetComponent<UISprite>().color = new Color(0, 106f/255f, 216f/255f);
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnReset").FindChild("Background")
+			.GetComponent<UISprite>().color = new Color(0, 106f/255f, 216f/255f);
+	}
+
+	void DisableResetBtn(){
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnReset").
+			GetComponent<UIButton>().isEnabled = false;
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnReset").FindChild("Sprite2")
+			.GetComponent<UISprite>().color = new Color(128f/255f, 128f/255f, 128f/255f);
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnReset").FindChild("Background")
+			.GetComponent<UISprite>().color = new Color(128f/255f, 128f/255f, 128f/255f);
 	}
 
 	void SetNotReady(){
@@ -733,10 +754,7 @@ public class LiveBingo : MonoBehaviour {
 		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnBingo")
 			.GetComponent<UIButton>().isEnabled = false;
 
-		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnReset").
-			GetComponent<UIButton>().isEnabled = false;
-		transform.FindChild("Body").FindChild("Scroll View").FindChild("Board").FindChild("BtnReset").FindChild("Sprite2")
-			.GetComponent<UISprite>().color = new Color(128f/255f, 128f/255f, 128f/255f);
+		DisableResetBtn();
 
 		btm.FindChild("Draggable").GetComponent<UIDraggablePanel2>().RemoveAll();
 
@@ -761,6 +779,11 @@ public class LiveBingo : MonoBehaviour {
 		if(UserMgr.eventJoined.status.Equals("Final")){
 			ShowGameEnded();
 		}
+	}
+
+	public void GameEnded(){
+		UserMgr.eventJoined.status = "Final";
+		Init ();
 	}
 
 	public void ShowGameEnded(){

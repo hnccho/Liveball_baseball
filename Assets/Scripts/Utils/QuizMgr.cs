@@ -92,7 +92,8 @@ public class QuizMgr : MonoBehaviour {
 //			bingo.ReloadLineup(msgInfo);
 			break;
 		case ConstantsSocketType.RES.GAME_ENDED:
-			bingo.ShowGameEnded();
+//			bingo.ShowGameEnded();
+			bingo.GameEnded();
 			break;
 		}
 

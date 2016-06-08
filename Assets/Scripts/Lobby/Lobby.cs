@@ -22,7 +22,8 @@ public class Lobby : MonoBehaviour {
 
 		if(UserMgr.LoginInfo.joinFreeGold > 0){
 			DialogueMgr.ShowAttendanceDialogue(DialogueMgr.DIALOGUE_TYPE.Welcome, CloseAttendance);
-		} else if(UserMgr.LoginInfo.freeGold > 0){
+		} else if(UserMgr.LoginInfo.freeGold > 0
+		          || UserMgr.LoginInfo.freeTicket > 0){
 			DialogueMgr.ShowAttendanceDialogue(DialogueMgr.DIALOGUE_TYPE.Attendance, CloseAttendance);
 		}
 
