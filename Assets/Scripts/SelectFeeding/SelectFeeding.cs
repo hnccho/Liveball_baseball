@@ -129,7 +129,7 @@ public class SelectFeeding : MonoBehaviour {
 		tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().color
 			= new Color(1f, 1f, 1f, 50f/255f);
 		
-		UtilMgr.LoadImage(info.photoUrl,
+		UtilMgr.LoadImage(info.playerFK,
 		                  tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>());
 	
 	}

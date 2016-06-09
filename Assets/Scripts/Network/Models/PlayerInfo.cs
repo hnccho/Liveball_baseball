@@ -766,4 +766,15 @@ public class PlayerInfo {
 			_currentBatter = value;
 		}
 	}
+
+	string _versionNo;
+
+	public string versionNo {
+		get {
+			return _versionNo;
+		}
+		set {
+			_versionNo = value;
+		}
+	}
 }

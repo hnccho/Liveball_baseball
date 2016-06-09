@@ -657,6 +657,7 @@
      <Compile Include="Assets\Scripts\Network\Events\JoinGameEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\JoinQuizEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\LoginEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\NoticeEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\OpenCardPackEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\PlayerGameInfoEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\PlayerNewsInfoEvent.cs" />
@@ -723,6 +724,7 @@
      <Compile Include="Assets\Scripts\Network\Models\Mailinfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\NotiMsgInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\NotiQuizInfo.cs" />
+     <Compile Include="Assets\Scripts\Network\Models\NoticeInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\OrderInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\ParticipantRankInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\PlayInfo.cs" />
@@ -858,6 +860,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\LoginGuestRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\LoginRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\MergeMembershipRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\NoticeRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\OpenCardPackRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\OrderNoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\PlayerGameInfoRequest.cs" />
@@ -940,6 +943,7 @@
      <Compile Include="Assets\Scripts\Network\Responses\GetTermsResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\IAPResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\LoginResponse.cs" />
+     <Compile Include="Assets\Scripts\Network\Responses\NoticeResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\OpenCardPackResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\PlayerGameInfoResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\PlayerNewsInfoResponse.cs" />
@@ -957,6 +961,7 @@
      <Compile Include="Assets\Scripts\Network\Responses\checkRecentMessageResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\procStoreGachaResponse.cs" />
      <Compile Include="Assets\Scripts\Network\UserMgr.cs" />
+     <Compile Include="Assets\Scripts\Notice\Notice.cs" />
      <Compile Include="Assets\Scripts\PlayerCard\BtnCardPage.cs" />
      <Compile Include="Assets\Scripts\PlayerCard\PlayerCard.cs" />
      <Compile Include="Assets\Scripts\PlayerCard\PlayerCardAnimation.cs" />

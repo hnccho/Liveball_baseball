@@ -175,7 +175,7 @@ public class CardPowerUp : MonoBehaviour {
 			FindChild("LvlLv").FindChild("Label").GetComponent<UILabel>().text = info.cardLevel+"";
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
 			FindChild("Panel2").FindChild("Button").gameObject.SetActive(false);
-		UtilMgr.LoadImage(info.photoUrl,
+		UtilMgr.LoadImage(info.playerFK,
 		                  tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
 		                  FindChild("Panel").FindChild("Photo").GetComponent<UITexture>());
 		tf.FindChild("FeedingCardPowerUp").FindChild("PowerUp").FindChild(""+(i+1)).
@@ -242,7 +242,7 @@ public class CardPowerUp : MonoBehaviour {
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Button").gameObject.SetActive(false);
 		tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("LblSelectPlayer2").gameObject.SetActive(false);
 
-		UtilMgr.LoadImage(info.photoUrl,
+		UtilMgr.LoadImage(info.playerFK,
 			tf.FindChild("FeedingCardPowerUp").FindChild("RankUp").FindChild("Frame").FindChild("Panel")
 		                  .FindChild("Texture").GetComponent<UITexture>());
 	}

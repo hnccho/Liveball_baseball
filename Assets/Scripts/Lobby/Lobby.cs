@@ -4,6 +4,7 @@ using System.Collections;
 public class Lobby : MonoBehaviour {
 
 	GetLobbyInfoEvent mLobbyEvent;
+
 	public UtilMgr.STATE mState;
 	public GameObject mBodyItem;
 
@@ -20,14 +21,18 @@ public class Lobby : MonoBehaviour {
 	public void FirstInit(){
 		transform.gameObject.SetActive(true);
 
+		transform.root.FindChild("Notice").GetComponent<Notice>().Init();
+
+		Init ();
+	}
+
+	public void CheckAttendance(){
 		if(UserMgr.LoginInfo.joinFreeGold > 0){
 			DialogueMgr.ShowAttendanceDialogue(DialogueMgr.DIALOGUE_TYPE.Welcome, CloseAttendance);
 		} else if(UserMgr.LoginInfo.freeGold > 0
 		          || UserMgr.LoginInfo.freeTicket > 0){
 			DialogueMgr.ShowAttendanceDialogue(DialogueMgr.DIALOGUE_TYPE.Attendance, CloseAttendance);
 		}
-
-		Init ();
 	}
 
 	void CloseAttendance(DialogueMgr.BTNS btn){

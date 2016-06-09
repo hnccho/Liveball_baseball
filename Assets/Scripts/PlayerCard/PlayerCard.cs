@@ -673,7 +673,7 @@ public class PlayerCard : MonoBehaviour {
 		}
 
 		if(mPhoto == null){
-			UtilMgr.LoadImage(mPlayerInfo.photoUrl,
+			UtilMgr.LoadImage(mPlayerInfo.playerId,
 			                  transform.FindChild("Body").FindChild("Info").FindChild ("KBO").FindChild("Panel")
 			                  .FindChild("Photo").GetComponent<UITexture>());
 		} else

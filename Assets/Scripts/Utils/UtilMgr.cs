@@ -781,6 +781,51 @@ public class UtilMgr : MonoBehaviour {
 		}
 	}
 
+	public static void LoadImage(long playerId, UITexture texture){
+		PlayerInfo info = null;
+		try{
+			info = UserMgr.PlayerDic[playerId];
+		} catch{
+			Debug.Log("Unknown Player : "+playerId);
+		}
+		if(info == null) return;
+		LoadImage(info.photoUrl, info.versionNo, texture);
+	}
+
+	static void LoadImage(string url, string versionNo, UITexture texture){
+		if(url == null || url.Length < 1) return;
+		
+		int pngIdx = url.LastIndexOf(".");
+		int slashIdx = url.LastIndexOf("/", pngIdx);
+		int length = pngIdx - slashIdx;
+		string fileName = url.Substring(slashIdx, length);
+		//		Debug.Log("pngIdx : "+pngIdx+", slashIdx : "+slashIdx);
+		string filePath = "";
+		if(UtilMgr.IsMLB())
+			filePath = Application.temporaryCachePath + "/" + fileName + versionNo + ".png";
+		else
+			filePath = Application.temporaryCachePath + "/" + fileName + versionNo + ".jpg";
+		
+		if(File.Exists(filePath)){
+			//			Debug.Log("have image : " + filePath);
+			FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+			
+			if(fs.Length < 10){
+				File.Delete(filePath);
+				Instance.StartCoroutine(Instance.LoadingImage (url, texture, filePath));
+			}
+			
+			byte[] bytes = new byte[fs.Length];
+			fs.Read(bytes, 0, (int)fs.Length);
+			Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
+			temp.LoadImage(bytes);
+			texture.mainTexture = temp;
+			texture.color = new Color(1f, 1f, 1f, 1f);
+		} else{
+			Instance.StartCoroutine(Instance.LoadingImage (url, texture, filePath));
+		}
+	}
+
 	public static void LoadImage(string url, UITexture texture){
 		if(url == null || url.Length < 1) return;
 

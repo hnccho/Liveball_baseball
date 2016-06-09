@@ -217,7 +217,7 @@ public class SelectPlayer : MonoBehaviour {
 				.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().color
 				= new Color(1f, 1f, 1f, 50f/255f);
 
-			UtilMgr.LoadImage(info.photoUrl
+			UtilMgr.LoadImage(info.playerId
 				, tf.FindChild("BtnPhoto")
 				.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>());
 

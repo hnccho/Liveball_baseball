@@ -17,19 +17,19 @@ public class ItemRT : MonoBehaviour {
 
 	public void LoadImage(){
 		if(mEventInfo.inningHalf.Equals("T")){
-			UtilMgr.LoadImage(mEventInfo.hitterPhoto,
+			UtilMgr.LoadImage(mEventInfo.currentHitterId,
 		                  transform.FindChild("Players").FindChild("Left").FindChild("Frame")
 		                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());		
 		
-			UtilMgr.LoadImage(mEventInfo.pitcherPhoto,
+			UtilMgr.LoadImage(mEventInfo.currentPitcherId,
 		                  transform.FindChild("Players").FindChild("Right").FindChild("Frame")
 		                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 		} else{
-			UtilMgr.LoadImage(mEventInfo.hitterPhoto,
+			UtilMgr.LoadImage(mEventInfo.currentHitterId,
 		                  transform.FindChild("Players").FindChild("Right").FindChild("Frame")
 		                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 		
-			UtilMgr.LoadImage(mEventInfo.pitcherPhoto,
+			UtilMgr.LoadImage(mEventInfo.currentPitcherId,
 		                  transform.FindChild("Players").FindChild("Left").FindChild("Frame")
 		                  .FindChild("Photo").FindChild("TxtPlayer").GetComponent<UITexture>());
 		}

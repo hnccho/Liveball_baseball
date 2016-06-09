@@ -16,7 +16,7 @@ public class ItemPosition : MonoBehaviour {
 	void Update () {
 		if(mNeedPhoto){
 //			StartCoroutine(LoadImage(mPlayerInfo.photoUrl, transform.FindChild("Photo").GetComponent<UITexture>()));
-			UtilMgr.LoadImage(mPlayerInfo.photoUrl, transform.FindChild("Photo").GetComponent<UITexture>());
+			UtilMgr.LoadImage(mPlayerInfo.playerId, transform.FindChild("Photo").GetComponent<UITexture>());
 			mNeedPhoto = false;
 		}
 	}

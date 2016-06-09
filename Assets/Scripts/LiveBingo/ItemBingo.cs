@@ -100,7 +100,7 @@ public class ItemBingo : MonoBehaviour {
 
 		transform.FindChild("Player").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().width = 72;
 		transform.FindChild("Player").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().height = 90;
-		UtilMgr.LoadImage(mBingoBoard.photoUrl,
+		UtilMgr.LoadImage(mBingoBoard.playerId,
 		                  transform.FindChild("Player").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>());
 		transform.FindChild("Team").FindChild("LblGuess").gameObject.SetActive(true);
 	}

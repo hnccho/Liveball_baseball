@@ -1065,6 +1065,10 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEventToAuth(new GetCurrentLineupRequest(gameId, inning, bingoId), baseEvent, false, true);
 	}
 
+	public static void GetNotice(BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new NoticeRequest(), baseEvent, true);
+	}
+
 	public static void SendSocketMsg(String msg) {
 		mSendBuffer = Encoding.UTF8.GetBytes(msg);
 		

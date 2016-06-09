@@ -431,7 +431,7 @@ public class LiveBingo : MonoBehaviour {
 			.FindChild("Texture").GetComponent<UITexture>().width = 72;
 		btm.FindChild("Info").FindChild("SprCircle").FindChild("Photo").FindChild("Panel")
 			.FindChild("Texture").GetComponent<UITexture>().height = 90;
-				UtilMgr.LoadImage(mPitcher.photoUrl,
+				UtilMgr.LoadImage(mPitcher.playerId,
 		                  btm.FindChild("Info").FindChild("SprCircle").FindChild("Photo").FindChild("Panel")
 		                  .FindChild("Texture").GetComponent<UITexture>());
 				
@@ -464,7 +464,7 @@ public class LiveBingo : MonoBehaviour {
 				= UtilMgr.GetTextureDefault();
 			button.FindChild("Photo").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().width = 72;
 			button.FindChild("Photo").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().height = 90;
-			UtilMgr.LoadImage(mSortedLineup[index].photoUrl,
+			UtilMgr.LoadImage(mSortedLineup[index].playerId,
 			                  button.FindChild("Photo").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>());
 
 			JoinQuizInfo joinInfo = new JoinQuizInfo();
