@@ -22,6 +22,7 @@ public sealed class Common
 
 
 
+
 	static Transform FindTransformDontRoot(Transform root, Transform target, string name)            // 자기 자신은 검색에서 제외
 	{
 		if (target == null) return null;
