@@ -36,6 +36,7 @@ public class CardPowerUp : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 //		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
+		transform.FindChild("Body").FindChild("Scroll").GetComponent<UIScrollView>().ResetPosition();
 	}
 	
 	// Update is called once per frame
