@@ -3,7 +3,7 @@
 using UnityEngine;
 using System.Collections;
 
-public sealed class Common
+public sealed class Com
 {
 
 	public static void LOOG(params object[] obj)
@@ -83,5 +83,68 @@ public sealed class Common
 		}
 		return null;
 	}
+
+
+
+
+
+
+
+
+    public static UIRoot GetUIRoot()
+    {
+        if (UIRoot.list != null && UIRoot.list.Count > 0)
+        {
+            return UIRoot.list[0];
+        }
+        return null;
+    }
+
+    public static Camera NUI_Camera()
+    {
+        return UICamera.currentCamera;
+    }
+
+    public static UIButton Find_UIButton(Transform mat, params string[] name)
+    {
+        Transform find = FindTransform(mat, name);
+        if (find)
+            return find.GetComponent<UIButton>();
+        else
+            return null;
+    }
+    public static UILabel Find_UILabel(Transform mat, params string[] name)
+    {
+        Transform find = FindTransform(mat, name);
+        if (find)
+            return find.GetComponent<UILabel>();
+        else
+            return null;
+    }
+    public static UISprite Find_UISprite(Transform mat, params string[] name)
+    {
+        Transform find = FindTransform(mat, name);
+        if (find)
+            return find.GetComponent<UISprite>();
+        else
+            return null;
+    }
+    public static Animator Find_Animator(Transform mat, params string[] name)
+    {
+        Transform find = FindTransform(mat, name);
+        if (find)
+            return find.GetComponent<Animator>();
+        else
+            return null;
+    }
+    public static Animation Find_Animation(Transform mat, params string[] name)
+    {
+        Transform find = FindTransform(mat, name);
+        if (find)
+            return find.GetComponent<Animation>();
+        else
+            return null;
+    }
+
 
 }
