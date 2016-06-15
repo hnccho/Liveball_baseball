@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerNewsInfoResponse : BaseResponse {
-	PlayerNewsInfo _data;
+	List<PlayerNewsInfo> _data;
 
-	public PlayerNewsInfo data {
+	public List<PlayerNewsInfo> data {
 		get {
 			return _data;
 		}

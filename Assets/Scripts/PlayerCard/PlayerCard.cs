@@ -25,6 +25,9 @@ public class PlayerCard : MonoBehaviour {
 	public GameObject mItemGameArticlesH;
 	public GameObject mItemGameSubH;
 	public GameObject mItemGameSubP;
+	public GameObject mItemNewsDay;
+	public GameObject mItemNewsTitle;
+	public GameObject mItemNewsContent;
 
 	List<float> mPlayerGraphData;
 	List<float> mAvgGraphData;
@@ -684,7 +687,61 @@ public class PlayerCard : MonoBehaviour {
 	}
 
 	void InitNews(){
+		if(mNewsEvent.Response.data == null
+		   || mNewsEvent.Response.data.Count < 1) return;
 
+		transform.FindChild("Body").FindChild("Changeables").FindChild("News").gameObject.SetActive(true);
+		UtilMgr.ClearList(
+			transform.FindChild("Body").FindChild("Changeables").FindChild("News").FindChild("Scroll View"));
+		
+		string newsDay = "";
+		float height = 390f;
+//		int colorIndicator = 0;
+		for(int i = 0; i < mNewsEvent.Response.data.Count; i++){
+			GameObject go = null;
+			PlayerNewsInfo info = mNewsEvent.Response.data[i];
+			if(!newsDay.Equals(info.newsDay)){
+				newsDay = info.newsDay;
+				go = Instantiate(mItemNewsDay);
+				go.transform.parent = transform.FindChild("Body").FindChild("Changeables").FindChild("News").FindChild("Scroll View");
+				height -= 30f;
+				go.transform.localPosition = new Vector3(0, height);
+				height -= 30f;
+				go.transform.localScale = new Vector3(1f, 1f, 1f);
+				go.transform.FindChild("Label").GetComponent<UILabel>().text = info.newsDay;
+			}
+			go = Instantiate(mItemNewsTitle);
+			
+			go.transform.parent = transform.FindChild("Body").FindChild("Changeables").FindChild("News").FindChild("Scroll View");
+			go.transform.FindChild("Label").GetComponent<UILabel>().text = info.title;
+			float h = (float)go.transform.FindChild("Label").GetComponent<UILabel>().height;
+			h += 20f;
+			go.transform.FindChild("BG").localPosition = new Vector3(0, 10f);
+			go.transform.FindChild("BG").GetComponent<UISprite>().height = (int)h;
+			go.transform.FindChild("BG").GetComponent<BoxCollider2D>().size = new Vector2(680f, h);
+			go.transform.FindChild("BG").GetComponent<BoxCollider2D>().offset = new Vector2(0, 0);
+			height -= h / 2f;
+			go.transform.localPosition = new Vector3(0, height);
+			height -= h / 2f;
+			go.transform.localScale = new Vector3(1f, 1f, 1f);
+
+			go = Instantiate(mItemNewsContent);
+			
+			go.transform.parent = transform.FindChild("Body").FindChild("Changeables").FindChild("News").FindChild("Scroll View");
+			go.transform.FindChild("Label").GetComponent<UILabel>().text = info.content;
+			h = (float)go.transform.FindChild("Label").GetComponent<UILabel>().height;
+			h += 20f;
+			go.transform.FindChild("BG").GetComponent<UISprite>().height = (int)h;
+			go.transform.FindChild("BG").GetComponent<BoxCollider2D>().size = new Vector2(680f, h);
+			height -= h / 2f;
+			go.transform.localPosition = new Vector3(0, height);
+			height -= h / 2f;
+			go.transform.localScale = new Vector3(1f, 1f, 1f);
+
+
+		}
+		transform.FindChild("Body").FindChild("Changeables").FindChild("News").FindChild("Scroll View")
+			.GetComponent<UIScrollView>().ResetPosition();
 	}
 
 	void GetInfos(){		

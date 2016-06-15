@@ -561,7 +561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &111516
 GameObject:
   m_ObjectHideFlags: 1
@@ -2764,7 +2764,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &142866
 GameObject:
   m_ObjectHideFlags: 1
@@ -3881,6 +3881,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &160924
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 492472}
+  - 114: {fileID: 11405438}
+  - 114: {fileID: 11487392}
+  m_Layer: 5
+  m_Name: Scroll View
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &161208
 GameObject:
   m_ObjectHideFlags: 1
@@ -4847,7 +4864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &176036
 GameObject:
   m_ObjectHideFlags: 1
@@ -4976,7 +4993,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &178046
 GameObject:
   m_ObjectHideFlags: 1
@@ -7323,7 +7340,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 498404}
-  - {fileID: 445412}
+  - {fileID: 492472}
   m_Father: {fileID: 487070}
   m_RootOrder: 2
 --- !u!4 &420358
@@ -8448,7 +8465,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -186, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 420172}
+  m_Father: {fileID: 470084}
   m_RootOrder: 1
 --- !u!4 &445488
 Transform:
@@ -9479,6 +9496,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 403126}
+  - {fileID: 445412}
   m_Father: {fileID: 487070}
   m_RootOrder: 3
 --- !u!4 &470728
@@ -10386,6 +10404,18 @@ Transform:
   - {fileID: 417558}
   m_Father: {fileID: 469394}
   m_RootOrder: 0
+--- !u!4 &492472
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -186, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 420172}
+  m_RootOrder: 1
 --- !u!4 &493038
 Transform:
   m_ObjectHideFlags: 1
@@ -11206,7 +11236,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3073
+  startingRenderQueue: 3013
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -12183,6 +12213,51 @@ MonoBehaviour:
   mAtlas: {fileID: 11466982, guid: 77f33905a643e4432ab0003661390de4, type: 2}
   mSpriteName: playercard_diagram_1
   mFillCenter: 1
+--- !u!114 &11405438
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  showInPanelTool: 1
+  generateNormals: 0
+  widgetsAreStatic: 0
+  cullWhileDragging: 1
+  alwaysOnScreen: 0
+  anchorOffset: 0
+  softBorderPadding: 1
+  renderQueue: 0
+  startingRenderQueue: 3027
+  mClipTexture: {fileID: 0}
+  mAlpha: 1
+  mClipping: 3
+  mClipRange: {x: 0, y: 0, z: 680, w: 780}
+  mClipSoftness: {x: 0, y: 0}
+  mDepth: 595
+  mSortingOrder: 0
+  mClipOffset: {x: 0, y: 0}
 --- !u!114 &11405718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23103,6 +23178,9 @@ MonoBehaviour:
   mItemGameArticlesH: {fileID: 135434, guid: 9218b6c953fb14373adb744ecb9a8be3, type: 2}
   mItemGameSubH: {fileID: 183128, guid: 8bbc019d8412c40a1ab4e67d5039da54, type: 2}
   mItemGameSubP: {fileID: 139372, guid: 44188db4bcfad45ccb0498d73576b107, type: 2}
+  mItemNewsDay: {fileID: 192158, guid: fce40684198ad4a8393ab66be8f39277, type: 2}
+  mItemNewsTitle: {fileID: 127058, guid: c09496240f64a4845ac07150b528ef98, type: 2}
+  mItemNewsContent: {fileID: 197268, guid: f94e21d164d2d4ebbb663f5d4df2f10d, type: 2}
 --- !u!114 &11465338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -24757,7 +24835,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3011
+  startingRenderQueue: 3025
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -25294,7 +25372,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3094
+  startingRenderQueue: 3028
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -27077,6 +27155,42 @@ MonoBehaviour:
   mAtlas: {fileID: 11412872, guid: e49943f5dd1a448e99c441f55aebc3c4, type: 2}
   mSpriteName: btn_icon_plus
   mFillCenter: 1
+--- !u!114 &11487392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81807633ea807d4c8e3fff7e10c6000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: 1
+  dragEffect: 2
+  restrictWithinPanel: 1
+  disableDragIfFits: 0
+  smoothDragStart: 1
+  iOSDragEmulation: 1
+  CoverFlow: 0
+  CoverFlowItem: {fileID: 0}
+  CoverFlowCount: 0
+  Size: {x: 0, y: 0}
+  BenchmarkSize: 0
+  DefaultSize: {x: 0, y: 0}
+  MaxSize: {x: 0, y: 0}
+  Gap: 0
+  Alwaysreset: 0
+  scrollWheelFactor: 0.25
+  momentumAmount: 35
+  horizontalScrollBar: {fileID: 0}
+  verticalScrollBar: {fileID: 0}
+  showScrollBars: 1
+  customMovement: {x: 1, y: 0}
+  contentPivot: 0
+  scale: {x: 0, y: 0, z: 0}
+  relativePositionOnReset: {x: 0, y: 0}
+  centerOnChild: {fileID: 0}
 --- !u!114 &11487560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27560,7 +27674,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3092
+  startingRenderQueue: 3027
   mClipTexture: {fileID: 2800000, guid: 4cec44765f0964dec9de7e118eca1147, type: 3}
   mAlpha: 1
   mClipping: 1
@@ -28966,7 +29080,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3089
+  startingRenderQueue: 3028
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 3
@@ -29454,7 +29568,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3093
+  startingRenderQueue: 3033
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
