@@ -23,6 +23,7 @@ public class LiveBingo : MonoBehaviour {
 	bool IsNotReady;
 	bool IsEnded;
 	public int mMsgCount;
+	public int mOutCount;
 
 	public Dictionary<int, ItemBingo> mItemDic;
 	List<PlayerInfo> mSortedLineup;
@@ -572,6 +573,7 @@ public class LiveBingo : MonoBehaviour {
 			.GetComponent<BingoResult>().SocketResult(info);
 		StartCoroutine(IReloadBoard(info));
 //		ReloadLineup();
+		mOutCount = info.data.outs;
 	}
 
 	IEnumerator IReloadBoard(SocketMsgInfo info){
@@ -613,6 +615,7 @@ public class LiveBingo : MonoBehaviour {
 //		} catch{
 			ReloadLineup (info);
 //		}
+		mOutCount = info.data.outs;
 	}
 
 	public void ReloadLineup(SocketMsgInfo info){

@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class CheckVersionResponse : BaseResponse {
-	VersionInfo _data;
+public class ExpandInvenResponse : BaseResponse {
+	ExpandInvenInfo _data;
 
-	public VersionInfo data
+	public ExpandInvenInfo data
 	{
 		get{ return _data;}
 		set{ _data = value;}

@@ -210,4 +210,15 @@ public class NotiQuizInfo {
 			_changeBingo = value;
 		}
 	}
+
+	int _outs;
+
+	public int outs {
+		get {
+			return _outs;
+		}
+		set {
+			_outs = value;
+		}
+	}
 }

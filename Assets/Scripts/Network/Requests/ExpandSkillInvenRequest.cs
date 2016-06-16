@@ -4,9 +4,9 @@ using System.Text;
 using System.Collections.Generic;
 using System.IO;
 
-public class ExpandCardInvenRequest : BaseRequest {
+public class ExpandSkillInvenRequest : BaseRequest {
 
-	public ExpandCardInvenRequest()
+	public ExpandSkillInvenRequest()
 	{	
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
 
@@ -19,7 +19,7 @@ public class ExpandCardInvenRequest : BaseRequest {
 
 	public override string GetQueryId()
 	{
-		return "increaseCardInven";
+		return "increaseSkillInven";
 	}
 
 }

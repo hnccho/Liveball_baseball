@@ -97,7 +97,22 @@ public class MyCards : MonoBehaviour {
 
 			
 			tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$"+info.salary;
-			tf.FindChild("Star").FindChild("SprStar").FindChild("StarV").GetComponent<UILabel>().text = info.cardClass+"";
+			tf.FindChild("Star").FindChild("StarV").GetComponent<UILabel>().text = info.cardClass+"";
+			tf.FindChild("Star").FindChild("StarV").localPosition = new Vector3(20f + (18f * (info.cardClass -1)), -4f);
+			for(int i = 1; i <= 6; i++)
+				tf.FindChild("Star").FindChild("SprStar"+i).gameObject.SetActive(false);
+			for(int i = 1; i <= info.cardClass; i++){
+				tf.FindChild("Star").FindChild("SprStar"+i).gameObject.SetActive(true);
+				string starStr = "star_bronze";
+				if(info.cardClass > 4){
+					starStr = "star_gold";
+				} else if(info.cardClass > 2){
+					starStr = "star_silver";
+				}
+				tf.FindChild("Star").FindChild("SprStar"+i).GetComponent<UISprite>().spriteName = starStr;
+			}
+
+			tf.FindChild("Level").localPosition = new Vector3(-124f + (18f * (info.cardClass -1)), -40f);
 			tf.FindChild("Level").FindChild("LblLevel").FindChild("LevelV").GetComponent<UILabel>().text = info.cardLevel+"";
 			tf.FindChild("LblFPPG").FindChild("LblFPPGV").GetComponent<UILabel>().text = info.fppg;
 			tf.FindChild("LblSkill").FindChild("LblSkillV").GetComponent<UILabel>().text = "1";

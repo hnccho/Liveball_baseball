@@ -618,6 +618,7 @@
      <Compile Include="Assets\Scripts\Network\Events\EditLineupEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\EntryListEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\ExitGameEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\ExpandInvenEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GameJoinNEntryFeeEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GameSposGameEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\GetBingoEvent.cs" />
@@ -699,6 +700,7 @@
      <Compile Include="Assets\Scripts\Network\Models\EntryListInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\EventInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\EventListInfo.cs" />
+     <Compile Include="Assets\Scripts\Network\Models\ExpandInvenInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\ExtendInfo.cs" />
      <Compile Include="Assets\Scripts\Network\Models\FavoBB.cs" />
      <Compile Include="Assets\Scripts\Network\Models\GachaInfo.cs" />
@@ -809,6 +811,8 @@
      <Compile Include="Assets\Scripts\Network\Requests\EditLineupRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\EntryListRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\ExitGameRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\ExpandCardInvenRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\ExpandSkillInvenRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GameJoinNEntryFee.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GameSposGameRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\GetBingoRequest.cs" />
@@ -907,6 +911,7 @@
      <Compile Include="Assets\Scripts\Network\Responses\ContestPresetChangeResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\ContestRankingResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\EntryListResponse.cs" />
+     <Compile Include="Assets\Scripts\Network\Responses\ExpandInvenResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GameJoinNEntryFeeResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GameSposGameResponse.cs" />
      <Compile Include="Assets\Scripts\Network\Responses\GetBingoResponse.cs" />

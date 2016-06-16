@@ -4,13 +4,11 @@ using System.Text;
 using System.Collections.Generic;
 using System.IO;
 
-public class CardRankUpRequest : BaseRequest {
+public class ExpandCardInvenRequest : BaseRequest {
 
-	public CardRankUpRequest(CardInfo targetCard, CardInfo feedingCard)
+	public ExpandCardInvenRequest()
 	{	
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
-		Add ("itemMain", targetCard.itemSeq);
-		Add ("itemSub", feedingCard.itemSeq);
 
 		mDic = this;
 	}
@@ -21,7 +19,7 @@ public class CardRankUpRequest : BaseRequest {
 
 	public override string GetQueryId()
 	{
-		return "procItemCompose";
+		return "increaseCardInven";
 	}
 
 }

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CardUpEvent : BaseEvent {
+public class ExpandInvenEvent : BaseEvent {
 
-	public CardUpEvent(EventDelegate.Callback callback)
+	public ExpandInvenEvent(EventDelegate.Callback callback)
 	{
 		base.eventDelegate = new EventDelegate(callback);
 
@@ -12,7 +12,7 @@ public class CardUpEvent : BaseEvent {
 
 	public void InitResponse(string data)
 	{
-		response = Newtonsoft.Json.JsonConvert.DeserializeObject<CardUpResponse>(data);
+		response = Newtonsoft.Json.JsonConvert.DeserializeObject<ExpandInvenResponse>(data);
 
 		if (checkError ())
 			return;
@@ -20,9 +20,9 @@ public class CardUpEvent : BaseEvent {
 		eventDelegate.Execute ();
 	}
 
-	public CardUpResponse Response
+	public ExpandInvenResponse Response
 	{
-		get{ return response as CardUpResponse;}
+		get{ return response as ExpandInvenResponse;}
 	}
 
 }

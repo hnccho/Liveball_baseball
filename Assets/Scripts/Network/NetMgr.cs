@@ -948,10 +948,19 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new GetGoldShopRequest(), baseEvent);
 	}
 
-
 	public static void ContestMyTeamList(int contestSeq , BaseEvent baseEvent)
 	{
 		Instance.webAPIProcessEvent(new ContestMyTeamRequest(contestSeq), baseEvent);
+	}
+
+	public static void ExpandCardInven(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new ExpandCardInvenRequest(), baseEvent);
+	}
+
+	public static void ExpandSkillInven(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new ExpandSkillInvenRequest(), baseEvent);
 	}
 
 	public static void PlayerNewsInfo(long playerId , BaseEvent baseEvent)
