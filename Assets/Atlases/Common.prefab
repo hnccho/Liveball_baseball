@@ -43,8 +43,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 644524003aba6437e9f9b3b06f2cadf0, type: 2}
   mSprites:
   - name: box_arrow_1
-    x: 102
-    y: 34
+    x: 224
+    y: 472
     width: 100
     height: 72
     borderLeft: 30
@@ -56,8 +56,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: box_r12_1
-    x: 962
-    y: 562
+    x: 326
+    y: 335
     width: 48
     height: 48
     borderLeft: 10
@@ -69,8 +69,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: box_r12_lt
-    x: 224
-    y: 123
+    x: 326
+    y: 435
     width: 48
     height: 48
     borderLeft: 12
@@ -82,8 +82,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: box_r4_1
-    x: 306
-    y: 184
+    x: 0
+    y: 2
     width: 32
     height: 32
     borderLeft: 4
@@ -107,9 +107,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: box_r6_line
+    x: 224
+    y: 308
+    width: 80
+    height: 80
+    borderLeft: 10
+    borderRight: 10
+    borderTop: 10
+    borderBottom: 10
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: box_r8_1
-    x: 962
-    y: 662
+    x: 824
+    y: 554
     width: 56
     height: 56
     borderLeft: 8
@@ -134,8 +147,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: box_r8_r
-    x: 824
-    y: 554
+    x: 962
+    y: 662
     width: 56
     height: 56
     borderLeft: 0
@@ -161,7 +174,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: box_rb_1
     x: 224
-    y: 300
+    y: 390
     width: 80
     height: 80
     borderLeft: 20
@@ -174,7 +187,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: box_rb_bt
     x: 224
-    y: 382
+    y: 226
     width: 80
     height: 80
     borderLeft: 20
@@ -187,7 +200,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: box_rb_lb
     x: 224
-    y: 464
+    y: 144
     width: 80
     height: 80
     borderLeft: 20
@@ -252,7 +265,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: btn_bg_cicle_64
     x: 224
-    y: 234
+    y: 10
     width: 64
     height: 64
     borderLeft: 0
@@ -264,8 +277,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_help
-    x: 306
-    y: 218
+    x: 392
+    y: 346
     width: 36
     height: 36
     borderLeft: 0
@@ -278,7 +291,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: btn_icon_down
     x: 196
-    y: 248
+    y: 270
     width: 24
     height: 20
     borderLeft: 0
@@ -290,8 +303,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_edit_list
-    x: 224
-    y: 23
+    x: 326
+    y: 385
     width: 48
     height: 48
     borderLeft: 0
@@ -355,8 +368,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_plus
-    x: 356
-    y: 444
+    x: 34
+    y: 2
     width: 32
     height: 32
     borderLeft: 0
@@ -381,8 +394,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: btn_icon_save_lineup
-    x: 350
-    y: 388
+    x: 326
+    y: 201
     width: 40
     height: 42
     borderLeft: 0
@@ -408,7 +421,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: contest_details_rbox_1
     x: 0
-    y: 242
+    y: 140
     width: 100
     height: 98
     borderLeft: 0
@@ -433,8 +446,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: icon_ball_1
-    x: 306
-    y: 256
+    x: 392
+    y: 422
     width: 36
     height: 38
     borderLeft: 0
@@ -472,8 +485,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: icon_gold
-    x: 344
-    y: 222
+    x: 68
+    y: 2
     width: 32
     height: 32
     borderLeft: 0
@@ -512,7 +525,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: icon_injury_list
     x: 192
-    y: 166
+    y: 72
     width: 30
     height: 30
     borderLeft: 0
@@ -524,8 +537,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: icon_lock
-    x: 343
-    y: 340
+    x: 326
+    y: 103
     width: 36
     height: 46
     borderLeft: 0
@@ -551,7 +564,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: loading_ball_cic
     x: 102
-    y: 292
+    y: 198
     width: 92
     height: 92
     borderLeft: 0
@@ -576,8 +589,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: loading_ball_cicle_2
-    x: 0
-    y: 44
+    x: 102
+    y: 292
     width: 92
     height: 92
     borderLeft: 0
@@ -602,8 +615,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: logo_icon_top_main
-    x: 224
-    y: 173
+    x: 326
+    y: 485
     width: 64
     height: 59
     borderLeft: 0
@@ -641,8 +654,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: main_btn_icon_tranking
-    x: 306
-    y: 478
+    x: 224
+    y: 76
     width: 84
     height: 66
     borderLeft: 0
@@ -668,7 +681,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: main_icon_ballpark
     x: 196
-    y: 270
+    y: 248
     width: 24
     height: 20
     borderLeft: 0
@@ -680,8 +693,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: main_icon_own
-    x: 144
-    y: 16
+    x: 434
+    y: 528
     width: 46
     height: 16
     borderLeft: 0
@@ -694,7 +707,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: main_pframe_rt_1
     x: 102
-    y: 198
+    y: 104
     width: 92
     height: 92
     borderLeft: 0
@@ -707,7 +720,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: main_pframe_rt_sdcover
     x: 102
-    y: 108
+    y: 14
     width: 88
     height: 88
     borderLeft: 0
@@ -731,6 +744,19 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: main_tab_box_cr2
+    x: 0
+    y: 240
+    width: 100
+    height: 100
+    borderLeft: 0
+    borderRight: 49
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: main_tab_box_sl
     x: 102
     y: 386
@@ -745,8 +771,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: main_tab_icon_epl
-    x: 306
-    y: 296
+    x: 326
+    y: 61
     width: 40
     height: 40
     borderLeft: 0
@@ -758,8 +784,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: main_tab_icon_mlb
-    x: 348
-    y: 296
+    x: 326
+    y: 19
     width: 40
     height: 40
     borderLeft: 0
@@ -771,8 +797,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: main_tab_icon_nfl
-    x: 42
-    y: 2
+    x: 392
+    y: 504
     width: 40
     height: 40
     borderLeft: 0
@@ -798,7 +824,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: ranking_box_number
     x: 0
-    y: 138
+    y: 36
     width: 84
     height: 102
     borderLeft: 0
@@ -810,8 +836,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: rt_bingo_dot_ray
-    x: 306
-    y: 388
+    x: 326
+    y: 245
     width: 42
     height: 42
     borderLeft: 0
@@ -823,8 +849,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: star_1
-    x: 344
-    y: 258
+    x: 392
+    y: 384
     width: 38
     height: 36
     borderLeft: 0
@@ -836,8 +862,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: top_btn_close_normal
-    x: 0
-    y: 2
+    x: 392
+    y: 462
     width: 40
     height: 40
     borderLeft: 0
@@ -849,8 +875,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: top_btn_filter
-    x: 306
-    y: 432
+    x: 326
+    y: 289
     width: 48
     height: 44
     borderLeft: 0
@@ -862,8 +888,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: top_btn_info_normal
-    x: 224
-    y: 73
+    x: 962
+    y: 562
     width: 48
     height: 48
     borderLeft: 0
@@ -901,8 +927,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: top_btn_search_normal
-    x: 306
-    y: 338
+    x: 326
+    y: 151
     width: 35
     height: 48
     borderLeft: 0
@@ -914,8 +940,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: triag_sort
-    x: 102
-    y: 12
+    x: 392
+    y: 324
     width: 40
     height: 20
     borderLeft: 0

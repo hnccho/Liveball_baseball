@@ -80,10 +80,11 @@ public class Lobby : MonoBehaviour {
 		Com.Find_UILabel(transform, "Bottom", "Menu", "BtnLive", "LblValue").text = mLobbyEvent.Response.data.myContestCount+"";
 
 
-		
-//		Com.Find_UILabel(bodyItem.transform, "DFS", "BtnSpecial", "LblValue").text = mLobbyEvent.Response.data.contestCountS+"";
-//		Com.Find_UILabel(bodyItem.transform, "Btn50", "LblValue").text = mLobbyEvent.Response.data.contestCount50+"";
-//Ï		Com.Find_UILabel(bodyItem.transform, "DFS", "BtnRanking", "LblValue").text = mLobbyEvent.Response.data.contestCountR+"";
+		int total = mLobbyEvent.Response.data.contestCountS + mLobbyEvent.Response.data.contestCount50 + mLobbyEvent.Response.data.contestCountR;
+		Com.Find_UILabel(transform, "Fantasy_Contests", "left", "point").text = total+"";
+		Com.Find_UILabel(transform, "Fantasy_Contests", "Special_League", "point").text = mLobbyEvent.Response.data.contestCountS+"";
+		Com.Find_UILabel(transform, "Fantasy_Contests", "50", "point").text = mLobbyEvent.Response.data.contestCount50+"";
+		Com.Find_UILabel(transform, "Fantasy_Contests", "Ranking", "point").text = mLobbyEvent.Response.data.contestCountR+"";
 
 //		transform.FindChild("Body").FindChild("ScrollBody").GetComponent<UIScrollView>().ResetPosition();
 	}
@@ -100,4 +101,32 @@ public class Lobby : MonoBehaviour {
 
 		}
 	}
+
+
+
+	public bool isFold_FantasyContest = true;
+	public void OnPress_FantasyContest()
+	{
+		Com.LOOG("OnPress_FantasyContest");
+
+		Transform fantasy = Com.FindTransform(transform, "Fantasy_Contests");
+		UISprite btn_sprite = Com.Find_UISprite(transform, "Fantasy_Contests", "btn fold");
+		
+		if(isFold_FantasyContest)
+		{
+			fantasy.localPosition = new Vector3(fantasy.localPosition.x,  -534f, fantasy.localPosition.z);
+			isFold_FantasyContest = false;
+			btn_sprite.flip = UIBasicSprite.Flip.Horizontally;
+		}
+		else
+		{
+			fantasy.localPosition = new Vector3(fantasy.localPosition.x,  -810f, fantasy.localPosition.z);
+			isFold_FantasyContest = true;
+			btn_sprite.flip = UIBasicSprite.Flip.Nothing;
+		}
+	}
+
+
+
+
 }
