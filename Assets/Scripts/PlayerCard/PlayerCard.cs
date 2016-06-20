@@ -687,12 +687,16 @@ public class PlayerCard : MonoBehaviour {
 	}
 
 	void InitNews(){
+		transform.FindChild("Body").FindChild("Changeables").FindChild("News").FindChild("NoNews").gameObject.SetActive(true);
 		if(mNewsEvent.Response.data == null
 		   || mNewsEvent.Response.data.Count < 1) return;
+		transform.FindChild("Body").FindChild("Changeables").FindChild("News").FindChild("NoNews").gameObject.SetActive(false);
 
 		transform.FindChild("Body").FindChild("Changeables").FindChild("News").gameObject.SetActive(true);
 		UtilMgr.ClearList(
 			transform.FindChild("Body").FindChild("Changeables").FindChild("News").FindChild("Scroll View"));
+		UISprite d;
+
 		
 		string newsDay = "";
 		float height = 390f;

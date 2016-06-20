@@ -55,6 +55,19 @@ public class LiveBingo : MonoBehaviour {
 			transform.FindChild("Top").FindChild("BtnDebug").GetComponent<BtnDebugLiveBingo>().AddLog(msg);
 		}
 //		NetMgr.UpdateSocket();
+
+		Transform outs = transform.FindChild("Body").FindChild("Scroll View").FindChild("Btm").FindChild("Info")
+			.FindChild("BG").FindChild("Outs");
+
+		for(int i = 1; i <= 3; i++){
+			outs.FindChild(i+"").FindChild("Red").gameObject.SetActive(false);
+			outs.FindChild(i+"").FindChild("Gray").gameObject.SetActive(true);
+        }
+		for(int i = 1; i <= mOutCount; i++){
+			outs.FindChild(i+"").FindChild("Red").gameObject.SetActive(true);
+			outs.FindChild(i+"").FindChild("Gray").gameObject.SetActive(false);
+		}
+
 	}
 
 	public void Init(){

@@ -16,6 +16,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100360
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 404946}
+  - 114: {fileID: 11411926}
+  m_Layer: 5
+  m_Name: Red
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &100572
 GameObject:
   m_ObjectHideFlags: 1
@@ -305,7 +321,7 @@ GameObject:
   - 4: {fileID: 486818}
   - 198: {fileID: 19879892}
   - 199: {fileID: 19959796}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: par1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +354,7 @@ GameObject:
   - 4: {fileID: 424846}
   - 198: {fileID: 19860180}
   - 199: {fileID: 19919236}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: glitter1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,13 +455,29 @@ GameObject:
   - 4: {fileID: 473918}
   - 198: {fileID: 19893014}
   - 199: {fileID: 19916250}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CoinBlastCopper_ori
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &110754
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 412672}
+  - 114: {fileID: 11477564}
+  m_Layer: 5
+  m_Name: Gray
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &111092
 GameObject:
   m_ObjectHideFlags: 1
@@ -736,6 +768,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &117106
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 490398}
+  - 114: {fileID: 11414470}
+  m_Layer: 5
+  m_Name: Red
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &117756
 GameObject:
   m_ObjectHideFlags: 1
@@ -746,7 +794,7 @@ GameObject:
   - 4: {fileID: 426246}
   - 198: {fileID: 19810140}
   - 199: {fileID: 19907262}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CoinShine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -763,7 +811,7 @@ GameObject:
   - 4: {fileID: 435148}
   - 198: {fileID: 19833632}
   - 199: {fileID: 19993424}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: par1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -845,7 +893,7 @@ GameObject:
   - 4: {fileID: 476848}
   - 198: {fileID: 19814472}
   - 199: {fileID: 19955122}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PtcFlameLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -959,7 +1007,7 @@ GameObject:
   - 4: {fileID: 463800}
   - 198: {fileID: 19802248}
   - 199: {fileID: 19995660}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DiamondShine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1062,6 +1110,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &124816
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 422366}
+  - 114: {fileID: 11464468}
+  m_Layer: 5
+  m_Name: Red
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &124924
 GameObject:
   m_ObjectHideFlags: 1
@@ -1072,7 +1136,7 @@ GameObject:
   - 4: {fileID: 461902}
   - 198: {fileID: 19833652}
   - 199: {fileID: 19985060}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StarBlueBlast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1106,6 +1170,21 @@ GameObject:
   - 114: {fileID: 11425866}
   m_Layer: 5
   m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &126250
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 438414}
+  m_Layer: 5
+  m_Name: Outs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1169,7 +1248,7 @@ GameObject:
   - 4: {fileID: 448696}
   - 198: {fileID: 19804922}
   - 199: {fileID: 19918584}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PtcBingo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1186,7 +1265,7 @@ GameObject:
   - 4: {fileID: 406324}
   - 198: {fileID: 19839064}
   - 199: {fileID: 19904474}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StarExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1395,7 +1474,7 @@ GameObject:
   - 4: {fileID: 467284}
   - 198: {fileID: 19870460}
   - 199: {fileID: 19964938}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: StarBlueBlast_ori
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1444,7 +1523,7 @@ GameObject:
   - 4: {fileID: 410820}
   - 198: {fileID: 19810374}
   - 199: {fileID: 19989244}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DiamondTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1544,7 +1623,7 @@ GameObject:
   - 4: {fileID: 470248}
   - 198: {fileID: 19838978}
   - 199: {fileID: 19935070}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: glitter1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1561,7 +1640,7 @@ GameObject:
   - 4: {fileID: 491610}
   - 198: {fileID: 19801274}
   - 199: {fileID: 19933262}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: par1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1614,6 +1693,22 @@ GameObject:
   - 114: {fileID: 11476012}
   m_Layer: 5
   m_Name: BtnFP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &138966
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 479842}
+  - 114: {fileID: 11495890}
+  m_Layer: 5
+  m_Name: Gray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1971,7 +2066,7 @@ GameObject:
   - 4: {fileID: 464356}
   - 198: {fileID: 19814360}
   - 199: {fileID: 19978568}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: glitter1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1988,7 +2083,7 @@ GameObject:
   - 4: {fileID: 460434}
   - 198: {fileID: 19854954}
   - 199: {fileID: 19943724}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CoinTrailSparkly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2198,6 +2293,37 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &158052
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 429976}
+  - 114: {fileID: 11495624}
+  m_Layer: 5
+  m_Name: Gray
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &158218
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 495682}
+  m_Layer: 5
+  m_Name: 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &159544
 GameObject:
   m_ObjectHideFlags: 1
@@ -2356,7 +2482,7 @@ GameObject:
   - 4: {fileID: 487474}
   - 198: {fileID: 19886722}
   - 199: {fileID: 19993162}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: par1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2412,7 +2538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &165098
 GameObject:
   m_ObjectHideFlags: 1
@@ -2508,7 +2634,7 @@ GameObject:
   - 4: {fileID: 401340}
   - 198: {fileID: 19899440}
   - 199: {fileID: 19997194}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: glitter1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3134,7 +3260,7 @@ GameObject:
   - 4: {fileID: 439954}
   - 198: {fileID: 19890046}
   - 199: {fileID: 19969760}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: glitter1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3220,6 +3346,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &186464
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 450796}
+  m_Layer: 5
+  m_Name: 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &188108
 GameObject:
   m_ObjectHideFlags: 1
@@ -3246,7 +3387,7 @@ GameObject:
   - 4: {fileID: 406724}
   - 198: {fileID: 19854128}
   - 199: {fileID: 19989524}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CoinBlastCopper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3334,7 +3475,7 @@ GameObject:
   - 4: {fileID: 478246}
   - 198: {fileID: 19887664}
   - 199: {fileID: 19993154}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PtcFlameRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3534,7 +3675,7 @@ GameObject:
   - 4: {fileID: 447068}
   - 198: {fileID: 19800514}
   - 199: {fileID: 19974018}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: par1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3590,7 +3731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &198764
 GameObject:
   m_ObjectHideFlags: 1
@@ -3617,6 +3758,21 @@ GameObject:
   - 4: {fileID: 403580}
   m_Layer: 5
   m_Name: Team
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &199116
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 455018}
+  m_Layer: 5
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3794,6 +3950,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 446524}
   m_RootOrder: 2
+--- !u!4 &404946
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 450796}
+  m_RootOrder: 0
 --- !u!4 &405152
 Transform:
   m_ObjectHideFlags: 1
@@ -4025,6 +4193,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 403580}
   m_RootOrder: 0
+--- !u!4 &412672
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 450796}
+  m_RootOrder: 1
 --- !u!4 &413128
 Transform:
   m_ObjectHideFlags: 1
@@ -4306,6 +4486,18 @@ Transform:
   - {fileID: 410246}
   m_Father: {fileID: 427098}
   m_RootOrder: 5
+--- !u!4 &422366
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124816}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 495682}
+  m_RootOrder: 0
 --- !u!4 &422368
 Transform:
   m_ObjectHideFlags: 1
@@ -4442,7 +4634,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 108834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 215, y: 0.2, z: 0}
+  m_LocalPosition: {x: 122.5, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 461334}
@@ -4599,7 +4791,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 294, y: 0, z: 0}
+  m_LocalPosition: {x: 200, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 461334}
@@ -4617,6 +4809,18 @@ Transform:
   - {fileID: 493388}
   m_Father: {fileID: 461334}
   m_RootOrder: 3
+--- !u!4 &429976
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158052}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 495682}
+  m_RootOrder: 1
 --- !u!4 &430658
 Transform:
   m_ObjectHideFlags: 1
@@ -4827,6 +5031,21 @@ Transform:
   - {fileID: 402928}
   m_Father: {fileID: 445438}
   m_RootOrder: 5
+--- !u!4 &438414
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 278, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 495682}
+  - {fileID: 455018}
+  - {fileID: 450796}
+  m_Father: {fileID: 461334}
+  m_RootOrder: 4
 --- !u!4 &438710
 Transform:
   m_ObjectHideFlags: 1
@@ -5296,6 +5515,20 @@ Transform:
   - {fileID: 455400}
   m_Father: {fileID: 403548}
   m_RootOrder: 0
+--- !u!4 &450796
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 56, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 404946}
+  - {fileID: 412672}
+  m_Father: {fileID: 438414}
+  m_RootOrder: 2
 --- !u!4 &451646
 Transform:
   m_ObjectHideFlags: 1
@@ -5393,6 +5626,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 486854}
+  m_RootOrder: 1
+--- !u!4 &455018
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199116}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 490398}
+  - {fileID: 479842}
+  m_Father: {fileID: 438414}
   m_RootOrder: 1
 --- !u!4 &455312
 Transform:
@@ -5597,6 +5844,7 @@ Transform:
   - {fileID: 493264}
   - {fileID: 429502}
   - {fileID: 429560}
+  - {fileID: 438414}
   m_Father: {fileID: 457938}
   m_RootOrder: 0
 --- !u!4 &461902
@@ -6037,6 +6285,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 431720}
   m_RootOrder: 1
+--- !u!4 &479842
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138966}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 455018}
+  m_RootOrder: 1
 --- !u!4 &480754
 Transform:
   m_ObjectHideFlags: 1
@@ -6280,6 +6540,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 496336}
   m_RootOrder: 2
+--- !u!4 &490398
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 455018}
+  m_RootOrder: 0
 --- !u!4 &491358
 Transform:
   m_ObjectHideFlags: 1
@@ -6361,7 +6633,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 156854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 294, y: 0, z: 0}
+  m_LocalPosition: {x: 248, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 461334}
@@ -6389,6 +6661,20 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418192}
+  m_RootOrder: 0
+--- !u!4 &495682
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158218}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 422366}
+  - {fileID: 429976}
+  m_Father: {fileID: 438414}
   m_RootOrder: 0
 --- !u!4 &496122
 Transform:
@@ -8194,6 +8480,56 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &11411926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 0.2, b: 0, a: 1}
+  mPivot: 4
+  mWidth: 20
+  mHeight: 20
+  mDepth: 22
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11412872, guid: e49943f5dd1a448e99c441f55aebc3c4, type: 2}
+  mSpriteName: btn_bg_cicle_64
+  mFillCenter: 1
 --- !u!114 &11412072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8345,6 +8681,56 @@ MonoBehaviour:
   mDepth: 0
   mSortingOrder: 0
   mClipOffset: {x: 0, y: 0}
+--- !u!114 &11414470
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 0.2, b: 0, a: 1}
+  mPivot: 4
+  mWidth: 20
+  mHeight: 20
+  mDepth: 22
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11412872, guid: e49943f5dd1a448e99c441f55aebc3c4, type: 2}
+  mSpriteName: btn_bg_cicle_64
+  mFillCenter: 1
 --- !u!114 &11414480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10906,13 +11292,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 0.20000002, g: 0.20000002, b: 0.20000002, a: 1}
   mPivot: 4
-  mWidth: 132
+  mWidth: 224
   mHeight: 70
   mDepth: 11
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 1.8857143
+  aspectRatio: 3.2
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -11923,7 +12309,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3050
+  startingRenderQueue: 3025
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -13829,6 +14215,56 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &11464468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 0.2, b: 0, a: 1}
+  mPivot: 4
+  mWidth: 20
+  mHeight: 20
+  mDepth: 22
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11412872, guid: e49943f5dd1a448e99c441f55aebc3c4, type: 2}
+  mSpriteName: btn_bg_cicle_64
+  mFillCenter: 1
 --- !u!114 &11464548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -14840,7 +15276,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3008
+  startingRenderQueue: 3000
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -15782,6 +16218,56 @@ MonoBehaviour:
   topType: 1
   mAtlas: {fileID: 11418724, guid: 5e103e19575c7491da5443cd736dceac, type: 2}
   mSpriteName: rt_btn_bingo_on
+  mFillCenter: 1
+--- !u!114 &11477564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 20
+  mHeight: 20
+  mDepth: 23
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11418724, guid: 5e103e19575c7491da5443cd736dceac, type: 2}
+  mSpriteName: bingo_cicle_out_no
   mFillCenter: 1
 --- !u!114 &11477800
 MonoBehaviour:
@@ -17270,6 +17756,7 @@ MonoBehaviour:
   mItemBingo: {fileID: 133350, guid: b59ce2c272f46400e81ec38fc5f8aa2d, type: 2}
   mItemBingoList: {fileID: 132656, guid: 230ad5e0efe0c4420a0ee3bd59293f73, type: 2}
   mMsgCount: 0
+  mOutCount: 0
   IsMouseDown: 0
   mUpdateCnt: 0
 --- !u!114 &11495062
@@ -17335,6 +17822,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mSort: 0
   IsSelected: 0
+--- !u!114 &11495624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 20
+  mHeight: 20
+  mDepth: 23
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11418724, guid: 5e103e19575c7491da5443cd736dceac, type: 2}
+  mSpriteName: bingo_cicle_out_no
+  mFillCenter: 1
 --- !u!114 &11495672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17384,6 +17921,56 @@ MonoBehaviour:
   topType: 1
   mAtlas: {fileID: 11418724, guid: 5e103e19575c7491da5443cd736dceac, type: 2}
   mSpriteName: rt_box_count_bingo
+  mFillCenter: 1
+--- !u!114 &11495890
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 20
+  mHeight: 20
+  mDepth: 23
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mAtlas: {fileID: 11418724, guid: 5e103e19575c7491da5443cd736dceac, type: 2}
+  mSpriteName: bingo_cicle_out_no
   mFillCenter: 1
 --- !u!114 &11496048
 MonoBehaviour:
