@@ -19,8 +19,8 @@ public class RTLobby : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		System.TimeSpan ts = System.DateTime.Now - mNow;
-		transform.root.FindChild("Lobby").FindChild("Top").FindChild("Label").GetComponent<UILabel>()
-			.text = ts.Seconds+"";
+//		transform.root.FindChild("Lobby").FindChild("Top").FindChild("Label").GetComponent<UILabel>()
+//			.text = ts.Seconds+"";
 
 
 

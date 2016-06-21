@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 448524}
   - 114: {fileID: 11401916}
-  - 114: {fileID: 11481678}
   m_Layer: 5
   m_Name: LblMoreCards1
   m_TagString: Untagged
@@ -441,7 +440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &137006
 GameObject:
   m_ObjectHideFlags: 1
@@ -819,6 +818,7 @@ GameObject:
   - 4: {fileID: 438316}
   - 61: {fileID: 6178042}
   - 114: {fileID: 11426534}
+  - 114: {fileID: 11451540}
   - 114: {fileID: 11439620}
   - 114: {fileID: 11433054}
   m_Layer: 5
@@ -1021,7 +1021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &183892
 GameObject:
   m_ObjectHideFlags: 1
@@ -1589,7 +1589,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169372}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 227, y: 0, z: 0}
+  m_LocalPosition: {x: 210, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 443494}
@@ -4173,6 +4173,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd14e6a8db5954199b134cd07fb35292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11451540
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08e40de3e391848c7a4a8a30febef7f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11452204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5284,17 +5295,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11418724, guid: 5e103e19575c7491da5443cd736dceac, type: 2}
   mSpriteName: star_bronze
   mFillCenter: 1
---- !u!114 &11481678
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f679d9a8958447988d92282e5f6e7c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11481766
 MonoBehaviour:
   m_ObjectHideFlags: 1

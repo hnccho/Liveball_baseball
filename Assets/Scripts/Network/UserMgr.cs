@@ -12,6 +12,16 @@ public class UserMgr : MonoBehaviour {
 	List<CardInfo> _cardList;
 	List<PlayerInfo> _playerList;
 	Dictionary<long, PlayerInfo> _playerDic;
+	LobbyInfo _lobbyInfo;
+
+	public static LobbyInfo LobbyInfo {
+		get {
+			return Instance._lobbyInfo;
+		}
+		set {
+			Instance._lobbyInfo = value;
+		}
+	}
 
 	public static Dictionary<long, PlayerInfo> PlayerDic {
 		get {

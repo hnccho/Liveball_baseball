@@ -87,6 +87,7 @@ public class Lobby : MonoBehaviour {
 		Com.Find_UILabel(transform, "Fantasy_Contests", "Ranking", "point").text = mLobbyEvent.Response.data.contestCountR+"";
 
 //		transform.FindChild("Body").FindChild("ScrollBody").GetComponent<UIScrollView>().ResetPosition();
+		UserMgr.LobbyInfo = mLobbyEvent.Response.data;
 	}
 
 	int mTimerClickCnt = 0;

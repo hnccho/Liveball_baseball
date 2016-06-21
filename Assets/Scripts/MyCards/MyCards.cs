@@ -26,9 +26,8 @@ public class MyCards : MonoBehaviour {
 	public void Init(GetCardInvenEvent cardEvent, GetMailEvent mailEvent){
 		transform.gameObject.SetActive(true);
 		transform.FindChild("Top").FindChild("Cards").FindChild("LblCardsV").GetComponent<UILabel>().text
-			= cardEvent.Response.data.Count+"";
-		//need total inven
-		
+			= cardEvent.Response.data.Count+" / "+UserMgr.LobbyInfo.userInvenOfCard;
+
 		transform.FindChild("Top").FindChild("Skills").FindChild("LblSkillsV").GetComponent<UILabel>().text
 			= 0+"";
 
@@ -49,13 +48,19 @@ public class MyCards : MonoBehaviour {
 			}
 		}
 
-		//if not max expand
-//		CardInfo expand = new CardInfo();
-//		expand.mType = CardInfo.INVEN_TYPE.EXPAND;
-//		mList.Add(expand);
+		int listCnt = mList.Count;
+
+		if(UserMgr.LobbyInfo.userInvenOfCard < UserMgr.LobbyInfo.maxInvenOfCard
+		   && cardEvent.Response.data.Count > UserMgr.LobbyInfo.userInvenOfCard){
+			CardInfo expand = new CardInfo();
+			expand.mType = CardInfo.INVEN_TYPE.EXPAND;
+			mList.Insert(UserMgr.LobbyInfo.userInvenOfCard, expand);
+			listCnt = UserMgr.LobbyInfo.userInvenOfCard +1;
+		}
+
 		transform.FindChild("Body").FindChild("Draggable").GetComponent<UIDraggablePanel2>().RemoveAll();
 		transform.FindChild("Body").FindChild("Draggable").GetComponent<UIDraggablePanel2>()
-			.Init(mList.Count, delegate (UIListItem item, int index){
+			.Init(listCnt, delegate (UIListItem item, int index){
 				InitInvenItem(item, index);
 		});
 		transform.FindChild("Body").FindChild("Draggable").GetComponent<UIDraggablePanel2>().ResetPosition();
@@ -187,6 +192,9 @@ public class MyCards : MonoBehaviour {
 			item.Target.transform.FindChild("ItemCardPack").gameObject.SetActive(false);
 			item.Target.transform.FindChild("ItemCard").gameObject.SetActive(false);
 			item.Target.transform.FindChild("ItemExpand").gameObject.SetActive(true);
+			item.Target.transform.FindChild("ItemExpand").FindChild("LblMoreCards1").GetComponent<UILabel>()
+				.text = string.Format(UtilMgr.GetLocalText("LblMoreCards1"),
+				                      mCardEvent.Response.data.Count - UserMgr.LobbyInfo.userInvenOfCard -1);
 		}
 	}
 }

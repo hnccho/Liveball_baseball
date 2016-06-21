@@ -354,6 +354,7 @@ public class LiveBingo : MonoBehaviour {
 
 	public void InitBtm(){
 		Transform btm = transform.FindChild("Body").FindChild("Scroll View").FindChild("Btm");
+		btm.gameObject.SetActive(true);
 
 		mSortedLineup = new List<PlayerInfo>();
 		bool foundLast = false;
