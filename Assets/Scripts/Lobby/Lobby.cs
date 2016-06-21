@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class Lobby : MonoBehaviour {
 
@@ -27,14 +29,113 @@ public class Lobby : MonoBehaviour {
 		Transform bottom = Com.FindTransform(transform, "Bottom");
 		Com.NUI_MoveBottom(cam, bottom, 142);
 		//Com.NUI_MoveRate(cam, bottom, 0.5f, 1, 0, 142);
+
+		Fold_FantasyContest();
+
+		//--------------------
+		draw_TopPlayer();
+	}
+
+	//-----------------------------------
+	GetCardInvenEvent mCardEvent;
+	void draw_TopPlayer()
+	{
+		mCardEvent = new GetCardInvenEvent(ReceivedCards);
+		NetMgr.GetCardInven(mCardEvent);
+	}
+	void ReceivedCards()
+	{
+		UserMgr.CardList = mCardEvent.Response.data;
+		//for(int i=0;i<UserMgr.CardList.Count;i++) Com.LOOG("mycard", i, UserMgr.CardList[i].korName, UserMgr.CardList[i].itemId);	//debug
+		
+		draw_TopPlayer_post();
+	}
+
+	List<PlayerInfo> mSortedList;
+	void draw_TopPlayer_post()
+	{
+
+		mSortedList = new List<PlayerInfo>();
+		foreach(PlayerInfo info in UserMgr.PlayerList)
+		{
+			//if(info.positionNo == 1) mSortedList.Add(info);		//del
+			mSortedList.Add(info);									// all
+		}
+		mSortedList.Sort(delegate(PlayerInfo x, PlayerInfo y) {		// sort
+			return y.fppg.CompareTo(x.fppg);
+		});
+
+		//for(int i=0;i<mSortedList.Count;i++) Com.LOOG(i, mSortedList[i].korName, mSortedList[i].fppg);	//debug
+					
+		UIDraggablePanel2 drag = Com.FindTransform(transform, "Top_Players", "ScrollBody").GetComponent<UIDraggablePanel2>();
+
+		drag.SetDragAmount(0, 99f, false);
+		drag.RemoveAll();
+		drag.Init(
+			mSortedList.Count, delegate(UIListItem item, int index) {
+			
+			UILabel name = Com.Find_UILabel(item.Target.transform, "MLB","name");
+			name.text = Localization.language.Equals("English")
+					? mSortedList[index].firstName.Substring(0, 1) + ". " + mSortedList[index].lastName
+					: mSortedList[index].korName;
+
+			UITexture tex = Com.FindTransform(item.Target.transform, "MLB", "BtnPhoto", "Texture").GetComponent<UITexture>();
+			tex.mainTexture	= UtilMgr.GetTextureDefault();
+			//tex.color = new Color(1f, 1f, 1f, 50f/255f);
+			UtilMgr.LoadImage(mSortedList[index].playerId, tex);
+
+
+			UILabel rank = Com.Find_UILabel(item.Target.transform, "ranking_num", "Label");
+			if(index < 3)
+			{
+				rank.transform.parent.gameObject.SetActive(true);
+				rank.text = (index + 1) + "";
+
+				if(index == 0) rank.transform.parent.GetComponent<UISprite>().color = Com.GetColor(0xceab2a);
+				else if(index == 1) rank.transform.parent.GetComponent<UISprite>().color = Com.GetColor(0x9c9d9f);
+				else if(index == 2) rank.transform.parent.GetComponent<UISprite>().color = Com.GetColor(0x935e44);
+			}
+			else
+			{
+				rank.transform.parent.gameObject.SetActive(false);
+			}
+
+			UILabel fppg = Com.Find_UILabel(item.Target.transform, "FPPG_num");
+			fppg.text = mSortedList[index].fppg.ToString("f1");
+
+			UILabel position = Com.Find_UILabel(item.Target.transform, "position", "Label");
+			position.text = mSortedList[index].position;
+
+
+
+			// draw own
+			{
+				Transform own = Com.FindTransform(item.Target.transform, "own");
+				own.gameObject.SetActive(false);
+				for(int i=0;i<UserMgr.CardList.Count;i++)
+	 				if(UserMgr.CardList[i].playerFK == mSortedList[index].playerId)
+					{
+						own.gameObject.SetActive(true);
+						Com.LOOG("own", UserMgr.CardList[i].korName, UserMgr.CardList[i].fppg ,mSortedList[index].fppg);
+						break;
+					}
+			}
+
+
+		});
+
+
+		drag.ResetPosition();
+		drag.GetComponent<SpringPanel>().target = new Vector3(0, -85, 0);
+		drag.GetComponent<SpringPanel>().enabled = true;
 	}
 
 
-	
-	// Update is called once per frame
-	void Update () {
 
-	}
+
+
+
+
 
 	public void FirstInit(){
 		transform.gameObject.SetActive(true);
@@ -105,25 +206,45 @@ public class Lobby : MonoBehaviour {
 
 
 
-	public bool isFold_FantasyContest = true;
+	public bool isOpen_FantasyContest = false;
 	public void OnPress_FantasyContest()
 	{
 		Com.LOOG("OnPress_FantasyContest");
 
+		
+		if(isOpen_FantasyContest)
+		{
+			isOpen_FantasyContest = false;
+			Fold_FantasyContest();
+		}
+		else
+		{
+			isOpen_FantasyContest = true;
+			Fold_FantasyContest();
+		}
+	}
+	void Fold_FantasyContest()
+	{
 		Transform fantasy = Com.FindTransform(transform, "Fantasy_Contests");
 		UISprite btn_sprite = Com.Find_UISprite(transform, "Fantasy_Contests", "btn fold");
-		
-		if(isFold_FantasyContest)
+
+		if(isOpen_FantasyContest)
 		{
 			fantasy.localPosition = new Vector3(fantasy.localPosition.x,  -534f, fantasy.localPosition.z);
-			isFold_FantasyContest = false;
 			btn_sprite.flip = UIBasicSprite.Flip.Horizontally;
+
+			Com.FindTransform(fantasy, "Special_League").gameObject.SetActive(true);
+			Com.FindTransform(fantasy, "50").gameObject.SetActive(true);
+			Com.FindTransform(fantasy, "Ranking").gameObject.SetActive(true);
 		}
 		else
 		{
 			fantasy.localPosition = new Vector3(fantasy.localPosition.x,  -810f, fantasy.localPosition.z);
-			isFold_FantasyContest = true;
 			btn_sprite.flip = UIBasicSprite.Flip.Nothing;
+
+			Com.FindTransform(fantasy, "Special_League").gameObject.SetActive(false);
+			Com.FindTransform(fantasy, "50").gameObject.SetActive(false);
+			Com.FindTransform(fantasy, "Ranking").gameObject.SetActive(false);
 		}
 	}
 

@@ -18,11 +18,19 @@ public sealed class Com
 		Debug.Log(ret);                     // 이 로그는 그냥 출력하자		
 	}
 
+	public static Color GetColor(int hex)
+	{
+		byte R = (byte)((hex >> 16) & 0xff);
+		byte G = (byte)((hex >> 8) & 0xff);
+		byte B = (byte)(hex & 0xff);
+		return new Color(R / 255f, G / 255f, B / 255f);
+	}
 
 
 
 
 
+	//-------------- FindTransform ---------
 	static Transform FindTransformDontRoot(Transform root, Transform target, string name)            // 자기 자신은 검색에서 제외
 	{
 		if (target == null) return null;
