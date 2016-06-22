@@ -28,8 +28,8 @@ public class MyCards : MonoBehaviour {
 		transform.FindChild("Top").FindChild("Cards").FindChild("LblCardsV").GetComponent<UILabel>().text
 			= cardEvent.Response.data.Count+" / "+UserMgr.LobbyInfo.userInvenOfCard;
 
-		transform.FindChild("Top").FindChild("Skills").FindChild("LblSkillsV").GetComponent<UILabel>().text
-			= 0+"";
+//		transform.FindChild("Top").FindChild("Skills").FindChild("LblSkillsV").GetComponent<UILabel>().text
+//			= 0+"";
 
 		mCardEvent = cardEvent;
 		mMailEvent = mailEvent;
@@ -196,5 +196,9 @@ public class MyCards : MonoBehaviour {
 				.text = string.Format(UtilMgr.GetLocalText("LblMoreCards1"),
 				                      mCardEvent.Response.data.Count - UserMgr.LobbyInfo.userInvenOfCard -1);
 		}
+	}
+
+	public void ShowPlayerCard(){
+		transform.root.FindChild("PlayerCard").gameObject.SetActive(true);
 	}
 }

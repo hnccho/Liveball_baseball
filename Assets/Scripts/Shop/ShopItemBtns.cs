@@ -47,8 +47,17 @@ public class ShopItemBtns : MonoBehaviour {
 			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPurchaseSuccess"),
 			                         string.Format(UtilMgr.GetLocalText("StrPurchaseSuccess2"), mItemInfo.productName)
 			                         , DialogueMgr.DIALOGUE_TYPE.Alert, null);
+		} else if(mItemInfo.category == Shop.SKILL){
+			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPurchaseSuccess"),
+			                         string.Format(UtilMgr.GetLocalText("StrPurchaseSuccess2"), mItemInfo.productName)
+			                         , DialogueMgr.DIALOGUE_TYPE.Alert, DiagSkill);
 		}
 		UserMgr.UserInfo.gold -= mItemInfo.price;
+	}
+
+	void DiagSkill(DialogueMgr.BTNS btn){
+		UtilMgr.OnBackPressed();
+		transform.root.FindChild("SkillList").GetComponent<SkillList>().Init();
 	}
 
 //	void CardPurchasedHandler(DialogueMgr.BTNS btn){

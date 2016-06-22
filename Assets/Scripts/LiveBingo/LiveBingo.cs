@@ -16,6 +16,7 @@ public class LiveBingo : MonoBehaviour {
 	CallBingoEvent mCallEvent;
 	public CallBingoResponse mCallResponse;
 	CallBingoEvent mPowerEvent;
+	GameResultEvent mResultEvent;
 	int mBingoId;
 	bool IsReload;
 	bool BoardOnly;
@@ -451,10 +452,10 @@ public class LiveBingo : MonoBehaviour {
 		                  .FindChild("Texture").GetComponent<UITexture>());
 				
 		btm.FindChild("Draggable").GetComponent<UIDraggablePanel2>().RemoveAll();
-		if(IsEnded){
-			ShowGameEnded();
-			return;
-		}
+//		if(IsEnded){
+//			ShowGameEnded();
+//			return;
+//		}
 //		UtilMgr.ClearList(btm.FindChild("Draggable"));
 		btm.FindChild("Draggable").GetComponent<UIPanel>().clipOffset = new Vector2(0, 50f);
 		btm.FindChild("Draggable").localPosition = new Vector3(0, -283f);
@@ -782,6 +783,8 @@ public class LiveBingo : MonoBehaviour {
 		if(!IsReload && UtilMgr.GetLastBackState() != UtilMgr.STATE.LiveBingo){
 			StartCoroutine(Next ());
 		}
+		if(IsEnded)
+			ShowGameEnded();
 	}
 
 	IEnumerator Next(){
@@ -793,9 +796,9 @@ public class LiveBingo : MonoBehaviour {
 		UtilMgr.AddBackState(UtilMgr.STATE.LiveBingo);
 		UtilMgr.AnimatePageToLeft("Lobby", "LiveBingo");
 
-		if(UserMgr.eventJoined.status.Equals("Final")){
-			ShowGameEnded();
-		}
+//		if(UserMgr.eventJoined.status.Equals("Final")){
+//			ShowGameEnded();
+//		}
 	}
 
 	public void GameEnded(){
@@ -806,6 +809,42 @@ public class LiveBingo : MonoBehaviour {
 	public void ShowGameEnded(){
 		DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("LblLiveBingo"),
 		                         UtilMgr.GetLocalText("StrBingoEnded"), DialogueMgr.DIALOGUE_TYPE.Alert, null);
+
+		mResultEvent = new GameResultEvent(ReceivedGameResult);
+		NetMgr.GameResult(mResultEvent);
+	}
+
+	void ReceivedGameResult(){
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Btm").gameObject.SetActive(false);
+		transform.FindChild("Body").FindChild("Scroll View").FindChild("Result").gameObject.SetActive(true);
+		Transform result = transform.FindChild("Body").FindChild("Scroll View").FindChild("Result");
+		result.FindChild("Info").FindChild("BG").FindChild("LblAway").GetComponent<UILabel>()
+			.text = UserMgr.eventJoined.awayTeam;
+		result.FindChild("Info").FindChild("BG").FindChild("LblHome").GetComponent<UILabel>()
+			.text = UserMgr.eventJoined.homeTeam;
+
+//		Debug.Log("awayTeamId : "+UserMgr.eventJoined.awayTeamId);
+//		Debug.Log("homeTeamId : "+UserMgr.eventJoined.homeTeamId);
+//
+//		GameResultInfo.TeamResultInfo away;
+//		GameResultInfo.TeamResultInfo home;
+
+		result.FindChild("LblHits").GetComponent<LiveResultValue>().Init(
+			mResultEvent.Response.data.team[0].hits, mResultEvent.Response.data.team[1].hits);
+		result.FindChild("LblHomeruns").GetComponent<LiveResultValue>().Init(
+			mResultEvent.Response.data.team[0].homeRuns, mResultEvent.Response.data.team[1].homeRuns);
+		result.FindChild("LblBaseonballs").GetComponent<LiveResultValue>().Init(
+			mResultEvent.Response.data.team[0].walks, mResultEvent.Response.data.team[1].walks);
+		result.FindChild("LblHitbypitches").GetComponent<LiveResultValue>().Init(
+			mResultEvent.Response.data.team[0].hitByPitch, mResultEvent.Response.data.team[1].hitByPitch);
+		result.FindChild("LblStrikeouts").GetComponent<LiveResultValue>().Init(
+			mResultEvent.Response.data.team[0].strikeouts, mResultEvent.Response.data.team[1].strikeouts);
+		result.FindChild("LblStolenBases").GetComponent<LiveResultValue>().Init(
+			mResultEvent.Response.data.team[0].stolenBases, mResultEvent.Response.data.team[1].stolenBases);
+		result.FindChild("LblDoublePlays").GetComponent<LiveResultValue>().Init(
+			mResultEvent.Response.data.team[0].doublePlay, mResultEvent.Response.data.team[1].doublePlay);
+		result.FindChild("LblErrors").GetComponent<LiveResultValue>().Init(
+			mResultEvent.Response.data.team[0].err, mResultEvent.Response.data.team[1].err);
 	}
 
 	public void OnPitcherClick(){

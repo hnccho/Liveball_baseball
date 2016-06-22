@@ -556,8 +556,10 @@ public class PlayerCard : MonoBehaviour {
 			transform.FindChild("Body").FindChild("Info").FindChild ("MLB").gameObject.SetActive(false);
 			transform.FindChild("Body").FindChild("Info").FindChild ("KBO").gameObject.SetActive(true);
 //		}
-
-		mPlayerInfo = UserMgr.PlayerDic[mPlayerId];
+		mPlayerInfo = null;
+		try{
+			mPlayerInfo = UserMgr.PlayerDic[mPlayerId];
+		}catch{}
 //		foreach( in UserMgr.PlayerList){
 //			if(info.playerId == ){
 				

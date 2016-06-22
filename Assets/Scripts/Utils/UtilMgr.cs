@@ -55,7 +55,8 @@ public class UtilMgr : MonoBehaviour {
 		Settings,
 		PlayerRecords,
 		PlayerCard,
-		LiveBingo
+		LiveBingo,
+		SkillList
 	}
 
 	public static UtilMgr Instance
@@ -191,7 +192,14 @@ public class UtilMgr : MonoBehaviour {
 		{
 			STATE state = mListBackState[mListBackState.Count-1];
 
-			if(state == STATE.PlayerCard){
+			if(state == STATE.SkillList){
+				if(Instance.mRoot.FindChild("SkillList").GetComponent<SkillList>().OnClose()){
+					AnimatePageToRight(state.ToString(), mListBackState[mListBackState.Count-3].ToString(),
+					                   new EventDelegate(Instance.mRoot.FindChild("MyCards").GetComponent<MyCards>(), "ShowPlayerCard"));
+				} else{
+					AnimatePageToRight(state.ToString(), mListBackState[mListBackState.Count-2].ToString());
+				}
+			} else if(state == STATE.PlayerCard){
 				Instance.mRoot.FindChild("PlayerCard").GetComponent<PlayerCard>().OnClose();
 				return true;
 			} else if(state == STATE.Profile){
@@ -207,7 +215,8 @@ public class UtilMgr : MonoBehaviour {
 				ClearBackStates();
 				Instance.mRoot.FindChild("Lobby").GetComponent<Lobby>().Init(state);
 				return true;
-			} else{
+			}
+			else{
 				AnimatePageToRight(state.ToString(), mListBackState[mListBackState.Count-2].ToString());
 			}
 

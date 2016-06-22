@@ -19,7 +19,7 @@ public class BtnCardSkill : MonoBehaviour {
 			mGoldEvent = new GetItemShopGoldEvent(ReceivedCardShop);
 			NetMgr.GetItemShopList(Shop.CARD, mGoldEvent);
 		} else{
-
+			transform.root.FindChild("SkillList").GetComponent<SkillList>().Init();
 		}
 	}
 

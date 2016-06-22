@@ -648,7 +648,16 @@ public class NetMgr : MonoBehaviour{
 	{
 		Instance.webAPIProcessEvent (new GameSposGameRequest(), baseEvent);
 	}
-	
+
+	public static void GameResult(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent (new GameResultRequest(), baseEvent);
+	}
+
+	public static void SkillsetList(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent (new SkillsetListRequest(), baseEvent);
+	}
 	
 	public static void GetUserRankingSeasonForecast(int memSeq, BaseEvent baseEvent)
 	{

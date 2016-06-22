@@ -5,7 +5,7 @@ public class LiveResultValue : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Init (0, 33);
+
 	}
 	
 	// Update is called once per frame
