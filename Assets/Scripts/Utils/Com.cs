@@ -185,6 +185,26 @@ public sealed class Com
     }
 
 
+	public static void NUI_AttachTop(UIWidget wid_s, UIWidget wid_des, Transform des, float offset = 0)
+	{
+		float h = wid_s.localSize.y * 0.5f * wid_s.transform.root.localScale.y;
+		float hh = wid_des.localSize.y * 0.5f * wid_des.transform.root.localScale.y;
+		Vector3 newpos = wid_s.transform.position + new Vector3(0,+h + hh,0);
+		Vector3 dif = des.position - wid_des.transform.position;
+		Vector3 offs = new Vector3(0, offset * wid_s.transform.root.localScale.y, 0);
+		des.transform.position = newpos + dif + offs;
+	}
+	public static void NUI_AttachBottom(UIWidget wid_s, UIWidget wid_des, Transform des, float offset = 0)
+	{
+		float h = wid_s.localSize.y * 0.5f * wid_s.transform.root.localScale.y;
+		float hh = wid_des.localSize.y * 0.5f * wid_des.transform.root.localScale.y;
+		Vector3 newpos = wid_s.transform.position + new Vector3(0,-h - hh,0);
+		Vector3 dif = des.position - wid_des.transform.position;
+		Vector3 offs = new Vector3(0, offset * wid_s.transform.root.localScale.y, 0);
+		des.transform.position = newpos + dif + offs;
+		//drawCube(newpos, 0.1f);
+	}
+
 
 	//---------------- draw box ----------------
 

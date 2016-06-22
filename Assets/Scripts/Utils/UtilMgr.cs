@@ -790,15 +790,18 @@ public class UtilMgr : MonoBehaviour {
 		}
 	}
 
-	public static void LoadImage(long playerId, UITexture texture){
+	public static bool LoadImage(long playerId, UITexture texture)
+	{
+		bool isImage = false;
 		PlayerInfo info = null;
 		try{
 			info = UserMgr.PlayerDic[playerId];
 		} catch{
 			Debug.Log("Unknown Player : "+playerId);
 		}
-		if(info == null) return;
+		if(info == null) return false;
 		LoadImage(info.photoUrl, info.versionNo, texture);
+		return true;
 	}
 
 	static void LoadImage(string url, string versionNo, UITexture texture){

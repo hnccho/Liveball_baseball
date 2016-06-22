@@ -34,9 +34,50 @@ public class Lobby : MonoBehaviour {
 
 		//--------------------
 		draw_TopPlayer();
+		draw_title();
+		ui_align();
 	}
 
-	//-----------------------------------
+
+	void ui_align()
+	{
+		{
+			UISprite tar = Com.Find_UISprite(transform, "RtBG");
+			UISprite tops = Com.Find_UISprite(transform, "Top_Players", "SprRT");
+			Transform top = Com.FindTransform(transform, "Top_Players");
+			Com.NUI_AttachBottom(tar, tops, top);
+		}
+
+		{		
+			UISprite tar = Com.Find_UISprite(transform, "black");
+			UISprite dess = Com.Find_UISprite(transform, "Fantasy_Contests", "left");
+			Transform des = Com.FindTransform(transform, "Fantasy_Contests");
+			Com.NUI_AttachTop(tar, dess, des);
+		}
+	}
+
+
+
+	void draw_title()
+	{
+		if(Localization.language.Equals("English"))
+		{
+			Com.FindTransform(transform, "tab1").gameObject.SetActive(true);
+			Com.FindTransform(transform, "tab2").gameObject.SetActive(true);
+			Com.FindTransform(transform, "tab3").gameObject.SetActive(true);
+			Com.FindTransform(transform, "kbo").gameObject.SetActive(false);
+		}
+		else if(Localization.language.Equals("korea"))
+		{
+			Com.FindTransform(transform, "tab1").gameObject.SetActive(false);
+			Com.FindTransform(transform, "tab2").gameObject.SetActive(false);
+			Com.FindTransform(transform, "tab3").gameObject.SetActive(false);
+			Com.FindTransform(transform, "kbo").gameObject.SetActive(true);
+		}
+	}
+
+
+	//-----------------------------------Ï
 	GetCardInvenEvent mCardEvent;
 	void draw_TopPlayer()
 	{
@@ -80,9 +121,13 @@ public class Lobby : MonoBehaviour {
 					: mSortedList[index].korName;
 
 			UITexture tex = Com.FindTransform(item.Target.transform, "MLB", "BtnPhoto", "Texture").GetComponent<UITexture>();
-			tex.mainTexture	= UtilMgr.GetTextureDefault();
 			//tex.color = new Color(1f, 1f, 1f, 50f/255f);
-			UtilMgr.LoadImage(mSortedList[index].playerId, tex);
+			bool ispic = UtilMgr.LoadImage(mSortedList[index].playerId, tex);
+			if(ispic == false)
+			{
+				tex.mainTexture	= UtilMgr.GetTextureDefault();
+			}
+			
 
 
 			UILabel rank = Com.Find_UILabel(item.Target.transform, "ranking_num", "Label");
@@ -225,26 +270,26 @@ public class Lobby : MonoBehaviour {
 	}
 	void Fold_FantasyContest()
 	{
-		Transform fantasy = Com.FindTransform(transform, "Fantasy_Contests");
+		Transform sub = Com.FindTransform(transform, "Fantasy_Contests", "sub");
 		UISprite btn_sprite = Com.Find_UISprite(transform, "Fantasy_Contests", "btn fold");
 
 		if(isOpen_FantasyContest)
 		{
-			fantasy.localPosition = new Vector3(fantasy.localPosition.x,  -534f, fantasy.localPosition.z);
+			sub.localPosition = new Vector3(sub.localPosition.x,  -534f, sub.localPosition.z);
 			btn_sprite.flip = UIBasicSprite.Flip.Horizontally;
 
-			Com.FindTransform(fantasy, "Special_League").gameObject.SetActive(true);
-			Com.FindTransform(fantasy, "50").gameObject.SetActive(true);
-			Com.FindTransform(fantasy, "Ranking").gameObject.SetActive(true);
+			Com.FindTransform(sub, "Special_League").gameObject.SetActive(true);
+			Com.FindTransform(sub, "50").gameObject.SetActive(true);
+			Com.FindTransform(sub, "Ranking").gameObject.SetActive(true);
 		}
 		else
 		{
-			fantasy.localPosition = new Vector3(fantasy.localPosition.x,  -810f, fantasy.localPosition.z);
+			sub.localPosition = new Vector3(sub.localPosition.x,  -810f, sub.localPosition.z);
 			btn_sprite.flip = UIBasicSprite.Flip.Nothing;
 
-			Com.FindTransform(fantasy, "Special_League").gameObject.SetActive(false);
-			Com.FindTransform(fantasy, "50").gameObject.SetActive(false);
-			Com.FindTransform(fantasy, "Ranking").gameObject.SetActive(false);
+			Com.FindTransform(sub, "Special_League").gameObject.SetActive(false);
+			Com.FindTransform(sub, "50").gameObject.SetActive(false);
+			Com.FindTransform(sub, "Ranking").gameObject.SetActive(false);
 		}
 	}
 

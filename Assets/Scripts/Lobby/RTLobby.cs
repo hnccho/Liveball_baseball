@@ -5,31 +5,28 @@ public class RTLobby : MonoBehaviour {
 
 	GetEventsEvent mRTEvent;
 	public GameObject mItemRT;
-//	Texture2D mDefaultTxt;
 
 	int mMatchCnt;
+	int page;
 
-	// Use this for initialization
 	void Start () {
-//		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
 		mNow = System.DateTime.Now;
 	}
 
 	System.DateTime mNow;
-	// Update is called once per frame
 	void Update () {
 		System.TimeSpan ts = System.DateTime.Now - mNow;
-//		transform.root.FindChild("Lobby").FindChild("Top").FindChild("Label").GetComponent<UILabel>()
-//			.text = ts.Seconds+"";
 
 
 
 		GameObject go = transform.FindChild("ScrollRT").GetComponent<UICenterOnChild>().centeredObject;
 		if((mRTEvent == null) || (mRTEvent.Response == null) ||(mRTEvent.Response.data == null) || (go == null)) return;
 //		Debug.Log("centered : "+go.transform.FindChild("Label").GetComponent<UILabel>().text);
-		int page = int.Parse(go.transform.FindChild("Label").GetComponent<UILabel>().text)+1;
+		page = int.Parse(go.transform.FindChild("Label").GetComponent<UILabel>().text)+1;
 		transform.FindChild("SprRT").FindChild("LblRTRight").GetComponent<UILabel>().text
 			= page + " / " + mRTEvent.Response.data.Count + " " + UtilMgr.GetLocalText("LblGames");
+
+		draw_page();
 	}
 
 	void OnEnable(){
@@ -386,13 +383,42 @@ public class RTLobby : MonoBehaviour {
 			item.LoadImage();
 	}
 
-//	IEnumerator loadImage(string url, Transform tf){
-//		WWW www = new WWW(url);
-//		yield return www;
-//
-//		Texture2D texture = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
-//		www.LoadImageIntoTexture(texture);
-//		tf.GetComponent<UITexture>().mainTexture = texture;
-//		tf.GetComponent<UITexture>().color = Color.white;
-//	}
+
+	ItemRT[] itemsRT;
+	Transform pagemat;
+	UISprite[] pagepoints;
+	void draw_page()
+	{
+		if(itemsRT == null) itemsRT = transform.FindChild("ScrollRT").GetComponentsInChildren<ItemRT>();
+		if(pagemat == null) pagemat = Com.FindTransform(transform, "page");
+
+		if(pagemat.childCount == 1)
+		{
+			Transform point_dummy = Com.FindTransform(pagemat, "point");
+			point_dummy.gameObject.SetActive(false);
+			float w = 12;
+			float half = itemsRT.Length * (w + 16) * 0.5f - w * 0.5f;
+			for(int i=0;i<itemsRT.Length;i++)
+			{
+				GameObject p = NGUITools.AddChild(pagemat.gameObject, point_dummy.gameObject);
+				p.transform.localPosition = new Vector3(i * (w + 16) + (-half),0,0);			// width + cap
+				p.GetComponent<UISprite>().alpha = 0.4f;
+				p.SetActive(true);
+			}
+			pagepoints = pagemat.GetComponentsInChildren<UISprite>();
+		}
+		else if(pagepoints != null && page > 0)
+		{
+			for(int i=0;i<pagepoints.Length;i++)
+			{
+				if(page == i+1) pagepoints[i].alpha = 1f;
+				else pagepoints[i].alpha = 0.4f;
+			}
+		}
+
+	}
+
+
+
+
 }
