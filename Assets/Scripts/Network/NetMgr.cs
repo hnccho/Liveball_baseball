@@ -850,6 +850,16 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new GetItemShopGoldRequest(category), baseEvent);
 	}
 
+	public static void SetSkill(CardInfo card, SkillsetInfo skill, int slot, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new SetSkillRequest(card, skill, slot), baseEvent);
+	}
+
+	public static void OffSkill(CardInfo card, SkillsetInfo skill, int slot, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new OffSkillRequest(card, skill, slot), baseEvent);
+	}
+
 	public static void GetEventList(BaseEvent baseEvent){
 		Instance.webAPIProcessEvent(new GetEventsRequest(), baseEvent);
 	}

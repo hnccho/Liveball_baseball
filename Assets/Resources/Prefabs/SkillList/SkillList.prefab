@@ -74,7 +74,7 @@ GameObject:
   - 114: {fileID: 11499000}
   - 114: {fileID: 11444020}
   m_Layer: 5
-  m_Name: LblSkillsetShop
+  m_Name: LblSkillsetShop2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1262,6 +1262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a70447bab70493fa691abc3d72d35f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mIdx: 0
 --- !u!114 &11480142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1363,7 +1364,7 @@ MonoBehaviour:
   CellWidth: 720
   CellHeight: 136
   LineCount: 1
-  TemplatePrefab: {fileID: 0}
+  TemplatePrefab: {fileID: 149420, guid: 12462d42205a845bd9334113a7d6be96, type: 2}
 --- !u!114 &11484864
 MonoBehaviour:
   m_ObjectHideFlags: 1

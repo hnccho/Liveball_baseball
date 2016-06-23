@@ -57,7 +57,8 @@ public class ShopItemBtns : MonoBehaviour {
 
 	void DiagSkill(DialogueMgr.BTNS btn){
 		UtilMgr.OnBackPressed();
-		transform.root.FindChild("SkillList").GetComponent<SkillList>().Init();
+		transform.root.FindChild("SkillList").GetComponent<SkillList>().Reload();
+
 	}
 
 //	void CardPurchasedHandler(DialogueMgr.BTNS btn){

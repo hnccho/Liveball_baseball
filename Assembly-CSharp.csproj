@@ -675,6 +675,7 @@
      <Compile Include="Assets\Scripts\Network\Events\RemoveContestHistoryEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\RemoveContestPresetEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\RewardInfoEvent.cs" />
+     <Compile Include="Assets\Scripts\Network\Events\SetSkillEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\SkillsetListEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\TeamScheduleInfoEvent.cs" />
      <Compile Include="Assets\Scripts\Network\Events\UpdateMemberInfoEvent.cs" />
@@ -872,6 +873,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\LoginRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\MergeMembershipRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\NoticeRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\OffSkillRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\OpenCardPackRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\OrderNoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\PlayerGameInfoRequest.cs" />
@@ -892,6 +894,7 @@
      <Compile Include="Assets\Scripts\Network\Requests\RemoveContestPresetRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\RequestIAPRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\RewardInfoRequest.cs" />
+     <Compile Include="Assets\Scripts\Network\Requests\SetSkillRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\SkillsetListRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\TeamScheduleInfoRequest.cs" />
      <Compile Include="Assets\Scripts\Network\Requests\UpdateEntryRequest.cs" />
@@ -978,7 +981,7 @@
      <Compile Include="Assets\Scripts\Network\UserMgr.cs" />
      <Compile Include="Assets\Scripts\Notice\Notice.cs" />
      <Compile Include="Assets\Scripts\PlayerCard\BtnCardPage.cs" />
-     <Compile Include="Assets\Scripts\PlayerCard\BtnOpenSkillset.cs" />
+     <Compile Include="Assets\Scripts\PlayerCard\ItemSkillset.cs" />
      <Compile Include="Assets\Scripts\PlayerCard\PlayerCard.cs" />
      <Compile Include="Assets\Scripts\PlayerCard\PlayerCardAnimation.cs" />
      <Compile Include="Assets\Scripts\PlayerCard\PlayerCardSelectionBtns.cs" />

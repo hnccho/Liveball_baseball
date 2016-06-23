@@ -251,33 +251,22 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 		UIScrollView scrollview = transform.FindChild("Body").FindChild("Scroll View").GetComponent<UIScrollView>();
 		for(int i = 0; i < mItemList.Count; i++){
 			ItemShopGoldInfo shopInfo = mItemList[i];
-			GameObject go = Instantiate(mItemShop);
-			height = -136f;
+			GameObject go = Instantiate(mItemCard);
+			height = -172f;
 			go.transform.parent = scrollview.transform;
 			go.transform.localScale = new Vector3(1f, 1f, 1f);
 			go.transform.localPosition = new Vector3(0, height*i, 0);
 			go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = shopInfo.productName;
 			go.transform.FindChild("LblDesc").GetComponent<UILabel>().text = shopInfo.productDesc;
-//			if(shopInfo.productDesc.IndexOf("BONUS") > -1)
-//				go.transform.FindChild("BtnPhoto").FindChild("Bonus").gameObject.SetActive(true);
-//			else
+			if(shopInfo.productDesc.IndexOf("BONUS") > -1)
+				go.transform.FindChild("BtnPhoto").FindChild("Bonus").gameObject.SetActive(true);
+			else
 				go.transform.FindChild("BtnPhoto").FindChild("Bonus").gameObject.SetActive(false);
-			
-			go.transform.FindChild("BtnPhoto").FindChild("Item").GetComponent<UISprite>().spriteName
-				= "shop_tc_ticket";
-			go.transform.FindChild("BtnPhoto").FindChild("Item").GetComponent<UISprite>().height = 108;
+
 			go.transform.FindChild("BtnPhoto").FindChild("Item").GetComponent<UISprite>().width = 108;
-			go.transform.FindChild("BtnPhoto").FindChild("SprTicket").gameObject.SetActive(true);
-			go.transform.FindChild("BtnPhoto").FindChild("SprTicket").GetComponent<UISprite>().spriteName
-				= "shop_tc_number_"+(i+1);
-			go.transform.FindChild("BtnPhoto").FindChild("SprTicket").GetComponent<UISprite>().height = 37;			
-			switch(i){
-			case 0: go.transform.FindChild("BtnPhoto").FindChild("SprTicket").GetComponent<UISprite>().width = 84; break;
-			case 1: go.transform.FindChild("BtnPhoto").FindChild("SprTicket").GetComponent<UISprite>().width = 92; break;
-			case 2: go.transform.FindChild("BtnPhoto").FindChild("SprTicket").GetComponent<UISprite>().width = 93; break;
-			case 3: go.transform.FindChild("BtnPhoto").FindChild("SprTicket").GetComponent<UISprite>().width = 93; break;
-			case 4: go.transform.FindChild("BtnPhoto").FindChild("SprTicket").GetComponent<UISprite>().width = 104; break;
-			}
+			go.transform.FindChild("BtnPhoto").FindChild("Item").GetComponent<UISprite>().height = 134;
+			go.transform.FindChild("BtnPhoto").FindChild("Item").GetComponent<UISprite>().spriteName
+				= "skillpack_"+(i+1)+"_s";
 			
 			go.transform.FindChild("LblPrice").GetComponent<UILabel>().text
 				= UtilMgr.AddsThousandsSeparator(shopInfo.price);

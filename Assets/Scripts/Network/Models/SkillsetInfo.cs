@@ -287,4 +287,15 @@ public class SkillsetInfo {
 			_itemCode = value;
 		}
 	}
+
+	int _dockingYn;
+
+	public int dockingYn {
+		get {
+			return _dockingYn;
+		}
+		set {
+			_dockingYn = value;
+		}
+	}
 }

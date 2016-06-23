@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CardInfo {
 	public enum INVEN_TYPE{
@@ -563,6 +564,17 @@ public class CardInfo {
 		}
 	}
 
+	int _positionNo;
+
+	public int positionNo {
+		get {
+			return _positionNo;
+		}
+		set {
+			_positionNo = value;
+		}
+	}
+
 	string _position;
 
 	public string position {
@@ -587,4 +599,14 @@ public class CardInfo {
 
 	public Mailinfo mMailinfo;
 
+	List<SkillsetInfo> _dockingSkill;
+
+	public List<SkillsetInfo> dockingSkill {
+		get {
+			return _dockingSkill;
+		}
+		set {
+			_dockingSkill = value;
+		}
+	}
 }

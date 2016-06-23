@@ -534,7 +534,31 @@ public class PlayerCard : MonoBehaviour {
 		tf.FindChild("Level").FindChild("LblSalaryB").GetComponent<UILabel>().text = "[s]$"+mCardInfo.salary_org;
 		tf.FindChild("Level").FindChild("LblSalaryA").GetComponent<UILabel>().text = "$"+mCardInfo.salary;
 
-		tf.FindChild("Skillset").FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();
+
+		Transform[] skills = new Transform[3];
+		for(int i = 0; i < 3; i++){
+			skills[i] = tf.FindChild("Skillset").FindChild("Scroll View").GetChild(i);
+			skills[i].gameObject.SetActive(false);
+		}
+		int max = 1;
+		if(mCardInfo.cardClass > 2) max++;
+		if(mCardInfo.cardClass > 4) max++;
+		tf.FindChild("Skillset").FindChild("Title").FindChild("LblMax").FindChild("Label").GetComponent<UILabel>()
+			.text = max+"";
+
+		for(int i = 0; i < max; i++){
+			skills[i].gameObject.SetActive(true);
+			bool found = false;
+			foreach(SkillsetInfo info in mCardInfo.dockingSkill){
+				if(info.dockingCardSlot == (i+1)){
+					found = true;
+					skills[i].GetComponent<ItemSkillset>().Set(info);
+					break;
+				}
+			}
+			if(!found)
+				skills[i].GetComponent<ItemSkillset>().SetEmpty();
+		}
 
 		if(IsPack){
 			tf.FindChild("Btm").FindChild("Pack").gameObject.SetActive(true);
@@ -543,6 +567,8 @@ public class PlayerCard : MonoBehaviour {
 			tf.FindChild("Btm").FindChild("Pack").gameObject.SetActive(false);
 			tf.FindChild("Btm").FindChild("Upgrade").gameObject.SetActive(true);
 		}
+
+		tf.FindChild("Skillset").FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();
 
 	}
 
