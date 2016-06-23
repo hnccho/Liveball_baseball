@@ -3,13 +3,18 @@ using System.Collections;
 
 public class RTLobby : MonoBehaviour {
 
+	public static RTLobby sRTLobby;
+
 	GetEventsEvent mRTEvent;
 	public GameObject mItemRT;
 
 	int mMatchCnt;
-	int page;
+	public int page;
 
-	void Start () {
+	void Start () 
+	{
+		sRTLobby = this;
+
 		mNow = System.DateTime.Now;
 	}
 
@@ -84,6 +89,7 @@ public class RTLobby : MonoBehaviour {
 				item.parent = transform.FindChild("ScrollRT");
 				item.localPosition = new Vector3(width * i, 1f, 1f);
 				item.localScale = new Vector3(1f, 1f, 1f);
+				item.name = "itemRTList_" + i;
 			} else{				
 				item = transform.FindChild("ScrollRT").GetChild(i);
 			}

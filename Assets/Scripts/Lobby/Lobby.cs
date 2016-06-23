@@ -17,6 +17,7 @@ public class Lobby : MonoBehaviour {
 	}
 
 
+
 	IEnumerator init_GUI()
 	{
 		Camera cam = null;
