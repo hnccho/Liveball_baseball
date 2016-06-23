@@ -8,7 +8,7 @@ public class SuperRoot : MonoBehaviour {
 	protected void Start () {
 		mPopup = null;
 		UtilMgr.SetRoot(transform);
-		transform.FindChild ("Camera").transform.localPosition = new Vector3(0f, UtilMgr.GetScaledPositionY(), -2000f);
+		//transform.FindChild ("Camera").transform.localPosition = new Vector3(0f, UtilMgr.GetScaledPositionY(), -2000f);    //not use !!
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}
 	
