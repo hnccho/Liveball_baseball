@@ -27,16 +27,16 @@ public class Lobby : MonoBehaviour {
 			yield return null;
 		}
 		
-		Transform bottom = Com.FindTransform(transform, "Bottom");
-		Com.NUI_MoveBottom(cam, bottom, 142);
-		//Com.NUI_MoveRate(cam, bottom, 0.5f, 1, 0, 142);
 
 		Fold_FantasyContest();
 
 		//--------------------
 		draw_TopPlayer();
 		draw_title();
-		ui_align();
+
+
+		//ui_align();
+		//Transform bottom = Com.FindTransform(transform, "Bottom"); Com.NUI_MoveBottom(cam, bottom, 142);
 	}
 
 
@@ -97,21 +97,29 @@ public class Lobby : MonoBehaviour {
 	void draw_TopPlayer_post()
 	{
 
-		mSortedList = new List<PlayerInfo>();
+		List<PlayerInfo> mSortedList0 = new List<PlayerInfo>();
 		foreach(PlayerInfo info in UserMgr.PlayerList)
 		{
 			//if(info.positionNo == 1) mSortedList.Add(info);		//del
-			mSortedList.Add(info);									// all
+			mSortedList0.Add(info);									// all
 		}
-		mSortedList.Sort(delegate(PlayerInfo x, PlayerInfo y) {		// sort
+		mSortedList0.Sort(delegate(PlayerInfo x, PlayerInfo y) {		// sort
 			return y.fppg.CompareTo(x.fppg);
 		});
+
+		mSortedList = new List<PlayerInfo>();
+		for(int i =0;i<10;i++)
+		{
+			mSortedList.Add(mSortedList0[i]);
+		}
+		
+
 
 		//for(int i=0;i<mSortedList.Count;i++) Com.LOOG(i, mSortedList[i].korName, mSortedList[i].fppg);	//debug
 					
 		UIDraggablePanel2 drag = Com.FindTransform(transform, "Top_Players", "ScrollBody").GetComponent<UIDraggablePanel2>();
 
-		drag.SetDragAmount(0, 99f, false);
+		drag.SetDragAmount(0, 30f, false);
 		drag.RemoveAll();
 		drag.Init(
 			mSortedList.Count, delegate(UIListItem item, int index) {
@@ -276,21 +284,25 @@ public class Lobby : MonoBehaviour {
 
 		if(isOpen_FantasyContest)
 		{
-			sub.localPosition = new Vector3(sub.localPosition.x,  -534f, sub.localPosition.z);
+			//sub.localPosition = new Vector3(sub.localPosition.x,  -534f, sub.localPosition.z);
 			btn_sprite.flip = UIBasicSprite.Flip.Horizontally;
 
-			Com.FindTransform(sub, "Special_League").gameObject.SetActive(true);
-			Com.FindTransform(sub, "50").gameObject.SetActive(true);
-			Com.FindTransform(sub, "Ranking").gameObject.SetActive(true);
+			//Com.FindTransform(sub, "Special_League").gameObject.SetActive(true);
+			//Com.FindTransform(sub, "50").gameObject.SetActive(true);
+			//Com.FindTransform(sub, "Ranking").gameObject.SetActive(true);
+
+			TweenPosition.Begin(sub.GetChild(0).gameObject, 0.2f, new Vector3(0, 276, 0), false);
 		}
 		else
 		{
-			sub.localPosition = new Vector3(sub.localPosition.x,  -810f, sub.localPosition.z);
+			//sub.localPosition = new Vector3(sub.localPosition.x,  -810f, sub.localPosition.z);
 			btn_sprite.flip = UIBasicSprite.Flip.Nothing;
 
-			Com.FindTransform(sub, "Special_League").gameObject.SetActive(false);
-			Com.FindTransform(sub, "50").gameObject.SetActive(false);
-			Com.FindTransform(sub, "Ranking").gameObject.SetActive(false);
+			//Com.FindTransform(sub, "Special_League").gameObject.SetActive(false);
+			//Com.FindTransform(sub, "50").gameObject.SetActive(false);
+			//Com.FindTransform(sub, "Ranking").gameObject.SetActive(false);
+
+			TweenPosition.Begin(sub.GetChild(0).gameObject, 0.2f, new Vector3(0, -3, 0), false);
 		}
 	}
 
