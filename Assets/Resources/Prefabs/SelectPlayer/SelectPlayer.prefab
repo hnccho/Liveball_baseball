@@ -2695,7 +2695,7 @@ MonoBehaviour:
   Gap: 0
   Alwaysreset: 0
   scrollWheelFactor: 0.25
-  momentumAmount: 35
+  momentumAmount: 100
   horizontalScrollBar: {fileID: 0}
   verticalScrollBar: {fileID: 0}
   showScrollBars: 1
@@ -3832,7 +3832,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37cd523196e7415abe2fa1efb952870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DontResetPosition: 0
 --- !u!114 &11458298
 MonoBehaviour:
   m_ObjectHideFlags: 1
