@@ -61,6 +61,8 @@ public class Lobby : MonoBehaviour {
 
 	void draw_title()
 	{
+		Com.LOOG("draw_title", Localization.language);
+
 		if(Localization.language.Equals("English"))
 		{
 			Com.FindTransform(transform, "tab1").gameObject.SetActive(true);
@@ -68,12 +70,13 @@ public class Lobby : MonoBehaviour {
 			Com.FindTransform(transform, "tab3").gameObject.SetActive(true);
 			Com.FindTransform(transform, "kbo").gameObject.SetActive(false);
 		}
-		else if(Localization.language.Equals("korea"))
+		else
 		{
-			Com.FindTransform(transform, "tab1").gameObject.SetActive(false);
-			Com.FindTransform(transform, "tab2").gameObject.SetActive(false);
-			Com.FindTransform(transform, "tab3").gameObject.SetActive(false);
-			Com.FindTransform(transform, "kbo").gameObject.SetActive(true);
+			Com.FindTransform(transform, "tab1").gameObject.SetActive(true);
+			Com.FindTransform(transform, "tab2").gameObject.SetActive(true);
+			Com.FindTransform(transform, "tab3").gameObject.SetActive(true);
+			Com.FindTransform(transform, "kbo").gameObject.SetActive(false);
+			Com.Find_UILabel(transform, "Top", "Label").text = "KBO";
 		}
 	}
 
@@ -174,6 +177,8 @@ public class Lobby : MonoBehaviour {
 						break;
 					}
 			}
+
+			Com.FindTransform(item.Target.transform, "BtnPhoto").GetComponent<TopCard>().mPlayerInfo = mSortedList[index];
 
 
 		});

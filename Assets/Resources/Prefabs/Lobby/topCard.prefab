@@ -140,7 +140,8 @@ GameObject:
   - 61: {fileID: 6157578}
   - 114: {fileID: 11480318}
   - 114: {fileID: 11448564}
-  - 114: {fileID: 11454726}
+  - 114: {fileID: 11451184}
+  - 114: {fileID: 11477232}
   m_Layer: 5
   m_Name: BtnPhoto
   m_TagString: Untagged
@@ -533,7 +534,7 @@ BoxCollider:
   m_GameObject: {fileID: 104036}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 118, y: 164, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -877,6 +878,17 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &11451184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d77bf4017464306a7fa014da569e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11453392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -985,19 +997,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11412872, guid: e49943f5dd1a448e99c441f55aebc3c4, type: 2}
   mSpriteName: btn_bg_cicle_64
   mFillCenter: 1
---- !u!114 &11454726
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 164804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f02842fa4878db54f9587ff4de7d9f2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollView: {fileID: 0}
-  draggablePanel: {fileID: 0}
 --- !u!114 &11462654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1128,6 +1127,19 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!114 &11477232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02842fa4878db54f9587ff4de7d9f2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollView: {fileID: 0}
+  draggablePanel: {fileID: 0}
 --- !u!114 &11480036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1209,7 +1221,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104036}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f02842fa4878db54f9587ff4de7d9f2d, type: 3}
   m_Name: 
