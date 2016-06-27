@@ -73,10 +73,12 @@ public class Lobby : MonoBehaviour {
 		else
 		{
 			Com.FindTransform(transform, "tab1").gameObject.SetActive(true);
-			Com.FindTransform(transform, "tab2").gameObject.SetActive(true);
-			Com.FindTransform(transform, "tab3").gameObject.SetActive(true);
+			Com.FindTransform(transform, "tab2").gameObject.SetActive(false);
+			Com.FindTransform(transform, "tab3").gameObject.SetActive(false);
 			Com.FindTransform(transform, "kbo").gameObject.SetActive(false);
 			Com.Find_UILabel(transform, "Top", "Label").text = "KBO";
+
+			Com.Find_UILabel(transform, "Fantasy_Contests", "ScrollBody", "left", "title").text = "KBO";
 		}
 	}
 
