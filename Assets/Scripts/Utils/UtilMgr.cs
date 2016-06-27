@@ -790,6 +790,8 @@ public class UtilMgr : MonoBehaviour {
 		}
 	}
 
+	/**선수 사진 저장
+	로컬에 사진이 있으면 로컬에서 로드, 없으면 저장*/
 	public static bool LoadImage(long playerId, UITexture texture)
 	{
 		bool isImage = false;

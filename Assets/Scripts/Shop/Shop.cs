@@ -35,6 +35,13 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	string[] mProductCodes = new string[]{"com.liveball.cash5000", "com.liveball.cash10000", "com.liveball.cash20000",
 		"com.liveball.cash30000", "com.liveball.cash50000"};
 
+	/** 
+	상점 플로우
+	서버에서 상품 리스트 받아옴 -> 마켓에 결제 요청 -> 마켓 승인 -> 서버에서 영수증 체크 -> 결제 완료
+	안드로이드는 마켓 승인 후 컨슘을 한 번 더 보내줘야 해서 코드가 길어짐
+	컨슘을 하지 않은 상품은 다시 구매할 수 없음
+	*/
+
 	// Use this for initialization
 	void Start () {
 		SetDelegates();
@@ -85,6 +92,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 		ClearDelegates();
 	}
 
+	/**마켓 결제용*/
 	public void InitGoldShop(string title, int category, GetGoldShopEvent goldEvent){
 		mGoldList = goldEvent.Response.data;
 		transform.FindChild("Top").FindChild("LblShop").GetComponent<UILabel>().text = title;
@@ -102,7 +110,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 				GoogleIAB.init(Constants.GOOGLE_PUBLIC_KEY_KBO);
 			#endif
 		}
-	}
+	}		
 
 	public void InitItemShop(string title, int category, GetItemShopGoldEvent goldEvent){
 		mItemList = goldEvent.Response.data;
@@ -111,6 +119,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 		UtilMgr.ClearList(transform.FindChild("Body").FindChild("Scroll View"));
 
 		if(category == GOLD){
+			/**서버 요청에 의해 마켓 결제용 api가 따로 존재해서 지금은 사용하지 않음*/
 			InitGoldList();
 		} else if(category == TICKET){
 			InitTicketList();
@@ -280,6 +289,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 		scrollview.ResetPosition();
 	}
 
+	/**마켓 플러그인의 응답을 받는 리스너 등록*/
 	void SetDelegates(){
 		#if(UNITY_ANDROID)
 		GoogleIABManager.billingSupportedEvent += billingSupportedEvent;
@@ -313,7 +323,8 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 		IOSMgr.PurchaseFailedEvent -= purchaseFailedEvent;
 		#endif
 	}
-	
+
+	/**캐쉬 결제 요청 (마켓 결제창 띄움)*/
 	public void RequestIAP(string itemcode, string itemname){
 		UtilMgr.ShowLoading();
 		mItemname = itemname;

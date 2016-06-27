@@ -26,9 +26,9 @@ public class IOSMgr : MonoBehaviour
 	public static event purchaseSucceeded PurchaseSucceededEvent;
 	public static event purchaseFailed PurchaseFailedEvent;
 
-
-
-
+	/**아이폰 결제, 갤러리 접근, 푸쉬 노티
+	결제 -> Assets/Plugins/iOs/TubyIAP.mm
+	그 외 -> Assets/Plugins/iOs/Tuby3.mm */
 	#if(UNITY_EDITOR)
 	public static void CallIOSFunc( string strFuncName, string str){}
 	#elif(UNITY_ANDROID)
