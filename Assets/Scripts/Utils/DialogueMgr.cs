@@ -14,7 +14,8 @@ public class DialogueMgr : MonoBehaviour {
 		EventAlert_NonBg,
 		EventAlert,
 		Attendance,
-		Welcome
+		Welcome,
+		Notice
 	}
 
 	public enum BTNS
@@ -68,6 +69,10 @@ public class DialogueMgr : MonoBehaviour {
 	void Awake()
 	{
 		DontDestroyOnLoad (this);
+	}
+
+	public static void ShowNotice(){
+
 	}
 
 	public static void ShowExitDialogue(DialogClickHandler handler){
@@ -150,17 +155,22 @@ public class DialogueMgr : MonoBehaviour {
 			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Top").FindChild("LblMembershipBonus").gameObject.SetActive(false);
 			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Welcome").gameObject.SetActive(false);
 			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Attendance").gameObject.SetActive(true);
+			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Attendance").FindChild("LblDailyAttendanceBonus")
+				.localPosition = new Vector3(0, 70f);
+			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Attendance").FindChild("LblAttendanceDesc")
+				.localPosition = new Vector3(0, -260f);
+			Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("LblYouGotAll").localPosition = new Vector3(0, -180f);
 
 
-			for(int i = 0; i < 7; i++){
-				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Attendance").FindChild("Box")
-					.FindChild(""+(i+1)).gameObject.SetActive(false);
-			}
-
-			for(int i = 0; i < info.attendDay; i++){
-				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Attendance").FindChild("Box")
-					.FindChild(""+(i+1)).gameObject.SetActive(true);
-			}
+//			for(int i = 0; i < 7; i++){
+//				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Attendance").FindChild("Box")
+//					.FindChild(""+(i+1)).gameObject.SetActive(false);
+//			}
+//
+//			for(int i = 0; i < info.attendDay; i++){
+//				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Attendance").FindChild("Box")
+//					.FindChild(""+(i+1)).gameObject.SetActive(true);
+//			}
 
 			if(info.freeTicket > 0){
 				Instance.mAttendanceBox.transform.FindChild("Box").FindChild("Mid").FindChild("Ticket").gameObject.SetActive(true);

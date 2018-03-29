@@ -12,12 +12,17 @@ public class UpdateMemberInfoEvent : BaseEvent {
 
 	public void InitResponse(string data)
 	{
-		response = Newtonsoft.Json.JsonConvert.DeserializeObject<BaseResponse>(data);
+		response = Newtonsoft.Json.JsonConvert.DeserializeObject<LoginResponse>(data);
 
 		if (checkError ())
 			return;
 
 		eventDelegate.Execute ();
+	}
+
+	public LoginResponse Response
+	{
+		get{ return response as LoginResponse;}
 	}
 
 }

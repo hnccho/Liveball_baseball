@@ -463,5 +463,14 @@ public class UserInfo {
 		}
 	}
 
+	string _photoUrl;
 
+	public string photoUrl {
+		get {
+			return _photoUrl;
+		}
+		set {
+			_photoUrl = value;
+		}
+	}
 }

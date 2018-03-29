@@ -8,7 +8,7 @@ public class SuperRoot : MonoBehaviour {
 	protected void Start () {
 		mPopup = null;
 		UtilMgr.SetRoot(transform);
-		transform.FindChild ("Camera").transform.localPosition = new Vector3(0f, UtilMgr.GetScaledPositionY(), -2000f);
+		//transform.FindChild ("Camera").transform.localPosition = new Vector3(0f, UtilMgr.GetScaledPositionY(), -2000f);    //not use !!
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}
 	
@@ -41,9 +41,24 @@ public class SuperRoot : MonoBehaviour {
 	}
 	
 	void OnApplicationPause(bool pause){
-//		UtilMgr.OnPause = pause;
+		UtilMgr.OnPause = pause;
 //		Debug.Log("Application pause : "+pause);
-//		if(!pause)
+		if(pause){
+			UtilMgr.PauseTime = System.DateTime.Now;
+		} else{
+			System.TimeSpan timeDiff = System.DateTime.Now - UtilMgr.PauseTime;
+//			Debug.Log("hours : "+timeDiff.Hours+", minutes : "+timeDiff.Minutes+", secs : "+timeDiff.Seconds);
+
+			if(timeDiff.Minutes > 29){
+				AutoFade.LoadLevel("Login"); return;
+			}
+
+			if(UtilMgr.GetLastBackState() == UtilMgr.STATE.LiveBingo
+			   && UserMgr.eventJoined != null){
+				NetMgr.JoinGame();
+				transform.FindChild("LiveBingo").GetComponent<LiveBingo>().ReloadAll();
+			}
+		}
 //			UtilMgr.DismissLoading();
 	}
 	
@@ -52,19 +67,12 @@ public class SuperRoot : MonoBehaviour {
 		if(mPopup != null){
 			mPopup.SetActive(false);
 			mPopup = null;
-		} else
-		if (DialogueMgr.IsShown) {
+		} else if (DialogueMgr.IsShown) {
 			DialogueMgr.Instance.BtnCancelClicked();
 		} else if(IsAnimating){
 			return;
 		} else {
 			UtilMgr.OnBackPressed ();
-//			if(Application.loadedLevelName.Equals("SceneMain")){
-//				
-//				if(transform.FindChild("TF_Livetalk").gameObject.activeSelf){
-//					transform.FindChild("TF_Livetalk").FindChild("Panel").FindChild("Input").GetComponent<UIInput>().OpenKeboard();
-//				}
-//			}
 		}
 	}
 

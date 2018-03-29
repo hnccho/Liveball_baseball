@@ -19,6 +19,11 @@ public class BtnPowerUp : MonoBehaviour {
 	}
 
 	public void OnClick(){
+		if(UserMgr.UserInfo.gold < transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().mFee){
+			UtilMgr.NotEnoughGold();
+			return;
+		}
+
 		if(name.Equals("BtnPowerUp")){
 			mLevelBefore = transform.root.FindChild("CardPowerUp").GetComponent<CardPowerUp>().mTargetCard.cardLevel;
 			mCardUpEvent = new CardUpEvent(ReceivedLevelUp);

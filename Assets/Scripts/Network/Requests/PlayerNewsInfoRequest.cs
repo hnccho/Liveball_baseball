@@ -6,8 +6,8 @@ public class PlayerNewsInfoRequest : BaseRequest {
 
 	public PlayerNewsInfoRequest(long playerId)
 	{
-		Add ("memSeq", UserMgr.UserInfo.memSeq);
-		Add ("status", playerId);
+//		Add ("memSeq", UserMgr.UserInfo.memSeq);
+		Add ("playerId", playerId);
 
 //		mParams = JsonFx.Json.JsonWriter.Serialize (this);
 		mDic = this;
@@ -15,12 +15,12 @@ public class PlayerNewsInfoRequest : BaseRequest {
 
 	public override string GetType ()
 	{
-		return "apps.contest";
+		return "apps.ginfo";
 	}
 
 	public override string GetQueryId()
 	{
-		return "contestMyEntryList";
+		return "getPlayerNews";
 	}
 
 }

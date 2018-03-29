@@ -5,12 +5,12 @@ using System.Collections.Generic;
 public class SelectFeeding : MonoBehaviour {
 
 	GetCardInvenEvent mCardEvent;
-	Texture2D mDefaultTxt;
+//	Texture2D mDefaultTxt;
 	List<CardInfo> mSortedList;
 	CardInfo mTargetCard;
 	// Use this for initialization
 	void Start () {
-		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
+//		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
 	}
 	
 	// Update is called once per frame
@@ -92,13 +92,35 @@ public class SelectFeeding : MonoBehaviour {
 
 		Transform tf = item.Target.transform.FindChild("ItemCard");
 
-		tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
-		if(tf.FindChild("LblName").GetComponent<UILabel>().width > 232)
-			tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName.Substring(0, 1) + ". " + info.lastName;
+		if(Localization.language.Equals("English")){
+			tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName + " " + info.lastName;
+			if(tf.FindChild("LblName").GetComponent<UILabel>().width > 232)
+				tf.FindChild("LblName").GetComponent<UILabel>().text = info.firstName.Substring(0, 1) + ". " + info.lastName;
+			tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.city + " " + info.teamName;
+		} else{
+			tf.FindChild("LblName").GetComponent<UILabel>().text = info.korName;
+			tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.korTeamName;
+		}
+
 		tf.FindChild("LblPosition").GetComponent<UILabel>().text = info.position;
-		tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.city + " " + info.teamName;
+
 		tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$"+info.salary;
-		tf.FindChild("Star").FindChild("SprStar").FindChild("StarV").GetComponent<UILabel>().text = info.cardClass+"";
+		tf.FindChild("Star").FindChild("StarV").GetComponent<UILabel>().text = info.cardClass+"";
+		tf.FindChild("Star").FindChild("StarV").localPosition = new Vector3(20f + (18f * (info.cardClass -1)), -4f);
+		for(int i = 1; i <= 6; i++)
+			tf.FindChild("Star").FindChild("SprStar"+i).gameObject.SetActive(false);
+		for(int i = 1; i <= info.cardClass; i++){
+			tf.FindChild("Star").FindChild("SprStar"+i).gameObject.SetActive(true);
+			string starStr = "star_bronze";
+			if(info.cardClass > 4){
+				starStr = "star_gold";
+			} else if(info.cardClass > 2){
+				starStr = "star_silver";
+			}
+			tf.FindChild("Star").FindChild("SprStar"+i).GetComponent<UISprite>().spriteName = starStr;
+		}
+		
+		tf.FindChild("Level").localPosition = new Vector3(-124f + (18f * (info.cardClass -1)), -40f);
 		tf.FindChild("Level").FindChild("LblLevel").FindChild("LevelV").GetComponent<UILabel>().text = info.cardLevel+"";
 		tf.FindChild("LblFPPG").FindChild("LblFPPGV").GetComponent<UILabel>().text = info.fppg;
 		tf.FindChild("LblSkill").FindChild("LblSkillV").GetComponent<UILabel>().text = "1";
@@ -116,12 +138,13 @@ public class SelectFeeding : MonoBehaviour {
 		} else
 			tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
 		
-		tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture = mDefaultTxt;
+		tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().mainTexture
+			= UtilMgr.GetTextureDefault();
 		
 		tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>().color
 			= new Color(1f, 1f, 1f, 50f/255f);
 		
-		UtilMgr.LoadImage(info.photoUrl,
+		UtilMgr.LoadImage(info.playerFK,
 		                  tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").GetComponent<UITexture>());
 	
 	}

@@ -20,7 +20,7 @@ public class PlayerSeasonInfoRequest : BaseRequest {
 
 	public override string GetQueryId()
 	{
-		return "getPlayerSeasonStatsMLB";
+		return "getPlayerSeasonStats";
 	}
 
 }

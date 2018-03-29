@@ -7,6 +7,15 @@ public class AndroidMgr : MonoBehaviour
 	static AndroidMgr _instance;
 	string mMsg;
 
+	/**안드로이드 결제, 갤러리 접근, 푸쉬 노티
+	Assets/Plugins/Android/AndroidManifest.xml
+	Assets/Plugins/Android/tuby3.jar (직접 만듦)
+	Assets/Plugins/Android/gcm.jar (푸쉬 노티 플러그인)
+	Assets/Plugins/Android/android-support-v4.jar (구글의 잡기능 지원용 플러그인)
+	Assets/Plugins/Android/googleiabproxyactivity.jar (인앱 결제 창 플러그인)
+	Assets/Plugins/Android/IABPlugin.jar (Prime31 인앱 결제 플러그인)
+	*/
+
 	#if(UNITY_EDITOR)
 	public static void CallJavaFunc( string strFuncName, string str){}
 	#elif(UNITY_ANDROID)
@@ -93,9 +102,9 @@ public class AndroidMgr : MonoBehaviour
 
 	public void NotiReceived(string msg)
 	{
-		Debug.Log("NotiReceived : "+UtilMgr.OnPause);
-		if(!UtilMgr.OnPause)
-			QuizMgr.NotiReceived (msg);
+//		Debug.Log("NotiReceived : "+UtilMgr.OnPause);
+//		if(!UtilMgr.OnPause)
+//			QuizMgr.NotiReceived (msg);
 	}
 
 	public static void OpenCamera(EventDelegate eventDelegate){

@@ -35,6 +35,13 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	string[] mProductCodes = new string[]{"com.liveball.cash5000", "com.liveball.cash10000", "com.liveball.cash20000",
 		"com.liveball.cash30000", "com.liveball.cash50000"};
 
+	/** 
+	상점 플로우
+	서버에서 상품 리스트 받아옴 -> 마켓에 결제 요청 -> 마켓 승인 -> 서버에서 영수증 체크 -> 결제 완료
+	안드로이드는 마켓 승인 후 컨슘을 한 번 더 보내줘야 해서 코드가 길어짐
+	컨슘을 하지 않은 상품은 다시 구매할 수 없음
+	*/
+
 	// Use this for initialization
 	void Start () {
 		SetDelegates();
@@ -85,6 +92,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 		ClearDelegates();
 	}
 
+	/**마켓 결제용*/
 	public void InitGoldShop(string title, int category, GetGoldShopEvent goldEvent){
 		mGoldList = goldEvent.Response.data;
 		transform.FindChild("Top").FindChild("LblShop").GetComponent<UILabel>().text = title;
@@ -102,7 +110,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 				GoogleIAB.init(Constants.GOOGLE_PUBLIC_KEY_KBO);
 			#endif
 		}
-	}
+	}		
 
 	public void InitItemShop(string title, int category, GetItemShopGoldEvent goldEvent){
 		mItemList = goldEvent.Response.data;
@@ -111,6 +119,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 		UtilMgr.ClearList(transform.FindChild("Body").FindChild("Scroll View"));
 
 		if(category == GOLD){
+			/**서버 요청에 의해 마켓 결제용 api가 따로 존재해서 지금은 사용하지 않음*/
 			InitGoldList();
 		} else if(category == TICKET){
 			InitTicketList();
@@ -246,10 +255,41 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 		scrollview.ResetPosition();
 	}
 
-	void InitSkillList(){
+	void InitSkillList(){		
+		float height = 0;
+		UIScrollView scrollview = transform.FindChild("Body").FindChild("Scroll View").GetComponent<UIScrollView>();
+		for(int i = 0; i < mItemList.Count; i++){
+			ItemShopGoldInfo shopInfo = mItemList[i];
+			GameObject go = Instantiate(mItemCard);
+			height = -172f;
+			go.transform.parent = scrollview.transform;
+			go.transform.localScale = new Vector3(1f, 1f, 1f);
+			go.transform.localPosition = new Vector3(0, height*i, 0);
+			go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = shopInfo.productName;
+			go.transform.FindChild("LblDesc").GetComponent<UILabel>().text = shopInfo.productDesc;
+			if(shopInfo.productDesc.IndexOf("BONUS") > -1)
+				go.transform.FindChild("BtnPhoto").FindChild("Bonus").gameObject.SetActive(true);
+			else
+				go.transform.FindChild("BtnPhoto").FindChild("Bonus").gameObject.SetActive(false);
 
+			go.transform.FindChild("BtnPhoto").FindChild("Item").GetComponent<UISprite>().width = 108;
+			go.transform.FindChild("BtnPhoto").FindChild("Item").GetComponent<UISprite>().height = 134;
+			go.transform.FindChild("BtnPhoto").FindChild("Item").GetComponent<UISprite>().spriteName
+				= "skillpack_"+(i+1)+"_s";
+			
+			go.transform.FindChild("LblPrice").GetComponent<UILabel>().text
+				= UtilMgr.AddsThousandsSeparator(shopInfo.price);
+			int width = go.transform.FindChild("LblPrice").GetComponent<UILabel>().width;
+			Vector3 oriVec = go.transform.FindChild("LblPrice").FindChild("Sprite").localPosition;
+			go.transform.FindChild("LblPrice").FindChild("Sprite").localPosition
+				= new Vector3(width + 5f, oriVec.y);
+			
+			go.transform.FindChild("BtnRight").GetComponent<ShopItemBtns>().mItemInfo = shopInfo;
+		}
+		scrollview.ResetPosition();
 	}
 
+	/**마켓 플러그인의 응답을 받는 리스너 등록*/
 	void SetDelegates(){
 		#if(UNITY_ANDROID)
 		GoogleIABManager.billingSupportedEvent += billingSupportedEvent;
@@ -283,14 +323,23 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 		IOSMgr.PurchaseFailedEvent -= purchaseFailedEvent;
 		#endif
 	}
-	
+
+	/**캐쉬 결제 요청 (마켓 결제창 띄움)*/
 	public void RequestIAP(string itemcode, string itemname){
+		UtilMgr.ShowLoading();
 		mItemname = itemname;
 		mItemcode = itemcode;
+		StartCoroutine(WaitingForPurchase());
+
+	}
+
+	IEnumerator WaitingForPurchase(){
+		yield return new WaitForSeconds(0.5f);
+
 		#if(UNITY_ANDROID)
-		GoogleIAB.purchaseProduct(itemcode);
+		GoogleIAB.purchaseProduct(mItemcode);
 		#else
-		IOSMgr.BuyItem(itemcode);
+		IOSMgr.BuyItem(mItemcode);
 		#endif
 	}
 
@@ -384,31 +433,35 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	
 	void queryInventoryFailedEvent( string error )
 	{
+		UtilMgr.DismissLoading();
 		Debug.Log( "queryInventoryFailedEvent: " + error );
 	}
 	
 	
 	void purchaseCompleteAwaitingVerificationEvent( string purchaseData, string signature )
 	{
+		UtilMgr.DismissLoading();
 		Debug.Log( "purchaseCompleteAwaitingVerificationEvent. purchaseData: " + purchaseData + ", signature: " + signature );
 	}
 	
 	void purchaseSucceededEvent( GooglePurchase purchase )
-	{		
+	{	
+		UtilMgr.DismissLoading();
 		mIAPEvent = new InAppPurchaseEvent(FinishIAP);
-		
+
 		byte[] bytes = System.Text.Encoding.UTF8.GetBytes(purchase.originalJson);
 		string basedJson = System.Convert.ToBase64String(bytes);
 		bytes = System.Text.Encoding.UTF8.GetBytes(purchase.signature);
 		string basedSign = System.Convert.ToBase64String(bytes);
 //		NetMgr.InAppPurchase(false, purchase.productId, basedJson, basedSign, mIAPEvent);
-		NetMgr.InAppPurchase(false, purchase.productId, "", basedJson, mIAPEvent);
+		NetMgr.InAppPurchase(false, purchase.productId, basedSign, basedJson, mIAPEvent);
 		
 		Debug.Log( "purchaseSucceededEvent: " + purchase );
 	}
 	
 	void purchaseFailedEvent( string error, int response )
 	{
+		UtilMgr.DismissLoading();
 		Debug.Log( "purchaseFailedEvent: " + error + ", response: " + response );
 	}
 	
@@ -421,12 +474,14 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	
 	void consumePurchaseSucceededEvent( GooglePurchase purchase )
 	{
+		UtilMgr.DismissLoading();
 		mDoneIAP();
 	}
 	
 	
 	void consumePurchaseFailedEvent( string error )
 	{
+		UtilMgr.DismissLoading();
 		DialogueMgr.ShowDialogue("Consume Failed", mItemname + " Consume Failed", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 //		Debug.Log ("FailedConsume");
 	}
@@ -434,6 +489,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	#else	
 	void purchaseSucceededEvent(string receipt)
 	{	
+		UtilMgr.DismissLoading();
 		byte[] bytes = System.Text.Encoding.UTF8.GetBytes(receipt);
 		mIAPEvent = new InAppPurchaseEvent(FinishIAP);
 		NetMgr.InAppPurchase(false, mItemcode, System.Convert.ToBase64String(bytes), "", mIAPEvent);
@@ -441,9 +497,11 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	
 	void purchaseFailedEvent(string receipt)
 	{		
+		UtilMgr.DismissLoading();
 	}
 	
 	void mCancelIAP(){
+		UtilMgr.DismissLoading();
 		DialogueMgr.ShowDialogue("구매 실패", mItemname + " 구매를 실패 했습니다.", DialogueMgr.DIALOGUE_TYPE.Alert, null);
 		Debug.Log ("FailedEvent");
 	}
@@ -451,6 +509,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	#endif
 	
 	public void mDoneIAP(){
+		UtilMgr.DismissLoading();
 		DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrPurchaseSuccess"),
 			string.Format(UtilMgr.GetLocalText("StrPurchaseSuccess2"), mItemname), DialogueMgr.DIALOGUE_TYPE.Alert, null);
 		
@@ -459,6 +518,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 	}
 	
 	public void FinishIAP(){
+		UtilMgr.DismissLoading();
 		if(mIAPEvent.Response.code == 0){
 			#if(UNITY_ANDROID)
 			GoogleIAB.consumeProduct (mItemcode);
@@ -533,6 +593,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 //
 //	public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args) 
 //	{
+//		UtilMgr.DismissLoading();
 //		// A consumable product has been purchased by this user.
 //		if (string.Equals(args.purchasedProduct.definition.id, kProductIDConsumable, StringComparison.Ordinal))
 //		{
@@ -566,6 +627,7 @@ public class Shop : MonoBehaviour{//, IStoreListener {
 //
 //	public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
 //	{
+//		UtilMgr.DismissLoading();
 //		// A product purchase attempt did not succeed. Check failureReason for more detail. Consider sharing this reason with the user.
 //		Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}",product.definition.storeSpecificId, failureReason));
 //	}

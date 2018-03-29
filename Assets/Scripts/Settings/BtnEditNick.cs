@@ -12,4 +12,8 @@ public class BtnEditNick : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	public void OnClick(){
+		transform.root.FindChild("Settings").FindChild("Body").FindChild("Rename").gameObject.SetActive(true);
+	}
 }

@@ -10,8 +10,8 @@ LblReward,우승시 : {0}G,Winning : {0}G
 LblRT,실시간 경기 예측,Live
 LblSelectPitcher,Select Pitcher,Select Pitcher
 LblCardPowerUp,Card Level Up,Card Level Up
-LblTargetCard,주 카드,Target Card
-LblFeedingCard,소모 카드,Feeding Card
+LblTargetCard,주 카드,Upgradable
+LblFeedingCard,소모 카드,Trade-In
 LblCardPowerUpInfo1,주 카드를 소모 카드를 사용하여 강화할 수 있습니다.,Attempting to strengthen the target card with feeding cards.
 LblCardPowerUpInfo2,최대 4장의 소모 카드를 사용할 수 있습니다.,"In multiple attempts, max of 4 cards are allowed."
 LblCardPowerUpInfo3,강화에 성공하면 레벨이 상승합니다.,If successful in strengthening the level is rising.
@@ -19,7 +19,7 @@ LblCardUpgradeInfo1,같은 등급 최대 레벨의 소모 카드를 사용하여
 LblBtnPowerUp,레벨 업!,Level Up!
 LblBtnUpgrade,등급 업!,Rank Up!
 LblSelectPlayer,Select Player,Select Player
-LblSettledEntries,Settled Entries,Settled Entries
+LblSettledEntries,Recent,Recent
 LblPosition,포지션,Position
 LblEntryFees,입장료,Entry Fees
 LblLP,LP,LP
@@ -55,22 +55,22 @@ LblAnalysis,분석,Analysis
 LblContact,타력,Contact
 LblBattingEye,선구안,Batting eye
 LblGameLog,게임 기록,Game log
-LblPower,힘,Power
+LblPower,파워,Power
 LblAverage,평균,Average
 LblSeason,시즌,Season
-LblSpeed,속도,Speed
+LblRunningSpeed,주력,Running Speed
 LblPlayer,선수,Player
 LblPlayed,경기횟수,Played
 LblConcentration,집중력,Concentration
 LblImport,추가,Import
 LblPrizes,보상,Prizes
-LblSkillsetShop,스킬셋 상점,Skillset Shop
+LblSkillsetShop,Skillset Shop,Skillset Shop
 LblSkillList,스킬 목록,Skill List
 LblContestDetails,Contest Details,Contest Details
 LblAddPoint,추가 점수,Add Point
-LblLevel,Level,Level
+LblLevel,레벨,Level
 LblAddSkill,추가 스킬,Add Skill
-LblGames,Games,Games
+LblGames,게임,Games
 LblRules,규칙,Rules
 StrExitTitle,종료하기,Exit
 StrExitBody,종료 하시겠습니까?,Are you sure want to exit?
@@ -137,7 +137,7 @@ StrRegSucceed,등록 성공,Registration success
 StrRegSucceed2,성공적으로 등록하였습니다.,You have successfully registered.
 StrEntryNotEnough,9개의 포지션에 선수를 등록해야 합니다.,You need to register players for each 9 positions.
 StrPosition,포지션,Position
-LblInputUsername,유저 이름을 등록해주세요!,Register your nickname!
+LblInputUsername,유저 이름을 등록해주세요!,Register your username!
 LblEntryTickets,입장 티켓,Entry Tickets
 LblBasicRP,기본 RP,Basic RP
 LblEarnedRP,적립 RP,Earned RP
@@ -155,7 +155,7 @@ LblSelectCompletion,선택 완료,Select completion
 LblMembershipBonus,회원가입 보너스,Membership Bonus
 LblAttendanceBonus,출석 보너스,Attendance Bonus
 LblDailyAttendanceBonus,일일 출석 보너스,Daily Attendance Bonus
-LblAttendanceDesc,출석일 수에 따라 다양한 보너스를 획득할 수 있습니다.,It can be acquired on the basis of the date of\nAttendance Bonus is different.
+LblAttendanceDesc,매일 접속 시 보너스를 받을 수 있습니다.,You can get a bonus\nwhenever you connect every day.
 LblWelcomeDesc,내일부터 출석 보너스를 받을 수 있습니다.,You can get Attendance Bonus from Next day.
 LblYouGotAll,보너스 획득!!,You got all!
 LblGold,골드,Gold
@@ -198,7 +198,7 @@ StrTop,초,Top
 StrBottom,말,Bottom
 StrInputPlayerName,선수 이름을 입력하세요.,Input playername.
 StrStart,시작,Start
-StrGameOver,경기 종료,Game over
+StrGameOver,결과,Result
 StrGameReady,경기 준비 중,Game ready
 LblLiveBingo,라이브 빙고,Live Bingo
 LblFantasyChallengeLeague,판타지 챌린지 리그,Fantasy Challenge League
@@ -217,3 +217,53 @@ LblPlayerRecords,선수 기록,Player Records
 LblName,이름,Name
 StrSwitchToHitter,타자 정보\n전환,Switch to\nHitter
 StrSwitchToPitcher,투수 정보\n전환,Switch to\nPitcher
+StrPlayerInactive,소속팀이 없는 선수 정보는\n확인할 수 없습니다.,That player is inactive.
+StrPlayerInfo,선수 정보,Player Info
+StrInactive,소속팀 없음,Inactive
+LblSkillset,스킬셋,Skillset
+LblSelectPlayer2,선수 선택,Select Player
+StrPostponed,경기 지연,Postponed
+StrStamina,체력,Stamina
+StrCrisisManagement,위기관리,Crisis               \nManagement
+StrBallPower,구위,Ball Power
+StrControl,제구,Control
+StrGameManagement,경기운영,Game\nManagement
+StrCondition,컨디션,Condition
+StrNotEnoughTickets,티켓이 부족합니다.\n티켓을 구입하시겠습니까?,Not enough tickets\nWould you buy tickets?
+StrNotEnoughGold,골드가 부족합니다.\n골드를 구입하시겠습니까?,Not enough gold\nWould you buy gold?
+LblPrev,이전,Prev
+LblNext,다음,Next
+LblEditUsername,사용자 이름 수정,Edit Username
+LblEditUsername2,유저 이름을 수정할 수 있습니다.,You can modify your username.
+StrSuccessNick,유저 이름이 변경되었습니다.,Username has been changed.
+StrSameNick,현재와 같은 유저 이름입니다.,Same username as current.
+StrSuccessPhoto,사진이 변경되었습니다.,Photo has been changed.
+LblBingo,빙고!,Bingo!
+LblReset,재설정,Reset
+StrGetOnBase,출루,Get on Base
+StrBingoSub1,"[ff5b10][b]""{0}""[/b][-]\n부터 게임이 진행됩니다.","The game will start at\n[ff5b10][b]""{0}"""
+StrBingoSub2,선발 라인업이 발표된 후\n빙고 참여가 가능합니다.,You can participate in bingo.\nAfter the release of players line-up.
+StrRewardBingo,축하합니다!\n{0} 골드를 받았습니다.({1} / {2}),Congratulations!\nYou've got {0} gold.({1} / {2})
+StrRewardBlackBingo,굉장하네요!!!\n{0} 골드를 받았습니다.,Wonderful job!!!\nYou've got {0} gold.
+StrFailBingo,죄송합니다.\n빙고가 늦어 보상을 받을 수 없습니다.({0} / {1}),Sorry. You're a little late to get a reward.({0} / {1})
+StrGameCanceled,경기 취소,Canceled
+LblPowerChance,파워\n찬스,POWER\nCHANCE
+StrPowerChance2,"파워 찬스를 사용하시겠습니까?\n{0} 골드가 소모되며, 파워 타임 상태가 됩니다.\n\n파워 찬스는 게임당 {1}회까지 사용 가능\n(남은 찬스 {2}회)",Are you sure want to use the PowerChance?\nIt will cost {0} Gold and the game will be PowerTime state.\n\nThe PowerChance can be used {1} times per game.\n(Remaining chance : {2})
+StrPowerChance1,파워 찬스,Power Chance
+StrNotEnoughGold2,골드가 부족합니다.,Not enough gold.
+StrBingoRemained,[1c96d4]빙고 보상[-]이 남아있습니다.\n빙고 버튼을 눌러주세요.,You still have not received [1c96d4]Bingo prizes[-].\nPress the Bingo button.
+StrBingoEnded,경기가 종료 되었습니다.,The game has ended.
+StrExpand,카드 인벤 확장에는 {0} 골드가 소모됩니다.\n계속 하시겠습니까?,Card Inventory expansion requires {0} gold.\nAre you sure want to expand?
+LblHits,안타,Hits
+LblHomeruns,홈런,Home Runs
+LblBaseonballs,4구 출루,Base on Balls
+LblHitbypitches,몸에 맞는 공,Hit by Pitch
+LblStrikeouts,삼진,Strike Outs
+LblStolenBases,도루,Stolen Bases
+LblDoublePlays,병살,Double Play
+LblErrors,실책,Errors
+LblGameResult,경기 결과,Game Result
+StrSetSkill,[1c96d4]{0}[-] 스킬을 장착 하시겠습니까?,Are you sure you want to mount [1c96d4]{0}[-] skill?
+StrOffSkill,[1c96d4]{0}[-] 스킬을 해제 하시겠습니까?\n{1} 골드가 소모됩니다.,Are you sure you want to disable mounting [1c96d4]{0}[-] skill?\nIt will cost {1} gold.
+StrPosError,선수의 포지션이 맞지 않아 착용할 수 없습니다.,This skill can not use that does not fit player's position.
+LblSkillsetShop2,스킬셋 상점,Skillset Shop

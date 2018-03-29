@@ -59,23 +59,38 @@ public class ContestDetails : MonoBehaviour {
 		if(mContest.contestStatus == ContestListInfo.STATUS_UP){
 			if(mContestTime.Year < 2016)
 				return;
+
+			if(UtilMgr.IsMLB()){
+				TimeSpan ts = mContestTime.AddHours(13d) - DateTime.Now.AddTicks(UserMgr.DiffTicks);
+				transform.FindChild("InfoTop").FindChild("Time").FindChild("LblRight").GetComponent<UILabel>().text
+					= UtilMgr.GetDateTime(ts);
+			} else {
+				TimeSpan ts = mContestTime - DateTime.Now.AddTicks(UserMgr.DiffTicks);
+				transform.FindChild("InfoTop").FindChild("Time").FindChild("LblRight").GetComponent<UILabel>().text
+					= UtilMgr.GetDateTime(ts);
+			}
 			
-			TimeSpan ts = mContestTime.AddHours(13d) - DateTime.Now.AddTicks(UserMgr.DiffTicks);
-			
-			transform.FindChild("InfoTop").FindChild("Time").FindChild("LblRight").GetComponent<UILabel>().text
-				= UtilMgr.GetDateTime(ts);
+
 		}
 	}
 
 	public void Init(ContestListInfo contest){
-		int year = int.Parse(contest.startTime.Substring(0, 4));
-		int mon = int.Parse(contest.startTime.Substring(4, 2));
-		int day = int.Parse(contest.startTime.Substring(6, 2));
-		int hour = int.Parse(contest.startTime.Substring(8, 2));
-		int min = int.Parse(contest.startTime.Substring(10, 2));
-		int sec = int.Parse(contest.startTime.Substring(12, 2));
-		mContestTime = new DateTime(year, mon, day, hour, min, sec);
 		mContest = contest;
+
+		string startTime = "";
+		if(UtilMgr.IsMLB()){
+			startTime = mContest.startTime;
+		} else
+			startTime = mContest.korStartTime;
+
+		int year = int.Parse(startTime.Substring(0, 4));
+		int mon = int.Parse(startTime.Substring(4, 2));
+		int day = int.Parse(startTime.Substring(6, 2));
+		int hour = int.Parse(startTime.Substring(8, 2));
+		int min = int.Parse(startTime.Substring(10, 2));
+		int sec = int.Parse(startTime.Substring(12, 2));
+		mContestTime = new DateTime(year, mon, day, hour, min, sec);
+
 
 		transform.localPosition = new Vector3(2000f, 2000f, 0);
 		transform.gameObject.SetActive(true);
@@ -99,13 +114,32 @@ public class ContestDetails : MonoBehaviour {
 	}
 
 	void ReceivedDetails(){
-		transform.FindChild("InfoTop").FindChild("LblTitle").GetComponent<UILabel>().text = mContest.contestName;
+		if(Localization.language.Equals("English"))
+			transform.FindChild("InfoTop").FindChild("LblTitle").GetComponent<UILabel>().text = mContest.contestName;
+		else
+			transform.FindChild("InfoTop").FindChild("LblTitle").GetComponent<UILabel>().text = mContest.contestNameKor;
 
 		string strMin = ""+mContestTime.Minute;
 		if(mContestTime.Minute < 10)
 			strMin = "0"+mContestTime.Minute;
-		transform.FindChild("InfoTop").FindChild("Time").FindChild("LblLeft").GetComponent<UILabel>().text
-			= "ET " + UtilMgr.GetAMPM(mContestTime.Hour)[0] + ":" + strMin + " " + UtilMgr.GetAMPM(mContestTime.Hour)[1] + " Start";
+
+
+		if(UtilMgr.IsMLB()){
+			transform.FindChild("InfoTop").FindChild("Time").FindChild("LblLeft").GetComponent<UILabel>().text
+				= "ET " + UtilMgr.GetAMPM(mContestTime.Hour)[0] + ":" + strMin + " " + UtilMgr.GetAMPM(mContestTime.Hour)[1]
+				;//+ " " + UtilMgr.GetLocalText("StrStart");
+		} else{
+			if(Localization.language.Equals("English")){
+				transform.FindChild("InfoTop").FindChild("Time").FindChild("LblLeft").GetComponent<UILabel>().text
+					= "KST " + UtilMgr.GetAMPM(mContestTime.Hour)[0] + ":" + strMin + " " + UtilMgr.GetAMPM(mContestTime.Hour)[1]
+					;//+ " " + UtilMgr.GetLocalText("StrStart");
+			} else{
+				transform.FindChild("InfoTop").FindChild("Time").FindChild("LblLeft").GetComponent<UILabel>().text
+					= "KST " + UtilMgr.GetAMPM(mContestTime.Hour)[0] + ":" + strMin + " " + UtilMgr.GetAMPM(mContestTime.Hour)[1]
+					;//+ " " + UtilMgr.GetLocalText("StrStart");
+			}
+		}
+
 		transform.FindChild("InfoTop").FindChild("Time").FindChild("LblRight").GetComponent<UILabel>().text = "";
 		if(mContest.contestStatus == ContestListInfo.STATUS_UP){
 			transform.FindChild("InfoTop").FindChild("Labels").FindChild("LblEntries").FindChild("Label").
@@ -157,6 +191,14 @@ public class ContestDetails : MonoBehaviour {
 				.width = width;
 			item.Target.transform.FindChild("Panel").FindChild("SprGaugeFront").localPosition
 				= new Vector3(-((152 - width)/2), 0);
+
+			item.Target.transform.FindChild("SprPhotoBG")
+				.FindChild("Photo").FindChild("Texture").GetComponent<UITexture>().mainTexture = 
+					UtilMgr.GetTextureDefault();
+
+			UtilMgr.LoadUserImage(mEntryEvent.Response.data[index].photoUrl,
+				item.Target.transform.FindChild("SprPhotoBG")
+                      .FindChild("Photo").FindChild("Texture").GetComponent<UITexture>());
 		});
 		tf.FindChild("Draggable").GetComponent<UIDraggablePanel2>().ResetPosition();
 	}
@@ -169,20 +211,43 @@ public class ContestDetails : MonoBehaviour {
 		                                                                 delegate(UIListItem item, int index) {
 			item.Target.transform.FindChild("SprLeft").FindChild("Label").GetComponent<UILabel>()
 				.text = mTeamEvent.Response.data[index].awayTeamRuns+"";
+			item.Target.transform.FindChild("SprRight").FindChild("Label").GetComponent<UILabel>()
+				.text = mTeamEvent.Response.data[index].homeTeamRuns+"";
 			item.Target.transform.FindChild("SprLeft").FindChild("SprEmblem").GetComponent<UISprite>()
 				.spriteName = mTeamEvent.Response.data[index].awayTeamId+"";
 			item.Target.transform.FindChild("SprRight").FindChild("SprEmblem").GetComponent<UISprite>()
 				.spriteName = mTeamEvent.Response.data[index].homeTeamId+"";
-			item.Target.transform.FindChild("SprRight").FindChild("Label").GetComponent<UILabel>()
-				.text = mTeamEvent.Response.data[index].homeTeamRuns+"";
+
+			if(!UtilMgr.IsMLB()){
+				item.Target.transform.FindChild("SprLeft").FindChild("SprEmblem").GetComponent<UISprite>().width = 74;
+				item.Target.transform.FindChild("SprLeft").FindChild("SprEmblem").GetComponent<UISprite>().height = 60;
+				item.Target.transform.FindChild("SprRight").FindChild("SprEmblem").GetComponent<UISprite>().width = 74;
+				item.Target.transform.FindChild("SprRight").FindChild("SprEmblem").GetComponent<UISprite>().height = 60;
+			}
+
 
 			item.Target.transform.FindChild("LblCenter").GetComponent<UILabel>()
 				.text = mTeamEvent.Response.data[index].awayTeam + "         " + mTeamEvent.Response.data[index].homeTeam;
 			int hour = int.Parse(mTeamEvent.Response.data[index].dateTime.Substring(8, 2));
 			string min = mTeamEvent.Response.data[index].dateTime.Substring(10, 2);//20160326220500
-			item.Target.transform.FindChild("LblCenter").FindChild("LblUnder").GetComponent<UILabel>()
-				.text = mTeamEvent.Response.data[index].day + " ET " + UtilMgr.GetAMPM(hour)[0] + ":" + min
-					+ UtilMgr.GetAMPM(hour)[1];
+
+			if(UtilMgr.IsMLB()){
+				item.Target.transform.FindChild("LblCenter").FindChild("LblUnder").GetComponent<UILabel>()
+					.text = mTeamEvent.Response.data[index].day + " ET " + UtilMgr.GetAMPM(hour)[0] + ":" + min
+						+ " " + UtilMgr.GetAMPM(hour)[1];
+			} else{
+				if(Localization.language.Equals("English")){
+					item.Target.transform.FindChild("LblCenter").FindChild("LblUnder").GetComponent<UILabel>()
+						.text = mTeamEvent.Response.data[index].day + " KST " + UtilMgr.GetAMPM(hour)[0] + ":" + min
+							+ " " + UtilMgr.GetAMPM(hour)[1];
+				} else{
+					item.Target.transform.FindChild("LblCenter").FindChild("LblUnder").GetComponent<UILabel>()
+						.text = "KST " + UtilMgr.GetAMPM(hour)[0] + ":" + min
+							+ " (" + UtilMgr.GetAMPM(hour)[1] + UtilMgr.DayToKorean(mTeamEvent.Response.data[index].day) + ")";
+				}
+			}
+
+
 		});
 		tf.FindChild("Draggable").GetComponent<UIDraggablePanel2>().ResetPosition();
 	}

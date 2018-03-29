@@ -133,8 +133,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: card_top_bg_1
-    x: 684
-    y: 1750
+    x: 0
+    y: 844
     width: 680
     height: 298
     borderLeft: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: card_top_bg_2
     x: 0
-    y: 1448
+    y: 1146
     width: 680
     height: 298
     borderLeft: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: card_top_bg_4
     x: 0
-    y: 1146
+    y: 1448
     width: 680
     height: 298
     borderLeft: 0
@@ -185,8 +185,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: card_top_bg_5
-    x: 0
-    y: 844
+    x: 684
+    y: 1750
     width: 680
     height: 298
     borderLeft: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mycard_btn_powerup
-    x: 1578
+    x: 1496
     y: 1450
     width: 64
     height: 80
@@ -276,7 +276,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: mycard_btn_upgrade
-    x: 1496
+    x: 1578
     y: 1450
     width: 64
     height: 80
@@ -354,58 +354,6 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: starcard_1
-    x: 1578
-    y: 1534
-    width: 78
-    height: 104
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: starcard_2
-    x: 1578
-    y: 1642
-    width: 78
-    height: 104
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: starcard_3
-    x: 1496
-    y: 1534
-    width: 78
-    height: 104
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: starcard_4
-    x: 1496
-    y: 1642
-    width: 78
-    height: 104
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: starcard_5
     x: 1922
     y: 1816
     width: 78
@@ -418,9 +366,61 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: starcard_6
+  - name: starcard_2
     x: 1922
     y: 1944
+    width: 78
+    height: 104
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: starcard_3
+    x: 1496
+    y: 1642
+    width: 78
+    height: 104
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: starcard_4
+    x: 1578
+    y: 1534
+    width: 78
+    height: 104
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: starcard_5
+    x: 1578
+    y: 1642
+    width: 78
+    height: 104
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: starcard_6
+    x: 1496
+    y: 1534
     width: 78
     height: 104
     borderLeft: 0
@@ -485,7 +485,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: upgrade_bg_target_5
     x: 684
-    y: 620
+    y: 1034
     width: 298
     height: 410
     borderLeft: 0
@@ -498,7 +498,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: upgrade_bg_target_6
     x: 684
-    y: 1034
+    y: 620
     width: 298
     height: 410
     borderLeft: 0

@@ -57,14 +57,14 @@ public class ItemCard : MonoBehaviour {
 	}
 
 	public void OnBtnPhotoClick(){
-		if(UtilMgr.IsMLB()){
-			transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>()
-				.InitWithCard(mCardInfo, transform.FindChild("MLB").FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").
-				GetComponent<UITexture>().mainTexture);
-		} else{
+//		if(UtilMgr.IsMLB()){
+//			transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>()
+//				.InitWithCard(mCardInfo, transform.FindChild("MLB").FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").
+//				GetComponent<UITexture>().mainTexture);
+//		} else{
 			transform.root.FindChild("PlayerCard").GetComponent<PlayerCard>()
 				.InitWithCard(mCardInfo, transform.FindChild("KBO").FindChild("BtnPhoto").FindChild("Panel").FindChild("Texture").
 				GetComponent<UITexture>().mainTexture);
-		}
+//		}
 	}
 }

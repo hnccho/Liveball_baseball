@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class UIDraggablePanel2 : UIScrollView
 {
+	public bool ShowAll = false;			//oyh
+
+
     //=====================================================================
     //
     // Fields & Properties - UI
@@ -185,7 +188,14 @@ public class UIDraggablePanel2 : UIScrollView
 		else
         	mMinShowCount = (maxCol + 1) * maxRow;
 
-        int makeCount = Mathf.Min(count, mMinShowCount);
+
+		int makeCount = 0;
+		if(ShowAll)
+			makeCount = count;
+		else
+        	makeCount = Mathf.Min(count, mMinShowCount);
+
+
 
         GameObject obj = null;
         UIListItem prevItem = null;

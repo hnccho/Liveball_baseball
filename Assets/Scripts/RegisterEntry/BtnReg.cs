@@ -25,7 +25,6 @@ public class BtnReg : MonoBehaviour {
 
 
 				if(transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mContestInfo.myEntry < 1){
-					//check tickets. . .? on list side
 					NetMgr.RegEntry(lineupName,
 					                transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mLineup == null ? 0 : 
 					                transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mLineup.lineupSeq
@@ -51,6 +50,8 @@ public class BtnReg : MonoBehaviour {
 		if(mRegEvent.Response.code == 0){
 			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrRegSucceed"),
                                   	UtilMgr.GetLocalText("StrRegSucceed2"),DialogueMgr.DIALOGUE_TYPE.Alert, RegComplete);
+
+			UserMgr.UserInfo.ticket -= transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mContestInfo.entryTicket;
 		} else{
 			DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("StrError"),
 			                         mRegEvent.Response.message, DialogueMgr.DIALOGUE_TYPE.Alert, RegComplete);

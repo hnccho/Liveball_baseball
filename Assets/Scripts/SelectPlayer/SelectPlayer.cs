@@ -6,12 +6,12 @@ public class SelectPlayer : MonoBehaviour {
 
 	List<PlayerInfo> mPlayerList;
 	public int mSelectedNo;
-	static Texture2D mDefaultTxt;
+//	static Texture2D mDefaultTxt;
 	string mName;
 
 	// Use this for initialization
 	void Start () {
-		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
+//		mDefaultTxt = Resources.Load<Texture2D>("images/man_default_b");
 	}
 	
 	// Update is called once per frame
@@ -90,20 +90,28 @@ public class SelectPlayer : MonoBehaviour {
 			PlayerInfo info = mPlayerList[i];
 			foreach(CardInfo card in UserMgr.CardList){
 				if(info.playerId == card.playerFK){
+					PlayerInfo playerInfo = new PlayerInfo();
+					playerInfo.playerId = info.playerId;
+					playerInfo.firstName = info.firstName;
+					playerInfo.lastName = info.lastName;
+					playerInfo.playerName = info.playerName;
+					playerInfo.korName = info.korName;
+					playerInfo.position = info.position;
+					playerInfo.photoUrl = info.photoUrl;
+					playerInfo.team = info.team;
+					playerInfo.teamCode = info.teamCode;
+					playerInfo.korTeamName = info.korTeamName;
+					playerInfo.teamName = info.teamName;
+					
+					playerInfo.IsCard = true;
+					playerInfo.level = card.cardLevel;
+					playerInfo.grade = card.cardClass;
+					playerInfo.salary = card.salary;
+					playerInfo.salary_org = card.salary_org;
+					playerInfo.itemSeq = card.itemSeq;
+
 					i++;
-					PlayerInfo newCard = new PlayerInfo();
-					newCard.playerId = info.playerId;
-					newCard.IsCard = true;
-					newCard.firstName = info.firstName;
-					newCard.lastName = info.lastName;
-					newCard.level = card.cardLevel;
-					newCard.grade = card.cardClass;
-					newCard.salary = card.salary;
-					newCard.salary_org = card.salary_org;
-					newCard.position = info.position;
-					newCard.itemSeq = card.itemSeq;
-					newCard.photoUrl = info.photoUrl;
-					mPlayerList.Insert(i, newCard);
+					mPlayerList.Insert(i, playerInfo);
 				}
 			}
 		}
@@ -126,6 +134,7 @@ public class SelectPlayer : MonoBehaviour {
 			item.Target.transform.FindChild("Sub").gameObject.SetActive(true);
 
 			Transform tf = item.Target.transform.FindChild("Sub");
+			Debug.Log("korname is "+info.korName);
 			tf.GetComponent<ItemSelectPlayerSub>().mPlayerInfo = info;
 
 			tf.FindChild("LblSalaryB").GetComponent<UILabel>().text
@@ -165,32 +174,50 @@ public class SelectPlayer : MonoBehaviour {
 				tf.FindChild("LblTeam").GetComponent<UILabel>().text = info.korTeamName;
 			}
 
-			tf.FindChild("LblYear").GetComponent<UILabel>().gameObject.SetActive(false);
+			tf.FindChild("LblFPPG").FindChild("LblFPPGV").GetComponent<UILabel>().text
+				= string.Format("{0:F1}", info.fppg);
+			tf.FindChild("LblPlayed").FindChild("LblPlayedV").GetComponent<UILabel>().text
+				= info.games+"";
+
+//			tf.FindChild("LblYear").GetComponent<UILabel>().gameObject.SetActive(false);
 			tf.FindChild("LblSalary").GetComponent<UILabel>().text = "$ "+UtilMgr.AddsThousandsSeparator(info.salary);
 
-			//					if(UtilMgr.IsMLB()){
-			//						item.Target.transform.FindChild("Main").FindChild("MLB").gameObject.SetActive(true);
-			//						item.Target.transform.FindChild("Main").FindChild("KBO").gameObject.SetActive(false);
-			//						tf = item.Target.transform.FindChild("Main").FindChild("MLB");
-			//
-			//						if((info.injuryYN != null) && (info.injuryYN.Equals("Y")))
-			//							tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(true);
-			//						else
-			//							tf.FindChild("BtnPhoto").FindChild("SprInjury").gameObject.SetActive(false);
-			//					} else{
+
 			item.Target.transform.FindChild("Main").FindChild("MLB").gameObject.SetActive(false);
 			item.Target.transform.FindChild("Main").FindChild("KBO").gameObject.SetActive(true);
 			tf = item.Target.transform.FindChild("Main").FindChild("KBO");
-			//					}
+
+			if((info.injuryYN != null) && (info.injuryYN.Equals("Y")))
+				tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("SprInjury").gameObject.SetActive(true);
+			else
+				tf.FindChild("BtnPhoto").FindChild("Panel").FindChild("SprInjury").gameObject.SetActive(false);
+
+			TeamScheduleInfo schedule = null;
+			foreach(TeamScheduleInfo team in UserMgr.ScheduleList){
+				if(info.team == team.awayTeamId
+				   || info.team == team.homeTeamId){
+					if(team.dateTime.Equals(
+						transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mContestInfo.startTime)){
+						schedule = team;
+						break;
+					}
+				}
+			}
+
+			if(schedule != null){
+				item.Target.transform.FindChild("Main").FindChild("LblYear").GetComponent<UILabel>().text			
+					= schedule.awayTeam + "  @  " + schedule.homeTeam;
+			} else
+				item.Target.transform.FindChild("Main").FindChild("LblYear").gameObject.SetActive(false);
 
 			tf.FindChild("BtnPhoto")
 				.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().mainTexture
-				= mDefaultTxt;
+					= UtilMgr.GetTextureDefault();
 			tf.FindChild("BtnPhoto")
 				.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>().color
 				= new Color(1f, 1f, 1f, 50f/255f);
 
-			UtilMgr.LoadImage(info.photoUrl
+			UtilMgr.LoadImage(info.playerId
 				, tf.FindChild("BtnPhoto")
 				.FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>());
 

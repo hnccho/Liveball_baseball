@@ -123,6 +123,17 @@ public class PlayerInfo {
 		}
 	}
 
+	int _team;
+
+	public int team {
+		get {
+			return _team;
+		}
+		set {
+			_team = value;
+		}
+	}
+
 	int _teamId;
 
 	public int teamId {
@@ -264,16 +275,16 @@ public class PlayerInfo {
 		}
 	}
 
-	int _played;
-
-	public int played {
-		get {
-			return _played;
-		}
-		set {
-			_played = value;
-		}
-	}
+//	int _played;
+//
+//	public int played {
+//		get {
+//			return _played;
+//		}
+//		set {
+//			_played = value;
+//		}
+//	}
 
 	long _playerId;
 
@@ -734,5 +745,36 @@ public class PlayerInfo {
 		}
 	}
 
+	int _lastBatter;
 
+	public int lastBatter {
+		get {
+			return _lastBatter;
+		}
+		set {
+			_lastBatter = value;
+		}
+	}
+
+	int _currentBatter;
+
+	public int currentBatter {
+		get {
+			return _currentBatter;
+		}
+		set {
+			_currentBatter = value;
+		}
+	}
+
+	string _versionNo;
+
+	public string versionNo {
+		get {
+			return _versionNo;
+		}
+		set {
+			_versionNo = value;
+		}
+	}
 }

@@ -2,6 +2,17 @@
 using System.Collections;
 
 public class NotiQuizInfo {
+	int _msgCount;
+	
+	public int msgCount {
+		get {
+			return _msgCount;
+		}
+		set {
+			_msgCount = value;
+		}
+	}
+
 	string _gameSeq;
 	
 	public string gameSeq {
@@ -98,6 +109,116 @@ public class NotiQuizInfo {
 		}
 		set {
 			_result = value;
+		}
+	}
+	
+	string _half;
+	
+	public string half {
+		get {
+			return _half;
+		}
+		set {
+			_half = value;
+		}
+	}
+
+	long _pitcherId;
+
+	public long pitcherId {
+		get {
+			return _pitcherId;
+		}
+		set {
+			_pitcherId = value;
+		}
+	}
+	
+	long _playerId;
+	
+	public long playerId {
+		get {
+			return _playerId;
+		}
+		set {
+			_playerId = value;
+		}
+	}
+	
+	int _gameId;
+	
+	public int gameId {
+		get {
+			return _gameId;
+		}
+		set {
+			_gameId = value;
+		}
+	}
+
+	int _value;
+
+	public int value {
+		get {
+			return _value;
+		}
+		set {
+			_value = value;
+		}
+	}
+
+	string _status;
+
+	public string status {
+		get {
+			return _status;
+		}
+		set {
+			_status = value;
+		}
+	}
+
+	string _inningHalf;
+
+	public string inningHalf {
+		get {
+			return _inningHalf;
+		}
+		set {
+			_inningHalf = value;
+		}
+	}
+
+	string _inningState;
+
+	public string inningState {
+		get {
+			return _inningState;
+		}
+		set {
+			_inningState = value;
+		}
+	}
+
+	int _changeBingo;
+
+	public int changeBingo {
+		get {
+			return _changeBingo;
+		}
+		set {
+			_changeBingo = value;
+		}
+	}
+
+	int _outs;
+
+	public int outs {
+		get {
+			return _outs;
+		}
+		set {
+			_outs = value;
 		}
 	}
 }

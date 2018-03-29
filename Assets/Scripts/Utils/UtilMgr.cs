@@ -21,10 +21,13 @@ public class UtilMgr : MonoBehaviour {
 	public static string SelectTeamSeq = "";
 	public static bool OnPause;
 	public static bool OnFocus;
+	public static DateTime PauseTime;
+
 	public static string PreLoadedLevelName;
-	Transform mRoot;
+	public Transform mRoot;
 
 	EventDelegate mEventTweenFinish;
+	static Texture2D mTextureMan;
 
 	public enum DIRECTION{
 		ToLeft,
@@ -47,13 +50,16 @@ public class UtilMgr : MonoBehaviour {
 		SelectFeeding,
 		ContestDetails,
 		Lineup,
-		Bingo,
+//		Bingo,
 		Ranking,
 		Settings,
-		PlayerRecords
+		PlayerRecords,
+		PlayerCard,
+		LiveBingo,
+		SkillList
 	}
 
-	static UtilMgr Instance
+	public static UtilMgr Instance
 	{
 		get
 		{
@@ -111,6 +117,7 @@ public class UtilMgr : MonoBehaviour {
 		}
 //		disappear.GetComponent<UITweener>().SetOnFinished(Instance.DisappearFinished);
 //		disappear.GetComponent<UITweener>().method = UITweener.Method.EaseOut;
+		Instance.mRoot.FindChild("Camera").GetComponent<UITweener>().onFinished = new List<EventDelegate>();
 		Instance.mRoot.FindChild("Camera").GetComponent<UITweener>().SetOnFinished(Instance.TweenFinished);
 		Instance.mRoot.FindChild("Camera").GetComponent<UITweener>().method = UITweener.Method.EaseOut;
 
@@ -125,6 +132,7 @@ public class UtilMgr : MonoBehaviour {
 	}
 
 	void TweenFinished(){
+		Instance.mRoot.FindChild("Camera").GetComponent<UITweener>().onFinished = new List<EventDelegate>();
 		Instance.mRoot.GetComponent<SuperRoot>().IsAnimating = false;
 
 		Instance.mDisappear.SetActive(false);
@@ -154,6 +162,12 @@ public class UtilMgr : MonoBehaviour {
 	}
 
 	public static void RemoveBackState(STATE state){
+//		for(int i = 0; i < mListBackState.Count; i++){
+//			if(mListBackState[i] == state){
+//				mListBackState.RemoveAt(i);
+//				break;
+//			}
+//		}
 		mListBackState.Remove(state);
 	}
 
@@ -178,14 +192,31 @@ public class UtilMgr : MonoBehaviour {
 		{
 			STATE state = mListBackState[mListBackState.Count-1];
 
-			if(state == STATE.Profile){
+			if(state == STATE.SkillList){
+				if(Instance.mRoot.FindChild("SkillList").GetComponent<SkillList>().OnClose()){
+					AnimatePageToRight(state.ToString(), mListBackState[mListBackState.Count-3].ToString(),
+					                   new EventDelegate(Instance.mRoot.FindChild("MyCards").GetComponent<MyCards>(), "ShowPlayerCard"));
+				} else{
+					AnimatePageToRight(state.ToString(), mListBackState[mListBackState.Count-2].ToString());
+				}
+			} else if(state == STATE.PlayerCard){
+				Instance.mRoot.FindChild("PlayerCard").GetComponent<PlayerCard>().OnClose();
+				return true;
+			} else if(state == STATE.Profile){
+				Instance.mRoot.FindChild("Profile").FindChild("BtnBGBack").GetComponent<UIButton>()
+					.defaultColor = new Color(0,0,0,0);
+				Instance.mRoot.FindChild("Profile").FindChild("BtnBGBack").GetComponent<UIButton>()
+					.hover = new Color(0,0,0,0);
+				Instance.mRoot.FindChild("Profile").FindChild("BtnBGBack").GetComponent<UIButton>()
+					.pressed = new Color(0,0,0,0);
 				TweenPosition.Begin(Instance.mRoot.FindChild("Profile").gameObject,
 				                    				                    1f, new Vector3(1600f, 0, 0), false);
 			} else if(mListBackState[mListBackState.Count-2] == STATE.Lobby){
 				ClearBackStates();
 				Instance.mRoot.FindChild("Lobby").GetComponent<Lobby>().Init(state);
 				return true;
-			} else{
+			}
+			else{
 				AnimatePageToRight(state.ToString(), mListBackState[mListBackState.Count-2].ToString());
 			}
 
@@ -589,6 +620,7 @@ public class UtilMgr : MonoBehaviour {
 
 	public static void DismissLoading()
 	{
+		Debug.Log("DismissLoading");
 		if(Instance.mProgressCircle != null)
 			Instance.mProgressCircle.SetActive (false);
 
@@ -644,24 +676,41 @@ public class UtilMgr : MonoBehaviour {
 		}
 	}
 
+	public static string DayToKorean(string day){
+		switch(day){
+		case "Mon": return "월";
+		case "Tue": return "화";
+		case "Wed": return "수";
+		case "Thu": return "목";
+		case "Fri": return "금";
+		case "Sat": return "토";
+		case "Sun": return "일";
+		default:return "";
+
+		}
+	}
+
 	public static string[] GetAMPM(int hour){
 		string[] values = new string[2];
 		if(hour == 12){
 			values[0] = hour+"";
-			values[1] = "p.m";
+//			values[1] = "p.m";
+			values[1] = "PM";
 		} else if(hour > 12){
 			hour = hour - 12;
 			if(hour < 10)
 				values[0] = "0"+hour;
 			else
 				values[0] = hour+"";
-			values[1] = "p.m";
+//			values[1] = "p.m";
+			values[1] = "PM";
 		} else{
 			if(hour < 10)
 				values[0] = "0"+hour;
 			else
 				values[0] = hour+"";
-			values[1] = "a.m";
+//			values[1] = "a.m";
+			values[1] = "AM";
 		}
 		return values;
 	}
@@ -670,23 +719,116 @@ public class UtilMgr : MonoBehaviour {
 		Instance.StopAllCoroutines();
 	}
 
-	public static void LoadImage(string url, UITexture texture){
+	public static void LoadUserImage(string url, UITexture texture){
 		if(url == null || url.Length < 1) return;
 
-		int pngIdx = UtilMgr.IsMLB() ? url.IndexOf(".png") : url.IndexOf(".jpg");
+		int idxDot2 = url.LastIndexOf(".");
+		int idxDot1 = url.LastIndexOf(".", idxDot2-1);
+//		Debug.Log("idxDot1+1 is "+(idxDot1+1));
+//		Debug.Log("idxDot2-idxDot1 is "+(idxDot2-idxDot1));
+		int cnt = int.Parse(url.Substring(idxDot1+1, (idxDot2-idxDot1)-1));
+//		Debug.Log("cnt is "+cnt);
+
+		for(int i = 0; i < 2; i++){
+			string sub1 = url.Substring(0, idxDot1+1);
+			string sub2 = Application.temporaryCachePath + "/" + sub1 + (--cnt) + ".png";
+			Debug.Log("sub2 is "+sub2);
+			if(File.Exists(sub2)){
+				Debug.Log("Deleted "+sub2);
+				File.Delete(sub2);
+			}
+		}
+		
+		int pngIdx = url.LastIndexOf(".");
 		int slashIdx = url.LastIndexOf("/", pngIdx);
 		int length = pngIdx - slashIdx;
 		string fileName = url.Substring(slashIdx, length);
-//		Debug.Log("pngIdx : "+pngIdx+", slashIdx : "+slashIdx);
-		string filePath = "";
-		if(UtilMgr.IsMLB())
-			filePath = Application.temporaryCachePath + fileName + ".png";
-		else
-			filePath = Application.temporaryCachePath + fileName + ".jpg";
+		string filePath = Application.temporaryCachePath + "/" + fileName + ".png";
 		
 		if(File.Exists(filePath)){
-//			Debug.Log("have image : " + filePath);
 			FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+			
+			if(fs.Length < 10){
+				File.Delete(filePath);
+				Instance.StartCoroutine(Instance.LoadingUserImage (url, texture, filePath));
+			}
+			
+			byte[] bytes = new byte[fs.Length];
+			fs.Read(bytes, 0, (int)fs.Length);
+			Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
+			temp.LoadImage(bytes);
+			texture.mainTexture = temp;
+			texture.color = new Color(1f, 1f, 1f, 1f);
+			texture.width = temp.width/2;
+			texture.height = temp.height/2;
+		} else{
+			Instance.StartCoroutine(Instance.LoadingUserImage (url, texture, filePath));
+		}
+	}
+
+	IEnumerator LoadingUserImage(string url, UITexture texture, string filePath){
+		WWW www = new WWW(url);
+		yield return www;
+		
+		if(www.error == null && www.isDone){
+			Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
+			www.LoadImageIntoTexture(temp);
+			texture.mainTexture = temp;	
+			texture.color = new Color(1f, 1f, 1f, 1f);
+			texture.width = temp.width/2;
+			texture.height = temp.height/2;
+			
+			www.Dispose();
+			byte[] bytes = temp.EncodeToPNG();
+			
+			try{
+				File.WriteAllBytes(filePath, bytes);
+				if(bytes.Length < 10) throw new Exception("file size is zero");
+			} catch{
+				File.Delete(filePath);
+			}
+		}
+	}
+
+	/**선수 사진 저장
+	로컬에 사진이 있으면 로컬에서 로드, 없으면 저장*/
+	public static bool LoadImage(long playerId, UITexture texture)
+	{
+		bool isImage = false;
+		PlayerInfo info = null;
+		try{
+			info = UserMgr.PlayerDic[playerId];
+		} catch{
+			Debug.Log("Unknown Player : "+playerId);
+		}
+		if(info == null) return false;
+		LoadImage(info.photoUrl, info.versionNo, texture);
+		return true;
+	}
+
+	static void LoadImage(string url, string versionNo, UITexture texture){
+		if(url == null || url.Length < 1) return;
+		
+		int pngIdx = url.LastIndexOf(".");
+		int slashIdx = url.LastIndexOf("/", pngIdx);
+		int length = pngIdx - slashIdx;
+		string fileName = url.Substring(slashIdx, length);
+		//		Debug.Log("pngIdx : "+pngIdx+", slashIdx : "+slashIdx);
+		string filePath = "";
+		if(UtilMgr.IsMLB())
+			filePath = Application.temporaryCachePath + "/" + fileName + versionNo + ".png";
+		else
+			filePath = Application.temporaryCachePath + "/" + fileName + versionNo + ".jpg";
+		
+		if(File.Exists(filePath)){
+			//			Debug.Log("have image : " + filePath);
+			FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+			
+			if(fs.Length < 10){
+				File.Delete(filePath);
+				Instance.StartCoroutine(Instance.LoadingImage (url, texture, filePath));
+			}
+			
 			byte[] bytes = new byte[fs.Length];
 			fs.Read(bytes, 0, (int)fs.Length);
 			Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
@@ -698,16 +840,45 @@ public class UtilMgr : MonoBehaviour {
 		}
 	}
 
-		IEnumerator LoadingImage(string url, UITexture texture, string filePath){
+	public static void LoadImage(string url, UITexture texture){
+		if(url == null || url.Length < 1) return;
+
+		int pngIdx = url.LastIndexOf(".");
+		int slashIdx = url.LastIndexOf("/", pngIdx);
+		int length = pngIdx - slashIdx;
+		string fileName = url.Substring(slashIdx, length);
+//		Debug.Log("pngIdx : "+pngIdx+", slashIdx : "+slashIdx);
+		string filePath = "";
+		if(UtilMgr.IsMLB())
+			filePath = Application.temporaryCachePath + "/" + fileName + ".png";
+		else
+			filePath = Application.temporaryCachePath + "/" + fileName + ".jpg";
+		
+		if(File.Exists(filePath)){
+//			Debug.Log("have image : " + filePath);
+			FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+
+			if(fs.Length < 10){
+				File.Delete(filePath);
+				Instance.StartCoroutine(Instance.LoadingImage (url, texture, filePath));
+			}
+
+			byte[] bytes = new byte[fs.Length];
+			fs.Read(bytes, 0, (int)fs.Length);
+			Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
+			temp.LoadImage(bytes);
+			texture.mainTexture = temp;
+			texture.color = new Color(1f, 1f, 1f, 1f);
+		} else{
+			Instance.StartCoroutine(Instance.LoadingImage (url, texture, filePath));
+		}
+	}
+
+	IEnumerator LoadingImage(string url, UITexture texture, string filePath){
 		WWW www = new WWW(url);
 		yield return www;
 
 		if(www.error == null && www.isDone){
-			if(www.size < 1){
-//				Debug.Log("file size is zero");
-				yield break;
-			} 
-
 			Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
 			www.LoadImageIntoTexture(temp);
 			texture.mainTexture = temp;	
@@ -715,8 +886,10 @@ public class UtilMgr : MonoBehaviour {
 
 			www.Dispose();
 			byte[] bytes = UtilMgr.IsMLB() ? temp.EncodeToPNG() : temp.EncodeToJPG();
+
 			try{
 				File.WriteAllBytes(filePath, bytes);
+				if(bytes.Length < 10) throw new Exception("file size is zero");
 			} catch{
 				File.Delete(filePath);
 //				Debug.Log("file deleted : "+filePath);
@@ -725,4 +898,53 @@ public class UtilMgr : MonoBehaviour {
 //			Debug.Log("save image : " + filePath);
 		}
 	}
+
+	public static void NotEnoughGold(){
+		DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("LblAddGold"), UtilMgr.GetLocalText("StrNotEnoughGold")
+		                         , DialogueMgr.DIALOGUE_TYPE.YesNo, Instance.GoldHandler);
+	}
+
+	void GoldHandler(DialogueMgr.BTNS btn){
+		if(btn == DialogueMgr.BTNS.Btn1){
+			mRoot.FindChild("Profile").FindChild("Scroll View").FindChild("Btns")
+				.FindChild("BtnGold").GetComponent<BtnsShop>().OnClick();
+		}
+	}
+
+	public static void NotEnoughTicket(){
+		DialogueMgr.ShowDialogue(UtilMgr.GetLocalText("LblAddTicket"), UtilMgr.GetLocalText("StrNotEnoughTickets")
+		                         , DialogueMgr.DIALOGUE_TYPE.YesNo, Instance.TicketHandler);
+	}
+	
+	void TicketHandler(DialogueMgr.BTNS btn){
+		if(btn == DialogueMgr.BTNS.Btn1){
+			mRoot.FindChild("Profile").FindChild("Scroll View").FindChild("Btns")
+				.FindChild("BtnTicket").GetComponent<BtnsShop>().OnClick();
+		}
+	}
+
+	public static Texture2D GetTextureDefault(){
+		if(mTextureMan == null)
+			mTextureMan = Resources.Load<Texture2D>("images/man_default_b");	
+		return mTextureMan;
+	}
+
+	public static string GetMonthString(int month){
+		switch(month){
+		case 1:return "Jan";
+		case 2:return "Feb";
+		case 3:return "Mar";
+		case 4:return "Apr";
+		case 5:return "May";
+		case 6:return "Jun";
+		case 7:return "Jul";
+		case 8:return "Aug";
+		case 9:return "Sep";
+		case 10:return "Oct";
+		case 11:return "Nov";
+		case 12:return "Dec";
+		default:return"";
+		}
+	}
+
 }

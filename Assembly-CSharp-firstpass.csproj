@@ -19,7 +19,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_4;UNITY_5_3;UNITY_5;UNITY_ANALYTICS;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;PLATFORM_SUPPORTS_ADS_ID;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;CROSS_PLATFORM_INPUT;MOBILE_INPUT</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_3_4;UNITY_5_3;UNITY_5;UNITY_ANALYTICS;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;ENABLE_RUNTIME_GI;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_NETWORK;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_TEXTUREID_MAP;PLAYERCONNECTION_LISTENS_FIXED_PORT;DEBUGGER_LISTENS_FIXED_PORT;PLATFORM_SUPPORTS_ADS_ID;SUPPORT_ENVIRONMENT_VARIABLES;PLATFORM_SUPPORTS_PROFILER;PLATFORM_HAS_NO_SUPPORT_FOR_BUCKET_ALLOCATOR;STRICTCPP_NEW_DELETE_SIGNATURES;WWW_USE_CURL;HAS_NEON_SKINNIG;UNITY_INPUT_SIMULATE_EVENTS;PLATFORM_ALWAYS_USES_STDOUT_FOR_LOG;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;UNITY_IOS;UNITY_IPHONE;UNITY_IPHONE_API;SUPPORT_MULTIPLE_DISPLAYS;ENABLE_IL2CPP;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;CROSS_PLATFORM_INPUT;MOBILE_INPUT;ENABLE_IOS_ON_DEMAND_RESOURCES;ENABLE_IOS_APP_SLICING</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -51,11 +51,6 @@
      <Compile Include="Assets\Plugins\InAppBillingAndroid\GoogleSkuInfo.cs" />
      <Compile Include="Assets\Plugins\InAppBillingAndroid\demo\GoogleIABEventListener.cs" />
      <Compile Include="Assets\Plugins\InAppBillingAndroid\demo\IABUIManager.cs" />
-     <Compile Include="Assets\Plugins\JIVER\SDK\Jiver.cs" />
-     <Compile Include="Assets\Plugins\JIVER\SDK\JiverCustomUI.cs" />
-     <Compile Include="Assets\Plugins\JIVER\SDK\JiverUI.cs" />
-     <Compile Include="Assets\Plugins\JIVER\SDK\SimpleJSON.cs" />
-     <Compile Include="Assets\Plugins\JIVER\Sample\JiverMain.cs" />
      <Compile Include="Assets\Plugins\NGUI\Interaction\LanguageSelection.cs" />
      <Compile Include="Assets\Plugins\NGUI\Interaction\TypewriterEffect.cs" />
      <Compile Include="Assets\Plugins\NGUI\Interaction\UIButton.cs" />
@@ -179,7 +174,6 @@
      <None Include="Assets\Extras\Playmaker NGUI Scripts\Demo\Loading Screen Demo\Fonts\Lucida Calligraphy 30 Italics\Lucida Calligraphy 30 Italics.txt" />
      <None Include="Assets\Extras\NGUI\Examples\Atlases\Wooden\Arimo14.txt" />
      <None Include="Assets\Extras\IGSoft_Resources\ToolResources\EffectShader\FXMaker_Mask Additive Tint.shader" />
-     <None Include="Assets\Extras\PlayMaker\Readme.txt" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Text 1.shader" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (TextureClip).shader" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (TextureClip).shader" />
@@ -189,13 +183,10 @@
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 3.shader" />
      <None Include="Assets\ProLoading\Example\Present\BottonLeft.txt" />
      <None Include="Assets\Extras\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
-     <None Include="Assets\Plugins\JIVER\README.txt" />
      <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\Plugins\Net20\HtmlAgilityPack.xml" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Transparent Colored (TextureClip).shader" />
      <None Include="Assets\Extras\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
-     <None Include="Assets\Extras\Universal Sound FX\#Game Genre References\Fighting.txt" />
-     <None Include="Assets\Extras\Universal Sound FX\#Game Genre References\Platform.txt" />
      <None Include="Assets\Extras\IGSoft_Resources\ToolResources\EffectShader\FXMaker_Mask Additive.shader" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
      <None Include="Assets\Extras\Graph_Maker\Shaders\AreaShadingGradient_SF.shader" />
@@ -203,15 +194,12 @@
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Transparent Colored 3.shader" />
      <None Include="Assets\Extras\NGUI\Examples\Atlases\Refractive\Refractive Font - Normal.txt" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 2.shader" />
-     <None Include="Assets\Extras\Universal Sound FX\#Game Genre References\Real Time Stategy (RTS) Medieval.txt" />
-     <None Include="Assets\Extras\Universal Sound FX\#Game Genre References\Shoot em Up.txt" />
      <None Include="Assets\Extras\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Text 3.shader" />
      <None Include="Assets\Extras\Playmaker NGUI Scripts\README - Upgrading from Previous Versions.txt" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
      <None Include="Assets\Extras\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
      <None Include="Assets\Extras\KY_effects\MagicEffectsPackFree\ReadMe.txt" />
-     <None Include="Assets\Extras\Universal Sound FX\#Game Genre References\Physics.txt" />
      <None Include="Assets\Extras\Graph_Maker\Shaders\AreaShadingGradient.shader" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Transparent Packed 1.shader" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 1.shader" />
@@ -221,26 +209,19 @@
      <None Include="Assets\Extras\UniWebView\Readme.txt" />
      <None Include="Assets\Extras\Elementals\!Readme.txt" />
      <None Include="Assets\Extras\Standard Assets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
-     <None Include="Assets\Extras\Universal Sound FX\#version_history.txt" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Transparent Colored.shader" />
-     <None Include="Assets\Extras\iTween\ReadMe!\ReadMe!.txt" />
      <None Include="Assets\Extras\Playmaker NGUI Scripts\Demo\Loading Screen Demo\NGUI Screens\LoadBigScene\FastGUIData.xml" />
-     <None Include="Assets\Extras\Universal Sound FX\#Game Genre References\Puzzle.txt" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Text.shader" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Transparent Packed.shader" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Transparent Packed 3.shader" />
      <None Include="Assets\Extras\Playmaker NGUI Scripts\Demo\Loading Screen Demo\NGUI Screens\LoadingScreen\FastGUIData.xml" />
-     <None Include="Assets\Extras\Universal Sound FX\#Game Genre References\First Person Shooter (FPS).txt" />
      <None Include="Assets\Extras\Graph_Maker\Shaders\AreaShadingFill_SF.shader" />
-     <None Include="Assets\Extras\PlayMaker\Resources\PlayMakerAssemblies.txt" />
      <None Include="Assets\Extras\Playmaker NGUI Scripts\Demo\NGUI Atlases\Arimo\Arimo20.txt" />
      <None Include="Assets\Extras\Graph_Maker\Shaders\AreaShadingFill.shader" />
      <None Include="Assets\ProLoading\Example\Present\BottonRight.txt" />
      <None Include="Assets\Extras\Graph_Maker\ReadMe-1.5.2.txt" />
-     <None Include="Assets\Extras\Universal Sound FX\#Game Genre References\Real Time Stategy (RTS) Sci-Fi.txt" />
      <None Include="Assets\ProLoading\Example\Present\TopRight.txt" />
      <None Include="Assets\Extras\NGUI\Examples\Shaders\Unlit - Additive Colored.shader" />
-     <None Include="Assets\Extras\Universal Sound FX\#Game Genre References\8bit and Retro.txt" />
      <None Include="Assets\Extras\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
      <None Include="Assets\Extras\NGUI\Examples\Shaders\Refractive.shader" />
      <None Include="Assets\Extras\NGUI\Resources\Shaders\Unlit - Text (TextureClip).shader" />
@@ -251,7 +232,6 @@
      <None Include="Assets\Extras\Playmaker NGUI Scripts\Demo\NGUI Atlases\Playmaker NGUI UI\FastGUIData.xml" />
      <None Include="Assets\Extras\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
      <None Include="Assets\Extras\NGUI\Examples\Models\Orc Armor\Orc Armor.shader" />
-     <None Include="Assets\Extras\PlayMaker\Versions\readme.txt" />
      <None Include="Assets\Extras\Activity Indicators\ReadMe_txt.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Volumes/SSD/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

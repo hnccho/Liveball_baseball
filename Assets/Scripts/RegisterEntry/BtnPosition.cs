@@ -33,9 +33,16 @@ public class BtnPosition : MonoBehaviour {
 		mState = STATE.Designated;
 
 		transform.FindChild("Designated").FindChild("LblLF").GetComponent<UILabel>().text = mPlayerInfo.position;
-		transform.FindChild("Designated").FindChild("LblSaraly").GetComponent<UILabel>().text = UtilMgr.AddsThousandsSeparator(mPlayerInfo.salary);
-		transform.FindChild("Designated").FindChild("LblName").GetComponent<UILabel>().text
-			= mPlayerInfo.firstName.Substring(0, 1) + ". " + mPlayerInfo.lastName;
+		transform.FindChild("Designated").FindChild("LblSaraly").GetComponent<UILabel>().text
+			= "$" + UtilMgr.AddsThousandsSeparator(mPlayerInfo.salary);
+		if(Localization.language.Equals("English")){
+			transform.FindChild("Designated").FindChild("LblName").GetComponent<UILabel>().text
+				= mPlayerInfo.firstName.Substring(0, 1) + ". " + mPlayerInfo.lastName;
+		} else{
+			transform.FindChild("Designated").FindChild("LblName").GetComponent<UILabel>().text
+				= mPlayerInfo.korName;
+		}
+
 	}
 
 	public void OnClick(){

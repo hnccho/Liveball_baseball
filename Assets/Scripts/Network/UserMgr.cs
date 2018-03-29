@@ -11,6 +11,39 @@ public class UserMgr : MonoBehaviour {
 	UserInfo _userInfo;
 	List<CardInfo> _cardList;
 	List<PlayerInfo> _playerList;
+	Dictionary<long, PlayerInfo> _playerDic;
+	LobbyInfo _lobbyInfo;
+
+	public static LobbyInfo LobbyInfo {
+		get {
+			return Instance._lobbyInfo;
+		}
+		set {
+			Instance._lobbyInfo = value;
+		}
+	}
+
+	public static Dictionary<long, PlayerInfo> PlayerDic {
+		get {
+			return Instance._playerDic;
+		}
+		set {
+			Instance._playerDic = value;
+		}
+	}
+
+	List<TeamScheduleInfo> _scheduleList;
+	EventInfo _eventJoined;
+
+	public static EventInfo eventJoined {
+		get {
+			return Instance._eventJoined;
+		}
+		set {
+			Instance._eventJoined = value;
+		}
+	}
+
 //	CardInvenInfo _cardInvenInfo;
 //	ScheduleInfo _schedule;
 //	LineupInfo _awayLineup;
@@ -94,6 +127,11 @@ public class UserMgr : MonoBehaviour {
 	public static List<PlayerInfo> PlayerList{
 		get{ return Instance._playerList;}
 		set{ Instance._playerList = value;}
+	}
+
+	public static List<TeamScheduleInfo> ScheduleList{
+		get{ return Instance._scheduleList;}
+		set{ Instance._scheduleList = value;}
 	}
 	
 //	public static CardInvenInfo CardInvenInfo

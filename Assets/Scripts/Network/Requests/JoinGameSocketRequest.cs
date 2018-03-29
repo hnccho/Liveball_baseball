@@ -8,14 +8,7 @@ public class JoinGameSocketRequest : BaseSocketRequest {
 	{
 		Add ("type", ConstantsSocketType.REQ.TYPE_JOIN);
 		Add ("memSeq", UserMgr.UserInfo.memSeq);
-		Add ("memberEamil", UserMgr.UserInfo.memberEmail);
-		Add ("memberName", UserMgr.UserInfo.nick);
-		Add ("imagePath", "");
-		Add ("imageName", "");
-//		Add ("gameSeq", UserMgr.GameSeq);
-//		Add ("gameSeq", UserMgr.Schedule.gameSeq);
-		Debug.Log ("JoinGameSocketRequest");
-//		Debug.Log (UserMgr.Schedule.gameSeq);
+		Add ("gameId", UserMgr.eventJoined.gameId);
 		mDic = this;
 	}
 }

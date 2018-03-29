@@ -10,6 +10,7 @@ public class LoginRoot : SuperRoot {
 	GetProfileEvent mProfileEvent;
 	GetPlayerListEvent mPlayerEvent;
 	GetCardInvenEvent mCardEvent;
+	TeamScheduleInfoEvent mScheduleEvent;
 
 	bool mMustUpdate;
 	static string mNick = null;
@@ -278,12 +279,22 @@ public class LoginRoot : SuperRoot {
 
 	void ReceivedPlayers(){
 		UserMgr.PlayerList = mPlayerEvent.Response.data;
+		UserMgr.PlayerDic = new System.Collections.Generic.Dictionary<long, PlayerInfo>();
+		foreach(PlayerInfo info in UserMgr.PlayerList)
+			UserMgr.PlayerDic.Add(info.playerId, info);
+
 		mCardEvent = new GetCardInvenEvent(ReceivedCards);
 		NetMgr.GetCardInven(mCardEvent);
 	}
 
 	void ReceivedCards(){
 		UserMgr.CardList = mCardEvent.Response.data;
+		mScheduleEvent = new TeamScheduleInfoEvent(ReceivedSchedule);
+		NetMgr.TeamScheduleInfo(mScheduleEvent);
+	}
+
+	void ReceivedSchedule(){
+		UserMgr.ScheduleList = mScheduleEvent.Response.data;
 		AutoFade.LoadLevel("Landing");
 	}
 

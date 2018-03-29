@@ -18,21 +18,29 @@ public class BtnsShop : MonoBehaviour {
 
 	public void OnClick(){
 		if(name.Equals("BtnGold")){
-			mGoldEvent = new GetGoldShopEvent(ReceivedGold);
-			NetMgr.GetGoldShop(mGoldEvent);
-			return;
+			OpenGold();
 		} else if(name.Equals("BtnTicket")){
-			mItemEvent = new GetItemShopGoldEvent(ReceivedTicketShop);
-			NetMgr.GetItemShopList(Shop.TICKET, mItemEvent);
-
-
+			OpenTickets();
 		}
+	}
+
+	public void OpenGold(){
+		mGoldEvent = new GetGoldShopEvent(ReceivedGold);
+		NetMgr.GetGoldShop(mGoldEvent);
+	}
+
+	public void OpenTickets(){
+		mItemEvent = new GetItemShopGoldEvent(ReceivedTicketShop);
+		NetMgr.GetItemShopList(Shop.TICKET, mItemEvent);
 	}
 
 	void ReceivedGold(){
 		UtilMgr.RemoveBackState(UtilMgr.STATE.Profile);
-		UtilMgr.AnimatePageToLeft(UtilMgr.GetLastBackState().ToString(), "Shop");
-		UtilMgr.AddBackState(UtilMgr.STATE.Shop);
+
+		if(UtilMgr.GetLastBackState() != UtilMgr.STATE.Shop){
+			UtilMgr.AnimatePageToLeft(UtilMgr.GetLastBackState().ToString(), "Shop");
+			UtilMgr.AddBackState(UtilMgr.STATE.Shop);
+		}
 
 		transform.root.FindChild("Shop").GetComponent<Shop>().InitGoldShop(
 			UtilMgr.GetLocalText("StrGoldShop"), Shop.GOLD, mGoldEvent);

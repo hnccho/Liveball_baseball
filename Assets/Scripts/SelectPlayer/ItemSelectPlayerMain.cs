@@ -16,7 +16,7 @@ public class ItemSelectPlayerMain : MonoBehaviour {
 	}
 
 	public void LoadImage(){
-		UtilMgr.LoadImage(mPlayerInfo.photoUrl
+		UtilMgr.LoadImage(mPlayerInfo.playerId
 	      , transform.FindChild("BtnPhoto")
               .FindChild("Panel").FindChild("TxtPlayer").GetComponent<UITexture>());
 	}

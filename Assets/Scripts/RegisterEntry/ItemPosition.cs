@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ItemPosition : MonoBehaviour {
 
-	PlayerInfo mPlayerInfo;
+	public PlayerInfo mPlayerInfo;
 	public BtnPosition.STATE mState;
 	bool mNeedPhoto;
 
@@ -15,7 +15,8 @@ public class ItemPosition : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(mNeedPhoto){
-			StartCoroutine(LoadImage(mPlayerInfo.photoUrl, transform.FindChild("Photo").GetComponent<UITexture>()));
+//			StartCoroutine(LoadImage(mPlayerInfo.photoUrl, transform.FindChild("Photo").GetComponent<UITexture>()));
+			UtilMgr.LoadImage(mPlayerInfo.playerId, transform.FindChild("Photo").GetComponent<UITexture>());
 			mNeedPhoto = false;
 		}
 	}
@@ -49,6 +50,24 @@ public class ItemPosition : MonoBehaviour {
 			transform.FindChild("Designated").FindChild("LblName")
 				.GetComponent<UILabel>().text = info.korName;
 		}
+
+		TeamScheduleInfo schedule = null;
+		foreach(TeamScheduleInfo team in UserMgr.ScheduleList){
+			if(info.team == team.awayTeamId
+			   || info.team == team.homeTeamId){
+				if(team.dateTime.Equals(
+					transform.root.FindChild("RegisterEntry").GetComponent<RegisterEntry>().mContestInfo.startTime)){
+					schedule = team;
+					break;
+				}
+			}
+		}
+		
+		if(schedule != null){
+			transform.FindChild("Designated").FindChild("LblYear").GetComponent<UILabel>().text			
+				= schedule.awayTeam + "  @  " + schedule.homeTeam;
+		} else
+			transform.FindChild("Designated").FindChild("LblYear").gameObject.SetActive(false);
 	}
 
 	public void SetUndesignated(){
@@ -68,16 +87,16 @@ public class ItemPosition : MonoBehaviour {
 		transform.FindChild("Undesignated").gameObject.SetActive(true);
 	}
 
-	IEnumerator LoadImage(string url, UITexture texture){
-		WWW www = new WWW(url);
-		yield return www;
-		
-		Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
-		www.LoadImageIntoTexture(temp);
-		texture.mainTexture = temp;
-		texture.width = 130;
-		www.Dispose();
-	}
+//	IEnumerator LoadImage(string url, UITexture texture){
+//		WWW www = new WWW(url);
+//		yield return www;
+//		
+//		Texture2D temp = new Texture2D(0, 0, TextureFormat.ARGB4444, false);
+//		www.LoadImageIntoTexture(temp);
+//		texture.mainTexture = temp;
+//		texture.width = 130;
+//		www.Dispose();
+//	}
 
 	public PlayerInfo GetPlayerInfo(){
 		return mPlayerInfo;

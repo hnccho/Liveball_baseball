@@ -20,16 +20,17 @@ public class DFSBtns : MonoBehaviour {
 		int featured = 0;
 		int type = 0;
 		mContestEvent = new ContestListEvent(new EventDelegate(ReceivedContest));
+		Com.LOOG("DFSBtns-OnClick" , name);
 
-		if(name.Equals("BtnSpecial")){
+		if(transform.parent.name.Equals("Special_League")){
 			featured = ContestListInfo.FEATURED_SPECIAL;
 			type = ContestListInfo.TYPE_ALL;
 			mTitle = UtilMgr.GetLocalText("StrSpecialLeague");
-		} else if(name.Equals("Btn50")){
+		} else if(transform.parent.name.Equals("50")){
 			featured = ContestListInfo.TYPE_ALL;
 			type = ContestListInfo.TYPE_FIFTY;
 			mTitle = UtilMgr.GetLocalText("Str50vs50");
-		} else if(name.Equals("BtnRanking")){
+		} else if(transform.parent.name.Equals("Ranking")){
 			featured = ContestListInfo.TYPE_ALL;
 			type = ContestListInfo.TYPE_RANK;
 			mTitle = UtilMgr.GetLocalText("StrRanking");

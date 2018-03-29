@@ -18,6 +18,8 @@ public class BtmInfo : MonoBehaviour {
 	}
 
 	public void SetBtmInfo(Transform scrollView){
+		float listSize = scrollView.GetComponent<UIPanel>().height;
+//		Debug.Log("listSize is "+listSize);
 		mCount = 0;
 		long avg = 0;
 		mTotal = 0;
@@ -40,6 +42,8 @@ public class BtmInfo : MonoBehaviour {
 		transform.FindChild("Labels").FindChild("LblBig").GetComponent<UILabel>().text
 			= "$" + UtilMgr.AddsThousandsSeparator(mTotal+"") + " [999999]of $"
 				+ UtilMgr.AddsThousandsSeparator(salaryLimit);
+
+		transform.localPosition = new Vector3(0, (-202f -listSize));
 	}
 
 	public bool CheckSalary(){

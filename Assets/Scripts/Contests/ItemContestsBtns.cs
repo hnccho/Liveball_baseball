@@ -23,6 +23,11 @@ public class ItemContestsBtns : MonoBehaviour {
 	}
 
 	public void OnClick(){
+		if(mContestInfo.entryTicket > UserMgr.UserInfo.ticket){
+			UtilMgr.NotEnoughTicket();
+			return;
+		}
+
 		if(mContestInfo.myEntry > 0){
 			mLineupEvent = new GetMyLineupEvent(ReceivedEntry);
 			NetMgr.GetMyEntryData(mContestInfo.myEntry, mLineupEvent);

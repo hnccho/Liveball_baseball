@@ -24,6 +24,7 @@ public class NetMgr : MonoBehaviour{
 	private static byte[] mSendBuffer = new byte[8142];
 	private static List<SocketMsgInfo> mSocketMsgList = new List<SocketMsgInfo>();
 	private static bool mRecvSemaphore;
+
 	//    BaseEvent mSocketEvent;
 	
 	private static NetMgr _instance = null;
@@ -64,7 +65,7 @@ public class NetMgr : MonoBehaviour{
 			yield return 0; 
 		} 
 		
-		
+		UtilMgr.DismissLoading ();
 		if(www.error == null && www.isDone)
 		{
 			Debug.Log(www.text);
@@ -83,8 +84,6 @@ public class NetMgr : MonoBehaviour{
 			//            mIsUpload = isUpload;
 			//            mIsLoading = showLoading;
 		}
-		
-		UtilMgr.DismissLoading ();
 	}
 
 	IEnumerator webAPIProcessInBackground(WWW www, BaseEvent baseEvent)
@@ -133,7 +132,8 @@ public class NetMgr : MonoBehaviour{
 			} 
 		}
 		//Debug.Log("www.text : " + www.url);
-;
+
+		UtilMgr.DismissLoading ();
 		if(www.error == null && www.isDone)
 		{
 			Debug.Log(www.text);
@@ -172,8 +172,6 @@ public class NetMgr : MonoBehaviour{
 
 			}
 		}
-		
-		UtilMgr.DismissLoading ();
 	}
 	
 	void ConnectHandlerForHttp(DialogueMgr.BTNS btn){
@@ -486,7 +484,7 @@ public class NetMgr : MonoBehaviour{
 		mSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 		
 		try{
-			mSocket.BeginConnect(Constants.APPS_SERVER_HOST, Constants.EXTR_SERVER_PORT,
+			mSocket.BeginConnect(Constants.EXTR_SERVER_HOST, Constants.EXTR_SERVER_PORT,
 			                     mConnectionCallback, null);
 		} catch(Exception e){
 			Debug.Log ("beginConnect : "+e.Message);
@@ -511,6 +509,27 @@ public class NetMgr : MonoBehaviour{
 		}
 		mSocket = null;
 	}
+
+//	public static void UpdateSocket(){
+//		if(mSocket != null){
+//			try{
+//				mSocket.BeginSend(new byte[1], 0, 1, SocketFlags.None,
+//				                  mSendingCallback, null);
+//			} catch(SocketException e){
+//				Debug.Log(e.Message);
+//				JoinGame();
+//			}
+////			bool part1 = mSocket.Poll(1000, SelectMode.SelectRead);
+////			bool part2 = (mSocket.Available == 0 );
+////			Debug.Log("part1 : "+part1+", part2 : "+part2);
+////			if(part1 && part2){
+////				JoinGame();
+////			}
+////			if(!mSocket.Connected){
+//				
+////			}
+//		}
+//	}
 	
 	//    public static void DoLogin(LoginInfo loginInfo, BaseEvent baseEvent, bool isTest, bool showLoading)
 	//    {
@@ -629,7 +648,16 @@ public class NetMgr : MonoBehaviour{
 	{
 		Instance.webAPIProcessEvent (new GameSposGameRequest(), baseEvent);
 	}
-	
+
+	public static void GameResult(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent (new GameResultRequest(), baseEvent);
+	}
+
+	public static void SkillsetList(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent (new SkillsetListRequest(), baseEvent);
+	}
 	
 	public static void GetUserRankingSeasonForecast(int memSeq, BaseEvent baseEvent)
 	{
@@ -747,9 +775,12 @@ public class NetMgr : MonoBehaviour{
 
 	public static void JoinGame()
 	{
-		//        Instance.webAPIProcessEvent (new JoinGameRequest (), baseEvent);
-		//        Instance.tcpAPIProcessEvent(new JoinGameSocketRequest(), baseEvent, true);
 		Instance.socketJoinEvent();
+	}
+
+	public static void Alive()
+	{
+		SendSocketMsg(new AliveSocketRequest().ToRequestString());
 	}
 	
 	public static void JoinQuiz(JoinQuizInfo joinInfo, BaseEvent baseEvent)
@@ -819,6 +850,16 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new GetItemShopGoldRequest(category), baseEvent);
 	}
 
+	public static void SetSkill(CardInfo card, SkillsetInfo skill, int slot, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new SetSkillRequest(card, skill, slot), baseEvent);
+	}
+
+	public static void OffSkill(CardInfo card, SkillsetInfo skill, int slot, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new OffSkillRequest(card, skill, slot), baseEvent);
+	}
+
 	public static void GetEventList(BaseEvent baseEvent){
 		Instance.webAPIProcessEvent(new GetEventsRequest(), baseEvent);
 	}
@@ -881,7 +922,6 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIUploadProcessEvent(new ChangeGestRequest(loginInfo), baseEvent, isTest, bShowLoading);
 	}
 	
-	
 	public static void GetSposTeamInfo(string teamCode , BaseEvent baseEvent)
 	{
 		Instance.webAPIProcessEvent(new GetSposTeamInfoRequest(teamCode), baseEvent);
@@ -927,10 +967,19 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new GetGoldShopRequest(), baseEvent);
 	}
 
-
 	public static void ContestMyTeamList(int contestSeq , BaseEvent baseEvent)
 	{
 		Instance.webAPIProcessEvent(new ContestMyTeamRequest(contestSeq), baseEvent);
+	}
+
+	public static void ExpandCardInven(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new ExpandCardInvenRequest(), baseEvent);
+	}
+
+	public static void ExpandSkillInven(BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new ExpandSkillInvenRequest(), baseEvent);
 	}
 
 	public static void PlayerNewsInfo(long playerId , BaseEvent baseEvent)
@@ -977,6 +1026,11 @@ public class NetMgr : MonoBehaviour{
 	{
 		Instance.webAPIProcessEvent(new AccuseContentRequest(accuInfo), baseEvent);
 	}
+
+	public static void CallBingo(int gameId, int bingoId, int inningNumber, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new CallBingoRequest(gameId, bingoId, inningNumber), baseEvent);
+	}
 	
 	public static void GetEvents(BaseEvent baseEvent)
 	{
@@ -991,6 +1045,16 @@ public class NetMgr : MonoBehaviour{
 	public static void GetTerms(BaseEvent baseEvent)
 	{
 		Instance.webAPIProcessEventForRankingball(new GetTermsRequest(), baseEvent, true);
+	}
+
+	public static void PowerMax(int gameId, int bingoId, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new PowerMaxRequest(gameId, bingoId), baseEvent, true);
+	}
+
+	public static void UsePower(int gameId, int bingoId, int tailId, BaseEvent baseEvent)
+	{
+		Instance.webAPIProcessEvent(new UsePowerRequest(gameId, bingoId, tailId), baseEvent, true);
 	}
 	
 	public static void CSGetList(BaseCSEvent baseEvent){
@@ -1013,8 +1077,24 @@ public class NetMgr : MonoBehaviour{
 		Instance.webAPIProcessEvent(new OpenCardPackRequest(mailSeq, itemFK), baseEvent);
 	}
 
-	public static void Withdraw( BaseEvent baseEvent){
+	public static void TeamScheduleInfo(BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new TeamScheduleInfoRequest(), baseEvent);
+	}
+
+	public static void Withdraw(BaseEvent baseEvent){
 		Instance.webAPIProcessEventToAuth(new WithdrawRequest(), baseEvent, false, true);
+	}
+
+	public static void GetBingo(int gameId, BaseEvent baseEvent){
+		Instance.webAPIProcessEventToAuth(new GetBingoRequest(gameId), baseEvent, false, true);
+	}
+
+	public static void GetCurrentLineup(int gameId, int inning, int bingoId, BaseEvent baseEvent){
+		Instance.webAPIProcessEventToAuth(new GetCurrentLineupRequest(gameId, inning, bingoId), baseEvent, false, true);
+	}
+
+	public static void GetNotice(BaseEvent baseEvent){
+		Instance.webAPIProcessEvent(new NoticeRequest(), baseEvent, true);
 	}
 
 	public static void SendSocketMsg(String msg) {
@@ -1053,6 +1133,7 @@ public class NetMgr : MonoBehaviour{
 			recvBytes = mSocket.EndReceive(ar);
 		} catch{
 			Debug.Log("recv error");
+//			Alive();
 			return;
 		}
 		
@@ -1066,9 +1147,20 @@ public class NetMgr : MonoBehaviour{
 			
 			// 받은 메세지를 출력
 			Debug.Log("Received : "+ msg);
-			
-			SocketMsgInfo msgInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<SocketMsgInfo>(msg);
-			mSocketMsgList.Add(msgInfo);
+//			msg += msg;
+			string[] msgArr = msg.Split("\r\n".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+//			if(msgArr.Length > 1){
+//				DialogueMgr.ShowDialogue("adasd", UtilMgr.GetDateTimeNow("HH:mm:ss"), DialogueMgr.DIALOGUE_TYPE.Alert
+//				                         ,null);
+//			}
+			for(int i = 0; i < msgArr.Length; i++){
+//				Debug.Log("Received(" + i + ") : " + msgArr[i]);
+				SocketMsgInfo msgInfo = Newtonsoft.Json.JsonConvert.DeserializeObject<SocketMsgInfo>(msgArr[i]);
+				if(!UtilMgr.OnPause
+				   && UtilMgr.GetLastBackState() == UtilMgr.STATE.LiveBingo){
+					mSocketMsgList.Add(msgInfo);
+				}
+			}
 			mRecvSemaphore = false;
 		}
 		

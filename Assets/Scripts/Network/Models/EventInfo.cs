@@ -118,6 +118,18 @@ public class EventInfo {
 			_korStadiumName = value;
 		}
 	}
+
+	string _inningState;
+
+	public string inningState {
+		get {
+			return _inningState;
+		}
+		set {
+			_inningState = value;
+		}
+	}
+
 //// 경기장이름		
 //inning: 0,			// 이닝			
 	int _inning;

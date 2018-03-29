@@ -26,6 +26,8 @@ public class MyContests : MonoBehaviour {
 
 	public void Init(string title, ContestDataEvent contestEvent){
 		mList = contestEvent.Response.data;
+		transform.gameObject.SetActive(true);
+		transform.localPosition = new Vector3(1000f, 0);
 		transform.FindChild("Top").FindChild("LblTitle").GetComponent<UILabel>().text = title;
 
 		int totalTickets = 0;
@@ -80,7 +82,12 @@ public class MyContests : MonoBehaviour {
 			InitRecentList();
 		}
 
+		InitEnded();
+	}
 
+	void InitEnded(){
+		UtilMgr.AddBackState(UtilMgr.STATE.MyContests);
+		UtilMgr.AnimatePageToLeft("Lobby", "MyContests");
 	}
 
 	void InitUpcomingList(){
@@ -113,7 +120,13 @@ public class MyContests : MonoBehaviour {
 			stackedHeight -= 276/2f;
 			go.transform.localScale = new Vector3(1f, 1f, 1f);
 
-			go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
+			if(Localization.language.Equals("English"))
+				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
+			else
+				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestNameKor;
+
+			SetContestType(info, go.transform.FindChild("LblTitle").gameObject);
+
 			go.transform.FindChild("LblEntries").FindChild("Label").GetComponent<UILabel>().text 
 				= "[333333][b]"+ UtilMgr.AddsThousandsSeparator(info.totalJoin)
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalEntry);
@@ -176,8 +189,14 @@ public class MyContests : MonoBehaviour {
 			go.transform.localPosition = new Vector3(0, stackedHeight);
 			stackedHeight -= 276/2f;
 			go.transform.localScale = new Vector3(1f, 1f, 1f);
-			
-			go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
+
+			if(Localization.language.Equals("English"))
+				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
+			else
+				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestNameKor;
+
+			SetContestType(info, go.transform.FindChild("LblTitle").gameObject);
+
 			go.transform.FindChild("LblPosition").FindChild("Label").GetComponent<UILabel>().text 
 				= "[333333][b]"+ UtilMgr.AddsThousandsSeparator(info.myRank)
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalJoin);
@@ -239,6 +258,7 @@ public class MyContests : MonoBehaviour {
 					.GetComponent<UISprite>().width = width;
 				go.transform.FindChild("Time").FindChild ("SprArrow").FindChild("Panel").FindChild("Sprite")
 					.localPosition = new Vector3(-((124 - width)/2), 0);
+
 			}
 			
 			go = Instantiate(mItemLiveSub);
@@ -248,8 +268,14 @@ public class MyContests : MonoBehaviour {
 			go.transform.localPosition = new Vector3(0, stackedHeight);
 			stackedHeight -= 170f;
 			go.transform.localScale = new Vector3(1f, 1f, 1f);
-			
-			go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
+
+			if(Localization.language.Equals("English"))
+				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestName;
+			else
+				go.transform.FindChild("LblTitle").GetComponent<UILabel>().text = info.contestNameKor;
+
+			SetContestType(info, go.transform.FindChild("LblTitle").gameObject);
+
 			go.transform.FindChild("LblPosition").FindChild("Label").GetComponent<UILabel>().text 
 				= "[333333][b]"+ UtilMgr.AddsThousandsSeparator(info.myRank)
 					+ "[/b][-][666666] / " + UtilMgr.AddsThousandsSeparator(info.totalJoin);
@@ -274,8 +300,37 @@ public class MyContests : MonoBehaviour {
 				go.transform.FindChild("Lineup").FindChild("Sprite").gameObject.SetActive(false);
 				go.transform.FindChild("Lineup").FindChild("Label").localPosition = new Vector3(0, -8f, 0);
 			}
+
+			float rewardRatio = 0;
+			if(info.contestType == 1){
+				rewardRatio = 0.5f;
+			} else{
+				rewardRatio = ((float)info.rewardCount) / ((float)info.totalJoin);
+				if(rewardRatio > 1f) rewardRatio = 1f;
+			}
+			
+			float widthf = 672f * rewardRatio;
+			float diff = (672f - widthf) / 2f;
+			
+			go.transform.FindChild("Gauge").FindChild("Panel").GetComponent<UIPanel>().SetRect(widthf, 70f);
+			go.transform.FindChild("Gauge").FindChild("Panel").localPosition = new Vector3(diff, 26f);
+			go.transform.FindChild("Gauge").FindChild("Panel")
+				.FindChild("SprGaugeFront").localPosition = new Vector3(-diff, 0);
 		}
 		
 		transform.FindChild("Body").FindChild("Scroll View").GetComponent<UIScrollView>().ResetPosition();
+	}
+
+	void SetContestType(ContestListInfo info, GameObject go){
+		if(info.featured == 1){//special
+			go.transform.FindChild("Sprite").GetComponent<UISprite>().color = new Color(1f, 193f/255f, 48f/255f);
+			go.transform.FindChild("Sprite").FindChild("Label").GetComponent<UILabel>().text = "S";
+		} else if(info.contestType == 1){//50
+			go.transform.FindChild("Sprite").GetComponent<UISprite>().color = new Color(147f/255f, 212f/255f, 91f/255f);
+			go.transform.FindChild("Sprite").FindChild("Label").GetComponent<UILabel>().text = "50";
+		} else{
+			go.transform.FindChild("Sprite").GetComponent<UISprite>().color = new Color(119f/255f, 98f/255f, 204f/255f);
+			go.transform.FindChild("Sprite").FindChild("Label").GetComponent<UILabel>().text = "R";
+		}
 	}
 }
